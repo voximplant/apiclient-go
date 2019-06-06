@@ -1,0 +1,158 @@
+package methods
+
+import (
+	"github.com/voximplant/apiclient-go/structure"
+)
+
+type ApplicationsService struct {
+	client *Client
+}
+
+type AddApplicationParams struct {
+	// The short application name in format [a-z][a-z0-9-]{1,79} 
+	ApplicationName string `json:"application_name"`
+	// Enable secure storage for all logs and records of the application 
+	SecureRecordStorage bool `json:"secure_record_storage,string,omitempty"`
+}
+
+type AddApplicationReturn struct {
+	// 1 
+	Result int `json:"result"`
+	// The application ID 
+	ApplicationId int `json:"application_id"`
+	// The full application name 
+	ApplicationName string `json:"application_name"`
+	// This flag indicates whether a secure storage for logs and records is enabled or not. 
+	SecureRecordStorage bool `json:"secure_record_storage"`
+}
+
+// Adds a new account's application. 
+func (s *ApplicationsService) AddApplication(params AddApplicationParams) (*AddApplicationReturn, *structure.VError, error) {
+	req, err := s.client.NewRequest("POST", "AddApplication", params)
+	if err != nil {
+		return nil, nil, err
+	}
+	response := &AddApplicationReturn{}
+	verr, err := s.client.MakeResponse(req, response)
+	if err != nil {
+		return nil, nil, err
+	}
+	if verr != nil {
+		return nil, verr, nil
+	}
+	return response, nil, nil
+}
+
+type DelApplicationParams struct {
+	// The application ID list separated by the ';' symbol or the 'all' value. 
+	ApplicationId string `json:"application_id"`
+	// The application name list separated by the ';' symbol. Can be used instead of <b>appliction_id</b>. 
+	ApplicationName string `json:"application_name"`
+}
+
+type DelApplicationReturn struct {
+	// 1 
+	Result int `json:"result"`
+}
+
+// Deletes the account's application. 
+func (s *ApplicationsService) DelApplication(params DelApplicationParams) (*DelApplicationReturn, *structure.VError, error) {
+	req, err := s.client.NewRequest("POST", "DelApplication", params)
+	if err != nil {
+		return nil, nil, err
+	}
+	response := &DelApplicationReturn{}
+	verr, err := s.client.MakeResponse(req, response)
+	if err != nil {
+		return nil, nil, err
+	}
+	if verr != nil {
+		return nil, verr, nil
+	}
+	return response, nil, nil
+}
+
+type SetApplicationInfoParams struct {
+	// The application ID. 
+	ApplicationId int `json:"application_id,string"`
+	// Can be used instead of <b>application_id</b>. 
+	RequiredApplicationName string `json:"required_application_name"`
+	// The new short application name in format [a-z][a-z0-9-]{1,79} 
+	ApplicationName string `json:"application_name,omitempty"`
+	// Enable secure storage for all logs and records of the application 
+	SecureRecordStorage bool `json:"secure_record_storage,string,omitempty"`
+}
+
+type SetApplicationInfoReturn struct {
+	// 1 
+	Result int `json:"result"`
+	// The new full application name 
+	ApplicationName string `json:"application_name"`
+	// This flag indicates whether a secure storage for logs and records is enabled or not. 
+	SecureRecordStorage bool `json:"secure_record_storage"`
+}
+
+// Edits the account's application. 
+func (s *ApplicationsService) SetApplicationInfo(params SetApplicationInfoParams) (*SetApplicationInfoReturn, *structure.VError, error) {
+	req, err := s.client.NewRequest("POST", "SetApplicationInfo", params)
+	if err != nil {
+		return nil, nil, err
+	}
+	response := &SetApplicationInfoReturn{}
+	verr, err := s.client.MakeResponse(req, response)
+	if err != nil {
+		return nil, nil, err
+	}
+	if verr != nil {
+		return nil, verr, nil
+	}
+	return response, nil, nil
+}
+
+type GetApplicationsParams struct {
+	// The application ID to filter. 
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// The application name part to filter. 
+	ApplicationName string `json:"application_name,omitempty"`
+	// The user ID to filter. 
+	UserId int `json:"user_id,string,omitempty"`
+	// The excluded user ID to filter. 
+	ExcludedUserId int `json:"excluded_user_id,string,omitempty"`
+	// Specify the user ID value to show it in the 'users' array output. 
+	ShowingUserId int `json:"showing_user_id,string,omitempty"`
+	// Set true to get bound rules info. 
+	WithRules bool `json:"with_rules,string,omitempty"`
+	// Set true to get bound rules and scenarios info. 
+	WithScenarios bool `json:"with_scenarios,string,omitempty"`
+	// The max returning record count. 
+	Count int `json:"count,string,omitempty"`
+	// The first <b>N</b> records will be skipped in the output. 
+	Offset int `json:"offset,string,omitempty"`
+}
+
+type GetApplicationsReturn struct {
+	//  
+	Result []*structure.ApplicationInfoType `json:"result"`
+	// The total found application count. 
+	TotalCount int `json:"total_count"`
+	// The returned application count. 
+	Count int `json:"count"`
+}
+
+// Gets the account's applications. 
+func (s *ApplicationsService) GetApplications(params GetApplicationsParams) (*GetApplicationsReturn, *structure.VError, error) {
+	req, err := s.client.NewRequest("POST", "GetApplications", params)
+	if err != nil {
+		return nil, nil, err
+	}
+	response := &GetApplicationsReturn{}
+	verr, err := s.client.MakeResponse(req, response)
+	if err != nil {
+		return nil, nil, err
+	}
+	if verr != nil {
+		return nil, verr, nil
+	}
+	return response, nil, nil
+}
+
