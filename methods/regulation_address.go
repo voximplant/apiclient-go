@@ -30,11 +30,8 @@ func (s *RegulationAddressService) LinkregulationAddress(params LinkregulationAd
 	}
 	response := &LinkregulationAddressReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -65,11 +62,8 @@ func (s *RegulationAddressService) GetZIPCodes(params GetZIPCodesParams) (*GetZI
 	}
 	response := &GetZIPCodesReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -108,11 +102,8 @@ func (s *RegulationAddressService) GetRegulationsAddress(params GetRegulationsAd
 	}
 	response := &GetRegulationsAddressReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -143,11 +134,8 @@ func (s *RegulationAddressService) GetAvailableRegulations(params GetAvailableRe
 	}
 	response := &GetAvailableRegulationsReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -172,11 +160,8 @@ func (s *RegulationAddressService) GetCountries(params GetCountriesParams) (*Get
 	}
 	response := &GetCountriesReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -209,11 +194,8 @@ func (s *RegulationAddressService) GetRegions(params GetRegionsParams) (*GetRegi
 	}
 	response := &GetRegionsReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }

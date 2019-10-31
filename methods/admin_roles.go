@@ -38,11 +38,8 @@ func (s *AdminRolesService) AddAdminRole(params AddAdminRoleParams) (*AddAdminRo
 	}
 	response := &AddAdminRoleReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -67,11 +64,8 @@ func (s *AdminRolesService) DelAdminRole(params DelAdminRoleParams) (*DelAdminRo
 	}
 	response := &DelAdminRoleReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -110,11 +104,8 @@ func (s *AdminRolesService) SetAdminRoleInfo(params SetAdminRoleInfoParams) (*Se
 	}
 	response := &SetAdminRoleInfoReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -165,11 +156,8 @@ func (s *AdminRolesService) GetAdminRoles(params GetAdminRolesParams) (*GetAdmin
 	}
 	response := &GetAdminRolesReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -190,11 +178,8 @@ func (s *AdminRolesService) GetAvailableAdminRoleEntries(params GetAvailableAdmi
 	}
 	response := &GetAvailableAdminRoleEntriesReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }

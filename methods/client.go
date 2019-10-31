@@ -14,10 +14,6 @@ import (
 	"sync"
 )
 
-const (
-	defaultHost = "api.voximplant.com"
-)
-
 type Client struct {
 	// HTTP client used to communicate with the API.
 	client *http.Client
@@ -60,6 +56,11 @@ func NewClient(config *config.Config) (*Client, error) {
 		config.HTTPClient = http.DefaultClient
 	}
 
+	parsedBaseURL, err := url.Parse(config.Endpoint)
+	if err != nil {
+		return nil, err
+	}
+
 	keyPair := jwt.NewKeyPair(config.KeyPath)
 
 	if err := keyPair.Parse(); err != nil {
@@ -70,17 +71,9 @@ func NewClient(config *config.Config) (*Client, error) {
 		return nil, err
 	}
 
-	if config.Endpoint == "" {
-		config.Endpoint = defaultHost
-	}
-
 	c := &Client{
 		client:  config.HTTPClient,
-		baseURL: &url.URL{
-			Scheme: "https",
-			Host: config.Endpoint,
-			Path: "/platform_api/",
-		},
+		baseURL: parsedBaseURL,
 		keyPair: keyPair,
 	}
 

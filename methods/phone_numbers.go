@@ -42,11 +42,8 @@ func (s *PhoneNumbersService) AttachPhoneNumber(params AttachPhoneNumberParams) 
 	}
 	response := &AttachPhoneNumberReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -81,11 +78,8 @@ func (s *PhoneNumbersService) BindPhoneNumberToApplication(params BindPhoneNumbe
 	}
 	response := &BindPhoneNumberToApplicationReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -110,11 +104,8 @@ func (s *PhoneNumbersService) DeactivatePhoneNumber(params DeactivatePhoneNumber
 	}
 	response := &DeactivatePhoneNumberReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -141,11 +132,8 @@ func (s *PhoneNumbersService) SetPhoneNumberInfo(params SetPhoneNumberInfoParams
 	}
 	response := &SetPhoneNumberInfoReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -230,11 +218,8 @@ func (s *PhoneNumbersService) GetPhoneNumbers(params GetPhoneNumbersParams) (*Ge
 	}
 	response := &GetPhoneNumbersReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -271,11 +256,8 @@ func (s *PhoneNumbersService) GetNewPhoneNumbers(params GetNewPhoneNumbersParams
 	}
 	response := &GetNewPhoneNumbersReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -300,11 +282,8 @@ func (s *PhoneNumbersService) GetPhoneNumberCategories(params GetPhoneNumberCate
 	}
 	response := &GetPhoneNumberCategoriesReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -331,11 +310,8 @@ func (s *PhoneNumbersService) GetPhoneNumberCountryStates(params GetPhoneNumberC
 	}
 	response := &GetPhoneNumberCountryStatesReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -370,11 +346,8 @@ func (s *PhoneNumbersService) GetPhoneNumberRegions(params GetPhoneNumberRegions
 	}
 	response := &GetPhoneNumberRegionsReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -401,11 +374,8 @@ func (s *PhoneNumbersService) GetActualPhoneNumberRegion(params GetActualPhoneNu
 	}
 	response := &GetActualPhoneNumberRegionReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }

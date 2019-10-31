@@ -9,8 +9,8 @@ type Date struct {
 	time.Time
 }
 
-// UnmarshalJSON will transform the Voximplant date into a time.Time
-// during the transformation of the Voximplant JSON response
+// UnmarshalJSON will transform the JIRA date into a time.Time
+// during the transformation of the JIRA JSON response
 func (t *Timestamp) UnmarshalJSON(b []byte) error {
 	// Ignore null, like in the main JSON package.
 	if string(b) == "null" {
@@ -25,15 +25,15 @@ func (t *Timestamp) UnmarshalJSON(b []byte) error {
 }
 
 // MarshalJSON will transform the Date object into a short
-// date string as Voximplant expects during the creation of a
-// Voximplant request
+// date string as JIRA expects during the creation of a
+// JIRA request
 func (t Timestamp) MarshalJSON() ([]byte, error) {
 	timestamp := time.Time(t)
 	return []byte(timestamp.Format("\"2006-01-02 15:04:05\"")), nil
 }
 
-// UnmarshalJSON will transform the Voximplant date into a time.Time
-// during the transformation of the Voximplant JSON response
+// UnmarshalJSON will transform the JIRA date into a time.Time
+// during the transformation of the JIRA JSON response
 func (t *Date) UnmarshalJSON(b []byte) error {
 	// Ignore null, like in the main JSON package.
 	if string(b) == "null" {
@@ -49,8 +49,8 @@ func (t *Date) UnmarshalJSON(b []byte) error {
 
 var nilTime = (time.Time{}).UnixNano()
 // MarshalJSON will transform the Date object into a short
-// date string as Voximplant expects during the creation of a
-// Voximplant request
+// date string as JIRA expects during the creation of a
+// JIRA request
 func (t Date) MarshalJSON() ([]byte, error) {
 	if t.Time.UnixNano() == nilTime {
 		return []byte("null"), nil

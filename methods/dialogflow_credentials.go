@@ -30,11 +30,8 @@ func (s *DialogflowCredentialsService) AddDialogflowKey(params AddDialogflowKeyP
 	}
 	response := &AddDialogflowKeyReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -57,11 +54,8 @@ func (s *DialogflowCredentialsService) DelDialogflowKey(params DelDialogflowKeyP
 	}
 	response := &DelDialogflowKeyReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -92,11 +86,8 @@ func (s *DialogflowCredentialsService) GetDialogflowKeys(params GetDialogflowKey
 	}
 	response := &GetDialogflowKeysReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -123,11 +114,8 @@ func (s *DialogflowCredentialsService) BindDialogflowKeys(params BindDialogflowK
 	}
 	response := &BindDialogflowKeysReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }

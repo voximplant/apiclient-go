@@ -54,7 +54,7 @@ func (kp *KeyPair) parseFile() error {
 	if err != nil {
 		return err
 	}
-	if err := json.Unmarshal(byteValue, kp); err != nil {
+	if err := json.Unmarshal(byteValue, &kp.Result); err != nil {
 		return err
 	}
 	return nil

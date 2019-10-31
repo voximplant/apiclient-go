@@ -40,11 +40,8 @@ func (s *AdminUsersService) AddAdminUser(params AddAdminUserParams) (*AddAdminUs
 	}
 	response := &AddAdminUserReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -69,11 +66,8 @@ func (s *AdminUsersService) DelAdminUser(params DelAdminUserParams) (*DelAdminUs
 	}
 	response := &DelAdminUserReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -106,11 +100,8 @@ func (s *AdminUsersService) SetAdminUserInfo(params SetAdminUserInfoParams) (*Se
 	}
 	response := &SetAdminUserInfoReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -151,11 +142,8 @@ func (s *AdminUsersService) GetAdminUsers(params GetAdminUsersParams) (*GetAdmin
 	}
 	response := &GetAdminUsersReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -186,11 +174,8 @@ func (s *AdminUsersService) AttachAdminRole(params AttachAdminRoleParams) (*Atta
 	}
 	response := &AttachAdminRoleReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }

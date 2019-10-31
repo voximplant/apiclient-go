@@ -52,11 +52,8 @@ func (s *SipRegistrationService) CreateSipRegistration(params CreateSipRegistrat
 	}
 	response := &CreateSipRegistrationReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -101,11 +98,8 @@ func (s *SipRegistrationService) UpdateSipRegistration(params UpdateSipRegistrat
 	}
 	response := &UpdateSipRegistrationReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -142,11 +136,8 @@ func (s *SipRegistrationService) BindSipRegistration(params BindSipRegistrationP
 	}
 	response := &BindSipRegistrationReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -169,11 +160,8 @@ func (s *SipRegistrationService) DeleteSipRegistration(params DeleteSipRegistrat
 	}
 	response := &DeleteSipRegistrationReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -230,11 +218,8 @@ func (s *SipRegistrationService) GetSipRegistrations(params GetSipRegistrationsP
 	}
 	response := &GetSipRegistrationsReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }

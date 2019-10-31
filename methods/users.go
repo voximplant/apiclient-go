@@ -44,11 +44,8 @@ func (s *UsersService) AddUser(params AddUserParams) (*AddUserReturn, *structure
 	}
 	response := &AddUserReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -77,11 +74,8 @@ func (s *UsersService) DelUser(params DelUserParams) (*DelUserReturn, *structure
 	}
 	response := &DelUserReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -124,11 +118,8 @@ func (s *UsersService) SetUserInfo(params SetUserInfoParams) (*SetUserInfoReturn
 	}
 	response := &SetUserInfoReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -187,11 +178,8 @@ func (s *UsersService) GetUsers(params GetUsersParams) (*GetUsersReturn, *struct
 	}
 	response := &GetUsersReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }

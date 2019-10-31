@@ -34,11 +34,8 @@ func (s *ApplicationsService) AddApplication(params AddApplicationParams) (*AddA
 	}
 	response := &AddApplicationReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -63,11 +60,8 @@ func (s *ApplicationsService) DelApplication(params DelApplicationParams) (*DelA
 	}
 	response := &DelApplicationReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -100,11 +94,8 @@ func (s *ApplicationsService) SetApplicationInfo(params SetApplicationInfoParams
 	}
 	response := &SetApplicationInfoReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -147,11 +138,8 @@ func (s *ApplicationsService) GetApplications(params GetApplicationsParams) (*Ge
 	}
 	response := &GetApplicationsReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }

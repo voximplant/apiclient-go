@@ -28,11 +28,8 @@ func (s *AuthorizedIpsService) AddAuthorizedAccountIP(params AddAuthorizedAccoun
 	}
 	response := &AddAuthorizedAccountIPReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -59,11 +56,8 @@ func (s *AuthorizedIpsService) DelAuthorizedAccountIP(params DelAuthorizedAccoun
 	}
 	response := &DelAuthorizedAccountIPReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -98,11 +92,8 @@ func (s *AuthorizedIpsService) GetAuthorizedAccountIPs(params GetAuthorizedAccou
 	}
 	response := &GetAuthorizedAccountIPsReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -127,11 +118,8 @@ func (s *AuthorizedIpsService) CheckAuthorizedAccountIP(params CheckAuthorizedAc
 	}
 	response := &CheckAuthorizedAccountIPReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }

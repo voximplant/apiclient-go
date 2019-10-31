@@ -28,11 +28,8 @@ func (s *CallerIdsService) AddCallerID(params AddCallerIDParams) (*AddCallerIDRe
 	}
 	response := &AddCallerIDReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -59,11 +56,8 @@ func (s *CallerIdsService) ActivateCallerID(params ActivateCallerIDParams) (*Act
 	}
 	response := &ActivateCallerIDReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -88,11 +82,8 @@ func (s *CallerIdsService) DelCallerID(params DelCallerIDParams) (*DelCallerIDRe
 	}
 	response := &DelCallerIDReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -129,11 +120,8 @@ func (s *CallerIdsService) GetCallerIDs(params GetCallerIDsParams) (*GetCallerID
 	}
 	response := &GetCallerIDsReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -158,11 +146,8 @@ func (s *CallerIdsService) VerifyCallerID(params VerifyCallerIDParams) (*VerifyC
 	}
 	response := &VerifyCallerIDReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }

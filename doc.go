@@ -31,7 +31,7 @@ This example shows how you can use the API client.
 	)
 
 	func main() {
-		voxConfig := config.NewConfig().WithKeyPath("vox_key_jwt.json")
+		voxConfig := config.NewConfig().WithEndpoint("https://api.voximplant.com/platform_api/").WithKeyPath("vox_key_jwt.json")
 		// Create a Voximplant client using the Config value
 		client, err := methods.NewClient(voxConfig)
 		if err != nil {

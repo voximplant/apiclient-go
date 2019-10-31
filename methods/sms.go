@@ -32,11 +32,8 @@ func (s *SmsService) SendSmsMessage(params SendSmsMessageParams) (*SendSmsMessag
 	}
 	response := &SendSmsMessageReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -61,11 +58,8 @@ func (s *SmsService) ControlSms(params ControlSmsParams) (*ControlSmsReturn, *st
 	}
 	response := &ControlSmsReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }

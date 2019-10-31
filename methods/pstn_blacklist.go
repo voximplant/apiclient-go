@@ -28,11 +28,8 @@ func (s *PstnBlacklistService) AddPstnBlackListItem(params AddPstnBlackListItemP
 	}
 	response := &AddPstnBlackListItemReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -57,11 +54,8 @@ func (s *PstnBlacklistService) SetPstnBlackListItem(params SetPstnBlackListItemP
 	}
 	response := &SetPstnBlackListItemReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -84,11 +78,8 @@ func (s *PstnBlacklistService) DelPstnBlackListItem(params DelPstnBlackListItemP
 	}
 	response := &DelPstnBlackListItemReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -121,11 +112,8 @@ func (s *PstnBlacklistService) GetPstnBlackList(params GetPstnBlackListParams) (
 	}
 	response := &GetPstnBlackListReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }

@@ -28,11 +28,8 @@ func (s *AccountsService) GetAccountInfo(params GetAccountInfoParams) (*GetAccou
 	}
 	response := &GetAccountInfoReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -93,11 +90,8 @@ func (s *AccountsService) SetAccountInfo(params SetAccountInfoParams) (*SetAccou
 	}
 	response := &SetAccountInfoReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -150,11 +144,8 @@ func (s *AccountsService) SetChildAccountInfo(params SetChildAccountInfoParams) 
 	}
 	response := &SetChildAccountInfoReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -179,11 +170,8 @@ func (s *AccountsService) GetCurrencyRate(params GetCurrencyRateParams) (*GetCur
 	}
 	response := &GetCurrencyRateReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -212,11 +200,8 @@ func (s *AccountsService) GetResourcePrice(params GetResourcePriceParams) (*GetR
 	}
 	response := &GetResourcePriceReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -247,11 +232,8 @@ func (s *AccountsService) GetSubscriptionPrice(params GetSubscriptionPriceParams
 	}
 	response := &GetSubscriptionPriceReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -300,11 +282,8 @@ func (s *AccountsService) GetChildrenAccounts(params GetChildrenAccountsParams) 
 	}
 	response := &GetChildrenAccountsReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -343,11 +322,8 @@ func (s *AccountsService) TransferMoneyToChildAccount(params TransferMoneyToChil
 	}
 	response := &TransferMoneyToChildAccountReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -372,11 +348,8 @@ func (s *AccountsService) GetMoneyAmountToCharge(params GetMoneyAmountToChargePa
 	}
 	response := &GetMoneyAmountToChargeReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -403,11 +376,8 @@ func (s *AccountsService) ChargeAccount(params ChargeAccountParams) (*ChargeAcco
 	}
 	response := &ChargeAccountReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -442,11 +412,8 @@ func (s *AccountsService) GetAccountDocuments(params GetAccountDocumentsParams) 
 	}
 	response := &GetAccountDocumentsReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }

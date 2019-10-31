@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	voxConfig := config.NewConfig().WithKeyPath("vox_key_jwt.json")
+	voxConfig := config.NewConfig().WithEndpoint("https://api.voximplant.com/platform_api/").WithKeyPath("vox_key_jwt.json")
 	client, err := methods.NewClient(voxConfig)
 	if err != nil {
 		panic(err)

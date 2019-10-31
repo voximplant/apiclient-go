@@ -44,11 +44,8 @@ func (s *QueuesService) AddQueue(params AddQueueParams) (*AddQueueReturn, *struc
 	}
 	response := &AddQueueReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -83,11 +80,8 @@ func (s *QueuesService) BindUserToQueue(params BindUserToQueueParams) (*BindUser
 	}
 	response := &BindUserToQueueReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -112,11 +106,8 @@ func (s *QueuesService) DelQueue(params DelQueueParams) (*DelQueueReturn, *struc
 	}
 	response := &DelQueueReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -157,11 +148,8 @@ func (s *QueuesService) SetQueueInfo(params SetQueueInfoParams) (*SetQueueInfoRe
 	}
 	response := &SetQueueInfoReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -204,11 +192,8 @@ func (s *QueuesService) GetQueues(params GetQueuesParams) (*GetQueuesReturn, *st
 	}
 	response := &GetQueuesReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -231,11 +216,8 @@ func (s *QueuesService) GetACDState(params GetACDStateParams) (*GetACDStateRetur
 	}
 	response := &GetACDStateReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -272,11 +254,8 @@ func (s *QueuesService) GetACDOperatorStatistics(params GetACDOperatorStatistics
 	}
 	response := &GetACDOperatorStatisticsReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -309,11 +288,8 @@ func (s *QueuesService) GetACDQueueStatistics(params GetACDQueueStatisticsParams
 	}
 	response := &GetACDQueueStatisticsReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -346,11 +322,8 @@ func (s *QueuesService) GetACDOperatorStatusStatistics(params GetACDOperatorStat
 	}
 	response := &GetACDOperatorStatusStatisticsReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }

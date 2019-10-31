@@ -54,11 +54,8 @@ func (s *CallListsService) CreateCallList(params CreateCallListParams) (*CreateC
 	}
 	response := &CreateCallListReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -105,11 +102,8 @@ func (s *CallListsService) CreateManualCallList(params CreateManualCallListParam
 	}
 	response := &CreateManualCallListReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -136,11 +130,8 @@ func (s *CallListsService) StartNextCallTask(params StartNextCallTaskParams) (*S
 	}
 	response := &StartNextCallTaskReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -177,11 +168,8 @@ func (s *CallListsService) AppendToCallList(params AppendToCallListParams) (*App
 	}
 	response := &AppendToCallListReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -220,11 +208,8 @@ func (s *CallListsService) GetCallLists(params GetCallListsParams) (*GetCallList
 	}
 	response := &GetCallListsReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -259,11 +244,8 @@ func (s *CallListsService) GetCallListDetails(params GetCallListDetailsParams) (
 	}
 	response := &GetCallListDetailsReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -288,11 +270,8 @@ func (s *CallListsService) StopCallListProcessing(params StopCallListProcessingP
 	}
 	response := &StopCallListProcessingReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
@@ -317,11 +296,8 @@ func (s *CallListsService) RecoverCallList(params RecoverCallListParams) (*Recov
 	}
 	response := &RecoverCallListReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if err != nil {
-		return nil, nil, err
-	}
 	if verr != nil {
-		return nil, verr, nil
+		return nil, verr, err
 	}
 	return response, nil, nil
 }
