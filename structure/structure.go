@@ -28,11 +28,11 @@ type AccountInfoType struct {
 	Location string `json:"location,omitempty"`
 	// The min balance value to notify by email or SMS. 
 	MinBalanceToNotify float64 `json:"min_balance_to_notify,omitempty"`
-	// Are the VoxImplant notifications required? 
+	// Are the Voximplant notifications required? 
 	AccountNotifications bool `json:"account_notifications,omitempty"`
-	// Are the VoxImplant plan changing notifications required? 
+	// Are the Voximplant plan changing notifications required? 
 	TariffChangingNotifications bool `json:"tariff_changing_notifications,omitempty"`
-	// Are the VoxImplant news notifications required? 
+	// Are the Voximplant news notifications required? 
 	NewsNotifications bool `json:"news_notifications,omitempty"`
 	// The company or businessman name. 
 	BillingAddressName string `json:"billing_address_name,omitempty"`
@@ -44,9 +44,11 @@ type AccountInfoType struct {
 	BillingAddressZip string `json:"billing_address_zip,omitempty"`
 	// The office phone number. 
 	BillingAddressPhone string `json:"billing_address_phone,omitempty"`
+	// The office state (US) or province (Canada), up to 100 characters. Examples: California, Illinois, British Columbia. 
+	BillingAddressState string `json:"billing_address_state,omitempty"`
 	// The account activation flag. 
 	Active bool `json:"active"`
-	// Is account blocked by VoxImplant admins or not. 
+	// Is account blocked by Voximplant admins or not. 
 	Frozen bool `json:"frozen,omitempty"`
 	// The account's money. 
 	Balance float64 `json:"balance,omitempty"`
@@ -72,12 +74,30 @@ type AccountInfoType struct {
 	CallbackSalt string `json:"callback_salt,omitempty"`
 	// Is email sending on a JS error? 
 	SendJsError bool `json:"send_js_error,omitempty"`
+	// The payments limits applicable to each payment method. 
+	BillingLimits BillingLimitsType `json:"billing_limits,omitempty"`
+}
+
+type BillingLimitsType struct {
+	// The Robokassa limits. 
+	Robokassa BillingLimitInfoType `json:"robokassa,omitempty"`
+	// The bank card limits. 
+	BankCard BillingLimitInfoType `json:"bank_card,omitempty"`
+	// The invoice limits. 
+	Invoice BillingLimitInfoType `json:"invoice,omitempty"`
+}
+
+type BillingLimitInfoType struct {
+	// The minimum amount. 
+	MinAmount int `json:"min_amount"`
+	// The currency. 
+	Currency string `json:"currency"`
 }
 
 type ShortAccountInfoType struct {
 	// The account's ID. 
 	AccountId int `json:"account_id"`
-	// Is account blocked by VoxImplant admins or not. 
+	// Is account blocked by Voximplant admins or not. 
 	Frozen bool `json:"frozen,omitempty"`
 	// The account's money. 
 	Balance float64 `json:"balance,omitempty"`
@@ -112,25 +132,6 @@ type ClonedAccountType struct {
 	AdminUsers []ClonedAdminUserType `json:"admin_users"`
 }
 
-type AccountPlanType struct {
-	// The current plan ID. 
-	PlanSubscriptionTemplateId int `json:"plan_subscription_template_id"`
-	// The next charge date, format: YYYY-MM-DD 
-	NextCharge Date `json:"next_charge"`
-	// The plan type. Available values: IM, MAU. 
-	PlanType string `json:"plan_type"`
-	// The plan name. 
-	PlanName string `json:"plan_name"`
-	// The auto_charge flag. 
-	AutoCharge bool `json:"auto_charge"`
-	// Is overrun enabled? 
-	MayOverrun bool `json:"may_overrun"`
-	// The plan monthly charge. 
-	PeriodicCharge float64 `json:"periodic_charge"`
-	// The account plan package array. 
-	Packages []AccountPlanPackageType `json:"packages"`
-}
-
 type AccountPlanPackageType struct {
 	// The price group IDs. 
 	PriceGroupId []int `json:"price_group_id"`
@@ -148,19 +149,6 @@ type AccountPlanPackageType struct {
 	PackageSize int `json:"package_size"`
 	// The original package size (excluding overrun). 
 	OrigPackageSize int `json:"orig_package_size"`
-}
-
-type PlanType struct {
-	// The current plan ID. 
-	PlanSubscriptionTemplateId int `json:"plan_subscription_template_id"`
-	// The plan type. Available values: IM, MAU. 
-	PlanType string `json:"plan_type"`
-	// The plan name. 
-	PlanName string `json:"plan_name"`
-	// The plan monthly charge. 
-	PeriodicCharge float64 `json:"periodic_charge"`
-	// The account package array. 
-	Package []PlanPackageType `json:"package"`
 }
 
 type PlanPackageType struct {
@@ -209,6 +197,8 @@ type UserInfoType struct {
 	UserDisplayName string `json:"user_display_name"`
 	// The user active flag. 
 	UserActive bool `json:"user_active"`
+	// 'True' if the user uses the parent account's money, 'false' if the user has a separate balance. 
+	ParentAccounting bool `json:"parent_accounting"`
 	// The user mobile phone. 
 	MobilePhone string `json:"mobile_phone,omitempty"`
 	// The current user's money in the currency specified for the account. The value is the number rounded to 4 decimal places and it changes during the calls, transcribing, purchases etc. 
@@ -251,6 +241,8 @@ type ScenarioInfoType struct {
 	ScenarioScript string `json:"scenario_script,omitempty"`
 	// The scenario editing UTC date in 24-h format: YYYY-MM-DD HH:mm:ss 
 	Modified Timestamp `json:"modified"`
+	// 'True' if the scenario belongs to the parent account, 'false' if the scenario belongs to the current account. 
+	Parent bool `json:"parent"`
 }
 
 type ClonedScenarioType struct {
@@ -1073,7 +1065,7 @@ type ExchangeRates struct {
 }
 
 type ResourcePrice struct {
-	// The resource type name. The possible values are: ASR, AUDIORECORD, PSTN_IN_GB, PSTN_IN_GEOGRAPHIC, PSTN_IN_RU, PSTN_IN_RU_TOLLFREE, PSTN_IN_US, PSTN_IN_US_TF, PSTNOUT, SIPOUT, SIPOUTVIDEO, VOIPIN, VOIPOUT, VOIPOUTVIDEO 
+	// The resource type name. The possible values are: AUDIOHDCONFERENCE, AUDIOHDRECORD, AUDIORECORD, CALLLIST, CALLSESSION, DIALOGFLOW, IM, PSTN_IN_ALASKA, PSTN_IN_GB, PSTN_IN_GEOGRAPHIC, PSTN_IN_GEO_PH, PSTN_IN_RU, PSTN_IN_RU_TOLLFREE, PSTN_INTERNATIONAL, PSTNINTEST, PSTN_IN_TF_AR, PSTN_IN_TF_AT, PSTN_IN_TF_AU, PSTN_IN_TF_BE, PSTN_IN_TF_BR, PSTN_IN_TF_CA, PSTN_IN_TF_CO, PSTN_IN_TF_CY, PSTN_IN_TF_DE, PSTN_IN_TF_DK, PSTN_IN_TF_DO, PSTN_IN_TF_FI, PSTN_IN_TF_FR, PSTN_IN_TF_GB, PSTN_IN_TF_HR, PSTN_IN_TF_HU, PSTN_IN_TF_IL, PSTN_IN_TF_LT, PSTN_IN_TF_PE, PSTN_IN_TF_US, PSTN_IN_US, PSTNOUT, PSTNOUT_EEA, PSTNOUTEMERG, PSTNOUT_KZ, PSTNOUT_LOCAL, PSTN_OUT_LOCAL_RU, RELAYED_TRAFFIC, SIPOUT, SIPOUTVIDEO, SMSINPUT, SMSOUT, SMSOUT_INTERNATIONAL, TRANSCRIPTION, TTS_TEXT_GOOGLE, TTS_YANDEX, USER_LOGON, VIDEOCALL, VIDEORECORD, VOICEMAILDETECTION, VOIPIN, VOIPOUT, VOIPOUTVIDEO, YANDEXASR, ASR, ASR_GOOGLE_ENHANCED 
 	ResourceType string `json:"resource_type"`
 	// The price group array. 
 	PriceGroups []PriceGroup `json:"price_groups"`
@@ -1133,14 +1125,14 @@ type CallListDetailType struct {
 	CustomData string `json:"custom_data"`
 	// Time with which to start the job in 24-h format: HH:mm:ss 
 	StartExecutionTime string `json:"start_execution_time"`
-	// Time after which the task can not be performed in 24-h format: HH:mm:ss 
+	// Time after which the task cannot be performed in 24-h format: HH:mm:ss 
 	FinishExecutionTime string `json:"finish_execution_time"`
 	// Results of the task, if it was granted, or information about the runtime error. 
 	ResultData string `json:"result_data"`
 	// Date and time of the last attempt to perform a task. 
 	LastAttempt string `json:"last_attempt"`
 	// Number of remaining attempts. 
-	AttmeptsLeft int `json:"attmepts_left"`
+	AttemptsLeft int `json:"attempts_left"`
 	// The status ID. Available values: __0__ (status = New), __1__ (status = In progress), __2__ (status = Processed), __3__ (status = Error), __4__ (status = Cancelled). 
 	StatusId int `json:"status_id"`
 	// The status name. Available values: __New__ (status_id = 0), __In progress__ (status_id = 1), __Processed__ (status_id = 2), __Error__ (status_id = 3), __Cancelled__ (status_id = 4). 
@@ -1284,8 +1276,8 @@ type SubscriptionsToChargeType struct {
 	SubscriptionDescription string `json:"subscription_description"`
 	// The auto charge flag. 
 	SubscriptionAutoCharge bool `json:"subscription_auto_charge"`
-	// The next renewal date, format: YYYY-MM-DD 
-	SubscriptionNextRenewal Date `json:"subscription_next_renewal"`
+	// The next renewal date, format: YYYY-MM-DD. Displayed for only verified phone numbers. 
+	SubscriptionNextRenewal Date `json:"subscription_next_renewal,omitempty"`
 }
 
 type AuthorizedAccountIPType struct {
@@ -1427,6 +1419,12 @@ type AccountCallback struct {
 	SmsInbound InboundSmsCallback `json:"sms_inbound,omitempty"`
 	// The specific account callback details. 
 	NewInvoice NewInvoiceCallback `json:"new_invoice,omitempty"`
+	// The specific account callback details. 
+	ExpiringAgreement ExpiringAgreementCallback `json:"expiring_agreement,omitempty"`
+	// The specific account callback details. 
+	ExpiredAgreement ExpiredAgreementCallback `json:"expired_agreement,omitempty"`
+	// The specific account callback details. 
+	RestoredAgreementStatus RestoredAgreementStatusCallback `json:"restored_agreement_status,omitempty"`
 }
 
 type AccountDocumentUploadedCallback struct {
@@ -1533,7 +1531,7 @@ type MinBalanceCallback struct {
 type RegulationAddressVerifiedCallback struct {
 	// The uploaded document ID. 
 	RegulationAddressId int `json:"regulation_address_id"`
-	// The document verification status. The following values are possible: ACCEPTED, REJECTED 
+	// The document verification status. The following values are possible: WAITING_CONFIRMATION_DOCS, VERIFIED, REJECTED, WAITING_PERIOD_EXPIRED. 
 	RegulationAddressStatus string `json:"regulation_address_status"`
 	// The UTC date of the document upload in format: YYYY-MM-DD HH::mm:ss 
 	Uploaded Timestamp `json:"uploaded"`
@@ -1664,6 +1662,13 @@ type TranscriptionCompleteCallbackItem struct {
 	TranscriptionCost float64 `json:"transcription_cost"`
 }
 
+type ExpiringAgreementCallback struct {
+	// The date of agreement expiration in format: YYYY-MM-DD. 
+	ExpirationDate Date `json:"expiration_date "`
+	// The number of days left until an expiration date. 
+	UntilExpiration int `json:"until_expiration"`
+}
+
 type ZipCode struct {
 	// The city name 
 	City string `json:"city"`
@@ -1736,8 +1741,6 @@ type PstnBlackListInfoType struct {
 type DialogflowKeyInfo struct {
 	// The Dialogflow key's id 
 	DialogflowKeyId int `json:"dialogflow_key_id"`
-	// The Dialogflow's application name. 
-	ExternalAppName string `json:"external_app_name"`
 	// The key's content. 
 	Content DialogflowKey `json:"content,omitempty"`
 	// Bound applications. 
@@ -1756,8 +1759,6 @@ type PushCredentialInfo struct {
 	PushProviderId int `json:"push_provider_id"`
 	// The push provider name. Available values: APPLE, APPLE_VOIP, GOOGLE 
 	PushProviderName string `json:"push_provider_name"`
-	// The push provider's application name. 
-	ExternalAppName string `json:"external_app_name"`
 	// The bundle of Android/iOS application. 
 	CredentialBundle string `json:"credential_bundle,omitempty"`
 	// The credentials content. 
@@ -1829,5 +1830,128 @@ type RecordStorageInfoType struct {
 	RecordStorageId int `json:"record_storage_id,omitempty"`
 	// The record storage name. 
 	RecordStorageName string `json:"record_storage_name,omitempty"`
+}
+
+type KeyInfo struct {
+	// Client email. 
+	AccountEmail string `json:"account_email"`
+	// The account ID. 
+	AccountId int `json:"account_id"`
+	// The key ID. 
+	KeyId string `json:"key_id"`
+	// The private key. 
+	PrivateKey string `json:"private_key"`
+}
+
+type KeyView struct {
+	// The key ID. 
+	KeyId string `json:"key_id"`
+	// The key roles. 
+	Roles []RoleView `json:"roles,omitempty"`
+	// The key description. 
+	Description string `json:"description"`
+	// The key subuser. 
+	Subuser []SubUserView `json:"subuser,omitempty"`
+}
+
+type SubUserView struct {
+	// The subuser ID. 
+	SubuserId int `json:"subuser_id"`
+	// The subuser name, can be used as __subuser_login__ to <a href="#how-auth-works">authenticate</a>. 
+	SubuserName string `json:"subuser_name"`
+	// The subuser description. 
+	Description string `json:"description,omitempty"`
+	// The subuser roles. 
+	Roles []RoleView `json:"roles,omitempty"`
+}
+
+type SubUserID struct {
+	// The subuser ID. 
+	SubuserId int `json:"subuser_id"`
+}
+
+type RoleView struct {
+	// The role name. 
+	RoleName string `json:"role_name"`
+	// The role ID. 
+	RoleId int `json:"role_id"`
+	// Shows that the role is inherited. 
+	Inherited bool `json:"inherited,omitempty"`
+	// Child roles IDs array. 
+	ChildIds []int `json:"child_ids,omitempty"`
+	// Parent roles IDs array. 
+	ParentRoleId []int `json:"parent_role_id,omitempty"`
+	// Shows that the role is gui only. 
+	GuiOnly bool `json:"gui_only"`
+}
+
+type RoleGroupView struct {
+	// The role group ID. 
+	Id int `json:"id"`
+	// The role group name. 
+	Name string `json:"name"`
+}
+
+type ChildAccountSubscriptionType struct {
+	// The subscription ID. 
+	SubscriptionId int `json:"subscription_id"`
+	// The subscription name. 
+	SubscriptionName string `json:"subscription_name"`
+	// The subscription template ID. 
+	SubscriptionTemplateId int `json:"subscription_template_id"`
+	// Is the subscription prolonged automatically? 
+	AutoCharge bool `json:"auto_charge,omitempty"`
+	// The next charge UTC date in format: YYYY-MM-DD. 
+	NextRenewal Date `json:"next_renewal,omitempty"`
+	// The periodic payment amount. 
+	PeriodicPrice float64 `json:"periodic_price,omitempty"`
+	// Is the subscription active? 
+	Active bool `json:"active,omitempty"`
+}
+
+type ChildAccountSubscriptionTemplateType struct {
+	// The subscription template ID. 
+	SubscriptionTemplateId int `json:"subscription_template_id"`
+	// The subscription template name. 
+	SubscriptionTemplateName string `json:"subscription_template_name"`
+	// The subscription template installation price. 
+	InstallationPrice float64 `json:"installation_price"`
+	// The subscription template periodic price. 
+	PeriodicPrice float64 `json:"periodic_price"`
+}
+
+type SmsHistoryType struct {
+	// Id of the message. 
+	SmsId int `json:"sms_id"`
+	// Number being called from. 
+	SourceNumber int `json:"source_number"`
+	// Number being called to. 
+	DestinationNumber int `json:"destination_number"`
+	// Incoming or outgoing message. 
+	Direction string `json:"direction"`
+	// Number of fragments the initial message was divided into. 
+	Fragments int `json:"fragments"`
+	// Cost of the message. 
+	Cost float64 `json:"cost"`
+	// Status of the message. 1 - Success, 2 - Error. 
+	StatusId int `json:"status_id"`
+	// Error message if any. 
+	ErrorMessage string `json:"error_message,omitempty"`
+	// Date of message processing. The format is yyyy-MM-dd HH:mm:ss 
+	ProcessedDate Date `json:"processed_date"`
+	// Id of the transaction for this message. 
+	TransactionId int `json:"transaction_id,omitempty"`
+}
+
+type ExpiredAgreementCallback struct {
+	// The list of the expired agreements IDs. 
+	DocumentIds []int `json:"document_ids"`
+}
+
+type RestoredAgreementStatusCallback struct {
+	// ID of the agreement document which status has been changed. 
+	DocumentId int `json:"document_id"`
+	// The new date of agreement expiration in format: YYYY-MM-DD. 
+	ExpirationDate Date `json:"expiration_date"`
 }
 
