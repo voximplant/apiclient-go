@@ -44,7 +44,7 @@ func (s *PushCredentialsService) AddPushCredential(params AddPushCredentialParam
 	}
 	response := &AddPushCredentialReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -78,7 +78,7 @@ func (s *PushCredentialsService) SetPushCredential(params SetPushCredentialParam
 	}
 	response := &SetPushCredentialReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -102,7 +102,7 @@ func (s *PushCredentialsService) DelPushCredential(params DelPushCredentialParam
 	}
 	response := &DelPushCredentialReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -138,7 +138,7 @@ func (s *PushCredentialsService) GetPushCredential(params GetPushCredentialParam
 	}
 	response := &GetPushCredentialReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -166,7 +166,7 @@ func (s *PushCredentialsService) BindPushCredential(params BindPushCredentialPar
 	}
 	response := &BindPushCredentialReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil

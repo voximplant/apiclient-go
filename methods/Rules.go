@@ -42,7 +42,7 @@ func (s *RulesService) AddRule(params AddRuleParams) (*AddRuleReturn, *structure
 	}
 	response := &AddRuleReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -72,7 +72,7 @@ func (s *RulesService) DelRule(params DelRuleParams) (*DelRuleReturn, *structure
 	}
 	response := &DelRuleReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -104,7 +104,7 @@ func (s *RulesService) SetRuleInfo(params SetRuleInfoParams) (*SetRuleInfoReturn
 	}
 	response := &SetRuleInfoReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -148,7 +148,7 @@ func (s *RulesService) GetRules(params GetRulesParams) (*GetRulesReturn, *struct
 	}
 	response := &GetRulesReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -172,7 +172,7 @@ func (s *RulesService) ReorderRules(params ReorderRulesParams) (*ReorderRulesRet
 	}
 	response := &ReorderRulesReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil

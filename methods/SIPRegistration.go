@@ -52,7 +52,7 @@ func (s *SIPRegistrationService) CreateSipRegistration(params CreateSipRegistrat
 	}
 	response := &CreateSipRegistrationReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -98,7 +98,7 @@ func (s *SIPRegistrationService) UpdateSipRegistration(params UpdateSipRegistrat
 	}
 	response := &UpdateSipRegistrationReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -136,7 +136,7 @@ func (s *SIPRegistrationService) BindSipRegistration(params BindSipRegistrationP
 	}
 	response := &BindSipRegistrationReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -160,7 +160,7 @@ func (s *SIPRegistrationService) DeleteSipRegistration(params DeleteSipRegistrat
 	}
 	response := &DeleteSipRegistrationReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -218,7 +218,7 @@ func (s *SIPRegistrationService) GetSipRegistrations(params GetSipRegistrationsP
 	}
 	response := &GetSipRegistrationsReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil

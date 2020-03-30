@@ -28,7 +28,7 @@ func (s *SIPWhiteListService) AddSipWhiteListItem(params AddSipWhiteListItemPara
 	}
 	response := &AddSipWhiteListItemReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -52,7 +52,7 @@ func (s *SIPWhiteListService) DelSipWhiteListItem(params DelSipWhiteListItemPara
 	}
 	response := &DelSipWhiteListItemReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -78,7 +78,7 @@ func (s *SIPWhiteListService) SetSipWhiteListItem(params SetSipWhiteListItemPara
 	}
 	response := &SetSipWhiteListItemReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -110,7 +110,7 @@ func (s *SIPWhiteListService) GetSipWhiteList(params GetSipWhiteListParams) (*Ge
 	}
 	response := &GetSipWhiteListReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil

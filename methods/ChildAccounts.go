@@ -32,7 +32,7 @@ func (s *ChildAccountsService) AddChildAccountSubscription(params AddChildAccoun
 	}
 	response := &AddChildAccountSubscriptionReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -58,7 +58,7 @@ func (s *ChildAccountsService) GetChildAccountSubscriptions(params GetChildAccou
 	}
 	response := &GetChildAccountSubscriptionsReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -80,7 +80,7 @@ func (s *ChildAccountsService) GetChildAccountSubscriptionTemplates(params GetCh
 	}
 	response := &GetChildAccountSubscriptionTemplatesReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -108,7 +108,7 @@ func (s *ChildAccountsService) DeactivateChildAccountSubscription(params Deactiv
 	}
 	response := &DeactivateChildAccountSubscriptionReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil

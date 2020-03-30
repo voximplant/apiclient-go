@@ -28,7 +28,7 @@ func (s *SkillsService) AddSkill(params AddSkillParams) (*AddSkillReturn, *struc
 	}
 	response := &AddSkillReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -54,7 +54,7 @@ func (s *SkillsService) DelSkill(params DelSkillParams) (*DelSkillReturn, *struc
 	}
 	response := &DelSkillReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -82,7 +82,7 @@ func (s *SkillsService) SetSkillInfo(params SetSkillInfoParams) (*SetSkillInfoRe
 	}
 	response := &SetSkillInfoReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -116,7 +116,7 @@ func (s *SkillsService) GetSkills(params GetSkillsParams) (*GetSkillsReturn, *st
 	}
 	response := &GetSkillsReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -156,7 +156,7 @@ func (s *SkillsService) BindSkill(params BindSkillParams) (*BindSkillReturn, *st
 	}
 	response := &BindSkillReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil

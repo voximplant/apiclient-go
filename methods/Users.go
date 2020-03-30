@@ -44,7 +44,7 @@ func (s *UsersService) AddUser(params AddUserParams) (*AddUserReturn, *structure
 	}
 	response := &AddUserReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -74,7 +74,7 @@ func (s *UsersService) DelUser(params DelUserParams) (*DelUserReturn, *structure
 	}
 	response := &DelUserReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -118,7 +118,7 @@ func (s *UsersService) SetUserInfo(params SetUserInfoParams) (*SetUserInfoReturn
 	}
 	response := &SetUserInfoReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -180,7 +180,7 @@ func (s *UsersService) GetUsers(params GetUsersParams) (*GetUsersReturn, *struct
 	}
 	response := &GetUsersReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -222,7 +222,7 @@ func (s *UsersService) TransferMoneyToUser(params TransferMoneyToUserParams) (*T
 	}
 	response := &TransferMoneyToUserReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil

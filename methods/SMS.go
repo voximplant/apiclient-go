@@ -32,7 +32,7 @@ func (s *SMSService) SendSmsMessage(params SendSmsMessageParams) (*SendSmsMessag
 	}
 	response := &SendSmsMessageReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -58,7 +58,7 @@ func (s *SMSService) ControlSms(params ControlSmsParams) (*ControlSmsReturn, *st
 	}
 	response := &ControlSmsReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -98,7 +98,7 @@ func (s *SMSService) GetSmsHistory(params GetSmsHistoryParams) (*GetSmsHistoryRe
 	}
 	response := &GetSmsHistoryReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil

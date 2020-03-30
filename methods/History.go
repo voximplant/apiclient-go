@@ -78,7 +78,7 @@ func (s *HistoryService) GetCallHistory(params GetCallHistoryParams) (*GetCallHi
 	}
 	response := &GetCallHistoryReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -122,7 +122,7 @@ func (s *HistoryService) GetHistoryReports(params GetHistoryReportsParams) (*Get
 	}
 	response := &GetHistoryReportsReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -182,7 +182,7 @@ func (s *HistoryService) GetTransactionHistory(params GetTransactionHistoryParam
 	}
 	response := &GetTransactionHistoryReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -208,7 +208,7 @@ func (s *HistoryService) DeleteRecord(params DeleteRecordParams) (*DeleteRecordR
 	}
 	response := &DeleteRecordReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -266,7 +266,7 @@ func (s *HistoryService) GetACDHistory(params GetACDHistoryParams) (*GetACDHisto
 	}
 	response := &GetACDHistoryReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -326,7 +326,7 @@ func (s *HistoryService) GetAuditLog(params GetAuditLogParams) (*GetAuditLogRetu
 	}
 	response := &GetAuditLogReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil

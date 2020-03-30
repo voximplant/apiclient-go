@@ -36,7 +36,7 @@ func (s *ScenariosService) AddScenario(params AddScenarioParams) (*AddScenarioRe
 	}
 	response := &AddScenarioReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -62,7 +62,7 @@ func (s *ScenariosService) DelScenario(params DelScenarioParams) (*DelScenarioRe
 	}
 	response := &DelScenarioReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -98,7 +98,7 @@ func (s *ScenariosService) BindScenario(params BindScenarioParams) (*BindScenari
 	}
 	response := &BindScenarioReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -134,7 +134,7 @@ func (s *ScenariosService) GetScenarios(params GetScenariosParams) (*GetScenario
 	}
 	response := &GetScenariosReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -164,7 +164,7 @@ func (s *ScenariosService) SetScenarioInfo(params SetScenarioInfoParams) (*SetSc
 	}
 	response := &SetScenarioInfoReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -192,7 +192,7 @@ func (s *ScenariosService) ReorderScenarios(params ReorderScenariosParams) (*Reo
 	}
 	response := &ReorderScenariosReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -236,7 +236,7 @@ func (s *ScenariosService) StartScenarios(params StartScenariosParams) (*StartSc
 	}
 	response := &StartScenariosReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -278,7 +278,7 @@ func (s *ScenariosService) StartConference(params StartConferenceParams) (*Start
 	}
 	response := &StartConferenceReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil

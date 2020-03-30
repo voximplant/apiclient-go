@@ -30,7 +30,7 @@ func (s *RecordStoragesService) GetRecordStorages(params GetRecordStoragesParams
 	}
 	response := &GetRecordStoragesReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil

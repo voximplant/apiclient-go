@@ -28,7 +28,7 @@ func (s *AuthorizedIPsService) AddAuthorizedAccountIP(params AddAuthorizedAccoun
 	}
 	response := &AddAuthorizedAccountIPReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -56,7 +56,7 @@ func (s *AuthorizedIPsService) DelAuthorizedAccountIP(params DelAuthorizedAccoun
 	}
 	response := &DelAuthorizedAccountIPReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -92,7 +92,7 @@ func (s *AuthorizedIPsService) GetAuthorizedAccountIPs(params GetAuthorizedAccou
 	}
 	response := &GetAuthorizedAccountIPsReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -118,7 +118,7 @@ func (s *AuthorizedIPsService) CheckAuthorizedAccountIP(params CheckAuthorizedAc
 	}
 	response := &CheckAuthorizedAccountIPReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil

@@ -30,7 +30,7 @@ func (s *RoleSystemService) CreateKey(params CreateKeyParams) (*CreateKeyReturn,
 	}
 	response := &CreateKeyReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -60,7 +60,7 @@ func (s *RoleSystemService) GetKeys(params GetKeysParams) (*GetKeysReturn, *stru
 	}
 	response := &GetKeysReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -86,7 +86,7 @@ func (s *RoleSystemService) UpdateKey(params UpdateKeyParams) (*UpdateKeyReturn,
 	}
 	response := &UpdateKeyReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -110,7 +110,7 @@ func (s *RoleSystemService) DeleteKey(params DeleteKeyParams) (*DeleteKeyReturn,
 	}
 	response := &DeleteKeyReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -138,7 +138,7 @@ func (s *RoleSystemService) SetKeyRoles(params SetKeyRolesParams) (*SetKeyRolesR
 	}
 	response := &SetKeyRolesReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -164,7 +164,7 @@ func (s *RoleSystemService) GetKeyRoles(params GetKeyRolesParams) (*GetKeyRolesR
 	}
 	response := &GetKeyRolesReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -192,7 +192,7 @@ func (s *RoleSystemService) RemoveKeyRoles(params RemoveKeyRolesParams) (*Remove
 	}
 	response := &RemoveKeyRolesReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -224,7 +224,7 @@ func (s *RoleSystemService) AddSubUser(params AddSubUserParams) (*AddSubUserRetu
 	}
 	response := &AddSubUserReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -254,7 +254,7 @@ func (s *RoleSystemService) GetSubUsers(params GetSubUsersParams) (*GetSubUsersR
 	}
 	response := &GetSubUsersReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -284,7 +284,7 @@ func (s *RoleSystemService) SetSubUserInfo(params SetSubUserInfoParams) (*SetSub
 	}
 	response := &SetSubUserInfoReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -308,7 +308,7 @@ func (s *RoleSystemService) DelSubUser(params DelSubUserParams) (*DelSubUserRetu
 	}
 	response := &DelSubUserReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -336,7 +336,7 @@ func (s *RoleSystemService) SetSubUserRoles(params SetSubUserRolesParams) (*SetS
 	}
 	response := &SetSubUserRolesReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -362,7 +362,7 @@ func (s *RoleSystemService) GetSubUserRoles(params GetSubUserRolesParams) (*GetS
 	}
 	response := &GetSubUserRolesReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -392,7 +392,7 @@ func (s *RoleSystemService) RemoveSubUserRoles(params RemoveSubUserRolesParams) 
 	}
 	response := &RemoveSubUserRolesReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -416,7 +416,7 @@ func (s *RoleSystemService) GetRoles(params GetRolesParams) (*GetRolesReturn, *s
 	}
 	response := &GetRolesReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
@@ -438,7 +438,7 @@ func (s *RoleSystemService) GetRoleGroups(params GetRoleGroupsParams) (*GetRoleG
 	}
 	response := &GetRoleGroupsReturn{}
 	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil {
+	if verr != nil || err != nil {
 		return nil, verr, err
 	}
 	return response, nil, nil
