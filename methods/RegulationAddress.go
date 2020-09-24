@@ -19,7 +19,7 @@ type LinkregulationAddressParams struct {
 
 type LinkregulationAddressReturn struct {
 	//  
-	Result bool `json:"result"`
+	Result *bool `json:"result"`
 }
 
 // Link regulation address to phone 
@@ -80,11 +80,11 @@ type GetRegulationsAddressParams struct {
 	// The regulation address type ID. 
 	VerificationId int `json:"verification_id,string,omitempty"`
 	// Show only verified regulation address. 
-	Verified bool `json:"verified,string,omitempty"`
+	Verified *bool `json:"verified,string,omitempty"`
 	// Show only in progress regulation address. 
-	InProgress bool `json:"in_progress,string,omitempty"`
+	InProgress *bool `json:"in_progress,string,omitempty"`
 	// Return with phone_region_code parameters 
-	WithRegionCode bool `json:"with_region_code,string,omitempty"`
+	WithRegionCode *bool `json:"with_region_code,string,omitempty"`
 }
 
 type GetRegulationsAddressReturn struct {
@@ -119,7 +119,7 @@ type GetAvailableRegulationsParams struct {
 
 type GetAvailableRegulationsReturn struct {
 	// If result equals 1: 1) the user has at least one regulation address which is appropriate for verification or 2) the verification is not required. If result equals 0, the regulations address needs to be created. 
-	Result bool `json:"result"`
+	Result *bool `json:"result"`
 	// The available RegulationAddress records. 
 	AvailableAddress []*structure.RegulationAddress `json:"available_address"`
 	// The count of RegulationAddress in progress status. 

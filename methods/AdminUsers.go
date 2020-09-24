@@ -16,7 +16,7 @@ type AddAdminUserParams struct {
 	// The admin user password. The length must be at least 6 symbols. 
 	NewAdminUserPassword string `json:"new_admin_user_password"`
 	// The admin user enable flag. 
-	AdminUserActive bool `json:"admin_user_active,string,omitempty"`
+	AdminUserActive *bool `json:"admin_user_active,string,omitempty"`
 	// The role(s) ID created via <a href='//voximplant.com/docs/references/httpapi/managing_admin_roles'>Managing Admin Roles</a> methods. The attaching admin role ID list separated by the ';' symbol or the 'all' value. 
 	AdminRoleId string `json:"admin_role_id,omitempty"`
 	// The role(s) name(s) created via <a href='//voximplant.com/docs/references/httpapi/managing_admin_roles'>Managing Admin Roles</a> methods. The attaching admin role name that can be used instead of <b>admin_role_id</b>. 
@@ -84,7 +84,7 @@ type SetAdminUserInfoParams struct {
 	// The new admin user password. The length must be at least 6 symbols. 
 	NewAdminUserPassword string `json:"new_admin_user_password,omitempty"`
 	// The admin user enable flag. 
-	AdminUserActive bool `json:"admin_user_active,string,omitempty"`
+	AdminUserActive *bool `json:"admin_user_active,string,omitempty"`
 }
 
 type SetAdminUserInfoReturn struct {
@@ -114,11 +114,11 @@ type GetAdminUsersParams struct {
 	// The admin user display name part to filter. 
 	AdminUserDisplayName string `json:"admin_user_display_name,omitempty"`
 	// The admin user active flag to filter. 
-	AdminUserActive bool `json:"admin_user_active,string,omitempty"`
+	AdminUserActive *bool `json:"admin_user_active,string,omitempty"`
 	// Set true to get the attached admin roles. 
-	WithRoles bool `json:"with_roles,string,omitempty"`
+	WithRoles *bool `json:"with_roles,string,omitempty"`
 	// Set true to get the admin user permissions. 
-	WithAccessEntries bool `json:"with_access_entries,string,omitempty"`
+	WithAccessEntries *bool `json:"with_access_entries,string,omitempty"`
 	// The max returning record count. 
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records will be skipped in the output. 

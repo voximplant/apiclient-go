@@ -22,7 +22,7 @@ type AddPushCredentialParams struct {
 	// The secret password for private key. 
 	CertPassword string `json:"cert_password,omitempty"`
 	// Set true for use this certificate in apple's sandbox environment 
-	IsDevMode bool `json:"is_dev_mode,string,omitempty"`
+	IsDevMode *bool `json:"is_dev_mode,string,omitempty"`
 	// The sender id, provided by Google. 
 	SenderId string `json:"sender_id,omitempty"`
 	// The server key, provided by Google. 
@@ -58,7 +58,7 @@ type SetPushCredentialParams struct {
 	// The secret password for private key. 
 	CertPassword string `json:"cert_password,omitempty"`
 	// Set true for use this certificate in apple's sandbox environment 
-	IsDevMode bool `json:"is_dev_mode,string,omitempty"`
+	IsDevMode *bool `json:"is_dev_mode,string,omitempty"`
 	// The sender id, provided by Google. 
 	SenderId string `json:"sender_id,omitempty"`
 	// The server key, provided by Google. 
@@ -120,9 +120,9 @@ type GetPushCredentialParams struct {
 	// The id of bound application. 
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// Set true to get the user's certificate. 
-	WithCert bool `json:"with_cert,string,omitempty"`
+	WithCert *bool `json:"with_cert,string,omitempty"`
 	// Set true to get the certificate's password. 
-	WithSecretInfo bool `json:"with_secret_info,string,omitempty"`
+	WithSecretInfo *bool `json:"with_secret_info,string,omitempty"`
 }
 
 type GetPushCredentialReturn struct {
@@ -150,7 +150,7 @@ type BindPushCredentialParams struct {
 	// The application ID list separated by the ';' symbol or the 'all' value. 
 	ApplicationId string `json:"application_id"`
 	// Set to false for unbind. Default value is true. 
-	Bind bool `json:"bind,string,omitempty"`
+	Bind *bool `json:"bind,string,omitempty"`
 }
 
 type BindPushCredentialReturn struct {

@@ -20,11 +20,11 @@ type AddUserParams struct {
 	// The application name which new user will be bound to. Could be used instead of the <b>application_id</b> parameter. 
 	ApplicationName string `json:"application_name,omitempty"`
 	// 'True' if the user will use the parent account's money, 'false' if the user will have a separate balance. 
-	ParentAccounting bool `json:"parent_accounting,string,omitempty"`
+	ParentAccounting *bool `json:"parent_accounting,string,omitempty"`
 	// The user mobile phone. The length must be less than 50. 
 	MobilePhone string `json:"mobile_phone,omitempty"`
 	// The user enable flag 
-	UserActive bool `json:"user_active,string,omitempty"`
+	UserActive *bool `json:"user_active,string,omitempty"`
 	// Any string 
 	UserCustomData string `json:"user_custom_data,omitempty"`
 }
@@ -96,9 +96,9 @@ type SetUserInfoParams struct {
 	// The new user password. The length must be at least 6 symbols. 
 	UserPassword string `json:"user_password,omitempty"`
 	//  Set 'true' to use the parent account's money, 'false' to use a separate user balance. 
-	ParentAccounting bool `json:"parent_accounting,string,omitempty"`
+	ParentAccounting *bool `json:"parent_accounting,string,omitempty"`
 	// The user enable flag 
-	UserActive bool `json:"user_active,string,omitempty"`
+	UserActive *bool `json:"user_active,string,omitempty"`
 	// Any string 
 	UserCustomData string `json:"user_custom_data,omitempty"`
 	// The new user mobile phone. The length must be less than 50. 
@@ -142,13 +142,13 @@ type GetUsersParams struct {
 	// The user name part to filter. 
 	UserName string `json:"user_name,omitempty"`
 	// The user active flag to filter. 
-	UserActive bool `json:"user_active,string,omitempty"`
+	UserActive *bool `json:"user_active,string,omitempty"`
 	// The user display name part to filter. 
 	UserDisplayName string `json:"user_display_name,omitempty"`
 	// Set true to get the bound skills. 
-	WithSkills bool `json:"with_skills,string,omitempty"`
+	WithSkills *bool `json:"with_skills,string,omitempty"`
 	// Set true to get the bound queues. 
-	WithQueues bool `json:"with_queues,string,omitempty"`
+	WithQueues *bool `json:"with_queues,string,omitempty"`
 	// The ACD status list separated by the ';' symbol to filter. The following values are possible: OFFLINE, ONLINE, READY, BANNED, IN_SERVICE, AFTER_SERVICE, TIMEOUT, DND. 
 	AcdStatus string `json:"acd_status,omitempty"`
 	// The skill to show in the 'skills' field output. 
@@ -160,7 +160,7 @@ type GetUsersParams struct {
 	// The following values are available: 'user_id', 'user_name' and 'user_display_name'. 
 	OrderBy string `json:"order_by,omitempty"`
 	// Set true to get the user live balance. 
-	ReturnLiveBalance bool `json:"return_live_balance,string,omitempty"`
+	ReturnLiveBalance *bool `json:"return_live_balance,string,omitempty"`
 }
 
 type GetUsersReturn struct {
@@ -200,7 +200,7 @@ type TransferMoneyToUserParams struct {
 	// The amount currency. Examples: RUR, EUR, USD. 
 	Currency string `json:"currency,omitempty"`
 	// Returns error if strict_mode is true and a user or the account hasn't enough money. 
-	StrictMode bool `json:"strict_mode,string,omitempty"`
+	StrictMode *bool `json:"strict_mode,string,omitempty"`
 	// The user transaction description. 
 	UserTransactionDescription string `json:"user_transaction_description,omitempty"`
 	// The account transaction description. The following macro available: ${user_id}, ${user_name} 

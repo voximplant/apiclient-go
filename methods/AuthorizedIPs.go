@@ -12,7 +12,7 @@ type AddAuthorizedAccountIPParams struct {
 	// The authorized IP4 or network. 
 	AuthorizedIp string `json:"authorized_ip"`
 	// Set false to add the IP to the blacklist. 
-	Allowed bool `json:"allowed,string,omitempty"`
+	Allowed *bool `json:"allowed,string,omitempty"`
 }
 
 type AddAuthorizedAccountIPReturn struct {
@@ -40,7 +40,7 @@ type DelAuthorizedAccountIPParams struct {
 	// Can be used instead of <b>autharized_ip</b>. Specify the parameter to remove the networks that contains the particular IP4. 
 	ContainsIp string `json:"contains_ip"`
 	// Set true to remove the network from the white list. Set false to remove the network from the black list. Omit the parameter to remove the network from all lists. 
-	Allowed bool `json:"allowed,string,omitempty"`
+	Allowed *bool `json:"allowed,string,omitempty"`
 }
 
 type DelAuthorizedAccountIPReturn struct {
@@ -66,7 +66,7 @@ type GetAuthorizedAccountIPsParams struct {
 	// The authorized IP4 or network to filter. 
 	AuthorizedIp string `json:"authorized_ip,omitempty"`
 	// The allowed flag to filter. 
-	Allowed bool `json:"allowed,string,omitempty"`
+	Allowed *bool `json:"allowed,string,omitempty"`
 	// Specify the parameter to filter the networks that contains the particular IP4. 
 	ContainsIp string `json:"contains_ip,omitempty"`
 	// The max returning record count. 
@@ -105,7 +105,7 @@ type CheckAuthorizedAccountIPParams struct {
 
 type CheckAuthorizedAccountIPReturn struct {
 	// True if IP is allowed. 
-	Result bool `json:"result"`
+	Result *bool `json:"result"`
 	// The matched authorized IP or network (if found). 
 	AuthorizedIp string `json:"authorized_ip,omitempty"`
 }

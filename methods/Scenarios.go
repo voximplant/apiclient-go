@@ -18,7 +18,7 @@ type AddScenarioParams struct {
 	// The rule name that can be used instead of <b>rule_id</b>. 
 	RuleName string `json:"rule_name,omitempty"`
 	// Is the existing scenario rewrite? 
-	Rewrite bool `json:"rewrite,string,omitempty"`
+	Rewrite *bool `json:"rewrite,string,omitempty"`
 }
 
 type AddScenarioReturn struct {
@@ -82,7 +82,7 @@ type BindScenarioParams struct {
 	// The application name that can be used instead of <b>application_id</b>. 
 	ApplicationName string `json:"application_name"`
 	// Bind or unbind? 
-	Bind bool `json:"bind,string,omitempty"`
+	Bind *bool `json:"bind,string,omitempty"`
 }
 
 type BindScenarioReturn struct {
@@ -110,7 +110,7 @@ type GetScenariosParams struct {
 	// The scenario name to filter. Can be used instead of <b>scenario_id</b>. All scenarios containing this param in their names will be returned. The parameter is case insensitive. 
 	ScenarioName string `json:"scenario_name,omitempty"`
 	// Set true to get the scenario text. You must specify the 'scenario_id' too! 
-	WithScript bool `json:"with_script,string,omitempty"`
+	WithScript *bool `json:"with_script,string,omitempty"`
 	// The max returning record count. 
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records will be skipped in the output. 
@@ -214,7 +214,7 @@ type StartScenariosParams struct {
 	// Specifies the IP from the geolocation of predicted subscribers. It allows selecting the nearest server for serving subscribers. 
 	ReferenceIp string `json:"reference_ip,omitempty"`
 	// Set true to get media server session lists url. 
-	WithCheckUrl bool `json:"with_check_url,string,omitempty"`
+	WithCheckUrl *bool `json:"with_check_url,string,omitempty"`
 }
 
 type StartScenariosReturn struct {

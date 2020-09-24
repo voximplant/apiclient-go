@@ -12,7 +12,7 @@ type AddApplicationParams struct {
 	// The short application name in format \[a-z\]\[a-z0-9-\]{1,64} 
 	ApplicationName string `json:"application_name"`
 	// Enable secure storage for all logs and records of the application 
-	SecureRecordStorage bool `json:"secure_record_storage,string,omitempty"`
+	SecureRecordStorage *bool `json:"secure_record_storage,string,omitempty"`
 }
 
 type AddApplicationReturn struct {
@@ -23,7 +23,7 @@ type AddApplicationReturn struct {
 	// The full application name 
 	ApplicationName string `json:"application_name"`
 	// This flag indicates whether a secure storage for logs and records is enabled or not. 
-	SecureRecordStorage bool `json:"secure_record_storage"`
+	SecureRecordStorage *bool `json:"secure_record_storage"`
 }
 
 // Adds a new account's application. 
@@ -74,7 +74,7 @@ type SetApplicationInfoParams struct {
 	// The new short application name in format [a-z][a-z0-9-]{1,79} 
 	ApplicationName string `json:"application_name,omitempty"`
 	// Enable secure storage for all logs and records of the application 
-	SecureRecordStorage bool `json:"secure_record_storage,string,omitempty"`
+	SecureRecordStorage *bool `json:"secure_record_storage,string,omitempty"`
 }
 
 type SetApplicationInfoReturn struct {
@@ -83,7 +83,7 @@ type SetApplicationInfoReturn struct {
 	// The new full application name 
 	ApplicationName string `json:"application_name"`
 	// This flag indicates whether a secure storage for logs and records is enabled or not. 
-	SecureRecordStorage bool `json:"secure_record_storage"`
+	SecureRecordStorage *bool `json:"secure_record_storage"`
 }
 
 // Edits the account's application. 
@@ -112,9 +112,9 @@ type GetApplicationsParams struct {
 	// Specify the user ID value to show it in the 'users' array output. 
 	ShowingUserId int `json:"showing_user_id,string,omitempty"`
 	// Set true to get bound rules info. 
-	WithRules bool `json:"with_rules,string,omitempty"`
+	WithRules *bool `json:"with_rules,string,omitempty"`
 	// Set true to get bound rules and scenarios info. 
-	WithScenarios bool `json:"with_scenarios,string,omitempty"`
+	WithScenarios *bool `json:"with_scenarios,string,omitempty"`
 	// The max returning record count. 
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records will be skipped in the output. 

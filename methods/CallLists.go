@@ -39,7 +39,7 @@ type CreateCallListParams struct {
 
 type CreateCallListReturn struct {
 	// true 
-	Result bool `json:"result"`
+	Result *bool `json:"result"`
 	// The number of stored records 
 	Count int `json:"count"`
 	// The list ID. 
@@ -87,7 +87,7 @@ type CreateManualCallListParams struct {
 
 type CreateManualCallListReturn struct {
 	// true 
-	Result bool `json:"result"`
+	Result *bool `json:"result"`
 	// The number of stored records 
 	Count int `json:"count"`
 	// The list ID. 
@@ -153,7 +153,7 @@ type AppendToCallListParams struct {
 
 type AppendToCallListReturn struct {
 	// true 
-	Result bool `json:"result"`
+	Result *bool `json:"result"`
 	// The number of stored records 
 	Count int `json:"count"`
 	// The list ID. 
@@ -180,7 +180,7 @@ type GetCallListsParams struct {
 	// Find call lists by name 
 	Name string `json:"name,omitempty"`
 	// Find only active call lists 
-	IsActive bool `json:"is_active,string,omitempty"`
+	IsActive *bool `json:"is_active,string,omitempty"`
 	// The UTC 'from' date filter in 24-h format: YYYY-MM-DD HH:mm:ss 
 	FromDate *structure.Timestamp `json:"from_date,string,omitempty"`
 	// The UTC 'to' date filter in 24-h format: YYYY-MM-DD HH:mm:ss 
@@ -261,7 +261,7 @@ type StopCallListProcessingParams struct {
 
 type StopCallListProcessingReturn struct {
 	// true 
-	Result bool `json:"result"`
+	Result *bool `json:"result"`
 	// Result message. 
 	Msg string `json:"msg"`
 }
@@ -287,7 +287,7 @@ type RecoverCallListParams struct {
 
 type RecoverCallListReturn struct {
 	// true 
-	Result bool `json:"result"`
+	Result *bool `json:"result"`
 	// Number restored tasks 
 	CountRecovery int `json:"count_recovery"`
 }

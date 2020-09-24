@@ -140,7 +140,7 @@ type BindSkillParams struct {
 	// The application name that can be used instead of <b>application_id</b>. 
 	ApplicationName string `json:"application_name,omitempty"`
 	// Bind or unbind? 
-	Bind bool `json:"bind,string,omitempty"`
+	Bind *bool `json:"bind,string,omitempty"`
 }
 
 type BindSkillReturn struct {

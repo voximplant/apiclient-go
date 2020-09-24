@@ -40,7 +40,7 @@ type GetKeysParams struct {
 	// The key's ID. 
 	KeyId string `json:"key_id,omitempty"`
 	// Show roles for the key. 
-	WithRoles bool `json:"with_roles,string,omitempty"`
+	WithRoles *bool `json:"with_roles,string,omitempty"`
 	// The first <b>N</b> records will be skipped in the output. 
 	Offset int `json:"offset,string,omitempty"`
 	// The max returning record count. 
@@ -148,7 +148,7 @@ type GetKeyRolesParams struct {
 	// The key's ID. 
 	KeyId string `json:"key_id"`
 	// Show the roles' additional properties. 
-	WithExpandedRoles bool `json:"with_expanded_roles,string,omitempty"`
+	WithExpandedRoles *bool `json:"with_expanded_roles,string,omitempty"`
 }
 
 type GetKeyRolesReturn struct {
@@ -234,7 +234,7 @@ type GetSubUsersParams struct {
 	// The subuser's ID. 
 	SubuserId int `json:"subuser_id,string,omitempty"`
 	// Show subuser's roles 
-	WithRoles bool `json:"with_roles,string,omitempty"`
+	WithRoles *bool `json:"with_roles,string,omitempty"`
 	// The first <b>N</b> records will be skipped in the output. 
 	Offset int `json:"offset,string,omitempty"`
 	// The max returning record count. 
@@ -346,7 +346,7 @@ type GetSubUserRolesParams struct {
 	// The subuser's ID. 
 	SubuserId int `json:"subuser_id,string"`
 	// Show the roles' additional properties. 
-	WithExpandedRoles bool `json:"with_expanded_roles,string,omitempty"`
+	WithExpandedRoles *bool `json:"with_expanded_roles,string,omitempty"`
 }
 
 type GetSubUserRolesReturn struct {
@@ -376,7 +376,7 @@ type RemoveSubUserRolesParams struct {
 	// The role name list separated by the ';' symbol. 
 	RoleName string `json:"role_name,omitempty"`
 	// Remove roles from all subuser keys. 
-	Force bool `json:"force,string,omitempty"`
+	Force *bool `json:"force,string,omitempty"`
 }
 
 type RemoveSubUserRolesReturn struct {

@@ -20,7 +20,7 @@ type AddRuleParams struct {
 	// The exclude pattern regex. The length must be less than 64 KB. 
 	RulePatternExclude string `json:"rule_pattern_exclude,omitempty"`
 	// Is video conference required? 
-	VideoConference bool `json:"video_conference,string,omitempty"`
+	VideoConference *bool `json:"video_conference,string,omitempty"`
 	// The scenario ID list separated by the ';' symbol. 
 	ScenarioId string `json:"scenario_id"`
 	// Can be used instead of <b>scenario_id</b>. The scenario name list separated by the ';' symbol. 
@@ -88,7 +88,7 @@ type SetRuleInfoParams struct {
 	// The new exclude pattern regex. The length must be less than 64 KB. 
 	RulePatternExclude string `json:"rule_pattern_exclude,omitempty"`
 	// Is video conference required? 
-	VideoConference bool `json:"video_conference,string,omitempty"`
+	VideoConference *bool `json:"video_conference,string,omitempty"`
 }
 
 type SetRuleInfoReturn struct {
@@ -120,11 +120,11 @@ type GetRulesParams struct {
 	// The rule name part to filter. 
 	RuleName string `json:"rule_name,omitempty"`
 	// The video conference flag to filter. 
-	VideoConference bool `json:"video_conference,string,omitempty"`
+	VideoConference *bool `json:"video_conference,string,omitempty"`
 	// Search for template matching 
 	Template string `json:"template,omitempty"`
 	// Set true to get bound scenarios info. 
-	WithScenarios bool `json:"with_scenarios,string,omitempty"`
+	WithScenarios *bool `json:"with_scenarios,string,omitempty"`
 	// The max returning record count. 
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records will be skipped in the output. 

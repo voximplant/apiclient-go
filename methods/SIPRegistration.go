@@ -20,7 +20,7 @@ type CreateSipRegistrationParams struct {
 	// The SIP password 
 	Password string `json:"password,omitempty"`
 	// Is SIP registration persistent or on the user logon? 
-	IsPersistent bool `json:"is_persistent,string,omitempty"`
+	IsPersistent *bool `json:"is_persistent,string,omitempty"`
 	// The application ID which new SIP registration will be bound to. Could be used instead of the <b>application_name</b> parameter. 
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// The application name which new SIP registration will be bound to. Could be used instead of the <b>application_id</b> parameter. 
@@ -120,7 +120,7 @@ type BindSipRegistrationParams struct {
 	// The user name which the SIP registration will be bound to. Could be used instead of the <b>user_id</b> parameter. 
 	UserName string `json:"user_name,omitempty"`
 	// Bind or unbind? 
-	Bind bool `json:"bind,string,omitempty"`
+	Bind *bool `json:"bind,string,omitempty"`
 }
 
 type BindSipRegistrationReturn struct {
@@ -172,17 +172,17 @@ type GetSipRegistrationsParams struct {
 	// The SIP user name to filter. 
 	SipUsername string `json:"sip_username,omitempty"`
 	// Set true to show the frozen SIP registrations only. 
-	Deactivated bool `json:"deactivated,string,omitempty"`
+	Deactivated *bool `json:"deactivated,string,omitempty"`
 	// Set false to show the unsuccessful SIP registrations only. 
-	Successful bool `json:"successful,string,omitempty"`
+	Successful *bool `json:"successful,string,omitempty"`
 	// The persistent flag to filter. 
-	IsPersistent bool `json:"is_persistent,string,omitempty"`
+	IsPersistent *bool `json:"is_persistent,string,omitempty"`
 	// The application ID list separated by the ';' symbol to filter. Can be used instead of <b>appliction_name</b>. 
 	ApplicationId string `json:"application_id,omitempty"`
 	// The application name list separated by the ';' symbol to filter. Can be used instead of <b>appliction_id</b>. 
 	ApplicationName string `json:"application_name,omitempty"`
 	// Is a SIP registration bound to an application. 
-	IsBoundToApplication bool `json:"is_bound_to_application,string,omitempty"`
+	IsBoundToApplication *bool `json:"is_bound_to_application,string,omitempty"`
 	// The rule ID list separated by the ';' symbol to filter. Can be used instead of <b>rule_name</b>. 
 	RuleId string `json:"rule_id"`
 	// The rule name list separated by the ';' symbol to filter. Can be used instead of <b>rule_id</b>. 
@@ -194,7 +194,7 @@ type GetSipRegistrationsParams struct {
 	// The list of proxy servers to use, divided by the ';' symbol. 
 	Proxy string `json:"proxy,omitempty"`
 	// Is the SIP registration is still in progress or not? 
-	InProgress bool `json:"in_progress,string,omitempty"`
+	InProgress *bool `json:"in_progress,string,omitempty"`
 	// The list of SIP response codes. The __code1:code2__ means a range from __code1__ to __code2__ including; the __code1;code2__ meanse either __code1__ or __code2__. You can combine ranges, e.g., __code1;code2:code3__. 
 	StatusCode string `json:"status_code,omitempty"`
 	// The max returning record count. 

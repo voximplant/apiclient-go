@@ -29,11 +29,11 @@ type AccountInfoType struct {
 	// The min balance value to notify by email or SMS. 
 	MinBalanceToNotify float64 `json:"min_balance_to_notify,omitempty"`
 	// Are the Voximplant notifications required? 
-	AccountNotifications bool `json:"account_notifications,omitempty"`
+	AccountNotifications *bool `json:"account_notifications,omitempty"`
 	// Are the Voximplant plan changing notifications required? 
-	TariffChangingNotifications bool `json:"tariff_changing_notifications,omitempty"`
+	TariffChangingNotifications *bool `json:"tariff_changing_notifications,omitempty"`
 	// Are the Voximplant news notifications required? 
-	NewsNotifications bool `json:"news_notifications,omitempty"`
+	NewsNotifications *bool `json:"news_notifications,omitempty"`
 	// The company or businessman name. 
 	BillingAddressName string `json:"billing_address_name,omitempty"`
 	// The billing address country code (2 symbols, ISO 3166-1 alpha-2). Examples: US, RU, GB 
@@ -47,9 +47,9 @@ type AccountInfoType struct {
 	// The office state (US) or province (Canada), up to 100 characters. Examples: California, Illinois, British Columbia. 
 	BillingAddressState string `json:"billing_address_state,omitempty"`
 	// The account activation flag. 
-	Active bool `json:"active"`
+	Active *bool `json:"active"`
 	// Is account blocked by Voximplant admins or not. 
-	Frozen bool `json:"frozen,omitempty"`
+	Frozen *bool `json:"frozen,omitempty"`
 	// The account's money. 
 	Balance float64 `json:"balance,omitempty"`
 	// The account's credit limit. 
@@ -57,23 +57,23 @@ type AccountInfoType struct {
 	// The currency code (USD, RUR, EUR, ...). 
 	Currency string `json:"currency,omitempty"`
 	// Is the robokassa payment system allowed? 
-	SupportRobokassa bool `json:"support_robokassa,omitempty"`
+	SupportRobokassa *bool `json:"support_robokassa,omitempty"`
 	// Is the bank card payments allowed? 
-	SupportBankCard bool `json:"support_bank_card,omitempty"`
+	SupportBankCard *bool `json:"support_bank_card,omitempty"`
 	// Is the bank invoice allowed? 
-	SupportInvoice bool `json:"support_invoice,omitempty"`
+	SupportInvoice *bool `json:"support_invoice,omitempty"`
 	// The custom data. 
 	AccountCustomData string `json:"account_custom_data,omitempty"`
 	// The allowed access entries (the API function names). 
 	AccessEntries []string `json:"access_entries,omitempty"`
 	// Set true to get the admin user permissions. 
-	WithAccessEntries bool `json:"with_access_entries,omitempty"`
+	WithAccessEntries *bool `json:"with_access_entries,omitempty"`
 	// If URL is specified, Voximplant cloud will make HTTP POST requests to it when something happens. For a full list of reasons see the <b>type</b> field of the [AccountCallback] structure. The HTTP request will have a JSON-encoded body that conforms to the [AccountCallbacks] structure 
 	CallbackUrl string `json:"callback_url,omitempty"`
 	// If salt string is specified, each HTTP request made by the Voximplant cloud toward the <b>callback_url</b> will have a <b>salt</b> field set to MD5 hash of account information and salt. That hash can be used be a developer to ensure that HTTP request is made by the Voximplant cloud 
 	CallbackSalt string `json:"callback_salt,omitempty"`
 	// Is email sending on a JS error? 
-	SendJsError bool `json:"send_js_error,omitempty"`
+	SendJsError *bool `json:"send_js_error,omitempty"`
 	// The payments limits applicable to each payment method. 
 	BillingLimits BillingLimitsType `json:"billing_limits,omitempty"`
 }
@@ -98,7 +98,7 @@ type ShortAccountInfoType struct {
 	// The account's ID. 
 	AccountId int `json:"account_id"`
 	// Is account blocked by Voximplant admins or not. 
-	Frozen bool `json:"frozen,omitempty"`
+	Frozen *bool `json:"frozen,omitempty"`
 	// The account's money. 
 	Balance float64 `json:"balance,omitempty"`
 	// The currency code (USD, RUR, EUR, ...). 
@@ -113,7 +113,7 @@ type ClonedAccountType struct {
 	// The account's email. 
 	AccountEmail string `json:"account_email"`
 	// The account activation flag. 
-	Active bool `json:"active"`
+	Active *bool `json:"active"`
 	// The account API key. 
 	ApiKey string `json:"api_key"`
 	// The cloned users. 
@@ -138,7 +138,7 @@ type AccountPlanPackageType struct {
 	// The package name. 
 	PackageName string `json:"package_name,omitempty"`
 	// Is overrun enabled? 
-	MayOverrun bool `json:"may_overrun"`
+	MayOverrun *bool `json:"may_overrun"`
 	// The overrun amount. 
 	OverrunPrice float64 `json:"overrun_price"`
 	// The number of resources (e.g., messages) per overrun. 
@@ -157,7 +157,7 @@ type PlanPackageType struct {
 	// The package name. 
 	PackageName string `json:"package_name,omitempty"`
 	// Is overrun enabled? 
-	MayOverrun bool `json:"may_overrun"`
+	MayOverrun *bool `json:"may_overrun"`
 	// The overrun amount. 
 	OverrunPrice float64 `json:"overrun_price"`
 	// The number of resources (e.g., messages) per overrun. 
@@ -174,7 +174,7 @@ type ApplicationInfoType struct {
 	// The application editing UTC date in 24-h format: YYYY-MM-DD HH:mm:ss 
 	Modified Timestamp `json:"modified"`
 	// This flag indicates whether a secure storage for logs and records is enabled or not. 
-	SecureRecordStorage bool `json:"secure_record_storage"`
+	SecureRecordStorage *bool `json:"secure_record_storage"`
 	// The filtered users. (Note: a user object contains the 'user_id' field only) 
 	Users []UserInfoType `json:"users,omitempty"`
 }
@@ -196,9 +196,9 @@ type UserInfoType struct {
 	// The display user name. 
 	UserDisplayName string `json:"user_display_name"`
 	// The user active flag. 
-	UserActive bool `json:"user_active"`
+	UserActive *bool `json:"user_active"`
 	// 'True' if the user uses the parent account's money, 'false' if the user has a separate balance. 
-	ParentAccounting bool `json:"parent_accounting"`
+	ParentAccounting *bool `json:"parent_accounting"`
 	// The user mobile phone. 
 	MobilePhone string `json:"mobile_phone,omitempty"`
 	// The current user's money in the currency specified for the account. The value is the number rounded to 4 decimal places and it changes during the calls, transcribing, purchases etc. 
@@ -242,7 +242,7 @@ type ScenarioInfoType struct {
 	// The scenario editing UTC date in 24-h format: YYYY-MM-DD HH:mm:ss 
 	Modified Timestamp `json:"modified"`
 	// 'True' if the scenario belongs to the parent account, 'false' if the scenario belongs to the current account. 
-	Parent bool `json:"parent"`
+	Parent *bool `json:"parent"`
 }
 
 type ClonedScenarioType struct {
@@ -264,7 +264,7 @@ type RuleInfoType struct {
 	// The rule pattern exlude regex. 
 	RulePatternExclude string `json:"rule_pattern_exclude,omitempty"`
 	// Is video conference required? 
-	VideoConference bool `json:"video_conference"`
+	VideoConference *bool `json:"video_conference"`
 	// The bound scenarios. 
 	Scenarios []ScenarioInfoType `json:"scenarios"`
 	// The rule editing UTC date in 24-h format: YYYY-MM-DD HH:mm:ss 
@@ -330,9 +330,9 @@ type CallInfoType struct {
 	// The remote number type. 
 	RemoteNumberType string `json:"remote_number_type"`
 	// The incoming flag. 
-	Incoming bool `json:"incoming"`
+	Incoming *bool `json:"incoming"`
 	// The success flag. 
-	Successful bool `json:"successful"`
+	Successful *bool `json:"successful"`
 	// The transaction ID. 
 	TransactionId int `json:"transaction_id"`
 	// The record URL. 
@@ -534,7 +534,7 @@ type QueueInfoType struct {
 	// The value in the range of [0.5 ... 1.0]. The value 1.0 means the service probability 100% in challenge with a lower priority queue. 
 	ServiceProbability int `json:"service_probability"`
 	// Set false to disable the auto binding of operators to a queue by skills comparing. 
-	AutoBinding bool `json:"auto_binding"`
+	AutoBinding *bool `json:"auto_binding"`
 	// The maximum predicted waiting time in minutes. When a call is going to be enqueued to the queue, its predicted waiting time should be less or equal to the maximum predicted waiting time; otherwise, a call would be rejected. 
 	MaxWaitingTime int `json:"max_waiting_time,omitempty"`
 	// The maximum number of calls that can be enqueued into this queue. 
@@ -882,11 +882,11 @@ type AttachedPhoneInfoType struct {
 	// The purchase date in 24-h format: YYYY-MM-DD HH:mm:ss 
 	PhonePurchaseDate Timestamp `json:"phone_purchase_date"`
 	// The flag of the frozen subscription. 
-	Deactivated bool `json:"deactivated"`
+	Deactivated *bool `json:"deactivated"`
 	// The flag of the deleted subscription. 
-	Canceled bool `json:"canceled"`
+	Canceled *bool `json:"canceled"`
 	// The auto_charge flag. 
-	AutoCharge bool `json:"auto_charge"`
+	AutoCharge *bool `json:"auto_charge"`
 	// The bound application ID. 
 	ApplicationId int `json:"application_id,omitempty"`
 	// The bound application name. 
@@ -904,11 +904,11 @@ type AttachedPhoneInfoType struct {
 	// Unverified phone hold until the date in format: YYYY-MM-DD (if the account verification is required). The number will be detached on that day automatically! 
 	UnverifiedHoldUntil Date `json:"unverified_hold_until,omitempty"`
 	// Can the unverified account use the phone? 
-	CanBeUsed bool `json:"can_be_used"`
+	CanBeUsed *bool `json:"can_be_used"`
 	// If <b>true</b>, SMS is supported for this phone number. SMS needs to be explicitly enabled via the <a href='//voximplant.com/docs/references/httpapi/managing_sms#controlsms'>/ControlSms</a> HTTP API before sending or receiving SMS. If SMS is supported and enabled, SMS can be sent from this phone number using the <a href='//voximplant.com/docs/references/httpapi/managing_sms#sendsmsmessage'>/SendSmsMessage</a> HTTP API and received using the [InboundSmsCallback] property of the HTTP callback. See <a href='//voximplant.com/blog/http-api-callbacks'>this article</a> for HTTP callback details. 
-	IsSmsSupported bool `json:"is_sms_supported"`
+	IsSmsSupported *bool `json:"is_sms_supported"`
 	// If <b>true</b>, SMS sending and receiving is enabled for this phone number via the <a href='//voximplant.com/docs/references/httpapi/managing_sms#controlsms'>/ControlSms</a> HTTP API. 
-	IsSmsEnabled bool `json:"is_sms_enabled"`
+	IsSmsEnabled *bool `json:"is_sms_enabled"`
 }
 
 type NewAttachedPhoneInfoType struct {
@@ -930,7 +930,7 @@ type PhoneNumberCountryInfoType struct {
 	// The country phone prefix. 
 	PhonePrefix string `json:"phone_prefix"`
 	// True if can list phone numbers. 
-	CanListPhoneNumbers bool `json:"can_list_phone_numbers"`
+	CanListPhoneNumbers *bool `json:"can_list_phone_numbers"`
 	// The phone categories. 
 	PhoneCategories []PhoneNumberCountryCategoryInfoType `json:"phone_categories"`
 }
@@ -939,7 +939,7 @@ type PhoneNumberCountryCategoryInfoType struct {
 	// The phone category name. 
 	PhoneCategoryName string `json:"phone_category_name"`
 	// True if a country state is used to choose the phone with the category. 
-	CountryHasStates bool `json:"country_has_states"`
+	CountryHasStates *bool `json:"country_has_states"`
 }
 
 type PhoneNumberCountryStateInfoType struct {
@@ -969,11 +969,11 @@ type PhoneNumberCountryRegionInfoType struct {
 	// The charge period in 24-h format: Y-M-D H:m:s. Example: 0-1-0 0:0:0 is 1 month. 
 	PhonePeriod string `json:"phone_period"`
 	// The flag of the need proof of address. 
-	IsNeedRegulationAddress bool `json:"is_need_regulation_address,omitempty"`
+	IsNeedRegulationAddress *bool `json:"is_need_regulation_address,omitempty"`
 	// The type of regulation address. Available values: LOCAL, NATIONAL, WORLDWIDE. 
 	RegulationAddressType string `json:"regulation_address_type,omitempty"`
 	// If <b>true</b>, SMS is supported for phone numbers in this region. SMS needs to be explicitly enabled for a phone number via the <a href='//voximplant.com/docs/references/httpapi/managing_sms#controlsms'>/ControlSms</a> HTTP API before sending or receiving SMS. If SMS is supported and enabled, SMS can be sent from a phone number using the <a href='//voximplant.com/docs/references/httpapi/managing_sms#sendsmsmessage'>/SendSmsMessage</a> HTTP API and received using the [InboundSmsCallback] property of the HTTP callback. See <a href='//voximplant.com/blog/http-api-callbacks'>this article</a> for HTTP callback details. 
-	IsSmsSupported bool `json:"is_sms_supported"`
+	IsSmsSupported *bool `json:"is_sms_supported"`
 	// [Array](MultipleNumbersPrice) with info about multiple numbers subscription for the child accounts. 
 	MultipleNumbersPrice []MultipleNumbersPrice `json:"multiple_numbers_price"`
 }
@@ -993,7 +993,7 @@ type CallerIDInfoType struct {
 	// The callerID number. 
 	CalleridNumber string `json:"callerid_number"`
 	// The active flag. 
-	Active bool `json:"active"`
+	Active *bool `json:"active"`
 	// The code entering attempts left for the unverified callerID. 
 	CodeEnteringAttemptsLeft int `json:"code_entering_attempts_left,omitempty"`
 	// The verification call attempts left for the unverified callerID. 
@@ -1010,7 +1010,7 @@ type ContactInfoType struct {
 	// The contact data (i.g. email). 
 	ContactData string `json:"contact_data"`
 	// The persistent flag. 
-	IsPersistent bool `json:"is_persistent"`
+	IsPersistent *bool `json:"is_persistent"`
 	// The contact description. 
 	Description string `json:"description,omitempty"`
 	// The verification code sending timeout is seconds. 
@@ -1031,7 +1031,7 @@ type ACDQueueOperatorInfoType struct {
 	// The ACD queue name. 
 	AcdQueueName string `json:"acd_queue_name"`
 	// The user bound with the ACD queue in the manual mode if false. 
-	AutoLink bool `json:"auto_link"`
+	AutoLink *bool `json:"auto_link"`
 }
 
 type ClonedACDQueueType struct {
@@ -1153,13 +1153,13 @@ type SIPRegistrationType struct {
 	// The outbound proxy. 
 	OutboundProxy string `json:"outbound_proxy,omitempty"`
 	// The successful SIP registration. 
-	Successful bool `json:"successful,omitempty"`
+	Successful *bool `json:"successful,omitempty"`
 	// The status code from SIP registration. 
 	StatusCode int `json:"status_code,omitempty"`
 	// The error message from SIP registration. 
 	ErrorMessage string `json:"error_message,omitempty"`
 	// The subscription deactivation flag. The SIP registration is frozen if true. 
-	Deactivated bool `json:"deactivated"`
+	Deactivated *bool `json:"deactivated"`
 	// The next subscription renewal date in format: YYYY-MM-DD 
 	NextSubscriptionRenewal Date `json:"next_subscription_renewal"`
 	// The purchase date in 24-h format: YYYY-MM-DD HH:mm:ss 
@@ -1167,7 +1167,7 @@ type SIPRegistrationType struct {
 	// The subscription monthly charge. 
 	SubscriptionPrice string `json:"subscription_price"`
 	// Is SIP registration persistent or on the user logon? 
-	IsPersistent bool `json:"is_persistent"`
+	IsPersistent *bool `json:"is_persistent"`
 	// The bound user ID. 
 	UserId int `json:"user_id,omitempty"`
 	// The bound user name. 
@@ -1188,9 +1188,9 @@ type AdminRoleType struct {
 	// The admin role name. 
 	AdminRoleName string `json:"admin_role_name"`
 	// If false the allowed and denied entries have no affect. 
-	AdminRoleActive bool `json:"admin_role_active"`
+	AdminRoleActive *bool `json:"admin_role_active"`
 	// Is a system role? 
-	SystemRole bool `json:"system_role"`
+	SystemRole *bool `json:"system_role"`
 	// The admin role editing UTC date in 24-h format: YYYY-MM-DD HH:mm:ss 
 	Modified Timestamp `json:"modified"`
 	// The allowed access entries (the API function names). 
@@ -1214,7 +1214,7 @@ type AdminUserType struct {
 	// The admin user display name. 
 	AdminUserDisplayName string `json:"admin_user_display_name"`
 	// Is allowed to logon? 
-	AdminUserActive bool `json:"admin_user_active"`
+	AdminUserActive *bool `json:"admin_user_active"`
 	// The admin user editing UTC date in 24-h format: YYYY-MM-DD HH:mm:ss 
 	Modified Timestamp `json:"modified"`
 	// The allowed access entries (the API function names). 
@@ -1262,9 +1262,9 @@ type ChargedPhoneType struct {
 	// The phone number. 
 	PhoneNumber string `json:"phone_number"`
 	// Is subscription frozen? 
-	Deactivated bool `json:"deactivated"`
+	Deactivated *bool `json:"deactivated"`
 	// Has phone been charged? 
-	IsCharged bool `json:"is_charged"`
+	IsCharged *bool `json:"is_charged"`
 }
 
 type SubscriptionsToChargeType struct {
@@ -1275,7 +1275,7 @@ type SubscriptionsToChargeType struct {
 	// The subscription description (details). Example: the subscribed phone number. 
 	SubscriptionDescription string `json:"subscription_description"`
 	// The auto charge flag. 
-	SubscriptionAutoCharge bool `json:"subscription_auto_charge"`
+	SubscriptionAutoCharge *bool `json:"subscription_auto_charge"`
 	// The next renewal date, format: YYYY-MM-DD. Displayed for only verified phone numbers. 
 	SubscriptionNextRenewal Date `json:"subscription_next_renewal,omitempty"`
 }
@@ -1284,7 +1284,7 @@ type AuthorizedAccountIPType struct {
 	// The authorized IP4 or network. 
 	AuthorizedIp string `json:"authorized_ip"`
 	// The allowed flag (true - whitelist, false - blacklist). 
-	Allowed bool `json:"allowed"`
+	Allowed *bool `json:"allowed"`
 	// The item creating UTC date in 24-h format: YYYY-MM-DD HH:mm:ss 
 	Created Timestamp `json:"created"`
 }
@@ -1293,7 +1293,7 @@ type AccountVerificationDocument struct {
 	// The account verification document ID. 
 	AccountDocumentId int `json:"account_document_id"`
 	// Is individual, isn't legal entity? 
-	IsIndividual bool `json:"is_individual"`
+	IsIndividual *bool `json:"is_individual"`
 	// The reviewer's comment. 
 	Comment string `json:"comment,omitempty"`
 	// The UTC date of the document upload in format: YYYY-MM-DD HH::mm:ss 
@@ -1433,7 +1433,7 @@ type AccountDocumentUploadedCallback struct {
 	// The UTC date of the document upload in format: YYYY-MM-DD HH::mm:ss 
 	Uploaded Timestamp `json:"uploaded"`
 	// Is individual, isn't legal entity? 
-	IsIndividual bool `json:"is_individual"`
+	IsIndividual *bool `json:"is_individual"`
 	// The verification name (type). 
 	VerificationName string `json:"verification_name"`
 }
@@ -1444,7 +1444,7 @@ type RegulationAddressUploadedCallback struct {
 	// The UTC date of the document upload in format: YYYY-MM-DD HH::mm:ss 
 	Uploaded Timestamp `json:"uploaded"`
 	// Is individual, isn't legal entity? 
-	IsIndividual bool `json:"is_individual"`
+	IsIndividual *bool `json:"is_individual"`
 	// The regulation address name. 
 	RegulationAddressName string `json:"regulation_address_name"`
 }
@@ -1457,7 +1457,7 @@ type AccountDocumentVerifiedCallback struct {
 	// The UTC date of the document upload in format: YYYY-MM-DD HH::mm:ss 
 	Uploaded Timestamp `json:"uploaded"`
 	// Is individual, isn't legal entity? 
-	IsIndividual bool `json:"is_individual"`
+	IsIndividual *bool `json:"is_individual"`
 	// The reviewer's comment. 
 	Comment string `json:"comment,omitempty"`
 	// The verification name (type). 
@@ -1477,7 +1477,7 @@ type CallHistoryReportCallback struct {
 	// The history report ID. 
 	HistoryReportId int `json:"history_report_id"`
 	// Is success? 
-	Success bool `json:"success"`
+	Success *bool `json:"success"`
 	// The UTC order date in format: YYYY-MM-DD HH::mm:ss 
 	OrderDate Timestamp `json:"order_date"`
 }
@@ -1523,9 +1523,9 @@ type JSFailCallback struct {
 
 type MinBalanceCallback struct {
 	// True if the credit threshold exceeded. The credit threshold = credit_limit - min_balance_to_notify, wherein min_balance_to_notify > 0. 
-	IsMinCredit bool `json:"is_min_credit"`
+	IsMinCredit *bool `json:"is_min_credit"`
 	// True if the callback is repeated. 
-	IsRepeated bool `json:"is_repeated"`
+	IsRepeated *bool `json:"is_repeated"`
 }
 
 type RegulationAddressVerifiedCallback struct {
@@ -1536,7 +1536,7 @@ type RegulationAddressVerifiedCallback struct {
 	// The UTC date of the document upload in format: YYYY-MM-DD HH::mm:ss 
 	Uploaded Timestamp `json:"uploaded"`
 	// Is individual, isn't legal entity? 
-	IsIndividual bool `json:"is_individual"`
+	IsIndividual *bool `json:"is_individual"`
 	// The reviewer's comment. 
 	Comment string `json:"comment,omitempty"`
 	// The regulation address name. 
@@ -1600,7 +1600,7 @@ type TransactionHistoryReportCallback struct {
 	// The history report ID. 
 	HistoryReportId int `json:"history_report_id"`
 	// Is success? 
-	Success bool `json:"success"`
+	Success *bool `json:"success"`
 	// The UTC order date in format: YYYY-MM-DD HH::mm:ss 
 	OrderDate Timestamp `json:"order_date"`
 }
@@ -1622,7 +1622,7 @@ type PlanPackageConfig struct {
 	// The package UUID. 
 	PackageUuid string `json:"package_uuid"`
 	// Is overrun enabled? 
-	MayOverrun bool `json:"may_overrun"`
+	MayOverrun *bool `json:"may_overrun"`
 	// The current package size (including overrun). 
 	PackageSize int `json:"package_size"`
 }
@@ -1726,7 +1726,7 @@ type RegulationRegionRecord struct {
 	// The phone region code  
 	PhoneRegionCode string `json:"phone_region_code"`
 	// The need to confirm the address 
-	IsNeedRegulationAddress bool `json:"is_need_regulation_address"`
+	IsNeedRegulationAddress *bool `json:"is_need_regulation_address"`
 	// The regulation address type. Available: LOCAL, NATIONAL, WORLDWIDE 
 	RegulationAddressType string `json:"regulation_address_type"`
 }
@@ -1773,7 +1773,7 @@ type PushCredentialContent struct {
 	// The certificate content in BASE64. Credentials for APPLE push. 
 	CertContent string `json:"cert_content,omitempty"`
 	// The use in a Apple sandbox environment. Credentials for APPLE push. 
-	IsDevMode bool `json:"is_dev_mode"`
+	IsDevMode *bool `json:"is_dev_mode"`
 	// The sender id provided by Google. Credentials for GOOGLE push. 
 	SenderId string `json:"sender_id,omitempty"`
 }
@@ -1803,7 +1803,7 @@ type NewInvoiceCallbackItem struct {
 	// The invoice date. 
 	InvoiceDate string `json:"invoice_date"`
 	// Is it a prepayment? 
-	Prepayment bool `json:"prepayment"`
+	Prepayment *bool `json:"prepayment"`
 	// The invoice currency. 
 	Currency string `json:"currency"`
 	// The invoice's total amount including taxes. 
@@ -1876,13 +1876,13 @@ type RoleView struct {
 	// The role ID. 
 	RoleId int `json:"role_id"`
 	// Shows that the role is inherited. 
-	Inherited bool `json:"inherited,omitempty"`
+	Inherited *bool `json:"inherited,omitempty"`
 	// Child roles IDs array. 
 	ChildIds []int `json:"child_ids,omitempty"`
 	// Parent roles IDs array. 
 	ParentRoleId []int `json:"parent_role_id,omitempty"`
 	// Shows that the role is gui only. 
-	GuiOnly bool `json:"gui_only"`
+	GuiOnly *bool `json:"gui_only"`
 }
 
 type RoleGroupView struct {
@@ -1900,13 +1900,13 @@ type ChildAccountSubscriptionType struct {
 	// The subscription template ID. 
 	SubscriptionTemplateId int `json:"subscription_template_id"`
 	// Is the subscription prolonged automatically? 
-	AutoCharge bool `json:"auto_charge,omitempty"`
+	AutoCharge *bool `json:"auto_charge,omitempty"`
 	// The next charge UTC date in format: YYYY-MM-DD. 
 	NextRenewal Date `json:"next_renewal,omitempty"`
 	// The periodic payment amount. 
 	PeriodicPrice float64 `json:"periodic_price,omitempty"`
 	// Is the subscription active? 
-	Active bool `json:"active,omitempty"`
+	Active *bool `json:"active,omitempty"`
 }
 
 type ChildAccountSubscriptionTemplateType struct {

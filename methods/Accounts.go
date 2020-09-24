@@ -10,7 +10,7 @@ type AccountsService struct {
 
 type GetAccountInfoParams struct {
 	// Set true to get the account's live balance. 
-	ReturnLiveBalance bool `json:"return_live_balance,string,omitempty"`
+	ReturnLiveBalance *bool `json:"return_live_balance,string,omitempty"`
 }
 
 type GetAccountInfoReturn struct {
@@ -52,13 +52,13 @@ type SetAccountInfoParams struct {
 	// The min balance value to notify by email or SMS. 
 	MinBalanceToNotify float64 `json:"min_balance_to_notify,string,omitempty"`
 	// Are the Voximplant notifications required? 
-	AccountNotifications bool `json:"account_notifications,string,omitempty"`
+	AccountNotifications *bool `json:"account_notifications,string,omitempty"`
 	// Set to true to receive the emails about the Voximplant plan changing. 
-	TariffChangingNotifications bool `json:"tariff_changing_notifications,string,omitempty"`
+	TariffChangingNotifications *bool `json:"tariff_changing_notifications,string,omitempty"`
 	// Set to true to receive the emails about the Voximplant news. 
-	NewsNotifications bool `json:"news_notifications,string,omitempty"`
+	NewsNotifications *bool `json:"news_notifications,string,omitempty"`
 	// Set to true to receive the emails about a JS scenario error. 
-	SendJsError bool `json:"send_js_error,string,omitempty"`
+	SendJsError *bool `json:"send_js_error,string,omitempty"`
 	// The company or businessman name. 
 	BillingAddressName string `json:"billing_address_name,omitempty"`
 	// The billing address country code (2 symbols, ISO 3166-1 alpha-2). The following values are available: AF (Afghanistan), AL (Albania), DZ (Algeria), AS (American Samoa), AD (Andorra), AO (Angola), AI (Anguilla), AQ (Antarctica), AG (Antigua and Barbuda), AR (Argentina), AM (Armenia), AW (Aruba), AU (Australia), AT (Austria), AZ (Azerbaijan), BH (Bahrain), BD (Bangladesh), BB (Barbados), BY (Belarus), BE (Belgium), BZ (Belize), BJ (Benin), BM (Bermuda), BT (Bhutan), BO (Bolivia), BA (Bosnia and Herzegovina), BW (Botswana), BV (Bouvet Island), BR (Brazil), IO (British Indian Ocean Territory), BN (Brunei), BG (Bulgaria), BF (Burkina Faso), BI (Burundi), KH (Cambodia), CM (Cameroon), CA (Canada), CV (Cape Verde), KY (Cayman Islands), CF (Central African Republic), TD (Chad), CL (Chile), CN (China), CX (Christmas Island), CO (Colombia), KM (Comoros), CG (Congo), CK (Cook Islands), CR (Costa Rica), HR (Croatia), CU (Cuba), CY (Cyprus), CZ (Czech Republic), DK (Denmark), DJ (Djibouti), DM (Dominica), DO (Dominican Republic), EC (Ecuador), EG (Egypt), SV (El Salvador), GQ (Equatorial Guinea), ER (Eritrea), EE (Estonia), ET (Ethiopia), FO (Faroe Islands), FJ (Fiji Islands), FI (Finland), FR (France), GF (French Guiana), PF (French Polynesia), TF (French Southern and Antarctic Lands), GA (Gabon), GE (Georgia), DE (Germany), GH (Ghana), GI (Gibraltar), GR (Greece), GL (Greenland), GD (Grenada), GP (Guadeloupe), GU (Guam), GT (Guatemala), GG (Guernsey), GN (Guinea), GY (Guyana), HT (Haiti), HM (Heard Island and McDonald Islands), HN (Honduras), HU (Hungary), IS (Iceland), IN (India), ID (Indonesia), IR (Iran), IQ (Iraq), IE (Ireland), IL (Israel), IT (Italy), JM (Jamaica), JP (Japan), JE (Jersey), JO (Jordan), KZ (Kazakhstan), KE (Kenya), KI (Kiribati), KR (Korea), KW (Kuwait), KG (Kyrgyzstan), LA (Laos), LV (Latvia), LB (Lebanon), LS (Lesotho), LR (Liberia), LY (Libya), LI (Liechtenstein), LT (Lithuania), LU (Luxembourg), MG (Madagascar), MW (Malawi), MY (Malaysia), MV (Maldives), ML (Mali), MT (Malta), MH (Marshall Islands), MQ (Martinique), MR (Mauritania), MU (Mauritius), YT (Mayotte), MX (Mexico), FM (Micronesia), MD (Moldova), MC (Monaco), MN (Mongolia), ME (Montenegro), MS (Montserrat), MA (Morocco), MZ (Mozambique), MM (Myanmar), NA (Namibia), NR (Nauru), NP (Nepal), NL (Netherlands), AN (Netherlands Antilles), NC (New Caledonia), NZ (New Zealand), NI (Nicaragua), NE (Niger), NG (Nigeria), NU (Niue), NF (Norfolk Island), KP (North Korea), MP (Northern Mariana Islands), NO (Norway), OM (Oman), PK (Pakistan), PW (Palau), PS (Palestinian Authority), PA (Panama), PG (Papua New Guinea), PY (Paraguay), PE (Peru), PH (Philippines), PN (Pitcairn Islands), PL (Poland), PT (Portugal), PR (Puerto Rico), QA (Qatar), RE (Reunion), RO (Romania), RU (Russia), RW (Rwanda), WS (Samoa), SM (San Marino), SA (Saudi Arabia), SN (Senegal), RS (Serbia), SC (Seychelles), SL (Sierra Leone), SG (Singapore), SK (Slovakia), SI (Slovenia), SB (Solomon Islands), SO (Somalia), ZA (South Africa), GS (South Georgia and the South Sandwich Islands), ES (Spain), LK (Sri Lanka), SD (Sudan), SR (Suriname), SZ (Swaziland), SE (Sweden), CH (Switzerland), SY (Syria), ST (Sao Tome and Principe), TW (Taiwan), TJ (Tajikistan), TZ (Tanzania), TH (Thailand), TG (Togo), TK (Tokelau), TO (Tonga), TT (Trinidad and Tobago), TN (Tunisia), TR (Turkey), TM (Turkmenistan), TC (Turks and Caicos Islands), TV (Tuvalu), UG (Uganda), UA (Ukraine), AE (United Arab Emirates), GB (United Kingdom), US (United States), UY (Uruguay), UZ (Uzbekistan), VU (Vanuatu), VA (Vatican City), VE (Venezuela), VN (Vietnam), VI (Virgin Islands), WF (Wallis and Futuna), EH (Western Sahara), YE (Yemen), ZM (Zambia), ZW (Zimbabwe), AX (Aland Islands) 
@@ -108,13 +108,13 @@ type SetChildAccountInfoParams struct {
 	// The new child account password. 
 	NewChildAccountPassword string `json:"new_child_account_password,omitempty"`
 	// Are the Voximplant notifications required? 
-	AccountNotifications bool `json:"account_notifications,string,omitempty"`
+	AccountNotifications *bool `json:"account_notifications,string,omitempty"`
 	// Set to true to receive the emails about the Voximplant plan changing. 
-	TariffChangingNotifications bool `json:"tariff_changing_notifications,string,omitempty"`
+	TariffChangingNotifications *bool `json:"tariff_changing_notifications,string,omitempty"`
 	// Set to true to receive the emails about the Voximplant news. 
-	NewsNotifications bool `json:"news_notifications,string,omitempty"`
+	NewsNotifications *bool `json:"news_notifications,string,omitempty"`
 	// Set false to disable the child account. 
-	Active bool `json:"active,string,omitempty"`
+	Active *bool `json:"active,string,omitempty"`
 	// The notification language code (2 symbols, ISO639-1). The following values are available: aa (Afar), ab (Abkhazian), af (Afrikaans), am (Amharic), ar (Arabic), as (Assamese), ay (Aymara), az (Azerbaijani), ba (Bashkir), be (Belarusian), bg (Bulgarian), bh (Bihari), bi (Bislama), bn (Bengali), bo (Tibetan), br (Breton), ca (Catalan), co (Corsican), cs (Czech), cy (Welch), da (Danish), de (German), dz (Bhutani), el (Greek), en (English), eo (Esperanto), es (Spanish), et (Estonian), eu (Basque), fa (Persian), fi (Finnish), fj (Fiji), fo (Faeroese), fr (French), fy (Frisian), ga (Irish), gd (Scots Gaelic), gl (Galician), gn (Guarani), gu (Gujarati), ha (Hausa), hi (Hindi), he (Hebrew), hr (Croatian), hu (Hungarian), hy (Armenian), ia (Interlingua), id (Indonesian), ie (Interlingue), ik (Inupiak), in (Indonesian), is (Icelandic), it (Italian), iu (Inuktitut), iw (Hebrew), ja (Japanese), ji (Yiddish), jw (Javanese), ka (Georgian), kk (Kazakh), kl (Greenlandic), km (Cambodian), kn (Kannada), ko (Korean), ks (Kashmiri), ku (Kurdish), ky (Kirghiz), la (Latin), ln (Lingala), lo (Laothian), lt (Lithuanian), lv (Latvian), mg (Malagasy), mi (Maori), mk (Macedonian), ml (Malayalam), mn (Mongolian), mo (Moldavian), mr (Marathi), ms (Malay), mt (Maltese), my (Burmese), na (Nauru), ne (Nepali), nl (Dutch), no (Norwegian), oc (Occitan), om (Oromo), or (Oriya), pa (Punjabi), pl (Polish), ps (Pashto), pt (Portuguese), qu (Quechua), rm (Rhaeto-Romance), rn (Kirundi), ro (Romanian), ru (Russian), rw (Kinyarwanda), sa (Sanskrit), sd (Sindhi), sg (Sangro), sh (Serbo-Croatian), si (Singhalese), sk (Slovak), sl (Slovenian), sm (Samoan), sn (Shona), so (Somali), sq (Albanian), sr (Serbian), ss (Siswati), st (Sesotho), su (Sudanese), sv (Swedish), sw (Swahili), ta (Tamil), te (Tegulu), tg (Tajik), th (Thai), ti (Tigrinya), tk (Turkmen), tl (Tagalog), tn (Setswana), to (Tonga), tr (Turkish), ts (Tsonga), tt (Tatar), tw (Twi), ug (Uigur), uk (Ukrainian), ur (Urdu), uz (Uzbek), vi (Vietnamese), vo (Volapuk), wo (Wolof), xh (Xhosa), yi (Yiddish), yo (Yoruba), za (Zhuang), zh (Chinese), zu (Zulu) 
 	LanguageCode string `json:"language_code,omitempty"`
 	// The child account location (timezone). Examples: America/Los_Angeles, GMT-8, GMT-08:00, GMT+10 
@@ -122,13 +122,13 @@ type SetChildAccountInfoParams struct {
 	// The min balance value to notify by email or SMS. 
 	MinBalanceToNotify float64 `json:"min_balance_to_notify,string,omitempty"`
 	// Set to true to allow the robokassa payments. 
-	SupportRobokassa bool `json:"support_robokassa,string,omitempty"`
+	SupportRobokassa *bool `json:"support_robokassa,string,omitempty"`
 	// Set to true to allow the bank card payments. 
-	SupportBankCard bool `json:"support_bank_card,string,omitempty"`
+	SupportBankCard *bool `json:"support_bank_card,string,omitempty"`
 	// Set to true to allow the bank invoices. 
-	SupportInvoice bool `json:"support_invoice,string,omitempty"`
+	SupportInvoice *bool `json:"support_invoice,string,omitempty"`
 	// Set to true to allow use restricted directions. 
-	CanUseRestricted bool `json:"can_use_restricted,string,omitempty"`
+	CanUseRestricted *bool `json:"can_use_restricted,string,omitempty"`
 	// The minimum payment amount. 
 	MinPaymentAmount int `json:"min_payment_amount,string,omitempty"`
 }
@@ -248,15 +248,15 @@ type GetChildrenAccountsParams struct {
 	// The child ccount email to filter. 
 	ChildAccountEmail string `json:"child_account_email,omitempty"`
 	// The active flag to filter. 
-	Active bool `json:"active,string,omitempty"`
+	Active *bool `json:"active,string,omitempty"`
 	// The frozen flag to filter. 
-	Frozen bool `json:"frozen,string,omitempty"`
+	Frozen *bool `json:"frozen,string,omitempty"`
 	// Set true to ignore the invalid 'child_account_id' items. 
-	IgnoreInvalidAccounts bool `json:"ignore_invalid_accounts,string,omitempty"`
+	IgnoreInvalidAccounts *bool `json:"ignore_invalid_accounts,string,omitempty"`
 	// Set true to output the account_id only. 
-	BriefOutput bool `json:"brief_output,string,omitempty"`
+	BriefOutput *bool `json:"brief_output,string,omitempty"`
 	// Set true to output the account_id, account_name, account_email only. 
-	MediumOutput bool `json:"medium_output,string,omitempty"`
+	MediumOutput *bool `json:"medium_output,string,omitempty"`
 	// The max returning record count. 
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records will be skipped in the output. 
@@ -264,7 +264,7 @@ type GetChildrenAccountsParams struct {
 	// The following values are available: 'child_account_id', 'child_account_name' and 'child_account_email'. 
 	OrderBy string `json:"order_by,omitempty"`
 	// Set true to get the user live balance. 
-	ReturnLiveBalance bool `json:"return_live_balance,string,omitempty"`
+	ReturnLiveBalance *bool `json:"return_live_balance,string,omitempty"`
 }
 
 type GetChildrenAccountsReturn struct {
@@ -298,7 +298,7 @@ type TransferMoneyToChildAccountParams struct {
 	// The amount currency (the parent account currency by default). Examples: RUR, EUR, USD. 
 	Currency string `json:"currency,omitempty"`
 	// Returns error if strict_mode is true and an child account or the parent account hasn't enough money. 
-	StrictMode bool `json:"strict_mode,string,omitempty"`
+	StrictMode *bool `json:"strict_mode,string,omitempty"`
 	// The child account transaction description. 
 	ChildTransactionDescription string `json:"child_transaction_description,omitempty"`
 	// The parent account transaction description. The following macro available: ${child_account_id}, ${child_account_name} 
@@ -386,7 +386,7 @@ func (s *AccountsService) ChargeAccount(params ChargeAccountParams) (*ChargeAcco
 
 type GetAccountDocumentsParams struct {
 	// Set true to view the uploaded document statuses. (The flag is ignored with the child_account_id=all) 
-	WithDetails bool `json:"with_details,string,omitempty"`
+	WithDetails *bool `json:"with_details,string,omitempty"`
 	// The required account verification name to filter. 
 	VerificationName string `json:"verification_name,omitempty"`
 	// The account verification status list separated by the ';' symbol. The following values are possible: REQUIRED, IN_PROGRESS, VERIFIED 
@@ -398,7 +398,7 @@ type GetAccountDocumentsParams struct {
 	// The child account ID list separated by the ';' symbol or the 'all' value. 
 	ChildAccountId string `json:"child_account_id,omitempty"`
 	// Set true to get the children account verifications only. 
-	ChildrenVerificationsOnly bool `json:"children_verifications_only,string,omitempty"`
+	ChildrenVerificationsOnly *bool `json:"children_verifications_only,string,omitempty"`
 }
 
 type GetAccountDocumentsReturn struct {

@@ -98,7 +98,7 @@ type GetDialogflowKeysParams struct {
 	// The id of bound application. 
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// Set true to get the json web key. 
-	WithSecretInfo bool `json:"with_secret_info,string,omitempty"`
+	WithSecretInfo *bool `json:"with_secret_info,string,omitempty"`
 }
 
 type GetDialogflowKeysReturn struct {
@@ -126,7 +126,7 @@ type BindDialogflowKeysParams struct {
 	// The application ID list separated by the ';' symbol or the 'all' value. 
 	ApplicationId string `json:"application_id"`
 	// Set to false to unbind. Default value is true. 
-	Bind bool `json:"bind,string,omitempty"`
+	Bind *bool `json:"bind,string,omitempty"`
 }
 
 type BindDialogflowKeysReturn struct {

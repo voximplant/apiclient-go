@@ -12,7 +12,7 @@ type AddAdminRoleParams struct {
 	// The admin role name. The length must be less than 50. 
 	AdminRoleName string `json:"admin_role_name"`
 	// The admin role enable flag. If false the allowed and denied entries have no affect. 
-	AdminRoleActive bool `json:"admin_role_active,string,omitempty"`
+	AdminRoleActive *bool `json:"admin_role_active,string,omitempty"`
 	// The admin role ID list separated by the ';' symbol or the 'all' value. The list specifies the roles from which the new role automatically copies all permissions (allowed_entries and denied_entries). 
 	LikeAdminRoleId string `json:"like_admin_role_id,omitempty"`
 	// The admin role name that can be used instead of <b>like_admin_role_id</b>. The name specifies a role from which the new role automatically copies all permissions (allowed_entries and denied_entries). 
@@ -78,7 +78,7 @@ type SetAdminRoleInfoParams struct {
 	// The new admin role name. The length must be less than 50. 
 	NewAdminRoleName string `json:"new_admin_role_name,omitempty"`
 	// The admin role enable flag. If false the allowed and denied entries have no affect. 
-	AdminRoleActive bool `json:"admin_role_active,string,omitempty"`
+	AdminRoleActive *bool `json:"admin_role_active,string,omitempty"`
 	// The modification mode of the permission lists (allowed_entries and denied_entries). The following values are possible: add, del, set. 
 	EntryModificationMode string `json:"entry_modification_mode,omitempty"`
 	// The list of allowed access entry changes separated by the ';' symbol (the API function names). 
@@ -116,15 +116,15 @@ type GetAdminRolesParams struct {
 	// The admin role name part to filter. 
 	AdminRoleName string `json:"admin_role_name,omitempty"`
 	// The admin role active flag to filter. 
-	AdminRoleActive bool `json:"admin_role_active,string,omitempty"`
+	AdminRoleActive *bool `json:"admin_role_active,string,omitempty"`
 	// Set true to get the permissions. 
-	WithEntries bool `json:"with_entries,string,omitempty"`
+	WithEntries *bool `json:"with_entries,string,omitempty"`
 	// Set false to omit the account roles. 
-	WithAccountRoles bool `json:"with_account_roles,string,omitempty"`
+	WithAccountRoles *bool `json:"with_account_roles,string,omitempty"`
 	// Set false to omit the parent roles. 
-	WithParentRoles bool `json:"with_parent_roles,string,omitempty"`
+	WithParentRoles *bool `json:"with_parent_roles,string,omitempty"`
 	// Set false to omit the system roles. 
-	WithSystemRoles bool `json:"with_system_roles,string,omitempty"`
+	WithSystemRoles *bool `json:"with_system_roles,string,omitempty"`
 	// The attached admin user ID list separated by the ';' symbol or the 'all' value. 
 	IncludedAdminUserId string `json:"included_admin_user_id,omitempty"`
 	// The not attached admin user ID list separated by the ';' symbol or the 'all' value. 

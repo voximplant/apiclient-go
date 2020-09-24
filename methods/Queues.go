@@ -18,7 +18,7 @@ type AddQueueParams struct {
 	// The integer queue priority. The highest priority is 0. 
 	AcdQueuePriority int `json:"acd_queue_priority,string,omitempty"`
 	// Set false to disable the auto binding of operators to a queue by skills comparing. 
-	AutoBinding bool `json:"auto_binding,string,omitempty"`
+	AutoBinding *bool `json:"auto_binding,string,omitempty"`
 	// The value in the range of [0.5 ... 1.0]. The value 1.0 means the service probability 100% in challenge with a lower priority queue. 
 	ServiceProbability int `json:"service_probability,string,omitempty"`
 	// The max queue size. 
@@ -52,7 +52,7 @@ func (s *QueuesService) AddQueue(params AddQueueParams) (*AddQueueReturn, *struc
 
 type BindUserToQueueParams struct {
 	// Bind or unbind users. 
-	Bind bool `json:"bind,string"`
+	Bind *bool `json:"bind,string"`
 	// The application ID. 
 	ApplicationId int `json:"application_id,string"`
 	// The application name that can be used instead of <b>application_id</b>. 
@@ -122,7 +122,7 @@ type SetQueueInfoParams struct {
 	// The integer queue priority. The highest priority is 0. 
 	AcdQueuePriority int `json:"acd_queue_priority,string,omitempty"`
 	// Set false to disable the auto binding of operators to a queue by skills comparing. 
-	AutoBinding bool `json:"auto_binding,string,omitempty"`
+	AutoBinding *bool `json:"auto_binding,string,omitempty"`
 	// The value in the range of [0.5 ... 1.0]. The value 1.0 means the service probability 100% in challenge with a lower priority queue. 
 	ServiceProbability int `json:"service_probability,string,omitempty"`
 	// The max queue size. 
@@ -166,7 +166,7 @@ type GetQueuesParams struct {
 	// The excluded skill ID to filter. 
 	ExcludedSkillId int `json:"excluded_skill_id,string,omitempty"`
 	// Set true to get the bound skills. 
-	WithSkills bool `json:"with_skills,string,omitempty"`
+	WithSkills *bool `json:"with_skills,string,omitempty"`
 	// The skill to show in the 'skills' field output. 
 	ShowingSkillId int `json:"showing_skill_id,string,omitempty"`
 	// The max returning record count. 
@@ -232,7 +232,7 @@ type GetACDOperatorStatisticsParams struct {
 	// The user ID list separated by the ';' symbol or the 'all' value.  
 	UserId string `json:"user_id"`
 	// If set to <b>true</b>, key names in returned JSON will be abbreviated to reduce response byte size. The abbreviations are: 'SA' for 'SpeedOfAnswer', 'HT' for 'HandlingTime', 'TT' for 'TalkTime', 'ACW' for 'AfterCallWork', 'TDT' for 'TotalDialingTime', 'THT' for 'TotalHandlingTime', 'TTT' for 'TotalTalkTime', 'TACW' for 'TotalAfterCallWork', 'AC' for 'AnsweredCalls', 'UAC' for 'UnansweredCalls'. 
-	Abbreviation bool `json:"abbreviation,string,omitempty"`
+	Abbreviation *bool `json:"abbreviation,string,omitempty"`
 	// List of item names abbreviations separated by the ';' symbol. Returned JSON will include keys only for the selected items. Special 'all' value defines all possible items, see [ACDOperatorStatisticsType] for a complete list. See 'abbreviation' description for complete abbreviation list. 
 	Report string `json:"report,omitempty"`
 	// Specifies how records are grouped by date and time. If set to 'day', the criteria is a day number. If set to 'hour_of_day', the criteria is a 60-minute interval within a day. If set to 'hour', the criteria is both day number and 60-minute interval within that day. If set to 'none', records are not grouped by date and time. 
@@ -266,7 +266,7 @@ type GetACDQueueStatisticsParams struct {
 	// Date and time of statistics interval begin. Time zone is UTC, format is 24-h 'YYYY-MM-DD HH:mm:ss'. 
 	ToDate *structure.Timestamp `json:"to_date,string,omitempty"`
 	// If set to <b>true</b>, key names in returned JSON will be abbreviated to reduce response byte size. The abbreviations are: 'WT' for 'WaitingTime', 'SA' for 'SpeedOfAnswer', 'AT' is for 'AbandonmentTime', 'HT' is for 'HandlingTime', 'TT' is for 'TalkTime', 'ACW' is for 'AfterCallWork', 'QL' is for 'QueueLength', 'TC' is for 'TotalCalls', 'AC' is for 'AnsweredCalls', 'UAC' is for 'UnansweredCalls', 'RC' is for 'RejectedCalls', 'SL' is for 'ServiceLevel', 'TWT' is for 'TotalWaitingTime', 'TST' is for 'TotalSubmissionTime', 'TAT' is for 'TotalAbandonmentTime', 'THT' is for 'TotalHandlingTime', 'TTT' is for 'TotalTalkTime', 'TACW' is for 'TotalAfterCallWork'. 
-	Abbreviation bool `json:"abbreviation,string,omitempty"`
+	Abbreviation *bool `json:"abbreviation,string,omitempty"`
 	// The ACD queue ID list separated by the ';' symbol or the 'all' value. 
 	AcdQueueId string `json:"acd_queue_id,omitempty"`
 	// List of item names abbreviations separated by the ';' symbol. Returned JSON will include keys only for the selected items. Special 'all' value defines all possible items, see [ACDQueueStatisticsType] for a complete list. See 'abbreviation' description for complete abbreviation list. 

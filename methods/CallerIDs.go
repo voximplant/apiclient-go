@@ -94,7 +94,7 @@ type GetCallerIDsParams struct {
 	// The phone number to filter. 
 	CalleridNumber string `json:"callerid_number,omitempty"`
 	// The active flag to filter. 
-	Active bool `json:"active,string,omitempty"`
+	Active *bool `json:"active,string,omitempty"`
 	// The following values are available: 'caller_number' (ascent order), 'verified_until' (ascent order). 
 	OrderBy string `json:"order_by,omitempty"`
 	// The max returning record count. 
