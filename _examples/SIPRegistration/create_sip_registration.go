@@ -12,7 +12,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.CreateSipRegistrationParams{SipUsername:"test", Proxy:"localhost"}
+	params := methods.CreateSipRegistrationParams{SipUsername:"JohnGalt", Proxy:"localhost"}
 	res, verr, err := client.SIPRegistration.CreateSipRegistration(params)
 	fmt.Println(res, verr, err)
 }

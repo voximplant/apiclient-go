@@ -12,7 +12,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.StartNextCallTaskParams{ListId:1}
+	params := methods.StartNextCallTaskParams{ListId:"1"}
 	res, verr, err := client.CallLists.StartNextCallTask(params)
 	fmt.Println(res, verr, err)
 }

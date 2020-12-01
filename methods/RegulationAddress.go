@@ -22,7 +22,7 @@ type LinkregulationAddressReturn struct {
 	Result *bool `json:"result"`
 }
 
-// Link regulation address to phone 
+// Links the regulation address to a phone 
 func (s *RegulationAddressService) LinkregulationAddress(params LinkregulationAddressParams) (*LinkregulationAddressReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "LinkregulationAddress", params)
 	if err != nil {
@@ -54,7 +54,7 @@ type GetZIPCodesReturn struct {
 	Count int `json:"count"`
 }
 
-// Search available zip codes 
+// Searches for available zip codes 
 func (s *RegulationAddressService) GetZIPCodes(params GetZIPCodesParams) (*GetZIPCodesReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "GetZIPCodes", params)
 	if err != nil {
@@ -71,9 +71,9 @@ func (s *RegulationAddressService) GetZIPCodes(params GetZIPCodesParams) (*GetZI
 type GetRegulationsAddressParams struct {
 	// The country code according to the <b>ISO 3166-1 alpha-2</b>. 
 	CountryCode string `json:"country_code,omitempty"`
-	// The phone category name. See the <a href='//voximplant.com/docs/references/httpapi/managing_phone_numbers#getphonenumbercategories'>GetPhoneNumberCategories</a> method. 
+	// The phone category name. See the [GetPhoneNumberCategories] method. 
 	PhoneCategoryName string `json:"phone_category_name,omitempty"`
-	// The phone region code. See the <a href='//voximplant.com/docs/references/httpapi/managing_regulation_address#getregions'>GetRegions</a> method. 
+	// The phone region code. See the [GetRegions] method. 
 	PhoneRegionCode string `json:"phone_region_code,omitempty"`
 	// The regulation address ID. 
 	RegulationAddressId int `json:"regulation_address_id,string,omitempty"`
@@ -94,7 +94,7 @@ type GetRegulationsAddressReturn struct {
 	Count int `json:"count"`
 }
 
-// Search user's regulation address 
+// Searches for the user's regulation address 
 func (s *RegulationAddressService) GetRegulationsAddress(params GetRegulationsAddressParams) (*GetRegulationsAddressReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "GetRegulationsAddress", params)
 	if err != nil {
@@ -111,9 +111,9 @@ func (s *RegulationAddressService) GetRegulationsAddress(params GetRegulationsAd
 type GetAvailableRegulationsParams struct {
 	// The country code according to the <b>ISO 3166-1 alpha-2</b>. 
 	CountryCode string `json:"country_code"`
-	// The phone category name. See the <a href='//voximplant.com/docs/references/httpapi/managing_phone_numbers#getphonenumbercategories'>GetPhoneNumberCategories</a> method. 
+	// The phone category name. See the [GetPhoneNumberCategories] method. 
 	PhoneCategoryName string `json:"phone_category_name"`
-	// The phone region code. See the <a href='//voximplant.com/docs/references/httpapi/managing_regulation_address#getregions'>GetRegions</a> method. 
+	// The phone region code. See the [GetRegions] method. 
 	PhoneRegionCode string `json:"phone_region_code,omitempty"`
 }
 
@@ -126,7 +126,7 @@ type GetAvailableRegulationsReturn struct {
 	CountInProgress int `json:"count_in_progress"`
 }
 
-// Search available regulation for link 
+// Searches for the available regulation for a link 
 func (s *RegulationAddressService) GetAvailableRegulations(params GetAvailableRegulationsParams) (*GetAvailableRegulationsReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "GetAvailableRegulations", params)
 	if err != nil {
@@ -152,7 +152,7 @@ type GetCountriesReturn struct {
 	Count int `json:"count"`
 }
 
-// Get all countries 
+// Gets all countries 
 func (s *RegulationAddressService) GetCountries(params GetCountriesParams) (*GetCountriesReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "GetCountries", params)
 	if err != nil {
@@ -169,7 +169,7 @@ func (s *RegulationAddressService) GetCountries(params GetCountriesParams) (*Get
 type GetRegionsParams struct {
 	// The country code according to the <b>ISO 3166-1 alpha-2</b>. 
 	CountryCode string `json:"country_code"`
-	// The phone category name. See the <a href='//voximplant.com/docs/references/httpapi/managing_phone_numbers#getphonenumbercategories'>GetPhoneNumberCategories</a> method. 
+	// The phone category name. See the [GetPhoneNumberCategories] method. 
 	PhoneCategoryName string `json:"phone_category_name"`
 	// The pattern of city's name 
 	CityName string `json:"city_name,omitempty"`
@@ -186,7 +186,7 @@ type GetRegionsReturn struct {
 	Count int `json:"count"`
 }
 
-// Get available regions in country 
+// Gets available regions in a country 
 func (s *RegulationAddressService) GetRegions(params GetRegionsParams) (*GetRegionsReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "GetRegions", params)
 	if err != nil {

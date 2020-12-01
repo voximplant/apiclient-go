@@ -22,7 +22,7 @@ type GetRecordStoragesReturn struct {
 	Result *structure.RecordStorageInfoType `json:"result"`
 }
 
-// Get the record storages. 
+// Gets the record storages. 
 func (s *RecordStoragesService) GetRecordStorages(params GetRecordStoragesParams) (*GetRecordStoragesReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "GetRecordStorages", params)
 	if err != nil {

@@ -15,11 +15,11 @@ type AttachPhoneNumberParams struct {
 	PhoneNumber string `json:"phone_number"`
 	// The country code. 
 	CountryCode string `json:"country_code"`
-	// The phone category name. See the <a href='//voximplant.com/docs/references/httpapi/managing_phone_numbers#getphonenumbercategories'>GetPhoneNumberCategories</a> method. 
+	// The phone category name. See the [GetPhoneNumberCategories] method. 
 	PhoneCategoryName string `json:"phone_category_name"`
-	// The country state. See the <a href='//voximplant.com/docs/references/httpapi/managing_phone_numbers#getphonenumbercategories'>GetPhoneNumberCategories</a> and <a href='//voximplant.com/docs/references/httpapi/managing_phone_numbers#getphonenumbercountrystates'>GetPhoneNumberCountryStates</a> methods. 
+	// The country state. See the [GetPhoneNumberCategories] and [GetPhoneNumberCountryStates] methods. 
 	CountryState string `json:"country_state,omitempty"`
-	// The phone region ID. See the <a href='//voximplant.com/docs/references/httpapi/managing_phone_numbers#getphonenumberregionsb'>GetPhoneNumberRegions</a> method. 
+	// The phone region ID. See the [GetPhoneNumberRegions] method. 
 	PhoneRegionId int `json:"phone_region_id,string"`
 	// The phone regulation address ID. 
 	RegulationAddressId int `json:"regulation_address_id,string,omitempty"`
@@ -61,7 +61,7 @@ type BindPhoneNumberToApplicationParams struct {
 	RuleId int `json:"rule_id,string,omitempty"`
 	// The rule name that can be used instead of <b>rule_id</b>. 
 	RuleName string `json:"rule_name,omitempty"`
-	// Bind or unbind? 
+	// Bind or unbind (set true or false respectively). 
 	Bind *bool `json:"bind,string,omitempty"`
 }
 
@@ -115,6 +115,8 @@ type SetPhoneNumberInfoParams struct {
 	PhoneId string `json:"phone_id"`
 	// The phone number list separated by the ';' symbol that can be used instead of <b>phone_id</b>. 
 	PhoneNumber string `json:"phone_number"`
+	// If set, the callback of an inbound SMS will be sent to this url, otherwise, it will be sent to the general account URL. 
+	IncomingSmsCallbackUrl string `json:"incoming_sms_callback_url,omitempty"`
 	// Set true to enable the auto charging. 
 	AutoCharge *bool `json:"auto_charge,string"`
 }
@@ -124,7 +126,7 @@ type SetPhoneNumberInfoReturn struct {
 	Result int `json:"result"`
 }
 
-// Configure the phone number. 
+// Set the phone number information. 
 func (s *PhoneNumbersService) SetPhoneNumberInfo(params SetPhoneNumberInfoParams) (*SetPhoneNumberInfoReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "SetPhoneNumberInfo", params)
 	if err != nil {
@@ -151,7 +153,7 @@ type GetPhoneNumbersParams struct {
 	PhoneTemplate string `json:"phone_template,omitempty"`
 	// The country code list separated by the ';' symbol. 
 	CountryCode string `json:"country_code,omitempty"`
-	// The phone category name. See the <a href='//voximplant.com/docs/references/httpapi/managing_phone_numbers#getphonenumbercategories'>GetPhoneNumberCategories</a> method. 
+	// The phone category name. See the [GetPhoneNumberCategories] method. 
 	PhoneCategoryName string `json:"phone_category_name,omitempty"`
 	// The flag of the canceled (deleted) subscription to filter. 
 	Canceled *bool `json:"canceled,string,omitempty"`
@@ -179,7 +181,7 @@ type GetPhoneNumbersParams struct {
 	FromUnverifiedHoldUntil *structure.Date `json:"from_unverified_hold_until,string,omitempty"`
 	// Unverified phone hold until the date (... to) in format: YYYY-MM-DD 
 	ToUnverifiedHoldUntil *structure.Date `json:"to_unverified_hold_until,string,omitempty"`
-	// Can the unverified account use the phone? 
+	// Unverified account can use the phone. 
 	CanBeUsed *bool `json:"can_be_used,string,omitempty"`
 	// The following values are available: 'phone_number' (ascent order), 'phone_price' (ascent order), 'phone_country_code' (ascent order), 'deactivated' (deactivated first, active last), 'purchase_date' (descent order), 'phone_next_renewal' (ascent order), 'verification_status', 'unverified_hold_until' (ascent order), 'verification_name'. 
 	OrderBy string `json:"order_by,omitempty"`
@@ -197,7 +199,7 @@ type GetPhoneNumbersParams struct {
 	RuleId string `json:"rule_id,omitempty"`
 	// The rule names list separated by the ';' symbol. Can be used only if __application_id__ or __application_name__ is specified. 
 	RuleName string `json:"rule_name,omitempty"`
-	// Is a number bound to any rule? 
+	// Number is bound to some rule. 
 	IsBoundToRule *bool `json:"is_bound_to_rule,string,omitempty"`
 }
 
@@ -231,7 +233,7 @@ type GetNewPhoneNumbersParams struct {
 	PhoneCategoryName string `json:"phone_category_name"`
 	// The country state. See the GetPhoneNumberCategories and GetPhoneNumberCountryStates functions. 
 	CountryState string `json:"country_state,omitempty"`
-	// The phone region ID. See the <a href='//voximplant.com/docs/references/httpapi/managing_phone_numbers#getphonenumberregions'>GetPhoneNumberRegions</a> method. 
+	// The phone region ID. See the [GetPhoneNumberRegions] method. 
 	PhoneRegionId int `json:"phone_region_id,string"`
 	// The max returning record count. 
 	Count int `json:"count,string,omitempty"`
@@ -267,6 +269,8 @@ type GetPhoneNumberCategoriesParams struct {
 	CountryCode string `json:"country_code,omitempty"`
 	// Flag allows you to display phone number categories only of the sandbox, real or all .The following values are possible: 'all', 'true', 'false'. 
 	Sandbox string `json:"sandbox,omitempty"`
+	// The 2-letter locale code. Supported values are EN, RU. 
+	Locale string `json:"locale,omitempty"`
 }
 
 type GetPhoneNumberCategoriesReturn struct {
@@ -319,7 +323,7 @@ func (s *PhoneNumbersService) GetPhoneNumberCountryStates(params GetPhoneNumberC
 type GetPhoneNumberRegionsParams struct {
 	// The country code. 
 	CountryCode string `json:"country_code"`
-	// The phone category name. See the <a href='//voximplant.com/docs/references/httpapi/managing_phone_numbers#getphonenumbercategories'>GetPhoneNumberCategories</a> method. 
+	// The phone category name. See the [GetPhoneNumberCategories] method. 
 	PhoneCategoryName string `json:"phone_category_name"`
 	// The country state code (example: AL, CA, ... ). 
 	CountryState string `json:"country_state,omitempty"`
@@ -331,6 +335,8 @@ type GetPhoneNumberRegionsParams struct {
 	PhoneRegionName string `json:"phone_region_name,omitempty"`
 	// The region phone prefix to filter. 
 	PhoneRegionCode string `json:"phone_region_code,omitempty"`
+	// The 2-letter locale code. Supported values are EN, RU. 
+	Locale string `json:"locale,omitempty"`
 }
 
 type GetPhoneNumberRegionsReturn struct {
@@ -355,10 +361,14 @@ func (s *PhoneNumbersService) GetPhoneNumberRegions(params GetPhoneNumberRegions
 type GetActualPhoneNumberRegionParams struct {
 	// The country code. 
 	CountryCode string `json:"country_code"`
-	// The phone category name. See the <a href='//voximplant.com/docs/references/httpapi/managing_phone_numbers#getphonenumbercategoriesb'>GetPhoneNumberCategories</a> method. 
+	// The phone category name. See the [GetPhoneNumberCategories] method. 
 	PhoneCategoryName string `json:"phone_category_name"`
+	// The country state code (example: AL, CA, ... ). 
+	CountryState string `json:"country_state,omitempty"`
 	// The phone region ID to filter. 
 	PhoneRegionId int `json:"phone_region_id,string"`
+	// The 2-letter locale code. Supported values are EN, RU. 
+	Locale string `json:"locale,omitempty"`
 }
 
 type GetActualPhoneNumberRegionReturn struct {
@@ -366,7 +376,7 @@ type GetActualPhoneNumberRegionReturn struct {
 	Result *structure.PhoneNumberCountryRegionInfoType `json:"result"`
 }
 
-// Get actual info the country region of the phone numbers. The response will also contain the info about multiple numbers subscription for the child accounts. 
+// Get actual info on the country region of the phone numbers. The response will also contain the info about multiple numbers subscription for the child accounts. 
 func (s *PhoneNumbersService) GetActualPhoneNumberRegion(params GetActualPhoneNumberRegionParams) (*GetActualPhoneNumberRegionReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "GetActualPhoneNumberRegion", params)
 	if err != nil {

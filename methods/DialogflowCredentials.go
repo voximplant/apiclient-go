@@ -26,7 +26,7 @@ type AddDialogflowKeyReturn struct {
 	DialogflowKeyId int `json:"dialogflow_key_id"`
 }
 
-// Add Dialogflow key. 
+// Adds a Dialogflow key. 
 func (s *DialogflowCredentialsService) AddDialogflowKey(params AddDialogflowKeyParams) (*AddDialogflowKeyReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "AddDialogflowKey", params)
 	if err != nil {
@@ -52,7 +52,7 @@ type SetDialogflowKeyReturn struct {
 	Result int `json:"result"`
 }
 
-// Edit Dialogflow key. 
+// Edits a Dialogflow key. 
 func (s *DialogflowCredentialsService) SetDialogflowKey(params SetDialogflowKeyParams) (*SetDialogflowKeyReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "SetDialogflowKey", params)
 	if err != nil {
@@ -76,7 +76,7 @@ type DelDialogflowKeyReturn struct {
 	Result int `json:"result"`
 }
 
-// Remove Dialogflow key. 
+// Removes a Dialogflow key. 
 func (s *DialogflowCredentialsService) DelDialogflowKey(params DelDialogflowKeyParams) (*DelDialogflowKeyReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "DelDialogflowKey", params)
 	if err != nil {
@@ -93,9 +93,9 @@ func (s *DialogflowCredentialsService) DelDialogflowKey(params DelDialogflowKeyP
 type GetDialogflowKeysParams struct {
 	// The Dialogflow key's ID. 
 	DialogflowKeyId int `json:"dialogflow_key_id,string,omitempty"`
-	// The name of bound application. 
+	// The name of the bound application. 
 	ApplicationName string `json:"application_name,omitempty"`
-	// The id of bound application. 
+	// The id of the bound application. 
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// Set true to get the json web key. 
 	WithSecretInfo *bool `json:"with_secret_info,string,omitempty"`
@@ -106,7 +106,7 @@ type GetDialogflowKeysReturn struct {
 	Result []*structure.DialogflowKeyInfo `json:"result"`
 }
 
-// Get Dialogflow keys. 
+// Gets Dialogflow keys. 
 func (s *DialogflowCredentialsService) GetDialogflowKeys(params GetDialogflowKeysParams) (*GetDialogflowKeysReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "GetDialogflowKeys", params)
 	if err != nil {
@@ -134,7 +134,7 @@ type BindDialogflowKeysReturn struct {
 	Result int `json:"result"`
 }
 
-// Bind a Dialogflow key to the specified applications. 
+// Binds a Dialogflow key to the specified applications. 
 func (s *DialogflowCredentialsService) BindDialogflowKeys(params BindDialogflowKeysParams) (*BindDialogflowKeysReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "BindDialogflowKeys", params)
 	if err != nil {

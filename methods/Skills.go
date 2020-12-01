@@ -125,11 +125,11 @@ func (s *SkillsService) GetSkills(params GetSkillsParams) (*GetSkillsReturn, *st
 type BindSkillParams struct {
 	// The skill ID list separated by the ';' symbol or the 'all' value. 
 	SkillId string `json:"skill_id"`
-	// Can be used instead of <b>skill_id</b>. The skill name list separated by the ';' symbol. 
+	// The skill name list separated by the ';' symbol. Can be used instead of <b>skill_id</b>. 
 	SkillName string `json:"skill_name"`
 	// The user ID list separated by the ';' symbol or the 'all' value. 
 	UserId string `json:"user_id"`
-	// The user name that can be used instead of <b>user_id</b>. The user name list separated by the ';' symbol. 
+	// The user name list separated by the ';' symbol. <b>user_name</b> can be used instead of <b>user_id</b>. 
 	UserName string `json:"user_name"`
 	// The ACD queue ID list separated by the ';' symbol or the 'all' value. 
 	AcdQueueId string `json:"acd_queue_id"`
@@ -139,7 +139,7 @@ type BindSkillParams struct {
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// The application name that can be used instead of <b>application_id</b>. 
 	ApplicationName string `json:"application_name,omitempty"`
-	// Bind or unbind? 
+	// Bind or unbind (set true or false respectively). 
 	Bind *bool `json:"bind,string,omitempty"`
 }
 

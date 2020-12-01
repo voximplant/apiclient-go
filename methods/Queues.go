@@ -59,7 +59,7 @@ type BindUserToQueueParams struct {
 	ApplicationName string `json:"application_name"`
 	// The user ID list separated by the ';' symbol or the 'all' value to specify all users bound to the application. 
 	UserId string `json:"user_id"`
-	// The user name that can be used instead of <b>user_id</b>. The user name list separated by the ';' symbol. 
+	// The user name list separated by the ';' symbol. <b>user_name</b> can be used instead of <b>user_id</b>. 
 	UserName string `json:"user_name"`
 	// The ACD queue ID list separated by the ';' symbol or the 'all' value to specify all queues bound to the application. 
 	AcdQueueId string `json:"acd_queue_id"`

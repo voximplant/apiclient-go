@@ -15,9 +15,9 @@ type AddUserParams struct {
 	UserDisplayName string `json:"user_display_name"`
 	// The user password. The length must be at least 6 symbols. 
 	UserPassword string `json:"user_password"`
-	// The application ID which new user will be bound to. Could be used instead of the <b>application_name</b> parameter. 
+	// The application ID which a new user will be bound to. Can be used instead of the <b>application_name</b> parameter. 
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// The application name which new user will be bound to. Could be used instead of the <b>application_id</b> parameter. 
+	// The application name which a new user will be bound to. Can be used instead of the <b>application_id</b> parameter. 
 	ApplicationName string `json:"application_name,omitempty"`
 	// 'True' if the user will use the parent account's money, 'false' if the user will have a separate balance. 
 	ParentAccounting *bool `json:"parent_accounting,string,omitempty"`
@@ -57,7 +57,7 @@ type DelUserParams struct {
 	UserName string `json:"user_name"`
 	// Delete the specified users bound to the application ID. It is required if the <b>user_name</b> is specified. 
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// Delete the specified users bound to the application name. Could be used instead of the <b>application_id</b> parameter. 
+	// Delete the specified users bound to the application name. Can be used instead of the <b>application_id</b> parameter. 
 	ApplicationName string `json:"application_name,omitempty"`
 }
 
@@ -83,7 +83,7 @@ func (s *UsersService) DelUser(params DelUserParams) (*DelUserReturn, *structure
 type SetUserInfoParams struct {
 	// The user to edit. 
 	UserId int `json:"user_id,string"`
-	// Can be used instead of <b>user_id</b>. 
+	// The user name that can be used instead of <b>user_id</b>. 
 	UserName string `json:"user_name"`
 	// The application ID. It is required if the <b>user_name</b> is specified. 
 	ApplicationId int `json:"application_id,string,omitempty"`

@@ -69,7 +69,7 @@ func (s *ApplicationsService) DelApplication(params DelApplicationParams) (*DelA
 type SetApplicationInfoParams struct {
 	// The application ID. 
 	ApplicationId int `json:"application_id,string"`
-	// Can be used instead of <b>application_id</b>. 
+	// The application name that can be used instead of <b>application_id</b>. 
 	RequiredApplicationName string `json:"required_application_name"`
 	// The new short application name in format [a-z][a-z0-9-]{1,79} 
 	ApplicationName string `json:"application_name,omitempty"`

@@ -37,7 +37,7 @@ func (s *AuthorizedIPsService) AddAuthorizedAccountIP(params AddAuthorizedAccoun
 type DelAuthorizedAccountIPParams struct {
 	// The authorized IP4 or network to remove. Set to 'all' to remove all items. 
 	AuthorizedIp string `json:"authorized_ip"`
-	// Can be used instead of <b>autharized_ip</b>. Specify the parameter to remove the networks that contains the particular IP4. 
+	// Specify the parameter to remove the networks that contains the particular IP4. Can be used instead of <b>autharized_ip</b>. 
 	ContainsIp string `json:"contains_ip"`
 	// Set true to remove the network from the white list. Set false to remove the network from the black list. Omit the parameter to remove the network from all lists. 
 	Allowed *bool `json:"allowed,string,omitempty"`

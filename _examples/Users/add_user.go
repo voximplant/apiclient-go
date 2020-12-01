@@ -12,7 +12,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.AddUserParams{UserName:"iden1", UserDisplayName:"iden1", UserPassword:"1234567", ApplicationId:1}
+	params := methods.AddUserParams{UserName:"GordonFreeman", UserDisplayName:"GordonFreeman", UserPassword:"1234567", ApplicationId:1}
 	res, verr, err := client.Users.AddUser(params)
 	fmt.Println(res, verr, err)
 }

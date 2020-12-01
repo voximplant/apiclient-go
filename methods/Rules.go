@@ -19,11 +19,11 @@ type AddRuleParams struct {
 	RulePattern string `json:"rule_pattern"`
 	// The exclude pattern regex. The length must be less than 64 KB. 
 	RulePatternExclude string `json:"rule_pattern_exclude,omitempty"`
-	// Is video conference required? 
+	// Video conference is required. 
 	VideoConference *bool `json:"video_conference,string,omitempty"`
 	// The scenario ID list separated by the ';' symbol. 
 	ScenarioId string `json:"scenario_id"`
-	// Can be used instead of <b>scenario_id</b>. The scenario name list separated by the ';' symbol. 
+	// The scenario name list separated by the ';' symbol. Can be used instead of <b>scenario_id</b>. 
 	ScenarioName string `json:"scenario_name"`
 }
 
@@ -51,11 +51,11 @@ func (s *RulesService) AddRule(params AddRuleParams) (*AddRuleReturn, *structure
 type DelRuleParams struct {
 	// The rule ID list separated by the ';' symbol or the 'all' value. 
 	RuleId string `json:"rule_id"`
-	// Can be used instead of <b>rule_id</b>. The rule name list separated by the ';' symbol. 
+	// The rule name list separated by the ';' symbol. Can be used instead of <b>rule_id</b>. 
 	RuleName string `json:"rule_name"`
 	// The application ID list separated by the ';' symbol or the 'all' value. 
 	ApplicationId string `json:"application_id"`
-	// Can be used instead of <b>application_id</b>. The application name list separated by the ';' symbol. 
+	// The application name list separated by the ';' symbol. Can be used instead of <b>application_id</b>. 
 	ApplicationName string `json:"application_name"`
 }
 
@@ -87,7 +87,7 @@ type SetRuleInfoParams struct {
 	RulePattern string `json:"rule_pattern,omitempty"`
 	// The new exclude pattern regex. The length must be less than 64 KB. 
 	RulePatternExclude string `json:"rule_pattern_exclude,omitempty"`
-	// Is video conference required? 
+	// Video conference is required. 
 	VideoConference *bool `json:"video_conference,string,omitempty"`
 }
 
@@ -164,7 +164,7 @@ type ReorderRulesReturn struct {
 	Result int `json:"result"`
 }
 
-// Configures the rules' order in the <a href='//manage.voximplant.com/#editApplication'>Applications</a> section of Control panel. Note: the rules must belong to the same application! 
+// Configures the rules' order in the <a href='//manage.voximplant.com/applications'>Applications</a> section of Control panel. Note: the rules must belong to the same application! 
 func (s *RulesService) ReorderRules(params ReorderRulesParams) (*ReorderRulesReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "ReorderRules", params)
 	if err != nil {

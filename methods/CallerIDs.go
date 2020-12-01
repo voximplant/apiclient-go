@@ -138,7 +138,7 @@ type VerifyCallerIDReturn struct {
 	Result int `json:"result"`
 }
 
-// Gets a verification code by make call to the callerID number. 
+// Gets a verification code via phone call to the **callerid_number**. 
 func (s *CallerIDsService) VerifyCallerID(params VerifyCallerIDParams) (*VerifyCallerIDReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "VerifyCallerID", params)
 	if err != nil {

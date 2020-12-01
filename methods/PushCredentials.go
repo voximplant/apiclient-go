@@ -9,10 +9,14 @@ type PushCredentialsService struct {
 }
 
 type AddPushCredentialParams struct {
-	// The push provider name. Available values: APPLE, APPLE_VOIP, GOOGLE. 
+	// The push provider name. The possible values are: APPLE, APPLE_VOIP, GOOGLE. 
 	PushProviderName string `json:"push_provider_name"`
 	// The push provider id. 
 	PushProviderId int `json:"push_provider_id,string"`
+	// The application id. 
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// The application name that can be used instead of <b>application_id</b>. 
+	ApplicationName string `json:"application_name,omitempty"`
 	// The bundle of Android/iOS application. 
 	CredentialBundle string `json:"credential_bundle,omitempty"`
 	// Public and private keys in PKCS12 format. 
@@ -27,6 +31,8 @@ type AddPushCredentialParams struct {
 	SenderId string `json:"sender_id,omitempty"`
 	// The server key, provided by Google. 
 	ServerKey string `json:"server_key,omitempty"`
+	// The service account key file, provided by Google. 
+	ServiceAccountFile string `json:"service_account_file,omitempty"`
 }
 
 type AddPushCredentialReturn struct {
@@ -36,7 +42,7 @@ type AddPushCredentialReturn struct {
 	PushCredentialId int `json:"push_credential_id"`
 }
 
-// Add push credentials 
+// Adds push credentials 
 func (s *PushCredentialsService) AddPushCredential(params AddPushCredentialParams) (*AddPushCredentialReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "AddPushCredential", params)
 	if err != nil {
@@ -70,7 +76,7 @@ type SetPushCredentialReturn struct {
 	Result int `json:"result"`
 }
 
-// Modify push credentials 
+// Modifies push credentials 
 func (s *PushCredentialsService) SetPushCredential(params SetPushCredentialParams) (*SetPushCredentialReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "SetPushCredential", params)
 	if err != nil {
@@ -94,7 +100,7 @@ type DelPushCredentialReturn struct {
 	Result int `json:"result"`
 }
 
-// Remove push credentials 
+// Removes push credentials 
 func (s *PushCredentialsService) DelPushCredential(params DelPushCredentialParams) (*DelPushCredentialReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "DelPushCredential", params)
 	if err != nil {
@@ -111,13 +117,13 @@ func (s *PushCredentialsService) DelPushCredential(params DelPushCredentialParam
 type GetPushCredentialParams struct {
 	// The push credentials id. 
 	PushCredentialId int `json:"push_credential_id,string,omitempty"`
-	// The push provider name. Available values: APPLE, APPLE_VOIP, GOOGLE. 
+	// The push provider name. The possible values are: APPLE, APPLE_VOIP, GOOGLE. 
 	PushProviderName string `json:"push_provider_name,omitempty"`
 	// The push provider id. 
 	PushProviderId int `json:"push_provider_id,string,omitempty"`
-	// The name of bound application. 
+	// The name of the bound application. 
 	ApplicationName string `json:"application_name,omitempty"`
-	// The id of bound application. 
+	// The id of the bound application. 
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// Set true to get the user's certificate. 
 	WithCert *bool `json:"with_cert,string,omitempty"`
@@ -130,7 +136,7 @@ type GetPushCredentialReturn struct {
 	Result []*structure.PushCredentialInfo `json:"result"`
 }
 
-// Get push credentials 
+// Gets push credentials 
 func (s *PushCredentialsService) GetPushCredential(params GetPushCredentialParams) (*GetPushCredentialReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "GetPushCredential", params)
 	if err != nil {
@@ -158,7 +164,7 @@ type BindPushCredentialReturn struct {
 	Result int `json:"result"`
 }
 
-// Bind push credentials to applications 
+// Binds push credentials to applications 
 func (s *PushCredentialsService) BindPushCredential(params BindPushCredentialParams) (*BindPushCredentialReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "BindPushCredential", params)
 	if err != nil {

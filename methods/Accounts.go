@@ -41,7 +41,7 @@ type SetAccountInfoParams struct {
 	NewAccountPassword string `json:"new_account_password,omitempty"`
 	// The notification language code (2 symbols, ISO639-1). The following values are available: aa (Afar), ab (Abkhazian), af (Afrikaans), am (Amharic), ar (Arabic), as (Assamese), ay (Aymara), az (Azerbaijani), ba (Bashkir), be (Belarusian), bg (Bulgarian), bh (Bihari), bi (Bislama), bn (Bengali), bo (Tibetan), br (Breton), ca (Catalan), co (Corsican), cs (Czech), cy (Welch), da (Danish), de (German), dz (Bhutani), el (Greek), en (English), eo (Esperanto), es (Spanish), et (Estonian), eu (Basque), fa (Persian), fi (Finnish), fj (Fiji), fo (Faeroese), fr (French), fy (Frisian), ga (Irish), gd (Scots Gaelic), gl (Galician), gn (Guarani), gu (Gujarati), ha (Hausa), hi (Hindi), he (Hebrew), hr (Croatian), hu (Hungarian), hy (Armenian), ia (Interlingua), id (Indonesian), ie (Interlingue), ik (Inupiak), in (Indonesian), is (Icelandic), it (Italian), iu (Inuktitut), iw (Hebrew), ja (Japanese), ji (Yiddish), jw (Javanese), ka (Georgian), kk (Kazakh), kl (Greenlandic), km (Cambodian), kn (Kannada), ko (Korean), ks (Kashmiri), ku (Kurdish), ky (Kirghiz), la (Latin), ln (Lingala), lo (Laothian), lt (Lithuanian), lv (Latvian), mg (Malagasy), mi (Maori), mk (Macedonian), ml (Malayalam), mn (Mongolian), mo (Moldavian), mr (Marathi), ms (Malay), mt (Maltese), my (Burmese), na (Nauru), ne (Nepali), nl (Dutch), no (Norwegian), oc (Occitan), om (Oromo), or (Oriya), pa (Punjabi), pl (Polish), ps (Pashto), pt (Portuguese), qu (Quechua), rm (Rhaeto-Romance), rn (Kirundi), ro (Romanian), ru (Russian), rw (Kinyarwanda), sa (Sanskrit), sd (Sindhi), sg (Sangro), sh (Serbo-Croatian), si (Singhalese), sk (Slovak), sl (Slovenian), sm (Samoan), sn (Shona), so (Somali), sq (Albanian), sr (Serbian), ss (Siswati), st (Sesotho), su (Sudanese), sv (Swedish), sw (Swahili), ta (Tamil), te (Tegulu), tg (Tajik), th (Thai), ti (Tigrinya), tk (Turkmen), tl (Tagalog), tn (Setswana), to (Tonga), tr (Turkish), ts (Tsonga), tt (Tatar), tw (Twi), ug (Uigur), uk (Ukrainian), ur (Urdu), uz (Uzbek), vi (Vietnamese), vo (Volapuk), wo (Wolof), xh (Xhosa), yi (Yiddish), yo (Yoruba), za (Zhuang), zh (Chinese), zu (Zulu) 
 	LanguageCode string `json:"language_code,omitempty"`
-	// The account location (timezone). Examples: America/Los_Angeles, GMT-8, GMT-08:00, GMT+10 
+	// The account location (timezone). Examples: America/Los_Angeles, Etc/GMT-8, Etc/GMT+10 
 	Location string `json:"location,omitempty"`
 	// The first name. 
 	AccountFirstName string `json:"account_first_name,omitempty"`
@@ -51,7 +51,7 @@ type SetAccountInfoParams struct {
 	MobilePhone string `json:"mobile_phone,omitempty"`
 	// The min balance value to notify by email or SMS. 
 	MinBalanceToNotify float64 `json:"min_balance_to_notify,string,omitempty"`
-	// Are the Voximplant notifications required? 
+	// Voximplant notifications are required. 
 	AccountNotifications *bool `json:"account_notifications,string,omitempty"`
 	// Set to true to receive the emails about the Voximplant plan changing. 
 	TariffChangingNotifications *bool `json:"tariff_changing_notifications,string,omitempty"`
@@ -107,7 +107,7 @@ type SetChildAccountInfoParams struct {
 	NewChildAccountEmail string `json:"new_child_account_email,omitempty"`
 	// The new child account password. 
 	NewChildAccountPassword string `json:"new_child_account_password,omitempty"`
-	// Are the Voximplant notifications required? 
+	// Voximplant notifications are required. 
 	AccountNotifications *bool `json:"account_notifications,string,omitempty"`
 	// Set to true to receive the emails about the Voximplant plan changing. 
 	TariffChangingNotifications *bool `json:"tariff_changing_notifications,string,omitempty"`
@@ -117,7 +117,7 @@ type SetChildAccountInfoParams struct {
 	Active *bool `json:"active,string,omitempty"`
 	// The notification language code (2 symbols, ISO639-1). The following values are available: aa (Afar), ab (Abkhazian), af (Afrikaans), am (Amharic), ar (Arabic), as (Assamese), ay (Aymara), az (Azerbaijani), ba (Bashkir), be (Belarusian), bg (Bulgarian), bh (Bihari), bi (Bislama), bn (Bengali), bo (Tibetan), br (Breton), ca (Catalan), co (Corsican), cs (Czech), cy (Welch), da (Danish), de (German), dz (Bhutani), el (Greek), en (English), eo (Esperanto), es (Spanish), et (Estonian), eu (Basque), fa (Persian), fi (Finnish), fj (Fiji), fo (Faeroese), fr (French), fy (Frisian), ga (Irish), gd (Scots Gaelic), gl (Galician), gn (Guarani), gu (Gujarati), ha (Hausa), hi (Hindi), he (Hebrew), hr (Croatian), hu (Hungarian), hy (Armenian), ia (Interlingua), id (Indonesian), ie (Interlingue), ik (Inupiak), in (Indonesian), is (Icelandic), it (Italian), iu (Inuktitut), iw (Hebrew), ja (Japanese), ji (Yiddish), jw (Javanese), ka (Georgian), kk (Kazakh), kl (Greenlandic), km (Cambodian), kn (Kannada), ko (Korean), ks (Kashmiri), ku (Kurdish), ky (Kirghiz), la (Latin), ln (Lingala), lo (Laothian), lt (Lithuanian), lv (Latvian), mg (Malagasy), mi (Maori), mk (Macedonian), ml (Malayalam), mn (Mongolian), mo (Moldavian), mr (Marathi), ms (Malay), mt (Maltese), my (Burmese), na (Nauru), ne (Nepali), nl (Dutch), no (Norwegian), oc (Occitan), om (Oromo), or (Oriya), pa (Punjabi), pl (Polish), ps (Pashto), pt (Portuguese), qu (Quechua), rm (Rhaeto-Romance), rn (Kirundi), ro (Romanian), ru (Russian), rw (Kinyarwanda), sa (Sanskrit), sd (Sindhi), sg (Sangro), sh (Serbo-Croatian), si (Singhalese), sk (Slovak), sl (Slovenian), sm (Samoan), sn (Shona), so (Somali), sq (Albanian), sr (Serbian), ss (Siswati), st (Sesotho), su (Sudanese), sv (Swedish), sw (Swahili), ta (Tamil), te (Tegulu), tg (Tajik), th (Thai), ti (Tigrinya), tk (Turkmen), tl (Tagalog), tn (Setswana), to (Tonga), tr (Turkish), ts (Tsonga), tt (Tatar), tw (Twi), ug (Uigur), uk (Ukrainian), ur (Urdu), uz (Uzbek), vi (Vietnamese), vo (Volapuk), wo (Wolof), xh (Xhosa), yi (Yiddish), yo (Yoruba), za (Zhuang), zh (Chinese), zu (Zulu) 
 	LanguageCode string `json:"language_code,omitempty"`
-	// The child account location (timezone). Examples: America/Los_Angeles, GMT-8, GMT-08:00, GMT+10 
+	// The child account location (timezone). Examples: America/Los_Angeles, Etc/GMT-8, Etc/GMT+10 
 	Location string `json:"location,omitempty"`
 	// The min balance value to notify by email or SMS. 
 	MinBalanceToNotify float64 `json:"min_balance_to_notify,string,omitempty"`
@@ -290,46 +290,6 @@ func (s *AccountsService) GetChildrenAccounts(params GetChildrenAccountsParams) 
 	return response, nil, nil
 }
 
-type TransferMoneyToChildAccountParams struct {
-	// The child account ID list separated by the ';' symbol. 
-	ChildAccountId string `json:"child_account_id"`
-	// The money amount, $. The absolute amount value must be equal or greater than 0.01 
-	Amount float64 `json:"amount,string"`
-	// The amount currency (the parent account currency by default). Examples: RUR, EUR, USD. 
-	Currency string `json:"currency,omitempty"`
-	// Returns error if strict_mode is true and an child account or the parent account hasn't enough money. 
-	StrictMode *bool `json:"strict_mode,string,omitempty"`
-	// The child account transaction description. 
-	ChildTransactionDescription string `json:"child_transaction_description,omitempty"`
-	// The parent account transaction description. The following macro available: ${child_account_id}, ${child_account_name} 
-	ParentTransactionDescription string `json:"parent_transaction_description,omitempty"`
-	// The external payment reference (extra info). 
-	PaymentReference string `json:"payment_reference,omitempty"`
-	// Specify the date in 24-h format: YYYY-MM-DD HH:mm:ss to skip the duplicate transaction. 
-	CheckDuplicateReferenceFrom *structure.Timestamp `json:"check_duplicate_reference_from,string,omitempty"`
-}
-
-type TransferMoneyToChildAccountReturn struct {
-	// 1 
-	Result int `json:"result"`
-	// The updated parent's account balance. 
-	Balance float64 `json:"balance"`
-}
-
-// Transfer the parent account's money to the child account or transfer the child's money to the parent account if the money amount is negative. 
-func (s *AccountsService) TransferMoneyToChildAccount(params TransferMoneyToChildAccountParams) (*TransferMoneyToChildAccountReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "TransferMoneyToChildAccount", params)
-	if err != nil {
-		return nil, nil, err
-	}
-	response := &TransferMoneyToChildAccountReturn{}
-	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil || err != nil {
-		return nil, verr, err
-	}
-	return response, nil, nil
-}
-
 type GetMoneyAmountToChargeParams struct {
 	// The currency name. Examples: USD, RUR, EUR. 
 	Currency string `json:"currency,omitempty"`
@@ -359,7 +319,7 @@ func (s *AccountsService) GetMoneyAmountToCharge(params GetMoneyAmountToChargePa
 type ChargeAccountParams struct {
 	// The phone ID list separated by the ';' symbol or the 'all' value. You should specify the phones having the auto_charge=false. 
 	PhoneId string `json:"phone_id"`
-	// Can be used instead of <b>phone_id</b>. The phone number list separated by the ';' symbol or the 'all' value. You should specify the phones having the auto_charge=false. 
+	// The phone number list separated by the ';' symbol or the 'all' value. Can be used instead of <b>phone_id</b>. You should specify the phones having the auto_charge=false. 
 	PhoneNumber string `json:"phone_number"`
 }
 

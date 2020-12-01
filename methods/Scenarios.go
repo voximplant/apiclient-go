@@ -17,7 +17,7 @@ type AddScenarioParams struct {
 	RuleId int `json:"rule_id,string,omitempty"`
 	// The rule name that can be used instead of <b>rule_id</b>. 
 	RuleName string `json:"rule_name,omitempty"`
-	// Is the existing scenario rewrite? 
+	// Rewrite the existing scenario. 
 	Rewrite *bool `json:"rewrite,string,omitempty"`
 }
 
@@ -45,7 +45,7 @@ func (s *ScenariosService) AddScenario(params AddScenarioParams) (*AddScenarioRe
 type DelScenarioParams struct {
 	// The scenario ID list separated by the ';' symbol or the 'all' value. 
 	ScenarioId string `json:"scenario_id"`
-	// Can be used instead of <b>scenario_id</b>. The scenario name list separated by the ';' symbol. 
+	// The scenario name list separated by the ';' symbol. Can be used instead of <b>scenario_id</b>. 
 	ScenarioName string `json:"scenario_name"`
 }
 
@@ -71,7 +71,7 @@ func (s *ScenariosService) DelScenario(params DelScenarioParams) (*DelScenarioRe
 type BindScenarioParams struct {
 	// The scenario ID list separated by the ';' symbol. 
 	ScenarioId string `json:"scenario_id"`
-	// Can be used instead of <b>scenario_id</b>. The scenario name list separated by the ';' symbol. 
+	// The scenario name list separated by the ';' symbol. Can be used instead of <b>scenario_id</b>. 
 	ScenarioName string `json:"scenario_name"`
 	// The rule ID. 
 	RuleId int `json:"rule_id,string"`
@@ -81,7 +81,7 @@ type BindScenarioParams struct {
 	ApplicationId int `json:"application_id,string"`
 	// The application name that can be used instead of <b>application_id</b>. 
 	ApplicationName string `json:"application_name"`
-	// Bind or unbind? 
+	// Bind or unbind (set true or false respectively). 
 	Bind *bool `json:"bind,string,omitempty"`
 }
 

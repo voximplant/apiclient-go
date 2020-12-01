@@ -13,7 +13,7 @@ type GetCallHistoryParams struct {
 	FromDate *structure.Timestamp `json:"from_date,string"`
 	// The to date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss 
 	ToDate *structure.Timestamp `json:"to_date,string"`
-	// The selected timezone or the 'auto' value (will be used the account location). 
+	// The selected timezone or the 'auto' value (the account location). 
 	Timezone string `json:"timezone,omitempty"`
 	// The call session history ID list separated by the ';' symbol. The sessions IDs can be accessed in JS scenario via the <b>sessionID</b> property of the <a href='//voximplant.com/docs/references/voxengine/appevents#started'>AppEvents.Started</a> event 
 	CallSessionHistoryId string `json:"call_session_history_id,omitempty"`
@@ -53,7 +53,7 @@ type GetCallHistoryParams struct {
 	Offset int `json:"offset,string,omitempty"`
 	// The output format. The following values available: json, csv. 
 	Output string `json:"output,omitempty"`
-	// Set true to get records in the asynchronous mode (for csv output only). If it's true, the request could be available via <a href='//voximplant.com/docs/references/httpapi/managing_history#gethistoryreports'>GetHistoryReports</a> and <a href='//voximplant.com/docs/references/httpapi/managing_history#downloadhistoryreport'>DownloadHistoryReport</a> methods. 
+	// Set true to get records in the asynchronous mode (for csv output only). If it's true, the request is available via [GetHistoryReports] and [DownloadHistoryReport] methods. 
 	IsAsync *bool `json:"is_async,string,omitempty"`
 }
 
@@ -93,7 +93,7 @@ type GetHistoryReportsParams struct {
 	CreatedFrom *structure.Timestamp `json:"created_from,string,omitempty"`
 	// The UTC creation to date filter in 24-h format: YYYY-MM-DD HH:mm:ss 
 	CreatedTo *structure.Timestamp `json:"created_to,string,omitempty"`
-	// Is report completed? 
+	// Report is completed. 
 	IsCompleted *bool `json:"is_completed,string,omitempty"`
 	// Set true to get records in the descent order. 
 	DescOrder *bool `json:"desc_order,string,omitempty"`
@@ -114,7 +114,7 @@ type GetHistoryReportsReturn struct {
 	Count int `json:"count"`
 }
 
-// Gets the list of history reports and their statuses. The method returns info about reports made via [GetCallHistory] with the specified __output=csv__ and **is_async=true** parameters. 
+// Gets the list of history reports and their statuses. The method returns info about reports made via [GetCallHistory] with the specified __output=csv__ and **is_async=true** parameters. Note that the **file_size** field in response is valid only for video calls. 
 func (s *HistoryService) GetHistoryReports(params GetHistoryReportsParams) (*GetHistoryReportsReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "GetHistoryReports", params)
 	if err != nil {
@@ -133,13 +133,13 @@ type GetTransactionHistoryParams struct {
 	FromDate *structure.Timestamp `json:"from_date,string"`
 	// The to date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss 
 	ToDate *structure.Timestamp `json:"to_date,string"`
-	// The selected timezone or the 'auto' value (will be used the account location). 
+	// The selected timezone or the 'auto' value (the account location). 
 	Timezone string `json:"timezone,omitempty"`
 	// The transaction ID list separated by the ';' symbol. 
 	TransactionId string `json:"transaction_id,omitempty"`
 	// The external payment reference to filter. 
 	PaymentReference string `json:"payment_reference,omitempty"`
-	// The transaction type list separated by the ';' symbol. The following values are possible: periodic_charge, resource_charge, money_distribution, subscription_charge, subscription_installation_charge, card_periodic_payment, card_overrun_payment, card_payment, robokassa_payment, gift, add_money, subscription_cancel, adjustment, wire_transfer, refund. 
+	// The transaction type list separated by the ';' symbol. The following values are possible: periodic_charge, resource_charge, money_distribution, subscription_charge, subscription_installation_charge, card_periodic_payment, card_overrun_payment, card_payment, robokassa_payment, gift, add_money, subscription_cancel, adjustment, wire_transfer, refund, rub_card_payment. 
 	TransactionType string `json:"transaction_type,omitempty"`
 	// The user ID list separated by the ';' symbol. 
 	UserId string `json:"user_id,omitempty"`
@@ -277,7 +277,7 @@ type GetAuditLogParams struct {
 	FromDate *structure.Timestamp `json:"from_date,string"`
 	// The UTC 'to' date filter in 24-h format: YYYY-MM-DD HH:mm:ss 
 	ToDate *structure.Timestamp `json:"to_date,string"`
-	// The selected timezone or the 'auto' value (will be used the account location). 
+	// The selected timezone or the 'auto' value (the account location). 
 	Timezone string `json:"timezone,omitempty"`
 	// The audit history ID list separated by the ';' symbol. 
 	AuditLogId string `json:"audit_log_id,omitempty"`
@@ -301,7 +301,7 @@ type GetAuditLogParams struct {
 	Offset int `json:"offset,string,omitempty"`
 	// The output format. The following values available: json, csv. 
 	Output string `json:"output,omitempty"`
-	// Set true to get records in the asynchronous mode (for csv output only). If it's true, the request could be available via <a href='//voximplant.com/docs/references/httpapi/managing_history#gethistoryreports'>GetHistoryReports</a> and <a href='//voximplant.com/docs/references/httpapi/managing_history#downloadhistoryreport'>DownloadHistoryReport</a> methods. 
+	// Set true to get records in the asynchronous mode (for csv output only). If it's true, the request is available via [GetHistoryReports] and [DownloadHistoryReport] methods. 
 	IsAsync *bool `json:"is_async,string,omitempty"`
 }
 

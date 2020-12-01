@@ -199,7 +199,7 @@ func (s *RoleSystemService) RemoveKeyRoles(params RemoveKeyRolesParams) (*Remove
 }
 
 type AddSubUserParams struct {
-	// Login of a new subuser for <a href="#how-auth-works">authentication</a>, should be unique within the Voximplant account. The login specified is always converted to lowercase. 
+	// Login of a new subuser for <a href='/docs/howtos/integration/httpapi/auth'>authentication</a>, should be unique within the Voximplant account. The login specified is always converted to lowercase. 
 	NewSubuserName string `json:"new_subuser_name"`
 	// Password of a new subuser, plain text. 
 	NewSubuserPassword string `json:"new_subuser_password"`

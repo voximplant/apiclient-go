@@ -17,9 +17,9 @@ type AddAdminUserParams struct {
 	NewAdminUserPassword string `json:"new_admin_user_password"`
 	// The admin user enable flag. 
 	AdminUserActive *bool `json:"admin_user_active,string,omitempty"`
-	// The role(s) ID created via <a href='//voximplant.com/docs/references/httpapi/managing_admin_roles'>Managing Admin Roles</a> methods. The attaching admin role ID list separated by the ';' symbol or the 'all' value. 
+	// The role(s) ID created via <a href='//voximplant.com/docs/references/httpapi/adminroles'>Managing Admin Roles</a> methods. The attaching admin role ID list separated by the ';' symbol or the 'all' value. 
 	AdminRoleId string `json:"admin_role_id,omitempty"`
-	// The role(s) name(s) created via <a href='//voximplant.com/docs/references/httpapi/managing_admin_roles'>Managing Admin Roles</a> methods. The attaching admin role name that can be used instead of <b>admin_role_id</b>. 
+	// The role(s) name(s) created via <a href='//voximplant.com/docs/references/httpapi/adminroles'>Managing Admin Roles</a> methods. The attaching admin role name that can be used instead of <b>admin_role_id</b>. 
 	AdminRoleName string `json:"admin_role_name,omitempty"`
 }
 
@@ -134,7 +134,7 @@ type GetAdminUsersReturn struct {
 	Count int `json:"count"`
 }
 
-// Gets the admin users of the specified account. Note that both account types - parent and child - could have its own admins. 
+// Gets the admin users of the specified account. Note that both account types - parent and child - can have its own admins. 
 func (s *AdminUsersService) GetAdminUsers(params GetAdminUsersParams) (*GetAdminUsersReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "GetAdminUsers", params)
 	if err != nil {
@@ -153,9 +153,9 @@ type AttachAdminRoleParams struct {
 	RequiredAdminUserId string `json:"required_admin_user_id"`
 	// The admin user name to bind, can be used instead of <b>required_admin_user_id</b>. 
 	RequiredAdminUserName string `json:"required_admin_user_name"`
-	// The role(s) ID created via <a href='//voximplant.com/docs/references/httpapi/managing_admin_roles'>Managing Admin Roles</a> methods. The attached admin role ID list separated by the ';' symbol or the 'all' value. 
+	// The role(s) ID created via <a href='//voximplant.com/docs/references/httpapi/adminroles'>Managing Admin Roles</a> methods. The attached admin role ID list separated by the ';' symbol or the 'all' value. 
 	AdminRoleId string `json:"admin_role_id"`
-	// The role(s) name(s) created via <a href='//voximplant.com/docs/references/httpapi/managing_admin_roles'>Managing Admin Roles</a> methods. The admin role name to attach, can be used instead of <b>admin_role_id</b>. 
+	// The role(s) name(s) created via <a href='//voximplant.com/docs/references/httpapi/adminroles'>Managing Admin Roles</a> methods. The admin role name to attach, can be used instead of <b>admin_role_id</b>. 
 	AdminRoleName string `json:"admin_role_name"`
 	// The merge mode. The following values are possible: add, del, set. 
 	Mode string `json:"mode,omitempty"`

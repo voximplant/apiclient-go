@@ -12,7 +12,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetCallHistoryParams{FromDate:2012-01-01 00:00:00, ToDate:2014-01-01 00:00:00, Timezone:"Etc/GMT", Count:1}
+	params := methods.GetCallHistoryParams{FromDate:2020-02-25 00:00:00, ToDate:2020-02-26 00:00:00, Timezone:"Etc/GMT", WithCalls:true, WithRecords:true, Count:1}
 	res, verr, err := client.History.GetCallHistory(params)
 	fmt.Println(res, verr, err)
 }
