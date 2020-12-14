@@ -36,9 +36,9 @@ type Client struct {
 	AuthorizedIPs *AuthorizedIPsService
 	CallLists     *CallListsService
 	// CallerIds deprecated: use CallerIDs instead
-	CallerIds             *CallerIDsService
-	CallerIDs             *CallerIDsService
-	ChildAccounts         *ChildAccountsService
+	CallerIds *CallerIDsService
+	CallerIDs *CallerIDsService
+	// ChildAccounts         *ChildAccountsService
 	DialogflowCredentials *DialogflowCredentialsService
 	History               *HistoryService
 	PhoneNumbers          *PhoneNumbersService
@@ -101,7 +101,7 @@ func NewClient(config *config.Config) (*Client, error) {
 	c.CallLists = &CallListsService{c}
 	c.CallerIds = &CallerIDsService{c}
 	c.CallerIDs = &CallerIDsService{c}
-	c.ChildAccounts = &ChildAccountsService{c}
+	// c.ChildAccounts = &ChildAccountsService{c}
 	c.DialogflowCredentials = &DialogflowCredentialsService{c}
 	c.History = &HistoryService{c}
 	c.PhoneNumbers = &PhoneNumbersService{c}

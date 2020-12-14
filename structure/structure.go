@@ -89,14 +89,14 @@ type BillingLimitsType struct {
 
 type BillingLimitInfoType struct {
 	// The minimum amount. 
-	MinAmount int `json:"min_amount"`
+	MinAmount float64 `json:"min_amount"`
 	// The currency. 
 	Currency string `json:"currency"`
 }
 
 type BankCardBillingLimitInfoType struct {
 	// The minimum amount. 
-	MinAmount int `json:"min_amount"`
+	MinAmount float64 `json:"min_amount"`
 	// The currency. 
 	Currency string `json:"currency"`
 }
