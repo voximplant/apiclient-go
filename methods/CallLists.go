@@ -8,6 +8,58 @@ type CallListsService struct {
 	client *Client
 }
 
+type CreateCallListParams struct {
+	// The rule ID. It's specified in the <a href='//manage.voximplant.com/applications'>Applications</a> section of the Control Panel 
+	RuleId int `json:"rule_id,string"`
+	// Call list priority. The value is in the range of [0 ... 2^31] where zero is the highest priority. 
+	Priority int `json:"priority,string"`
+	// Number simultaneously processed tasks. 
+	MaxSimultaneous int `json:"max_simultaneous,string"`
+	// Number of attempts. Minimum is <b>1</b>, maximum is <b>5</b>. 
+	NumAttempts int `json:"num_attempts,string"`
+	// File name, up to 255 characters and can't contain the '/' and '\' symbols. 
+	Name string `json:"name"`
+	// Send as "body" part of the HTTP request or as multiform. The sending "file_content" via URL is at its own risk because the network devices tend to drop HTTP requests with large headers. 
+	FileContent string `json:"file_content"`
+	// Interval between call attempts in seconds. The default is 0. 
+	IntervalSeconds int `json:"interval_seconds,string,omitempty"`
+	// Queue Id. For processing call list with PDS (predictive dialer) the ID of the queue must be specified. 
+	QueueId int `json:"queue_id,string,omitempty"`
+	// Average waiting time in the queue(seconds). Default is 1 
+	AvgWaitingSec int `json:"avg_waiting_sec,string,omitempty"`
+	// Encoding file. The default is UTF-8. 
+	Encoding string `json:"encoding,omitempty"`
+	// Separator values. The default is ';' 
+	Delimiter string `json:"delimiter,omitempty"`
+	// Escape character for parsing csv 
+	Escape string `json:"escape,omitempty"`
+	// Specifies the IP from the geolocation of the call list subscribers. It allows selecting the nearest server for serving subscribers. 
+	ReferenceIp string `json:"reference_ip,omitempty"`
+}
+
+type CreateCallListReturn struct {
+	// true 
+	Result *bool `json:"result"`
+	// The number of stored records 
+	Count int `json:"count"`
+	// The list ID. 
+	ListId int `json:"list_id"`
+}
+
+// Adds a new CSV file for call list processing and starts the specified rule immediately. To send a file, use the request body. To set the call time constraints, use the following options in a CSV file: <ul><li>**__start_execution_time** – when the call list processing will start every day, UTC+0 24-h format: HH:mm:ss</li><li>**__end_execution_time** – when the call list processing will stop every day,  UTC+0 24-h format: HH:mm:ss</li><li>**__start_at** – when the call list processing will start, UNIX timestamp. If not specified, the processing will start immediately after a method call</li></ul><br/><b>IMPORTANT:</b> the account's balance should be equal or greater than 1 USD. If the balance is lower than 1 USD, the call list processing won't start, or it stops immediately if it was active. 
+func (s *CallListsService) CreateCallList(params CreateCallListParams) (*CreateCallListReturn, *structure.VError, error) {
+	req, err := s.client.NewRequest("POST", "CreateCallList", params)
+	if err != nil {
+		return nil, nil, err
+	}
+	response := &CreateCallListReturn{}
+	verr, err := s.client.MakeResponse(req, response)
+	if verr != nil || err != nil {
+		return nil, verr, err
+	}
+	return response, nil, nil
+}
+
 type CreateManualCallListParams struct {
 	// The rule ID. 
 	RuleId int `json:"rule_id,string"`
