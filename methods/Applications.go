@@ -22,7 +22,7 @@ type AddApplicationReturn struct {
 	ApplicationId int `json:"application_id"`
 	// The full application name 
 	ApplicationName string `json:"application_name"`
-	// This flag indicates whether a secure storage for logs and records is enabled or not. 
+	// This flag indicates whether a secure storage for logs and records is enabled or not 
 	SecureRecordStorage *bool `json:"secure_record_storage"`
 }
 
@@ -41,9 +41,9 @@ func (s *ApplicationsService) AddApplication(params AddApplicationParams) (*AddA
 }
 
 type DelApplicationParams struct {
-	// The application ID list separated by the ';' symbol or the 'all' value. 
+	// The application ID list separated by semicolon (;). Use the 'all' value to select all applications 
 	ApplicationId string `json:"application_id"`
-	// The application name list separated by the ';' symbol. Can be used instead of <b>appliction_id</b>. 
+	// The application name list separated by semicolon (;). Can be used instead of <b>application_id</b> 
 	ApplicationName string `json:"application_name"`
 }
 
@@ -67,9 +67,9 @@ func (s *ApplicationsService) DelApplication(params DelApplicationParams) (*DelA
 }
 
 type SetApplicationInfoParams struct {
-	// The application ID. 
+	// The application ID 
 	ApplicationId int `json:"application_id,string"`
-	// The application name that can be used instead of <b>application_id</b>. 
+	// The application name that can be used instead of <b>application_id</b> 
 	RequiredApplicationName string `json:"required_application_name"`
 	// The new short application name in format [a-z][a-z0-9-]{1,79} 
 	ApplicationName string `json:"application_name,omitempty"`
@@ -82,7 +82,7 @@ type SetApplicationInfoReturn struct {
 	Result int `json:"result"`
 	// The new full application name 
 	ApplicationName string `json:"application_name"`
-	// This flag indicates whether a secure storage for logs and records is enabled or not. 
+	// This flag indicates whether a secure storage for logs and records is enabled or not 
 	SecureRecordStorage *bool `json:"secure_record_storage"`
 }
 
@@ -101,32 +101,26 @@ func (s *ApplicationsService) SetApplicationInfo(params SetApplicationInfoParams
 }
 
 type GetApplicationsParams struct {
-	// The application ID to filter. 
+	// The application ID to filter 
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// The application name part to filter. 
+	// The application name part to filter 
 	ApplicationName string `json:"application_name,omitempty"`
-	// The user ID to filter. 
-	UserId int `json:"user_id,string,omitempty"`
-	// The excluded user ID to filter. 
-	ExcludedUserId int `json:"excluded_user_id,string,omitempty"`
-	// Specify the user ID value to show it in the 'users' array output. 
-	ShowingUserId int `json:"showing_user_id,string,omitempty"`
-	// Set true to get bound rules info. 
+	// Set true to get bound rules info 
 	WithRules *bool `json:"with_rules,string,omitempty"`
-	// Set true to get bound rules and scenarios info. 
+	// Set true to get bound rules and scenarios info 
 	WithScenarios *bool `json:"with_scenarios,string,omitempty"`
-	// The max returning record count. 
+	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output. 
+	// The first <b>N</b> records will be skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 }
 
 type GetApplicationsReturn struct {
 	//  
 	Result []*structure.ApplicationInfoType `json:"result"`
-	// The total found application count. 
+	// The total found application count 
 	TotalCount int `json:"total_count"`
-	// The returned application count. 
+	// The returned application count 
 	Count int `json:"count"`
 }
 

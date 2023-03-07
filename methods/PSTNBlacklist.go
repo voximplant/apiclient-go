@@ -16,7 +16,7 @@ type AddPstnBlackListItemParams struct {
 type AddPstnBlackListItemReturn struct {
 	// 1 
 	Result int `json:"result"`
-	// The PSTN black list item ID. 
+	// The PSTN black list item ID 
 	PstnBlacklistId int `json:"pstn_blacklist_id"`
 }
 
@@ -35,9 +35,9 @@ func (s *PSTNBlacklistService) AddPstnBlackListItem(params AddPstnBlackListItemP
 }
 
 type SetPstnBlackListItemParams struct {
-	// The PSTN black list item ID. 
+	// The PSTN black list item ID 
 	PstnBlacklistId int `json:"pstn_blacklist_id,string"`
-	// The new phone number in format e164. 
+	// The new phone number in format e164 
 	PstnBlacklistPhone string `json:"pstn_blacklist_phone"`
 }
 
@@ -61,7 +61,7 @@ func (s *PSTNBlacklistService) SetPstnBlackListItem(params SetPstnBlackListItemP
 }
 
 type DelPstnBlackListItemParams struct {
-	// The PSTN black list item ID. 
+	// The PSTN black list item ID 
 	PstnBlacklistId int `json:"pstn_blacklist_id,string"`
 }
 
@@ -85,22 +85,22 @@ func (s *PSTNBlacklistService) DelPstnBlackListItem(params DelPstnBlackListItemP
 }
 
 type GetPstnBlackListParams struct {
-	// The PSTN black list item ID for filter. 
+	// The PSTN black list item ID for filter 
 	PstnBlacklistId int `json:"pstn_blacklist_id,string,omitempty"`
-	// The phone number in format e164 for filter. 
+	// The phone number in format e164 for filter 
 	PstnBlacklistPhone string `json:"pstn_blacklist_phone,omitempty"`
-	// The max returning record count. 
+	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output. 
+	// The first <b>N</b> records will be skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 }
 
 type GetPstnBlackListReturn struct {
 	//  
 	Result []*structure.PstnBlackListInfoType `json:"result"`
-	// The total found phone numbers count. 
+	// The total found phone numbers count 
 	TotalCount int `json:"total_count"`
-	// The returned phone numbers count. 
+	// The returned phone numbers count 
 	Count int `json:"count"`
 }
 

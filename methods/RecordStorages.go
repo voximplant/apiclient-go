@@ -9,11 +9,11 @@ type RecordStoragesService struct {
 }
 
 type GetRecordStoragesParams struct {
-	// The record storage ID list separated by the ';' symbol. 
+	// The record storage ID list separated by semicolon (;) 
 	RecordStorageId string `json:"record_storage_id,omitempty"`
-	// The record storage name list separated by the ';' symbol. 
+	// The record storage name list separated by semicolon (;) 
 	RecordStorageName string `json:"record_storage_name,omitempty"`
-	// Set true to get the private record storages. If set to true, there is the __is_public : bool__ parameter in a response. 
+	// Set true to get the private record storages. If set to true, there is the __is_public : bool__ parameter in a response 
 	WithPrivate *bool `json:"with_private,string,omitempty"`
 }
 

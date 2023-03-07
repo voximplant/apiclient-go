@@ -9,28 +9,28 @@ type RulesService struct {
 }
 
 type AddRuleParams struct {
-	// The application ID. 
+	// The application ID 
 	ApplicationId int `json:"application_id,string"`
-	// The application name, can be used instead of <b>application_id</b>. 
+	// The application name, can be used instead of <b>application_id</b> 
 	ApplicationName string `json:"application_name"`
 	// The rule name. The length must be less than 100 
 	RuleName string `json:"rule_name"`
-	// The rule pattern regex. The length must be less than 64 KB. 
+	// The rule pattern regex. The length must be less than 64 KB 
 	RulePattern string `json:"rule_pattern"`
-	// The exclude pattern regex. The length must be less than 64 KB. 
+	// The exclude pattern regex. The length must be less than 64 KB 
 	RulePatternExclude string `json:"rule_pattern_exclude,omitempty"`
-	// Video conference is required. 
+	// Video conference is required 
 	VideoConference *bool `json:"video_conference,string,omitempty"`
-	// The scenario ID list separated by the ';' symbol. 
+	// The scenario ID list separated by semicolon (;) 
 	ScenarioId string `json:"scenario_id"`
-	// The scenario name list separated by the ';' symbol. Can be used instead of <b>scenario_id</b>. 
+	// The scenario name list separated by semicolon (;). Can be used instead of <b>scenario_id</b> 
 	ScenarioName string `json:"scenario_name"`
 }
 
 type AddRuleReturn struct {
 	// 1 
 	Result int `json:"result"`
-	// The new rule ID. 
+	// The new rule ID 
 	RuleId int `json:"rule_id"`
 }
 
@@ -49,13 +49,13 @@ func (s *RulesService) AddRule(params AddRuleParams) (*AddRuleReturn, *structure
 }
 
 type DelRuleParams struct {
-	// The rule ID list separated by the ';' symbol or the 'all' value. 
+	// The rule ID list separated by semicolon (;). Use the 'all' value to select all rules 
 	RuleId string `json:"rule_id"`
-	// The rule name list separated by the ';' symbol. Can be used instead of <b>rule_id</b>. 
+	// The rule name list separated by semicolon (;). Can be used instead of <b>rule_id</b> 
 	RuleName string `json:"rule_name"`
-	// The application ID list separated by the ';' symbol or the 'all' value. 
+	// The application ID list separated by semicolon (;). Use the 'all' value to select all applications 
 	ApplicationId string `json:"application_id"`
-	// The application name list separated by the ';' symbol. Can be used instead of <b>application_id</b>. 
+	// The application name list separated by semicolon (;). Can be used instead of <b>application_id</b> 
 	ApplicationName string `json:"application_name"`
 }
 
@@ -79,15 +79,15 @@ func (s *RulesService) DelRule(params DelRuleParams) (*DelRuleReturn, *structure
 }
 
 type SetRuleInfoParams struct {
-	// The rule ID. 
+	// The rule ID 
 	RuleId int `json:"rule_id,string"`
 	// The new rule name. The length must be less than 100 
 	RuleName string `json:"rule_name,omitempty"`
-	// The new rule pattern regex. The length must be less than 64 KB. 
+	// The new rule pattern regex. The length must be less than 64 KB 
 	RulePattern string `json:"rule_pattern,omitempty"`
-	// The new exclude pattern regex. The length must be less than 64 KB. 
+	// The new exclude pattern regex. The length must be less than 64 KB 
 	RulePatternExclude string `json:"rule_pattern_exclude,omitempty"`
-	// Video conference is required. 
+	// Video conference is required 
 	VideoConference *bool `json:"video_conference,string,omitempty"`
 }
 
@@ -111,32 +111,32 @@ func (s *RulesService) SetRuleInfo(params SetRuleInfoParams) (*SetRuleInfoReturn
 }
 
 type GetRulesParams struct {
-	// The application ID. 
+	// The application ID 
 	ApplicationId int `json:"application_id,string"`
-	// The application name that can be used instead of <b>application_id</b>. 
+	// The application name that can be used instead of <b>application_id</b> 
 	ApplicationName string `json:"application_name"`
 	// The rule ID to filter 
 	RuleId int `json:"rule_id,string,omitempty"`
-	// The rule name part to filter. 
+	// The rule name part to filter 
 	RuleName string `json:"rule_name,omitempty"`
-	// The video conference flag to filter. 
+	// The video conference flag to filter 
 	VideoConference *bool `json:"video_conference,string,omitempty"`
 	// Search for template matching 
 	Template string `json:"template,omitempty"`
-	// Set true to get bound scenarios info. 
+	// Set true to get bound scenarios info 
 	WithScenarios *bool `json:"with_scenarios,string,omitempty"`
-	// The max returning record count. 
+	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output. 
+	// The first <b>N</b> records will be skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 }
 
 type GetRulesReturn struct {
 	//  
 	Result []*structure.RuleInfoType `json:"result"`
-	// The total found rule count. 
+	// The total found rule count 
 	TotalCount int `json:"total_count"`
-	// The returned rule count. 
+	// The returned rule count 
 	Count int `json:"count"`
 }
 
@@ -155,7 +155,7 @@ func (s *RulesService) GetRules(params GetRulesParams) (*GetRulesReturn, *struct
 }
 
 type ReorderRulesParams struct {
-	// The rule ID list separated by the ';' symbol. 
+	// The rule ID list separated by semicolon (;) 
 	RuleId string `json:"rule_id"`
 }
 

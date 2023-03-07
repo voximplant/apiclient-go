@@ -9,14 +9,16 @@ type SIPWhiteListService struct {
 }
 
 type AddSipWhiteListItemParams struct {
-	// The network address in format A.B.C.D/L or A.B.C.D/a.b.c.d (example 192.168.1.5/16). 
+	// The network address in format A.B.C.D/L or A.B.C.D/a.b.c.d (example 192.168.1.5/16) 
 	SipWhitelistNetwork string `json:"sip_whitelist_network"`
+	// The network address description 
+	Description string `json:"description,omitempty"`
 }
 
 type AddSipWhiteListItemReturn struct {
 	// 1 
 	Result int `json:"result"`
-	// The SIP white list item ID. 
+	// The SIP white list item ID 
 	SipWhitelistId int `json:"sip_whitelist_id"`
 }
 
@@ -35,7 +37,7 @@ func (s *SIPWhiteListService) AddSipWhiteListItem(params AddSipWhiteListItemPara
 }
 
 type DelSipWhiteListItemParams struct {
-	// The SIP white list item ID to delete. 
+	// The SIP white list item ID to delete 
 	SipWhitelistId int `json:"sip_whitelist_id,string"`
 }
 
@@ -63,6 +65,8 @@ type SetSipWhiteListItemParams struct {
 	SipWhitelistId int `json:"sip_whitelist_id,string"`
 	// The new network address in format A.B.C.D/L or A.B.C.D/a.b.c.d (example 192.168.1.5/16) 
 	SipWhitelistNetwork string `json:"sip_whitelist_network"`
+	// The network address description 
+	Description string `json:"description,omitempty"`
 }
 
 type SetSipWhiteListItemReturn struct {
@@ -87,18 +91,18 @@ func (s *SIPWhiteListService) SetSipWhiteListItem(params SetSipWhiteListItemPara
 type GetSipWhiteListParams struct {
 	// The SIP white list item ID to filter 
 	SipWhitelistId int `json:"sip_whitelist_id,string,omitempty"`
-	// The max returning record count. 
+	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output. 
+	// The first <b>N</b> records will be skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 }
 
 type GetSipWhiteListReturn struct {
 	//  
 	Result []*structure.SipWhiteListInfoType `json:"result"`
-	// The total found networks count. 
+	// The total found networks count 
 	TotalCount int `json:"total_count"`
-	// The returned networks count. 
+	// The returned networks count 
 	Count int `json:"count"`
 }
 

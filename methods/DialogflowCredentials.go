@@ -9,13 +9,13 @@ type DialogflowCredentialsService struct {
 }
 
 type AddDialogflowKeyParams struct {
-	// The application ID. 
+	// The application ID 
 	ApplicationId string `json:"application_id"`
-	// The application name. Can be used instead of <b>application_id</b>. 
+	// The application name. Can be used instead of <b>application_id</b> 
 	ApplicationName string `json:"application_name,omitempty"`
-	// Dialogflow credentials, provided by JWK (Json web key). 
+	// Dialogflow credentials, provided by JWK (Json web key) 
 	JsonCredentials string `json:"json_credentials"`
-	// The Dialogflow keys's description. 
+	// The Dialogflow keys's description 
 	Description string `json:"description,omitempty"`
 }
 
@@ -41,9 +41,9 @@ func (s *DialogflowCredentialsService) AddDialogflowKey(params AddDialogflowKeyP
 }
 
 type SetDialogflowKeyParams struct {
-	// The Dialogflow key's ID. 
+	// The Dialogflow key's ID 
 	DialogflowKeyId int `json:"dialogflow_key_id,string"`
-	// The Dialogflow keys's description. To clear previously set description leave the parameter blank or put whitespaces only. 
+	// The Dialogflow keys's description. To clear previously set description leave the parameter blank or put whitespaces only 
 	Description string `json:"description"`
 }
 
@@ -67,7 +67,7 @@ func (s *DialogflowCredentialsService) SetDialogflowKey(params SetDialogflowKeyP
 }
 
 type DelDialogflowKeyParams struct {
-	// The Dialogflow key's ID. 
+	// The Dialogflow key's ID 
 	DialogflowKeyId int `json:"dialogflow_key_id,string"`
 }
 
@@ -91,13 +91,13 @@ func (s *DialogflowCredentialsService) DelDialogflowKey(params DelDialogflowKeyP
 }
 
 type GetDialogflowKeysParams struct {
-	// The Dialogflow key's ID. 
+	// The Dialogflow key's ID 
 	DialogflowKeyId int `json:"dialogflow_key_id,string,omitempty"`
-	// The name of the bound application. 
+	// The name of the bound application 
 	ApplicationName string `json:"application_name,omitempty"`
-	// The id of the bound application. 
+	// The id of the bound application 
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// Set true to get the json web key. 
+	// Set true to get the json web key 
 	WithSecretInfo *bool `json:"with_secret_info,string,omitempty"`
 }
 
@@ -123,9 +123,9 @@ func (s *DialogflowCredentialsService) GetDialogflowKeys(params GetDialogflowKey
 type BindDialogflowKeysParams struct {
 	// The Dialogflow key's ID  
 	DialogflowKeyId int `json:"dialogflow_key_id,string"`
-	// The application ID list separated by the ';' symbol or the 'all' value. 
+	// The application ID list separated by semicolon (;). Use the 'all' value to select all applications 
 	ApplicationId string `json:"application_id"`
-	// Set to false to unbind. Default value is true. 
+	// Set to false to unbind. Default value is true 
 	Bind *bool `json:"bind,string,omitempty"`
 }
 

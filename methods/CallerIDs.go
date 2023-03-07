@@ -9,14 +9,14 @@ type CallerIDsService struct {
 }
 
 type AddCallerIDParams struct {
-	// The callerID number in E.164 format. 
+	// The callerID number in E.164 format 
 	CalleridNumber string `json:"callerid_number"`
 }
 
 type AddCallerIDReturn struct {
 	// 1 
 	Result int `json:"result"`
-	// The id of the callerID object. 
+	// The id of the callerID object 
 	CalleridId int `json:"callerid_id"`
 }
 
@@ -35,11 +35,11 @@ func (s *CallerIDsService) AddCallerID(params AddCallerIDParams) (*AddCallerIDRe
 }
 
 type ActivateCallerIDParams struct {
-	// The id of the callerID object. 
+	// The id of the callerID object 
 	CalleridId int `json:"callerid_id,string"`
-	// The callerID number that can be used instead of <b>callerid_id</b>. 
+	// The callerID number that can be used instead of <b>callerid_id</b> 
 	CalleridNumber string `json:"callerid_number"`
-	// The verification code, see the VerifyCallerID function. 
+	// The verification code, see the VerifyCallerID function 
 	VerificationCode string `json:"verification_code"`
 }
 
@@ -63,9 +63,9 @@ func (s *CallerIDsService) ActivateCallerID(params ActivateCallerIDParams) (*Act
 }
 
 type DelCallerIDParams struct {
-	// The id of the callerID object. 
+	// The id of the callerID object 
 	CalleridId int `json:"callerid_id,string"`
-	// The callerID number that can be used instead of <b>callerid_id</b>. 
+	// The callerID number that can be used instead of <b>callerid_id</b> 
 	CalleridNumber string `json:"callerid_number"`
 }
 
@@ -89,26 +89,26 @@ func (s *CallerIDsService) DelCallerID(params DelCallerIDParams) (*DelCallerIDRe
 }
 
 type GetCallerIDsParams struct {
-	// The id of the callerID object to filter. 
+	// The id of the callerID object to filter 
 	CalleridId int `json:"callerid_id,string,omitempty"`
-	// The phone number to filter. 
+	// The phone number to filter 
 	CalleridNumber string `json:"callerid_number,omitempty"`
-	// The active flag to filter. 
+	// The active flag to filter 
 	Active *bool `json:"active,string,omitempty"`
-	// The following values are available: 'caller_number' (ascent order), 'verified_until' (ascent order). 
+	// The following values are available: 'caller_number' (ascent order), 'verified_until' (ascent order) 
 	OrderBy string `json:"order_by,omitempty"`
-	// The max returning record count. 
+	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output. 
+	// The first <b>N</b> records will be skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 }
 
 type GetCallerIDsReturn struct {
 	//  
 	Result []*structure.CallerIDInfoType `json:"result"`
-	// The total found record count. 
+	// The total found record count 
 	TotalCount int `json:"total_count"`
-	// The returned record count. 
+	// The returned record count 
 	Count int `json:"count"`
 }
 
@@ -127,9 +127,9 @@ func (s *CallerIDsService) GetCallerIDs(params GetCallerIDsParams) (*GetCallerID
 }
 
 type VerifyCallerIDParams struct {
-	// The id of the callerID object. 
+	// The id of the callerID object 
 	CalleridId int `json:"callerid_id,string"`
-	// The callerID number that can be used instead of <b>callerid_id</b>. 
+	// The callerID number that can be used instead of <b>callerid_id</b> 
 	CalleridNumber string `json:"callerid_number"`
 }
 

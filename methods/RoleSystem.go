@@ -9,11 +9,11 @@ type RoleSystemService struct {
 }
 
 type CreateKeyParams struct {
-	// The key's description. 
+	// The key's description 
 	Description string `json:"description,omitempty"`
-	// The role ID list separated by the ';' symbol. Use it instead of **role_name**, but not combine with. 
+	// The role ID list separated by semicolon (;). Use it instead of **role_name**, but not combine with 
 	RoleId string `json:"role_id,omitempty"`
-	// The role name list separated by the ';' symbol. Use it instead of **role_id**, but not combine with. 
+	// The role name list separated by semicolon (;). Use it instead of **role_id**, but not combine with 
 	RoleName string `json:"role_name,omitempty"`
 }
 
@@ -22,7 +22,7 @@ type CreateKeyReturn struct {
 	Result []*structure.KeyInfo `json:"result"`
 }
 
-// Creates a public/private key pair. You can optionally specify one or more roles for the key, see [this article](https://voximplant.com/blog/service-accounts-introduction) for details. 
+// Creates a public/private key pair. You can optionally specify one or more roles for the key. 
 func (s *RoleSystemService) CreateKey(params CreateKeyParams) (*CreateKeyReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "CreateKey", params)
 	if err != nil {
@@ -37,13 +37,13 @@ func (s *RoleSystemService) CreateKey(params CreateKeyParams) (*CreateKeyReturn,
 }
 
 type GetKeysParams struct {
-	// The key's ID. 
+	// The key's ID 
 	KeyId string `json:"key_id,omitempty"`
-	// Show roles for the key. 
+	// Show roles for the key 
 	WithRoles *bool `json:"with_roles,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output. 
+	// The first <b>N</b> records will be skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
-	// The max returning record count. 
+	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
 }
 
@@ -69,7 +69,7 @@ func (s *RoleSystemService) GetKeys(params GetKeysParams) (*GetKeysReturn, *stru
 type UpdateKeyParams struct {
 	// The key's ID 
 	KeyId string `json:"key_id"`
-	// The key's description. 
+	// The key's description 
 	Description string `json:"description"`
 }
 
@@ -93,7 +93,7 @@ func (s *RoleSystemService) UpdateKey(params UpdateKeyParams) (*UpdateKeyReturn,
 }
 
 type DeleteKeyParams struct {
-	// The key's ID. 
+	// The key's ID 
 	KeyId string `json:"key_id"`
 }
 
@@ -117,11 +117,11 @@ func (s *RoleSystemService) DeleteKey(params DeleteKeyParams) (*DeleteKeyReturn,
 }
 
 type SetKeyRolesParams struct {
-	// The key's ID. 
+	// The key's ID 
 	KeyId string `json:"key_id"`
-	// The role id list separated by the ';' symbol. 
+	// The role id list separated by semicolon (;) 
 	RoleId string `json:"role_id,omitempty"`
-	// The role name list separated by the ';' symbol. 
+	// The role name list separated by semicolon (;) 
 	RoleName string `json:"role_name,omitempty"`
 }
 
@@ -145,9 +145,9 @@ func (s *RoleSystemService) SetKeyRoles(params SetKeyRolesParams) (*SetKeyRolesR
 }
 
 type GetKeyRolesParams struct {
-	// The key's ID. 
+	// The key's ID 
 	KeyId string `json:"key_id"`
-	// Show the roles' additional properties. 
+	// Show the roles' additional properties 
 	WithExpandedRoles *bool `json:"with_expanded_roles,string,omitempty"`
 }
 
@@ -171,11 +171,11 @@ func (s *RoleSystemService) GetKeyRoles(params GetKeyRolesParams) (*GetKeyRolesR
 }
 
 type RemoveKeyRolesParams struct {
-	// The key's ID. 
+	// The key's ID 
 	KeyId string `json:"key_id"`
-	// The role id list separated by the ';' symbol. 
+	// The role id list separated by semicolon (;) 
 	RoleId string `json:"role_id,omitempty"`
-	// The role name list separated by the ';' symbol. 
+	// The role name list separated by semicolon (;) 
 	RoleName string `json:"role_name,omitempty"`
 }
 
@@ -199,15 +199,15 @@ func (s *RoleSystemService) RemoveKeyRoles(params RemoveKeyRolesParams) (*Remove
 }
 
 type AddSubUserParams struct {
-	// Login of a new subuser for <a href='/docs/howtos/integration/httpapi/auth'>authentication</a>, should be unique within the Voximplant account. The login specified is always converted to lowercase. 
+	// The new subuser login for managent api authentication, should be unique within the Voximplant account. The login specified is always converted to lowercase 
 	NewSubuserName string `json:"new_subuser_name"`
-	// Password of a new subuser, plain text. 
+	// The new subuser password. Must be at least 8 characters long and contain at least one uppercase and lowercase letter, one number, and one special character 
 	NewSubuserPassword string `json:"new_subuser_password"`
-	// The role id list separated by the ';' symbol. 
+	// The role id list separated by semicolon (;) 
 	RoleId string `json:"role_id,omitempty"`
-	// The role name list separated by the ';' symbol. 
+	// The role name list separated by semicolon (;) 
 	RoleName string `json:"role_name,omitempty"`
-	// Description of a new subuser. 
+	// Description of a new subuser 
 	Description string `json:"description,omitempty"`
 }
 
@@ -231,13 +231,13 @@ func (s *RoleSystemService) AddSubUser(params AddSubUserParams) (*AddSubUserRetu
 }
 
 type GetSubUsersParams struct {
-	// The subuser's ID. 
+	// The subuser's ID 
 	SubuserId int `json:"subuser_id,string,omitempty"`
 	// Show subuser's roles 
 	WithRoles *bool `json:"with_roles,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output. 
+	// The first <b>N</b> records will be skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
-	// The max returning record count. 
+	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
 }
 
@@ -261,13 +261,13 @@ func (s *RoleSystemService) GetSubUsers(params GetSubUsersParams) (*GetSubUsersR
 }
 
 type SetSubUserInfoParams struct {
-	// The subuser's ID. 
+	// The subuser's ID 
 	SubuserId int `json:"subuser_id,string"`
-	// The subuser old password. It is required if __new_subuser_password__ is specified. 
+	// The subuser old password. It is required if __new_subuser_password__ is specified 
 	OldSubuserPassword string `json:"old_subuser_password,omitempty"`
-	// The new user password. The length must be at least 6 symbols. 
+	// The new user password. Must be at least 8 characters long and contain at least one uppercase and lowercase letter, one number, and one special character 
 	NewSubuserPassword string `json:"new_subuser_password,omitempty"`
-	// The new subuser description. 
+	// The new subuser description 
 	Description string `json:"description,omitempty"`
 }
 
@@ -291,7 +291,7 @@ func (s *RoleSystemService) SetSubUserInfo(params SetSubUserInfoParams) (*SetSub
 }
 
 type DelSubUserParams struct {
-	// The subuser's ID. 
+	// The subuser's ID 
 	SubuserId int `json:"subuser_id,string"`
 }
 
@@ -315,11 +315,11 @@ func (s *RoleSystemService) DelSubUser(params DelSubUserParams) (*DelSubUserRetu
 }
 
 type SetSubUserRolesParams struct {
-	// The subuser's ID. 
+	// The subuser's ID 
 	SubuserId int `json:"subuser_id,string"`
-	// The role id list separated by the ';' symbol. 
+	// The role id list separated by semicolon (;) 
 	RoleId string `json:"role_id,omitempty"`
-	// The role name list separated by the ';' symbol. 
+	// The role name list separated by semicolon (;) 
 	RoleName string `json:"role_name,omitempty"`
 }
 
@@ -343,9 +343,9 @@ func (s *RoleSystemService) SetSubUserRoles(params SetSubUserRolesParams) (*SetS
 }
 
 type GetSubUserRolesParams struct {
-	// The subuser's ID. 
+	// The subuser's ID 
 	SubuserId int `json:"subuser_id,string"`
-	// Show the roles' additional properties. 
+	// Show the roles' additional properties 
 	WithExpandedRoles *bool `json:"with_expanded_roles,string,omitempty"`
 }
 
@@ -369,13 +369,13 @@ func (s *RoleSystemService) GetSubUserRoles(params GetSubUserRolesParams) (*GetS
 }
 
 type RemoveSubUserRolesParams struct {
-	// The subuser's ID. 
+	// The subuser's ID 
 	SubuserId int `json:"subuser_id,string"`
-	// The role id list separated by the ';' symbol. 
+	// The role id list separated by semicolon (;) 
 	RoleId string `json:"role_id,omitempty"`
-	// The role name list separated by the ';' symbol. 
+	// The role name list separated by semicolon (;) 
 	RoleName string `json:"role_name,omitempty"`
-	// Remove roles from all subuser keys. 
+	// Remove roles from all subuser keys 
 	Force *bool `json:"force,string,omitempty"`
 }
 
@@ -399,7 +399,7 @@ func (s *RoleSystemService) RemoveSubUserRoles(params RemoveSubUserRolesParams) 
 }
 
 type GetRolesParams struct {
-	// The role group. 
+	// The role group 
 	GroupName string `json:"group_name,omitempty"`
 }
 
