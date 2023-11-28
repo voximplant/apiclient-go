@@ -88,7 +88,7 @@ type ControlSmsReturn struct {
 	Result int `json:"result"`
 }
 
-// Enables or disables sending and receiving SMS for the phone number. Can be used only for phone numbers with SMS support, which is indicated by the <b>is_sms_supported</b> property in the objects returned by the [GetPhoneNumbers] Management API. Each inbound SMS message is charged according to the <a href='//voximplant.com/pricing'>pricing</a>. If enabled, SMS can be sent from this phone number using the [SendSmsMessage] Management API and received using the [InboundSmsCallback] property of the HTTP callback. See <a href='/docs/guides/managementapi/callbacks'>this article</a> for HTTP callback details. 
+// Enables or disables sending and receiving SMS for the phone number. Can be used only for phone numbers with SMS support, which is indicated by the <b>is_sms_supported</b> property in the objects returned by the [GetPhoneNumbers] Management API. Each incoming SMS message is charged according to the <a href='//voximplant.com/pricing'>pricing</a>. If enabled, SMS can be sent from this phone number using the [SendSmsMessage] Management API and received using the [InboundSmsCallback] property of the HTTP callback. See <a href='/docs/guides/managementapi/callbacks'>this article</a> for HTTP callback details. 
 func (s *SMSService) ControlSms(params ControlSmsParams) (*ControlSmsReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "ControlSms", params)
 	if err != nil {
@@ -113,9 +113,9 @@ type GetSmsHistoryParams struct {
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records will be skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
-	// Date from which to perform search. Format is 'yyyy-MM-dd HH:mm:ss' 
+	// Date from which to perform search. Format is 'yyyy-MM-dd HH:mm:ss', time zone is UTC 
 	FromDate *structure.Timestamp `json:"from_date,string,omitempty"`
-	// Date until which to perform search. Format is 'yyyy-MM-dd HH:mm:ss' 
+	// Date until which to perform search. Format is 'yyyy-MM-dd HH:mm:ss', time zone is UTC 
 	ToDate *structure.Timestamp `json:"to_date,string,omitempty"`
 	// The output format. The following values available: json, csv 
 	Output string `json:"output,omitempty"`
@@ -151,9 +151,9 @@ type A2PGetSmsHistoryParams struct {
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records will be skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
-	// Date from which the search is to start. Format is 'yyyy-MM-dd HH:mm:ss' 
+	// Date from which the search is to start. Format is 'yyyy-MM-dd HH:mm:ss', time zone is UTC 
 	FromDate *structure.Timestamp `json:"from_date,string,omitempty"`
-	// Date from which the search is to end. Format is 'yyyy-MM-dd HH:mm:ss' 
+	// Date from which the search is to end. Format is 'yyyy-MM-dd HH:mm:ss', time zone is UTC 
 	ToDate *structure.Timestamp `json:"to_date,string,omitempty"`
 	// The output format. The possible values are json, csv 
 	Output string `json:"output,omitempty"`

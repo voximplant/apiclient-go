@@ -34,7 +34,7 @@ type AttachPhoneNumberReturn struct {
 	PhoneNumbers []*structure.NewAttachedPhoneInfoType `json:"phone_numbers"`
 }
 
-// Attach the phone number to the account. Note that phone numbers of some countries may require additional verification steps. 
+// Attach the phone number to the account. Note that phone numbers of some countries may require additional verification steps.<br><br>Please note that when you purchase a phone number, we reserve the subscription fee and taxes for the upcoming month. Read more in the <a href='/docs/gettingstarted/billing'>Billing</a> page. 
 func (s *PhoneNumbersService) AttachPhoneNumber(params AttachPhoneNumberParams) (*AttachPhoneNumberReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "AttachPhoneNumber", params)
 	if err != nil {
@@ -115,7 +115,7 @@ type SetPhoneNumberInfoParams struct {
 	PhoneId string `json:"phone_id"`
 	// The phone number list separated by semicolon (;) that can be used instead of <b>phone_id</b> 
 	PhoneNumber string `json:"phone_number"`
-	// If set, the callback of an inbound SMS will be sent to this url, otherwise, it will be sent to the general account URL 
+	// If set, the callback of an incoming SMS will be sent to this url, otherwise, it will be sent to the general account URL 
 	IncomingSmsCallbackUrl string `json:"incoming_sms_callback_url,omitempty"`
 	// Set true to enable the auto charging 
 	AutoCharge *bool `json:"auto_charge,string"`

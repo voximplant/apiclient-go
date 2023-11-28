@@ -84,10 +84,62 @@ func (s *HistoryService) GetCallHistory(params GetCallHistoryParams) (*GetCallHi
 	return response, nil, nil
 }
 
+type GetBriefCallHistoryParams struct {
+	// The from date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss 
+	FromDate *structure.Timestamp `json:"from_date,string"`
+	// The to date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss 
+	ToDate *structure.Timestamp `json:"to_date,string"`
+	// The selected timezone or the 'auto' value (the account location) 
+	Timezone string `json:"timezone,omitempty"`
+	// To get the call history for the specific sessions, pass the session IDs to this parameter separated by a semicolon (;). You can find the session ID in the <a href='/docs/references/voxengine/appevents#started'>AppEvents.Started</a> event's <b>sessionID</b> property in a scenario, or retrieve it from the <b>call_session_history_id</b> value returned from the <a href='https://voximplant.com/docs/references/httpapi/scenarios#reorderscenarios'>StartScenarios</a> or <a href='https://voximplant.com/docs/references/httpapi/scenarios#startconference'>StartConference</a> methods 
+	CallSessionHistoryId string `json:"call_session_history_id,omitempty"`
+	// To receive the call history for a specific application, pass the application ID to this parameter 
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// The application name, can be used instead of <b>application_id</b> 
+	ApplicationName string `json:"application_name,omitempty"`
+	// To receive the call history for a specific routing rule, pass the rule name to this parameter. Applies only if you set application_id or application_name 
+	RuleName string `json:"rule_name,omitempty"`
+	// To receive a call history for a specific remote numbers, pass the number list separated by semicolon (;). A remote number is a number on the client side 
+	RemoteNumber string `json:"remote_number,omitempty"`
+	// To receive a call history for a specific local numbers, pass the number list separated by semicolon (;). A local number is a number on the platform side 
+	LocalNumber string `json:"local_number,omitempty"`
+	// To filter the call history by the custom_data passed to the call sessions, pass the custom data to this parameter 
+	CallSessionHistoryCustomData string `json:"call_session_history_custom_data,omitempty"`
+	// Set false to get a CSV file without the column names if the output=csv 
+	WithHeader *bool `json:"with_header,string,omitempty"`
+	// Set true to get records in the descent order 
+	DescOrder *bool `json:"desc_order,string,omitempty"`
+	// The output format. The following values available: csv 
+	Output string `json:"output"`
+	// Set true to get records in the asynchronous mode. <b>Use this mode to download large amounts of data</b>. See the [GetHistoryReports], [DownloadHistoryReport] functions for details 
+	IsAsync *bool `json:"is_async,string"`
+}
+
+type GetBriefCallHistoryReturn struct {
+	// In the async mode, the value is always 1 
+	Result int `json:"result"`
+	// The history report ID 
+	HistoryReportId int `json:"history_report_id"`
+}
+
+// Gets the account's brief call history. Use the [GetHistoryReports], [DownloadHistoryReport] methods to download the report. 
+func (s *HistoryService) GetBriefCallHistory(params GetBriefCallHistoryParams) (*GetBriefCallHistoryReturn, *structure.VError, error) {
+	req, err := s.client.NewRequest("POST", "GetBriefCallHistory", params)
+	if err != nil {
+		return nil, nil, err
+	}
+	response := &GetBriefCallHistoryReturn{}
+	verr, err := s.client.MakeResponse(req, response)
+	if verr != nil || err != nil {
+		return nil, verr, err
+	}
+	return response, nil, nil
+}
+
 type GetHistoryReportsParams struct {
 	// The history report ID to filter 
 	HistoryReportId int `json:"history_report_id,string,omitempty"`
-	// The history report type list separated by semicolon (;). Use the 'all' value to select all history report types. The following values are possible: calls, transactions, audit, call_list 
+	// The history report type list separated by semicolon (;). Use the 'all' value to select all history report types. The following values are possible: calls, calls_brief, transactions, audit, call_list 
 	HistoryType string `json:"history_type,omitempty"`
 	// The UTC creation from date filter in 24-h format: YYYY-MM-DD HH:mm:ss 
 	CreatedFrom *structure.Timestamp `json:"created_from,string,omitempty"`

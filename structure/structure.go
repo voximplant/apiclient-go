@@ -341,7 +341,7 @@ type CallSessionInfoType struct {
 	InitiatorAddress string `json:"initiator_address"`
 	// The media server IP address 
 	MediaServerAddress string `json:"media_server_address"`
-	// The link to the session log. The log retention policy is 1 month, after that time this field clears 
+	// The link to the session log. The log retention policy is 1 month, after that time this field clears. If you have issues accessing the log file, check if the application has "Secure storage of applications and logs" feature enabled. In this case, you need to <a href='/docs/guides/managementapi/secureobjects'>authorize</a>. 
 	LogFileUrl string `json:"log_file_url"`
 	// The finish reason. Possible values are __Normal termination__, __Insufficient funds__, __Internal error (billing timeout)__, __Terminated administratively__, __JS session error__, __Timeout__ 
 	FinishReason string `json:"finish_reason,omitempty"`
@@ -433,7 +433,7 @@ type RecordType struct {
 	StartTime Timestamp `json:"start_time"`
 	// The call duration in seconds 
 	Duration int `json:"duration,omitempty"`
-	// The record URL 
+	// The record URL.  If you have issues accessing the record file, check if the application has "Secure storage of applications and logs" feature enabled. In this case, you need to <a href='/docs/guides/managementapi/secureobjects'>authorize</a>. 
 	RecordUrl string `json:"record_url,omitempty"`
 	// The transaction ID 
 	TransactionId int `json:"transaction_id"`
@@ -952,7 +952,7 @@ type AttachedPhoneInfoType struct {
 	IsSmsSupported *bool `json:"is_sms_supported"`
 	// If <b>true</b>, SMS sending and receiving is enabled for this phone number via the [ControlSms] Management API 
 	IsSmsEnabled *bool `json:"is_sms_enabled"`
-	// If set, the callback of an inbound SMS will be sent to this url, otherwise, it will be sent to the general account URL 
+	// If set, the callback of an incoming SMS will be sent to this url, otherwise, it will be sent to the general account URL 
 	IncomingSmsCallbackUrl string `json:"incoming_sms_callback_url,omitempty"`
 	// If <b>true</b>, you need to make a request to enable calls to emergency numbers 
 	EmergencyCallsToBeEnabled *bool `json:"emergency_calls_to_be_enabled"`
@@ -1027,10 +1027,6 @@ type PhoneNumberCountryRegionInfoType struct {
 	VerificationStatus string `json:"verification_status,omitempty"`
 	// Verification is required for the account 
 	RequiredVerification *bool `json:"required_verification,omitempty"`
-	// The phone monthly charge 
-	PhonePrice float64 `json:"phone_price"`
-	// The phone installation price (without the first monthly fee) 
-	PhoneInstallationPrice float64 `json:"phone_installation_price"`
 	// The charge period in 24-h format: Y-M-D H:m:s. Example: 0-1-0 0:0:0 is 1 month 
 	PhonePeriod string `json:"phone_period"`
 	// The flag of the need proof of address 
@@ -1051,19 +1047,39 @@ type PhoneNumberCountryRegionInfoType struct {
 	PhoneInstallationTaxReserve int `json:"phone_installation_tax_reserve"`
 	// The phone number tax reserve 
 	PhoneTaxReserve int `json:"phone_tax_reserve"`
+	// Phone number price from the price list 
+	LocalPrice int `json:"local_price,omitempty"`
+	// Phone number installation price from the price list 
+	LocalInstallationPrice int `json:"local_installation_price,omitempty"`
+	// Price list currency 
+	LocalCurrency string `json:"local_currency,omitempty"`
+	// Phone number price in the account currency 
+	AccountPrice int `json:"account_price,omitempty"`
+	// Phone number installation price in the account currency 
+	AccountInstallationPrice int `json:"account_installation_price,omitempty"`
+	// Account currency 
+	AccountCurrency string `json:"account_currency,omitempty"`
 }
 
 type MultipleNumbersPrice struct {
 	// The number of subscriptions which must be purchased simultaneously to enable a multiple numbers subscription 
 	Count int `json:"count"`
-	// The subscription price for one number, i.e., the total multiple numbers subscription price divided by the __count__ value 
-	Price float64 `json:"price"`
-	// The installation price for one number, i.e., the total multiple numbers installation price divided by the __count__ value 
-	InstallationPrice float64 `json:"installation_price"`
 	// The phone number installation tax reserve 
 	InstallationTaxReserve int `json:"installation_tax_reserve"`
 	// The phone number tax reserve 
 	TaxReserve int `json:"tax_reserve"`
+	// Phone number price from the price list 
+	LocalPrice int `json:"local_price,omitempty"`
+	// Phone number installation price from the price list 
+	LocalInstallationPrice int `json:"local_installation_price,omitempty"`
+	// Price list currency 
+	LocalCurrency string `json:"local_currency,omitempty"`
+	// Phone number price in the account currency 
+	AccountPrice int `json:"account_price,omitempty"`
+	// Phone number installation price in the account currency 
+	AccountInstallationPrice int `json:"account_installation_price,omitempty"`
+	// Account currency 
+	AccountCurrency string `json:"account_currency,omitempty"`
 }
 
 type CallerIDInfoType struct {
@@ -1146,6 +1162,8 @@ type ClonedACDSkillType struct {
 type ExchangeRates struct {
 	// The RUR exchange rate 
 	RUR float64 `json:"RUR,omitempty"`
+	// The KZT exchange rate 
+	KZT float64 `json:"KZT,omitempty"`
 	// The EUR exchange rate 
 	EUR float64 `json:"EUR,omitempty"`
 	// The USD exchange rate. It's always equal to 1 
@@ -1517,7 +1535,7 @@ type AccountCallback struct {
 	ExpiringCallerid ExpiringCallerIDCallback `json:"expiring_callerid,omitempty"`
 	// Received when a transcription is saved 
 	TranscriptionComplete TranscriptionCompleteCallback `json:"transcription_complete,omitempty"`
-	// Received when an inbound SMS is gotten 
+	// Received when an incoming SMS is gotten 
 	SmsInbound InboundSmsCallback `json:"sms_inbound,omitempty"`
 	// Received for the accounts for which the confirmation documents waiting period expires in 20/15/10/5/1 day(s) 
 	ExpiringAgreement ExpiringAgreementCallback `json:"expiring_agreement,omitempty"`
@@ -2048,7 +2066,7 @@ type PushCredentialContent struct {
 }
 
 type InboundSmsCallback struct {
-	// The inbound SMS info 
+	// The incoming SMS info 
 	SmsInbound InboundSmsCallbackItem `json:"sms_inbound"`
 }
 
@@ -2227,9 +2245,9 @@ type GetAutochargeConfigResultType struct {
 }
 
 type GetSQQueuesResult struct {
-	// ID of the smart queue 
+	// ID of the SmartQueue 
 	SqQueueId int `json:"sq_queue_id"`
-	// Name of the smart queue 
+	// Name of the SmartQueue 
 	SqQueueName string `json:"sq_queue_name"`
 	// Agent selection strategy 
 	AgentSelection string `json:"agent_selection"`
@@ -2318,9 +2336,9 @@ type SmartQueueMetricsResult struct {
 }
 
 type SmartQueueMetricsGroups struct {
-	// The smart queue ID 
+	// The SmartQueue ID 
 	SqQueueId int `json:"sq_queue_id,omitempty"`
-	// The smart queue name 
+	// The SmartQueue name 
 	SqQueueName string `json:"sq_queue_name,omitempty"`
 	// The user ID 
 	UserId int `json:"user_id,omitempty"`
@@ -2342,9 +2360,9 @@ type SmartQueueMetricsGroupsValues struct {
 }
 
 type SmartQueueState struct {
-	// The smart queue ID 
+	// The SmartQueue ID 
 	SqQueueId int `json:"sq_queue_id"`
-	// The smart queue name 
+	// The SmartQueue name 
 	SqQueueName string `json:"sq_queue_name"`
 	// The list of logged-in agents with their skills and statuses 
 	SqAgents []SmartQueueStateAgent `json:"sq_agents"`

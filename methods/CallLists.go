@@ -8,19 +8,19 @@ type CallListsService struct {
 	client *Client
 }
 
-type CreateManualCallListParams struct {
-	// The rule ID 
+type CreateCallListParams struct {
+	// The rule ID. It's specified in the <a href='//manage.voximplant.com/applications'>Applications</a> section of the Control Panel 
 	RuleId int `json:"rule_id,string"`
 	// Call list priority. The value is in the range of [0 ... 2^31] where zero is the highest priority 
 	Priority int `json:"priority,string"`
 	// Number of simultaneously processed tasks 
 	MaxSimultaneous int `json:"max_simultaneous,string"`
-	// Number of attempts. Should be equal or greater than <b>1</b> 
+	// Number of attempts. Minimum is <b>1</b>, maximum is <b>5</b> 
 	NumAttempts int `json:"num_attempts,string"`
-	// File name 
+	// File name, up to 255 characters and can't contain the '/' and '\' symbols 
 	Name string `json:"name"`
 	// Send as "body" part of the HTTP request or as multiform. The sending "file_content" via URL is at its own risk because the network devices tend to drop HTTP requests with large headers 
-	FileContent string `json:"file_content"`
+	FileContent file `json:"file_content,string"`
 	// Interval between call attempts in seconds. The default is 0 
 	IntervalSeconds int `json:"interval_seconds,string,omitempty"`
 	// Encoding file. The default is UTF-8 
@@ -33,7 +33,7 @@ type CreateManualCallListParams struct {
 	ReferenceIp string `json:"reference_ip,omitempty"`
 }
 
-type CreateManualCallListReturn struct {
+type CreateCallListReturn struct {
 	// true 
 	Result *bool `json:"result"`
 	// The number of stored records 
@@ -42,41 +42,13 @@ type CreateManualCallListReturn struct {
 	ListId int `json:"list_id"`
 }
 
-// Adds a new CSV file for manual call list processing and bind it with the specified rule. To send a file, use the request body. To start processing calls, use the function [StartNextCallTask]. <b>IMPORTANT:</b> the account's balance should be equal or greater than 1 USD. If the balance is lower than 1 USD, the call list processing won't start, or it stops immediately if it was active. 
-func (s *CallListsService) CreateManualCallList(params CreateManualCallListParams) (*CreateManualCallListReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "CreateManualCallList", params)
+// Adds a new CSV file for call list processing and starts the specified rule immediately. To send a file, use the request body. To set the call time constraints, use the following options in a CSV file: <ul><li>**__start_execution_time** – when the call list processing will start every day, UTC+0 24-h format: HH:mm:ss</li><li>**__end_execution_time** – when the call list processing will stop every day,  UTC+0 24-h format: HH:mm:ss</li><li>**__start_at** – when the call list processing will start, UNIX timestamp. If not specified, the processing will start immediately after a method call</li></ul><br>This method accepts CSV files with custom delimiters, such a commas (,), semicolons (;) and other. To specify a delimiter, pass it to the <b>delimiter</b> parameter.<br/><b>IMPORTANT:</b> the account's balance should be equal or greater than 1 USD. If the balance is lower than 1 USD, the call list processing won't start, or it stops immediately if it was active. 
+func (s *CallListsService) CreateCallList(params CreateCallListParams) (*CreateCallListReturn, *structure.VError, error) {
+	req, err := s.client.NewRequest("POST", "CreateCallList", params)
 	if err != nil {
 		return nil, nil, err
 	}
-	response := &CreateManualCallListReturn{}
-	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil || err != nil {
-		return nil, verr, err
-	}
-	return response, nil, nil
-}
-
-type StartNextCallTaskParams struct {
-	// The list of the call list IDs separated by semicolon (;) 
-	ListId string `json:"list_id"`
-	// The custom param to pass the call initiator parameters to the scenario 
-	CustomParams string `json:"custom_params,omitempty"`
-}
-
-type StartNextCallTaskReturn struct {
-	// true 
-	Result int `json:"result"`
-	// The list id 
-	ListId int `json:"list_id"`
-}
-
-// Start processing the next task. 
-func (s *CallListsService) StartNextCallTask(params StartNextCallTaskParams) (*StartNextCallTaskReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "StartNextCallTask", params)
-	if err != nil {
-		return nil, nil, err
-	}
-	response := &StartNextCallTaskReturn{}
+	response := &CreateCallListReturn{}
 	verr, err := s.client.MakeResponse(req, response)
 	if verr != nil || err != nil {
 		return nil, verr, err

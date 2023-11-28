@@ -77,7 +77,7 @@ type SetAccountInfoParams struct {
 	CallbackSalt string `json:"callback_salt,omitempty"`
 	// Set to true to store outbound message texts. Default value is false 
 	StoreOutboundSms *bool `json:"store_outbound_sms,string,omitempty"`
-	// Set to true to store inbound message texts. Default value is false 
+	// Set to true to store incoming message texts. Default value is false 
 	StoreInboundSms *bool `json:"store_inbound_sms,string,omitempty"`
 }
 
@@ -133,8 +133,6 @@ type SetChildAccountInfoParams struct {
 	SupportInvoice *bool `json:"support_invoice,string,omitempty"`
 	// Set to true to allow use restricted directions 
 	CanUseRestricted *bool `json:"can_use_restricted,string,omitempty"`
-	// The minimum payment amount 
-	MinPaymentAmount int `json:"min_payment_amount,string,omitempty"`
 }
 
 type SetChildAccountInfoReturn struct {
@@ -157,7 +155,7 @@ func (s *AccountsService) SetChildAccountInfo(params SetChildAccountInfoParams) 
 }
 
 type GetCurrencyRateParams struct {
-	// The currency code list separated by semicolon (;). Examples: RUR, EUR, USD 
+	// The currency code list separated by semicolon (;). Examples: RUR, KZT, EUR, USD 
 	Currency string `json:"currency"`
 	// The date, format: YYYY-MM-DD 
 	Date *structure.Date `json:"date,string,omitempty"`
@@ -362,7 +360,7 @@ type ChangeAccountPlanReturn struct {
 	AccountInfo *structure.ShortAccountInfoType `json:"account_info"`
 }
 
-// Configures the account's plan. 
+// Configures the account's plan.<br><br>Please note that when you change the billing plan, we reserve the subscription fee and taxes for the upcoming month. Read more in the <a href='/docs/gettingstarted/billing'>Billing</a> page. 
 func (s *AccountsService) ChangeAccountPlan(params ChangeAccountPlanParams) (*ChangeAccountPlanReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "ChangeAccountPlan", params)
 	if err != nil {
