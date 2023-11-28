@@ -20,7 +20,7 @@ type CreateCallListParams struct {
 	// File name, up to 255 characters and can't contain the '/' and '\' symbols 
 	Name string `json:"name"`
 	// Send as "body" part of the HTTP request or as multiform. The sending "file_content" via URL is at its own risk because the network devices tend to drop HTTP requests with large headers 
-	FileContent file `json:"file_content,string"`
+	FileContent string `json:"file_content"`
 	// Interval between call attempts in seconds. The default is 0 
 	IntervalSeconds int `json:"interval_seconds,string,omitempty"`
 	// Encoding file. The default is UTF-8 
