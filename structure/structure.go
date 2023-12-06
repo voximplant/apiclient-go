@@ -2383,7 +2383,7 @@ type SmartQueueStateTask struct {
 	WaitingTime int `json:"waiting_time"`
 	// Processing time in ms 
 	ProcessingTime int `json:"processing_time"`
-	// Custom data 
+	// Custom data text string for the current task. You can set the custom data in the [enqueueTask](/docs/references/voxengine/voxengine/enqueuetask#enqueuetask) method 
 	CustomData interface{} `json:"custom_data,omitempty"`
 }
 
