@@ -281,9 +281,9 @@ type SQAddQueueParams struct {
 	CallAgentSelection string `json:"call_agent_selection"`
 	// Agent selection strategy for messages. Accepts one of the following values: "MOST_QUALIFIED", "LEAST_QUALIFIED", "MAX_WAITING_TIME". Equals to the **call_agent_selection** value by default 
 	ImAgentSelection string `json:"im_agent_selection,omitempty"`
-	// Strategy of prioritizing CALL-type requests for service. Accepts one of the following values: "MAX_PRIORITY", "MAX_WAITING_TIME" 
+	// Call type requests prioritizing strategy. Accepts one of the [SQTaskSelectionStrategies] enum values 
 	CallTaskSelection string `json:"call_task_selection"`
-	// Strategy of prioritizing IM-type requests for service. Accepts one of the following values: "MAX_PRIORITY", "MAX_WAITING_TIME". Equals to the **call_task_selection** value by default 
+	// IM type requests prioritizing strategy. Accepts one of the [SQTaskSelectionStrategies] enum values. Equals to the **call_task_selection** value by default 
 	ImTaskSelection string `json:"im_task_selection,omitempty"`
 	// Agent selection strategy, applied when it is not possible to wait for a suitable free agent. Currently not used 
 	FallbackAgentSelection string `json:"fallback_agent_selection,omitempty"`
@@ -555,8 +555,8 @@ type SQBindSkillParams struct {
 	UserName string `json:"user_name,omitempty"`
 	// Skills to be bound to agents in the json array format. The array should contain objects with the <b>sq_skill_id</b>/<b>sq_skill_name</b> and <b>sq_skill_level</b> keys where skill levels range from 1 to 5 
 	SqSkills interface{} `json:"sq_skills,string"`
-	// Binding mode 
-	BindMode []*structure.SQSkillBindingModes `json:"bind_mode,string,omitempty"`
+	// Binding mode. Accepts one of the [SQSkillBindingModes] enum values 
+	BindMode string `json:"bind_mode,omitempty"`
 }
 
 type SQBindSkillReturn struct {
@@ -669,8 +669,8 @@ type SQBindAgentParams struct {
 	UserId string `json:"user_id"`
 	// List of user names separated by semicolon (;). Can be used instead of <b>user_id</b> 
 	UserName string `json:"user_name,omitempty"`
-	// Binding mode 
-	BindMode []*structure.SQAgentBindingModes `json:"bind_mode,string,omitempty"`
+	// Binding mode. Accepts one of the [SQAgentBindingModes] enum values 
+	BindMode string `json:"bind_mode,omitempty"`
 }
 
 type SQBindAgentReturn struct {

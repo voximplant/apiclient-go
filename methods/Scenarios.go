@@ -209,10 +209,12 @@ type StartScenariosParams struct {
 	ApplicationName string `json:"application_name,omitempty"`
 	// The rule ID that needs to be launched. Please note, the necessary scenario needs to be attached to the rule 
 	RuleId int `json:"rule_id,string"`
-	// The script custom data, that can be accessed in the scenario via the <a href='/docs/references/voxengine/voxengine/customdata'>VoxEngine.customData()</a> method. Use the application/x-www-form-urlencoded content type with UTF-8 encoding. 
+	// The script custom data, that can be accessed in the scenario via the <a href='/docs/references/voxengine/voxengine/customdata'>VoxEngine.customData()</a> method. Use the application/x-www-form-urlencoded content type with UTF-8 encoding 
 	ScriptCustomData string `json:"script_custom_data,omitempty"`
 	// Specifies the IP from the geolocation of predicted subscribers. It allows selecting the nearest server for serving subscribers 
 	ReferenceIp string `json:"reference_ip,omitempty"`
+	// Specifies the location of the server where the scenario needs to be executed 
+	ServerLocation string `json:"server_location,omitempty"`
 	// Set true to get media server session lists url 
 	WithCheckUrl *bool `json:"with_check_url,string,omitempty"`
 }
