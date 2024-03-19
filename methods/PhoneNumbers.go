@@ -49,9 +49,9 @@ func (s *PhoneNumbersService) AttachPhoneNumber(params AttachPhoneNumberParams) 
 }
 
 type BindPhoneNumberToApplicationParams struct {
-	// The phone ID list separated by semicolon (;). Use the 'all' value to select all phone ids 
+	// The phone ID list separated by semicolons (;). Use the 'all' value to select all phone ids 
 	PhoneId string `json:"phone_id"`
-	// The phone number list separated by semicolon (;) that can be used instead of <b>phone_id</b> 
+	// The phone number list separated by semicolons (;) that can be used instead of <b>phone_id</b> 
 	PhoneNumber string `json:"phone_number"`
 	// The application ID 
 	ApplicationId int `json:"application_id,string"`
@@ -85,9 +85,9 @@ func (s *PhoneNumbersService) BindPhoneNumberToApplication(params BindPhoneNumbe
 }
 
 type DeactivatePhoneNumberParams struct {
-	// The phone ID list separated by semicolon (;). Use the 'all' value to select all phone ids 
+	// The phone ID list separated by semicolons (;). Use the 'all' value to select all phone ids 
 	PhoneId string `json:"phone_id"`
-	// The phone number list separated by semicolon (;) that can be used instead of <b>phone_id</b> 
+	// The phone number list separated by semicolons (;) that can be used instead of <b>phone_id</b> 
 	PhoneNumber string `json:"phone_number"`
 }
 
@@ -111,9 +111,9 @@ func (s *PhoneNumbersService) DeactivatePhoneNumber(params DeactivatePhoneNumber
 }
 
 type SetPhoneNumberInfoParams struct {
-	// The phone ID list separated by semicolon (;). Use the 'all' value to select all phone ids 
+	// The phone ID list separated by semicolons (;). Use the 'all' value to select all phone ids 
 	PhoneId string `json:"phone_id"`
-	// The phone number list separated by semicolon (;) that can be used instead of <b>phone_id</b> 
+	// The phone number list separated by semicolons (;) that can be used instead of <b>phone_id</b> 
 	PhoneNumber string `json:"phone_number"`
 	// If set, the callback of an incoming SMS will be sent to this url, otherwise, it will be sent to the general account URL 
 	IncomingSmsCallbackUrl string `json:"incoming_sms_callback_url,omitempty"`
@@ -143,7 +143,7 @@ func (s *PhoneNumbersService) SetPhoneNumberInfo(params SetPhoneNumberInfoParams
 type GetPhoneNumbersParams struct {
 	// The particular phone ID to filter 
 	PhoneId string `json:"phone_id,omitempty"`
-	// The phone number list separated by semicolon (;) that can be used instead of <b>phone_id</b> 
+	// The phone number list separated by semicolons (;) that can be used instead of <b>phone_id</b> 
 	PhoneNumber string `json:"phone_number,omitempty"`
 	// The application ID 
 	ApplicationId int `json:"application_id,string,omitempty"`
@@ -153,7 +153,7 @@ type GetPhoneNumbersParams struct {
 	IsBoundToApplication *bool `json:"is_bound_to_application,string,omitempty"`
 	// The phone number start to filter 
 	PhoneTemplate string `json:"phone_template,omitempty"`
-	// The country code list separated by semicolon (;) 
+	// The country code list separated by semicolons (;) 
 	CountryCode string `json:"country_code,omitempty"`
 	// The phone category name. See the [GetPhoneNumberCategories] method 
 	PhoneCategoryName string `json:"phone_category_name,omitempty"`
@@ -171,13 +171,13 @@ type GetPhoneNumbersParams struct {
 	FromPhonePurchaseDate *structure.Timestamp `json:"from_phone_purchase_date,string,omitempty"`
 	// The UTC 'to' date filter in 24-h format: YYYY-MM-DD HH:mm:ss 
 	ToPhonePurchaseDate *structure.Timestamp `json:"to_phone_purchase_date,string,omitempty"`
-	// The child account ID list separated by semicolon (;). Use the 'all' value to select all child accounts 
+	// The child account ID list separated by semicolons (;). Use the 'all' value to select all child accounts 
 	ChildAccountId string `json:"child_account_id,omitempty"`
 	// Set true to get the children phones only 
 	ChildrenPhonesOnly *bool `json:"children_phones_only,string,omitempty"`
 	// The required account verification name to filter 
 	VerificationName string `json:"verification_name,omitempty"`
-	// The account verification status list separated by semicolon (;). The following values are possible: REQUIRED, IN_PROGRESS, VERIFIED 
+	// The account verification status list separated by semicolons (;). The following values are possible: REQUIRED, IN_PROGRESS, VERIFIED 
 	VerificationStatus string `json:"verification_status,omitempty"`
 	// Unverified phone hold until the date (from ...) in format: YYYY-MM-DD 
 	FromUnverifiedHoldUntil *structure.Date `json:"from_unverified_hold_until,string,omitempty"`
@@ -195,11 +195,11 @@ type GetPhoneNumbersParams struct {
 	Offset int `json:"offset,string,omitempty"`
 	// The flag of the SMS support 
 	SmsSupported *bool `json:"sms_supported,string,omitempty"`
-	// The region names list separated by semicolon (;) 
+	// The region names list separated by semicolons (;) 
 	PhoneRegionName string `json:"phone_region_name,omitempty"`
-	// The rule ID list separated by semicolon (;) 
+	// The rule ID list separated by semicolons (;) 
 	RuleId string `json:"rule_id,omitempty"`
-	// The rule names list separated by semicolon (;). Can be used only if __application_id__ or __application_name__ is specified 
+	// The rule names list separated by semicolons (;). Can be used only if __application_id__ or __application_name__ is specified 
 	RuleName string `json:"rule_name,omitempty"`
 	// Number is bound to some rule 
 	IsBoundToRule *bool `json:"is_bound_to_rule,string,omitempty"`
@@ -267,7 +267,7 @@ func (s *PhoneNumbersService) GetNewPhoneNumbers(params GetNewPhoneNumbersParams
 }
 
 type GetPhoneNumberCategoriesParams struct {
-	// Country code list separated by semicolon (;) 
+	// Country code list separated by semicolons (;) 
 	CountryCode string `json:"country_code,omitempty"`
 	// Flag allows you to display phone number categories only of the sandbox, real or all .The following values are possible: 'all', 'true', 'false' 
 	Sandbox string `json:"sandbox,omitempty"`
@@ -393,7 +393,7 @@ func (s *PhoneNumbersService) GetActualPhoneNumberRegion(params GetActualPhoneNu
 }
 
 type GetAccountPhoneNumberCountriesParams struct {
-	// The application ID list separated by semicolon (;) to filter 
+	// The application ID list separated by semicolons (;) to filter 
 	ApplicationId string `json:"application_id,omitempty"`
 }
 

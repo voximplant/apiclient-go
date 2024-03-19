@@ -13,13 +13,13 @@ type AddAdminRoleParams struct {
 	AdminRoleName string `json:"admin_role_name"`
 	// The admin role enable flag. If false the allowed and denied entries have no affect 
 	AdminRoleActive *bool `json:"admin_role_active,string,omitempty"`
-	// The admin role ID list separated by semicolon (;). Use the 'all' value to select all admin roles. The list specifies the roles from which the new role automatically copies all permissions (allowed_entries and denied_entries) 
+	// The admin role ID list separated by semicolons (;). Use the 'all' value to select all admin roles. The list specifies the roles from which the new role automatically copies all permissions (allowed_entries and denied_entries) 
 	LikeAdminRoleId string `json:"like_admin_role_id,omitempty"`
 	// The admin role name that can be used instead of <b>like_admin_role_id</b>. The name specifies a role from which the new role automatically copies all permissions (allowed_entries and denied_entries) 
 	LikeAdminRoleName string `json:"like_admin_role_name,omitempty"`
-	// The list of allowed access entries separated by semicolon (;) (the API function names) 
+	// The list of allowed access entries separated by semicolons (;) (the API function names) 
 	AllowedEntries string `json:"allowed_entries,omitempty"`
-	// The list of denied access entries separated by semicolon (;) (the API function names) 
+	// The list of denied access entries separated by semicolons (;) (the API function names) 
 	DeniedEntries string `json:"denied_entries,omitempty"`
 }
 
@@ -45,7 +45,7 @@ func (s *AdminRolesService) AddAdminRole(params AddAdminRoleParams) (*AddAdminRo
 }
 
 type DelAdminRoleParams struct {
-	// The admin role ID list separated by semicolon (;). Use the 'all' value to select all admin roles 
+	// The admin role ID list separated by semicolons (;). Use the 'all' value to select all admin roles 
 	AdminRoleId string `json:"admin_role_id"`
 	// The admin role name to delete, can be used instead of <b>admin_role_id</b> 
 	AdminRoleName string `json:"admin_role_name"`
@@ -81,11 +81,11 @@ type SetAdminRoleInfoParams struct {
 	AdminRoleActive *bool `json:"admin_role_active,string,omitempty"`
 	// The modification mode of the permission lists (allowed_entries and denied_entries). The following values are possible: add, del, set 
 	EntryModificationMode string `json:"entry_modification_mode,omitempty"`
-	// The list of allowed access entry changes separated by semicolon (;) (the API function names) 
+	// The list of allowed access entry changes separated by semicolons (;) (the API function names) 
 	AllowedEntries string `json:"allowed_entries,omitempty"`
-	// The list of denied access entry changes separated by semicolon (;) (the API function names) 
+	// The list of denied access entry changes separated by semicolons (;) (the API function names) 
 	DeniedEntries string `json:"denied_entries,omitempty"`
-	// The admin role ID list separated by semicolon (;). Use the 'all' value to select all admin roles. The list specifies the roles from which the allowed_entries and denied_entries will be merged 
+	// The admin role ID list separated by semicolons (;). Use the 'all' value to select all admin roles. The list specifies the roles from which the allowed_entries and denied_entries will be merged 
 	LikeAdminRoleId string `json:"like_admin_role_id,omitempty"`
 	// The admin role name, can be used instead of <b>like_admin_role_id</b>. The name specifies a role from which the allowed_entries and denied_entries will be merged 
 	LikeAdminRoleName string `json:"like_admin_role_name,omitempty"`
@@ -125,9 +125,9 @@ type GetAdminRolesParams struct {
 	WithParentRoles *bool `json:"with_parent_roles,string,omitempty"`
 	// Set false to omit the system roles 
 	WithSystemRoles *bool `json:"with_system_roles,string,omitempty"`
-	// The attached admin user ID list separated by semicolon (;). Use the 'all' value to select all admin users 
+	// The attached admin user ID list separated by semicolons (;). Use the 'all' value to select all admin users 
 	IncludedAdminUserId string `json:"included_admin_user_id,omitempty"`
-	// Not attached admin user ID list separated by semicolon (;). Use the 'all' value to select all admin users 
+	// Not attached admin user ID list separated by semicolons (;). Use the 'all' value to select all admin users 
 	ExcludedAdminUserId string `json:"excluded_admin_user_id,omitempty"`
 	// Set false to get roles with partial admin user list matching 
 	FullAdminUsersMatching string `json:"full_admin_users_matching,omitempty"`

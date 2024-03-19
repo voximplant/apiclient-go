@@ -165,9 +165,9 @@ func (s *PushCredentialsService) GetPushCredential(params GetPushCredentialParam
 }
 
 type BindPushCredentialParams struct {
-	// The push credentials ID list separated by semicolon (;) 
+	// The push credentials ID list separated by semicolons (;) 
 	PushCredentialId string `json:"push_credential_id"`
-	// The application ID list separated by semicolon (;). Use the 'all' value to select all applications 
+	// The application ID list separated by semicolons (;). Use the 'all' value to select all applications 
 	ApplicationId string `json:"application_id"`
 	// Set to false for unbind. Default value is true 
 	Bind *bool `json:"bind,string,omitempty"`

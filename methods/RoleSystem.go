@@ -11,9 +11,9 @@ type RoleSystemService struct {
 type CreateKeyParams struct {
 	// The key's description 
 	Description string `json:"description,omitempty"`
-	// The role ID list separated by semicolon (;). Use it instead of **role_name**, but not combine with 
+	// The role ID list separated by semicolons (;). Use it instead of **role_name**, but not combine with 
 	RoleId string `json:"role_id,omitempty"`
-	// The role name list separated by semicolon (;). Use it instead of **role_id**, but not combine with 
+	// The role name list separated by semicolons (;). Use it instead of **role_id**, but not combine with 
 	RoleName string `json:"role_name,omitempty"`
 }
 
@@ -119,9 +119,9 @@ func (s *RoleSystemService) DeleteKey(params DeleteKeyParams) (*DeleteKeyReturn,
 type SetKeyRolesParams struct {
 	// The key's ID 
 	KeyId string `json:"key_id"`
-	// The role id list separated by semicolon (;) 
+	// The role id list separated by semicolons (;) 
 	RoleId string `json:"role_id,omitempty"`
-	// The role name list separated by semicolon (;) 
+	// The role name list separated by semicolons (;) 
 	RoleName string `json:"role_name,omitempty"`
 }
 
@@ -173,9 +173,9 @@ func (s *RoleSystemService) GetKeyRoles(params GetKeyRolesParams) (*GetKeyRolesR
 type RemoveKeyRolesParams struct {
 	// The key's ID 
 	KeyId string `json:"key_id"`
-	// The role id list separated by semicolon (;) 
+	// The role id list separated by semicolons (;) 
 	RoleId string `json:"role_id,omitempty"`
-	// The role name list separated by semicolon (;) 
+	// The role name list separated by semicolons (;) 
 	RoleName string `json:"role_name,omitempty"`
 }
 
@@ -203,9 +203,9 @@ type AddSubUserParams struct {
 	NewSubuserName string `json:"new_subuser_name"`
 	// The new subuser password. Must be at least 8 characters long and contain at least one uppercase and lowercase letter, one number, and one special character 
 	NewSubuserPassword string `json:"new_subuser_password"`
-	// The role id list separated by semicolon (;) 
+	// The role id list separated by semicolons (;) 
 	RoleId string `json:"role_id,omitempty"`
-	// The role name list separated by semicolon (;) 
+	// The role name list separated by semicolons (;) 
 	RoleName string `json:"role_name,omitempty"`
 	// Description of a new subuser 
 	Description string `json:"description,omitempty"`
@@ -317,9 +317,9 @@ func (s *RoleSystemService) DelSubUser(params DelSubUserParams) (*DelSubUserRetu
 type SetSubUserRolesParams struct {
 	// The subuser's ID 
 	SubuserId int `json:"subuser_id,string"`
-	// The role id list separated by semicolon (;) 
+	// The role id list separated by semicolons (;) 
 	RoleId string `json:"role_id,omitempty"`
-	// The role name list separated by semicolon (;) 
+	// The role name list separated by semicolons (;) 
 	RoleName string `json:"role_name,omitempty"`
 }
 
@@ -371,9 +371,9 @@ func (s *RoleSystemService) GetSubUserRoles(params GetSubUserRolesParams) (*GetS
 type RemoveSubUserRolesParams struct {
 	// The subuser's ID 
 	SubuserId int `json:"subuser_id,string"`
-	// The role id list separated by semicolon (;) 
+	// The role id list separated by semicolons (;) 
 	RoleId string `json:"role_id,omitempty"`
-	// The role name list separated by semicolon (;) 
+	// The role name list separated by semicolons (;) 
 	RoleName string `json:"role_name,omitempty"`
 	// Remove roles from all subuser keys 
 	Force *bool `json:"force,string,omitempty"`

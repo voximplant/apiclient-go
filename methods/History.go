@@ -21,13 +21,13 @@ type GetCallHistoryParams struct {
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// The application name, can be used instead of <b>application_id</b> 
 	ApplicationName string `json:"application_name,omitempty"`
-	// To receive the call history for a specific users, pass the user ID list separated by semicolon (;). If it's specified, the output contains the calls from the listed users only 
+	// To receive the call history for a specific users, pass the user ID list separated by semicolons (;). If it's specified, the output contains the calls from the listed users only 
 	UserId string `json:"user_id,omitempty"`
 	// To receive the call history for a specific routing rule, pass the rule name to this parameter. Applies only if you set application_id or application_name 
 	RuleName string `json:"rule_name,omitempty"`
-	// To receive a call history for a specific remote numbers, pass the number list separated by semicolon (;). A remote number is a number on the client side 
+	// To receive a call history for a specific remote numbers, pass the number list separated by semicolons (;). A remote number is a number on the client side 
 	RemoteNumber string `json:"remote_number,omitempty"`
-	// To receive a call history for a specific local numbers, pass the number list separated by semicolon (;). A local number is a number on the platform side 
+	// To receive a call history for a specific local numbers, pass the number list separated by semicolons (;). A local number is a number on the platform side 
 	LocalNumber string `json:"local_number,omitempty"`
 	// To filter the call history by the custom_data passed to the call sessions, pass the custom data to this parameter 
 	CallSessionHistoryCustomData string `json:"call_session_history_custom_data,omitempty"`
@@ -37,7 +37,7 @@ type GetCallHistoryParams struct {
 	WithRecords *bool `json:"with_records,string,omitempty"`
 	// Set true to get other resources usage (see [ResourceUsageType]) 
 	WithOtherResources *bool `json:"with_other_resources,string,omitempty"`
-	// The child account ID list separated by semicolon (;). Use the 'all' value to select all child accounts 
+	// The child account ID list separated by semicolons (;) 
 	ChildAccountId string `json:"child_account_id,omitempty"`
 	// Set true to get the children account calls only 
 	ChildrenCallsOnly *bool `json:"children_calls_only,string,omitempty"`
@@ -99,9 +99,9 @@ type GetBriefCallHistoryParams struct {
 	ApplicationName string `json:"application_name,omitempty"`
 	// To receive the call history for a specific routing rule, pass the rule name to this parameter. Applies only if you set application_id or application_name 
 	RuleName string `json:"rule_name,omitempty"`
-	// To receive a call history for a specific remote numbers, pass the number list separated by semicolon (;). A remote number is a number on the client side 
+	// To receive a call history for a specific remote numbers, pass the number list separated by semicolons (;). A remote number is a number on the client side 
 	RemoteNumber string `json:"remote_number,omitempty"`
-	// To receive a call history for a specific local numbers, pass the number list separated by semicolon (;). A local number is a number on the platform side 
+	// To receive a call history for a specific local numbers, pass the number list separated by semicolons (;). A local number is a number on the platform side 
 	LocalNumber string `json:"local_number,omitempty"`
 	// To filter the call history by the custom_data passed to the call sessions, pass the custom data to this parameter 
 	CallSessionHistoryCustomData string `json:"call_session_history_custom_data,omitempty"`
@@ -139,7 +139,7 @@ func (s *HistoryService) GetBriefCallHistory(params GetBriefCallHistoryParams) (
 type GetHistoryReportsParams struct {
 	// The history report ID to filter 
 	HistoryReportId int `json:"history_report_id,string,omitempty"`
-	// The history report type list separated by semicolon (;). Use the 'all' value to select all history report types. The following values are possible: calls, calls_brief, transactions, audit, call_list 
+	// The history report type list separated by semicolons (;). Use the 'all' value to select all history report types. The following values are possible: calls, calls_brief, transactions, audit, call_list 
 	HistoryType string `json:"history_type,omitempty"`
 	// The UTC creation from date filter in 24-h format: YYYY-MM-DD HH:mm:ss 
 	CreatedFrom *structure.Timestamp `json:"created_from,string,omitempty"`
@@ -153,7 +153,7 @@ type GetHistoryReportsParams struct {
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records will be skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
-	// The application ID to filter. Can be a list separated by semicolon (;). Use the 'all' value to select all applications 
+	// The application ID to filter. Can be a list separated by semicolons (;). Use the 'all' value to select all applications 
 	ApplicationId string `json:"application_id,omitempty"`
 }
 
@@ -187,15 +187,15 @@ type GetTransactionHistoryParams struct {
 	ToDate *structure.Timestamp `json:"to_date,string"`
 	// The selected timezone or the 'auto' value (the account location) 
 	Timezone string `json:"timezone,omitempty"`
-	// The transaction ID list separated by semicolon (;) 
+	// The transaction ID list separated by semicolons (;) 
 	TransactionId string `json:"transaction_id,omitempty"`
 	// The external payment reference to filter 
 	PaymentReference string `json:"payment_reference,omitempty"`
-	// The transaction type list separated by semicolon (;). The following values are possible: resource_charge, money_distribution, subscription_charge, subscription_installation_charge, card_periodic_payment, card_overrun_payment, card_payment, rub_card_periodic_payment, rub_card_overrun_payment, rub_card_payment, robokassa_payment, gift, promo, adjustment, wire_transfer, us_wire_transfer, refund, discount, mgp_charge, mgp_startup, mgp_business, mgp_big_business, mgp_enterprise, mgp_large_enterprise, techsupport_charge, tax_charge, monthly_fee_charge, grace_credit_payment, grace_credit_provision, mau_charge, mau_overrun, im_charge, im_overrun, fmc_charge, sip_registration_charge, development_fee, money_transfer_to_child, money_transfer_to_parent, money_acceptance_from_child, money_acceptance_from_parent, phone_number_installation, phone_number_charge, toll_free_phone_number_installation, toll_free_phone_number_charge, services, user_money_transfer, paypal_payment, paypal_overrun_payment, paypal_periodic_payment 
+	// The transaction type list separated by semicolons (;). The following values are possible: gift_revoke, resource_charge, money_distribution, subscription_charge, subscription_installation_charge, card_periodic_payment, card_overrun_payment, card_payment, rub_card_periodic_payment, rub_card_overrun_payment, rub_card_payment, robokassa_payment, gift, promo, adjustment, wire_transfer, us_wire_transfer, refund, discount, mgp_charge, mgp_startup, mgp_business, mgp_big_business, mgp_enterprise, mgp_large_enterprise, techsupport_charge, tax_charge, monthly_fee_charge, grace_credit_payment, grace_credit_provision, mau_charge, mau_overrun, im_charge, im_overrun, fmc_charge, sip_registration_charge, development_fee, money_transfer_to_child, money_transfer_to_parent, money_acceptance_from_child, money_acceptance_from_parent, phone_number_installation, phone_number_charge, toll_free_phone_number_installation, toll_free_phone_number_charge, services, user_money_transfer, paypal_payment, paypal_overrun_payment, paypal_periodic_payment 
 	TransactionType string `json:"transaction_type,omitempty"`
-	// The user ID list separated by semicolon (;) 
+	// The user ID list separated by semicolons (;) 
 	UserId string `json:"user_id,omitempty"`
-	// The child account ID list separated by semicolon (;). Use the 'all' value to select all child accounts 
+	// The child account ID list separated by semicolons (;). Use the 'all' value to select all child accounts 
 	ChildAccountId string `json:"child_account_id,omitempty"`
 	// Set true to get the children account transactions only 
 	ChildrenTransactionsOnly *bool `json:"children_transactions_only,string,omitempty"`
@@ -273,13 +273,13 @@ type GetACDHistoryParams struct {
 	FromDate *structure.Timestamp `json:"from_date,string"`
 	// The UTC 'to' date filter in 24-h format: YYYY-MM-DD HH:mm:ss 
 	ToDate *structure.Timestamp `json:"to_date,string"`
-	// The ACD session history ID list separated by semicolon (;) 
+	// The ACD session history ID list separated by semicolons (;) 
 	AcdSessionHistoryId string `json:"acd_session_history_id,omitempty"`
-	// The ACD request ID list separated by semicolon (;) 
+	// The ACD request ID list separated by semicolons (;) 
 	AcdRequestId string `json:"acd_request_id,omitempty"`
-	// The ACD queue ID list to filter separated by semicolon (;) 
+	// The ACD queue ID list to filter separated by semicolons (;) 
 	AcdQueueId string `json:"acd_queue_id,omitempty"`
-	// The user ID list to filter separated by semicolon (;) 
+	// The user ID list to filter separated by semicolons (;) 
 	UserId string `json:"user_id,omitempty"`
 	// Set true to get the calls terminated by the operator 
 	OperatorHangup *bool `json:"operator_hangup,string,omitempty"`
@@ -333,13 +333,13 @@ type GetAuditLogParams struct {
 	ToDate *structure.Timestamp `json:"to_date,string"`
 	// The selected timezone or the 'auto' value (the account location) 
 	Timezone string `json:"timezone,omitempty"`
-	// The audit history ID list separated by semicolon (;) 
+	// The audit history ID list separated by semicolons (;) 
 	AuditLogId string `json:"audit_log_id,omitempty"`
 	// The admin user ID to filter 
 	FilteredAdminUserId string `json:"filtered_admin_user_id,omitempty"`
-	// The IP list separated by semicolon (;) to filter 
+	// The IP list separated by semicolons (;) to filter 
 	FilteredIp string `json:"filtered_ip,omitempty"`
-	// The function list separated by semicolon (;) to filter 
+	// The function list separated by semicolons (;) to filter 
 	FilteredCmd string `json:"filtered_cmd,omitempty"`
 	// A relation ID to filter (for example: a phone_number value, a user_id value, an application_id value) 
 	AdvancedFilters string `json:"advanced_filters,omitempty"`

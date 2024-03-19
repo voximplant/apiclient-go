@@ -177,19 +177,19 @@ type GetSipRegistrationsParams struct {
 	Successful *bool `json:"successful,string,omitempty"`
 	// The persistent flag to filter 
 	IsPersistent *bool `json:"is_persistent,string,omitempty"`
-	// The application ID list separated by semicolon (;) to filter. Can be used instead of <b>application_name</b> 
+	// The application ID list separated by semicolons (;) to filter. Can be used instead of <b>application_name</b> 
 	ApplicationId string `json:"application_id,omitempty"`
-	// The application name list separated by semicolon (;) to filter. Can be used instead of <b>application_id</b> 
+	// The application name list separated by semicolons (;) to filter. Can be used instead of <b>application_id</b> 
 	ApplicationName string `json:"application_name,omitempty"`
 	// Is a SIP registration bound to an application 
 	IsBoundToApplication *bool `json:"is_bound_to_application,string,omitempty"`
-	// The rule ID list separated by semicolon (;) to filter. Can be used instead of <b>rule_name</b> 
+	// The rule ID list separated by semicolons (;) to filter. Can be used instead of <b>rule_name</b> 
 	RuleId string `json:"rule_id"`
-	// The rule name list separated by semicolon (;) to filter. Can be used instead of <b>rule_id</b> 
+	// The rule name list separated by semicolons (;) to filter. Can be used instead of <b>rule_id</b> 
 	RuleName string `json:"rule_name"`
-	// The user ID list separated by semicolon (;) to filter. Can be used instead of <b>user_name</b> 
+	// The user ID list separated by semicolons (;) to filter. Can be used instead of <b>user_name</b> 
 	UserId string `json:"user_id"`
-	// The user name list separated by semicolon (;) to filter. Can be used instead of <b>user_id</b> 
+	// The user name list separated by semicolons (;) to filter. Can be used instead of <b>user_id</b> 
 	UserName string `json:"user_name"`
 	// The list of proxy servers to use, divided by semicolon (;) 
 	Proxy string `json:"proxy,omitempty"`

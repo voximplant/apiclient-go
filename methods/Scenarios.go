@@ -43,9 +43,9 @@ func (s *ScenariosService) AddScenario(params AddScenarioParams) (*AddScenarioRe
 }
 
 type DelScenarioParams struct {
-	// The scenario ID list separated by semicolon (;). Use the 'all' value to delete all scenarios in all applications 
+	// The scenario ID list separated by semicolons (;). Use the 'all' value to delete all scenarios in all applications 
 	ScenarioId string `json:"scenario_id"`
-	// The scenario name list separated by semicolon (;). Can be used instead of <b>scenario_id</b> 
+	// The scenario name list separated by semicolons (;). Can be used instead of <b>scenario_id</b> 
 	ScenarioName string `json:"scenario_name"`
 }
 
@@ -69,9 +69,9 @@ func (s *ScenariosService) DelScenario(params DelScenarioParams) (*DelScenarioRe
 }
 
 type BindScenarioParams struct {
-	// The scenario ID list separated by semicolon (;) 
+	// The scenario ID list separated by semicolons (;) 
 	ScenarioId string `json:"scenario_id"`
-	// The scenario name list separated by semicolon (;). Can be used instead of <b>scenario_id</b> 
+	// The scenario name list separated by semicolons (;). Can be used instead of <b>scenario_id</b> 
 	ScenarioName string `json:"scenario_name"`
 	// The rule ID to bind the scenario. The rule and the scenario need to be in the same application 
 	RuleId int `json:"rule_id,string"`
@@ -175,7 +175,7 @@ type ReorderScenariosParams struct {
 	RuleId int `json:"rule_id,string"`
 	// The rule name that can be used instead of <b>rule_id</b> 
 	RuleName string `json:"rule_name"`
-	// The scenario ID list separated by semicolon (;) 
+	// The scenario ID list separated by semicolons (;) 
 	ScenarioId string `json:"scenario_id,omitempty"`
 }
 
@@ -213,7 +213,7 @@ type StartScenariosParams struct {
 	ScriptCustomData string `json:"script_custom_data,omitempty"`
 	// Specifies the IP from the geolocation of predicted subscribers. It allows selecting the nearest server for serving subscribers 
 	ReferenceIp string `json:"reference_ip,omitempty"`
-	// Specifies the location of the server where the scenario needs to be executed 
+	// Specifies the location of the server where the scenario needs to be executed. Has higher priority than `reference_ip`. Request [getServerLocations](https://api.voximplant.com/getServerLocations) for possible values 
 	ServerLocation string `json:"server_location,omitempty"`
 	// Set true to get media server session lists url 
 	WithCheckUrl *bool `json:"with_check_url,string,omitempty"`
@@ -263,6 +263,8 @@ type StartConferenceParams struct {
 	ScriptCustomData string `json:"script_custom_data,omitempty"`
 	// Specifies the IP from the geolocation of predicted subscribers. It allows selecting the nearest server for serving subscribers 
 	ReferenceIp string `json:"reference_ip,omitempty"`
+	// Specifies the location of the server where the scenario needs to be executed. Has higher priority than `reference_ip`. Request [getServerLocations](https://api.voximplant.com/getServerLocations) for possible values 
+	ServerLocation string `json:"server_location,omitempty"`
 }
 
 type StartConferenceReturn struct {

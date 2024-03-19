@@ -41,9 +41,9 @@ func (s *ApplicationsService) AddApplication(params AddApplicationParams) (*AddA
 }
 
 type DelApplicationParams struct {
-	// The application ID list separated by semicolon (;). Use the 'all' value to select all applications 
+	// The application ID list separated by semicolons (;). Use the 'all' value to select all applications 
 	ApplicationId string `json:"application_id"`
-	// The application name list separated by semicolon (;). Can be used instead of <b>application_id</b> 
+	// The application name list separated by semicolons (;). Can be used instead of <b>application_id</b> 
 	ApplicationName string `json:"application_name"`
 }
 

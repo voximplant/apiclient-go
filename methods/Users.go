@@ -51,9 +51,9 @@ func (s *UsersService) AddUser(params AddUserParams) (*AddUserReturn, *structure
 }
 
 type DelUserParams struct {
-	// The user ID list separated by semicolon (;). Use the 'all' value to select all users 
+	// The user ID list separated by semicolons (;). Use the 'all' value to select all users 
 	UserId string `json:"user_id"`
-	// The user name list separated by semicolon (;) that can be used instead of <b>user_id</b> 
+	// The user name list separated by semicolons (;) that can be used instead of <b>user_id</b> 
 	UserName string `json:"user_name"`
 	// Delete the specified users bound to the application ID. It is required if the <b>user_name</b> is specified 
 	ApplicationId int `json:"application_id,string,omitempty"`
@@ -149,7 +149,7 @@ type GetUsersParams struct {
 	WithSkills *bool `json:"with_skills,string,omitempty"`
 	// Set true to get the bound queues 
 	WithQueues *bool `json:"with_queues,string,omitempty"`
-	// The ACD status list separated by semicolon (;) to filter. The following values are possible: OFFLINE, ONLINE, READY, BANNED, IN_SERVICE, AFTER_SERVICE, TIMEOUT, DND 
+	// The ACD status list separated by semicolons (;) to filter. The following values are possible: OFFLINE, ONLINE, READY, BANNED, IN_SERVICE, AFTER_SERVICE, TIMEOUT, DND 
 	AcdStatus string `json:"acd_status,omitempty"`
 	// The skill to show in the 'skills' field output 
 	ShowingSkillId int `json:"showing_skill_id,string,omitempty"`
@@ -187,9 +187,9 @@ func (s *UsersService) GetUsers(params GetUsersParams) (*GetUsersReturn, *struct
 }
 
 type TransferMoneyToUserParams struct {
-	// The user ID list separated by semicolon (;). Use the 'all' value to select all users 
+	// The user ID list separated by semicolons (;). Use the 'all' value to select all users 
 	UserId string `json:"user_id,omitempty"`
-	// The user name list separated by semicolon (;) that can be used instead of <b>user_id</b> 
+	// The user name list separated by semicolons (;) that can be used instead of <b>user_id</b> 
 	UserName string `json:"user_name,omitempty"`
 	// The money amount, $. The absolute amount value must be equal or greater than 0.01 
 	Amount float64 `json:"amount,string"`

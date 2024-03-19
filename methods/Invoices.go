@@ -11,7 +11,7 @@ type InvoicesService struct {
 type GetAccountInvoicesParams struct {
 	// Status to filter invoices. Possible values: new, taxed, accepted, committed, cancelled, numbered 
 	Status string `json:"status,omitempty"`
-	// Number of invooces to show per page. Default value is 20 
+	// Number of invoices to show per page. Default value is 20 
 	Count int `json:"count,string,omitempty"`
 	// Number of invoices to skip (e.g. if you set count = 20 and offset = 0 the first time, the next time, offset has to be equal to 20 to skip the items shown earlier). Default value is 0 
 	Offset int `json:"offset,string,omitempty"`
@@ -19,7 +19,7 @@ type GetAccountInvoicesParams struct {
 
 type GetAccountInvoicesReturn struct {
 	// Array of the account invoices 
-	Result *structure.AccountInvocie `json:"result"`
+	Result *structure.AccountInvoice `json:"result"`
 	// Total number of invoices matching the query parameters 
 	TotalCount int `json:"total_count"`
 	// Number of returned invoices matching the query parameters 

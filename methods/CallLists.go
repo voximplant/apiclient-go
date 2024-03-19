@@ -31,6 +31,8 @@ type CreateCallListParams struct {
 	Escape string `json:"escape,omitempty"`
 	// Specifies the IP from the geolocation of the call list subscribers. It allows selecting the nearest server for serving subscribers 
 	ReferenceIp string `json:"reference_ip,omitempty"`
+	// Specifies the location of the server where the scenario needs to be executed. Has higher priority than `reference_ip`. Request [getServerLocations](https://api.voximplant.com/getServerLocations) for possible values 
+	ServerLocation string `json:"server_location,omitempty"`
 }
 
 type CreateCallListReturn struct {
@@ -57,7 +59,7 @@ func (s *CallListsService) CreateCallList(params CreateCallListParams) (*CreateC
 }
 
 type GetCallListsParams struct {
-	// The list ID to filter. Can be a list separated by semicolon (;). Use the 'all' value to select all lists 
+	// The list ID to filter. Can be a list separated by semicolons (;). Use the 'all' value to select all lists 
 	ListId string `json:"list_id,omitempty"`
 	// Find call lists by name 
 	Name string `json:"name,omitempty"`
@@ -73,7 +75,7 @@ type GetCallListsParams struct {
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records will be skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
-	// The application ID to filter. Can be a list separated by semicolon (;). Use the 'all' value to select all applications 
+	// The application ID to filter. Can be a list separated by semicolons (;). Use the 'all' value to select all applications 
 	ApplicationId string `json:"application_id,omitempty"`
 }
 

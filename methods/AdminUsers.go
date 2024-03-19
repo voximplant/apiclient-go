@@ -17,7 +17,7 @@ type AddAdminUserParams struct {
 	NewAdminUserPassword string `json:"new_admin_user_password"`
 	// The admin user enable flag 
 	AdminUserActive *bool `json:"admin_user_active,string,omitempty"`
-	// The role(s) ID created via <a href='/docs/references/httpapi/adminroles'>Managing Admin Roles</a> methods. The attaching admin role ID list separated by semicolon (;). Use the 'all' value to select all admin roles 
+	// The role(s) ID created via <a href='/docs/references/httpapi/adminroles'>Managing Admin Roles</a> methods. The attaching admin role ID list separated by semicolons (;). Use the 'all' value to select all admin roles 
 	AdminRoleId string `json:"admin_role_id,omitempty"`
 	// The role(s) name(s) created via <a href='/docs/references/httpapi/adminroles'>Managing Admin Roles</a> methods. The attaching admin role name that can be used instead of <b>admin_role_id</b> 
 	AdminRoleName string `json:"admin_role_name,omitempty"`
@@ -47,7 +47,7 @@ func (s *AdminUsersService) AddAdminUser(params AddAdminUserParams) (*AddAdminUs
 }
 
 type DelAdminUserParams struct {
-	// The admin user ID list separated by semicolon (;). Use the 'all' value to select all admin users 
+	// The admin user ID list separated by semicolons (;). Use the 'all' value to select all admin users 
 	RequiredAdminUserId string `json:"required_admin_user_id"`
 	// The admin user name to delete, can be used instead of <b>required_admin_user_id</b> 
 	RequiredAdminUserName string `json:"required_admin_user_name"`
@@ -149,11 +149,11 @@ func (s *AdminUsersService) GetAdminUsers(params GetAdminUsersParams) (*GetAdmin
 }
 
 type AttachAdminRoleParams struct {
-	// The admin user ID list separated by semicolon (;). Use the 'all' value to select all admin users 
+	// The admin user ID list separated by semicolons (;). Use the 'all' value to select all admin users 
 	RequiredAdminUserId string `json:"required_admin_user_id"`
 	// The admin user name to bind, can be used instead of <b>required_admin_user_id</b> 
 	RequiredAdminUserName string `json:"required_admin_user_name"`
-	// The role(s) ID created via <a href='/docs/references/httpapi/adminroles'>Managing Admin Roles</a> methods. The attached admin role ID list separated by semicolon (;). Use the 'all' value to select alladmin roles 
+	// The role(s) ID created via <a href='/docs/references/httpapi/adminroles'>Managing Admin Roles</a> methods. The attached admin role ID list separated by semicolons (;). Use the 'all' value to select alladmin roles 
 	AdminRoleId string `json:"admin_role_id"`
 	// The role(s) name(s) created via <a href='/docs/references/httpapi/adminroles'>Managing Admin Roles</a> methods. The admin role name to attach, can be used instead of <b>admin_role_id</b> 
 	AdminRoleName string `json:"admin_role_name"`

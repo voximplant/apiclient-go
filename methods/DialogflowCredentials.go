@@ -15,7 +15,7 @@ type AddDialogflowKeyParams struct {
 	ApplicationName string `json:"application_name,omitempty"`
 	// Dialogflow credentials, provided by JWK (Json web key) 
 	JsonCredentials string `json:"json_credentials"`
-	// The Dialogflow keys's description 
+	// The Dialogflow key's description 
 	Description string `json:"description,omitempty"`
 }
 
@@ -123,7 +123,7 @@ func (s *DialogflowCredentialsService) GetDialogflowKeys(params GetDialogflowKey
 type BindDialogflowKeysParams struct {
 	// The Dialogflow key's ID  
 	DialogflowKeyId int `json:"dialogflow_key_id,string"`
-	// The application ID list separated by semicolon (;). Use the 'all' value to select all applications 
+	// The application ID list separated by semicolons (;). Use the 'all' value to select all applications 
 	ApplicationId string `json:"application_id"`
 	// Set to false to unbind. Default value is true 
 	Bind *bool `json:"bind,string,omitempty"`

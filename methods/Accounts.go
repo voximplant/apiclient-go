@@ -101,11 +101,11 @@ func (s *AccountsService) SetAccountInfo(params SetAccountInfoParams) (*SetAccou
 }
 
 type SetChildAccountInfoParams struct {
-	// The child account ID list separated by semicolon (;). Use the 'all' value to select all child accounts 
+	// The child account ID list separated by semicolons (;). Use the 'all' value to select all child accounts 
 	ChildAccountId string `json:"child_account_id"`
-	// The child account name list separated by semicolon (;). Can be used instead of <b>child_account_id</b> 
+	// The child account name list separated by semicolons (;). Can be used instead of <b>child_account_id</b> 
 	ChildAccountName string `json:"child_account_name"`
-	// The child account email list separated by semicolon (;). Can be used instead of <b>child_account_id</b> 
+	// The child account email list separated by semicolons (;). Can be used instead of <b>child_account_id</b> 
 	ChildAccountEmail string `json:"child_account_email"`
 	// The new child account email 
 	NewChildAccountEmail string `json:"new_child_account_email,omitempty"`
@@ -155,7 +155,7 @@ func (s *AccountsService) SetChildAccountInfo(params SetChildAccountInfoParams) 
 }
 
 type GetCurrencyRateParams struct {
-	// The currency code list separated by semicolon (;). Examples: RUR, KZT, EUR, USD 
+	// The currency code list separated by semicolons (;). Examples: RUR, KZT, EUR, USD 
 	Currency string `json:"currency"`
 	// The date, format: YYYY-MM-DD 
 	Date *structure.Date `json:"date,string,omitempty"`
@@ -181,13 +181,13 @@ func (s *AccountsService) GetCurrencyRate(params GetCurrencyRateParams) (*GetCur
 }
 
 type GetResourcePriceParams struct {
-	// The resource type list separated by semicolon (;). The possible values are AUDIOHDCONFERENCE, AUDIOHDRECORD, AUDIORECORD, CALLLIST, CALLSESSION, DIALOGFLOW, IM, PSTN_IN_ALASKA, PSTN_IN_GB, PSTN_IN_GEOGRAPHIC, PSTN_IN_GEO_PH, PSTN_IN_RU, PSTN_IN_RU_TOLLFREE, PSTN_INTERNATIONAL, PSTNINTEST, PSTN_IN_TF_AR, PSTN_IN_TF_AT, PSTN_IN_TF_AU, PSTN_IN_TF_BE, PSTN_IN_TF_BR, PSTN_IN_TF_CA, PSTN_IN_TF_CO, PSTN_IN_TF_CY, PSTN_IN_TF_DE, PSTN_IN_TF_DK, PSTN_IN_TF_DO, PSTN_IN_TF_FI, PSTN_IN_TF_FR, PSTN_IN_TF_GB, PSTN_IN_TF_HR, PSTN_IN_TF_HU, PSTN_IN_TF_IL, PSTN_IN_TF_LT, PSTN_IN_TF_PE, PSTN_IN_TF_US, PSTN_IN_US, PSTNOUT, PSTNOUT_EEA, PSTNOUTEMERG, PSTNOUT_KZ, PSTNOUT_LOCAL, PSTN_OUT_LOCAL_RU, RELAYED_TRAFFIC, SIPOUT, SIPOUTVIDEO, SMSINPUT, SMSOUT, SMSOUT_INTERNATIONAL, TRANSCRIPTION, TTS_TEXT_GOOGLE, TTS_YANDEX, USER_LOGON, VIDEOCALL, VIDEORECORD, VOICEMAILDETECTION, VOIPIN, VOIPOUT, VOIPOUTVIDEO, YANDEXASR, ASR, ASR_GOOGLE_ENHANCED 
+	// The resource type list separated by semicolons (;). The possible values are AUDIOHDCONFERENCE, AUDIOHDRECORD, AUDIORECORD, CALLLIST, CALLSESSION, DIALOGFLOW, IM, PSTN_IN_ALASKA, PSTN_IN_GB, PSTN_IN_GEOGRAPHIC, PSTN_IN_GEO_PH, PSTN_IN_RU, PSTN_IN_RU_TOLLFREE, PSTN_INTERNATIONAL, PSTNINTEST, PSTN_IN_TF_AR, PSTN_IN_TF_AT, PSTN_IN_TF_AU, PSTN_IN_TF_BE, PSTN_IN_TF_BR, PSTN_IN_TF_CA, PSTN_IN_TF_CO, PSTN_IN_TF_CY, PSTN_IN_TF_DE, PSTN_IN_TF_DK, PSTN_IN_TF_DO, PSTN_IN_TF_FI, PSTN_IN_TF_FR, PSTN_IN_TF_GB, PSTN_IN_TF_HR, PSTN_IN_TF_HU, PSTN_IN_TF_IL, PSTN_IN_TF_LT, PSTN_IN_TF_PE, PSTN_IN_TF_US, PSTN_IN_US, PSTNOUT, PSTNOUT_EEA, PSTNOUTEMERG, PSTNOUT_KZ, PSTNOUT_LOCAL, PSTN_OUT_LOCAL_RU, RELAYED_TRAFFIC, SIPOUT, SIPOUTVIDEO, SMSINPUT, SMSOUT, SMSOUT_INTERNATIONAL, TRANSCRIPTION, TTS_TEXT_GOOGLE, TTS_YANDEX, USER_LOGON, VIDEOCALL, VIDEORECORD, VOICEMAILDETECTION, VOIPIN, VOIPOUT, VOIPOUTVIDEO, YANDEXASR, ASR, ASR_GOOGLE_ENHANCED 
 	ResourceType string `json:"resource_type,omitempty"`
-	// The price group ID list separated by semicolon (;) 
+	// The price group ID list separated by semicolons (;) 
 	PriceGroupId string `json:"price_group_id,omitempty"`
 	// The price group name template to filter 
 	PriceGroupName string `json:"price_group_name,omitempty"`
-	// The resource parameter list separated by semicolon (;). Example: a phone number list 
+	// The resource parameter list separated by semicolons (;). Example: a phone number list 
 	ResourceParam string `json:"resource_param,omitempty"`
 }
 
@@ -211,7 +211,7 @@ func (s *AccountsService) GetResourcePrice(params GetResourcePriceParams) (*GetR
 }
 
 type GetSubscriptionPriceParams struct {
-	// The subscription template ID list separated by semicolon (;) 
+	// The subscription template ID list separated by semicolons (;) 
 	SubscriptionTemplateId string `json:"subscription_template_id,omitempty"`
 	// The subscription template type. The following values are possible: PHONE_NUM, SIP_REGISTRATION 
 	SubscriptionTemplateType string `json:"subscription_template_type,omitempty"`
@@ -243,11 +243,11 @@ func (s *AccountsService) GetSubscriptionPrice(params GetSubscriptionPriceParams
 }
 
 type GetChildrenAccountsParams struct {
-	// The account ID list separated by semicolon (;). Use the 'all' value to select all accounts 
+	// The account ID list separated by semicolons (;). You need to specify at least one of the following parameters: `child_account_id`, `child_account_name`, `child_account_email` 
 	ChildAccountId string `json:"child_account_id,omitempty"`
-	// The child account name part to filter 
+	// The child account name to filter. You need to specify at least one of the following parameters: `child_account_id`, `child_account_name`, `child_account_email` 
 	ChildAccountName string `json:"child_account_name,omitempty"`
-	// The child ccount email to filter 
+	// The child ccount email to filter. You need to specify at least one of the following parameters: `child_account_id`, `child_account_name`, `child_account_email` 
 	ChildAccountEmail string `json:"child_account_email,omitempty"`
 	// The active flag to filter 
 	Active *bool `json:"active,string,omitempty"`
@@ -319,9 +319,9 @@ func (s *AccountsService) GetMoneyAmountToCharge(params GetMoneyAmountToChargePa
 }
 
 type ChargeAccountParams struct {
-	// The phone ID list separated by semicolon (;). Use the 'all' value to select all phone ids. You should specify the phones having the auto_charge=false 
+	// The phone ID list separated by semicolons (;). Use the 'all' value to select all phone ids. You should specify the phones having the auto_charge=false 
 	PhoneId string `json:"phone_id"`
-	// The phone number list separated by semicolon (;). Use the 'all' value to select all phone numbers. Can be used instead of <b>phone_id</b>. You should specify the phones having the auto_charge=false 
+	// The phone number list separated by semicolons (;). Use the 'all' value to select all phone numbers. Can be used instead of <b>phone_id</b>. You should specify the phones having the auto_charge=false 
 	PhoneNumber string `json:"phone_number"`
 }
 
@@ -375,9 +375,9 @@ func (s *AccountsService) ChangeAccountPlan(params ChangeAccountPlanParams) (*Ch
 }
 
 type GetAccountPlansParams struct {
-	// The plan type list separated by semicolon (;). The possible values are IM, MAU 
+	// The plan type list separated by semicolons (;). The possible values are IM, MAU 
 	PlanType string `json:"plan_type,omitempty"`
-	// The plan ID list separated by semicolon (;) 
+	// The plan ID list separated by semicolons (;) 
 	PlanSubscriptionTemplateId string `json:"plan_subscription_template_id,omitempty"`
 }
 
@@ -401,9 +401,9 @@ func (s *AccountsService) GetAccountPlans(params GetAccountPlansParams) (*GetAcc
 }
 
 type GetAvailablePlansParams struct {
-	// The plan type list separated by semicolon (;). The possible values are IM, MAU 
+	// The plan type list separated by semicolons (;). The possible values are IM, MAU 
 	PlanType string `json:"plan_type,omitempty"`
-	// The plan ID list separated by semicolon (;) 
+	// The plan ID list separated by semicolons (;) 
 	PlanSubscriptionTemplateId string `json:"plan_subscription_template_id,omitempty"`
 }
 
@@ -431,13 +431,13 @@ type GetAccountDocumentsParams struct {
 	WithDetails *bool `json:"with_details,string,omitempty"`
 	// The required account verification name to filter 
 	VerificationName string `json:"verification_name,omitempty"`
-	// The account verification status list separated by semicolon (;). The following values are possible: REQUIRED, IN_PROGRESS, VERIFIED 
+	// The account verification status list separated by semicolons (;). The following values are possible: REQUIRED, IN_PROGRESS, VERIFIED 
 	VerificationStatus string `json:"verification_status,omitempty"`
 	// Unverified subscriptions hold until the date (from ...) in format: YYYY-MM-DD 
 	FromUnverifiedHoldUntil *structure.Date `json:"from_unverified_hold_until,string,omitempty"`
 	// Unverified subscriptions hold until the date (... to) in format: YYYY-MM-DD 
 	ToUnverifiedHoldUntil *structure.Date `json:"to_unverified_hold_until,string,omitempty"`
-	// The child account ID list separated by semicolon (;). Use the 'all' value to select all child accounts 
+	// The child account ID list separated by semicolons (;). Use the 'all' value to select all child accounts 
 	ChildAccountId string `json:"child_account_id,omitempty"`
 	// Set true to get the children account verifications only 
 	ChildrenVerificationsOnly *bool `json:"children_verifications_only,string,omitempty"`

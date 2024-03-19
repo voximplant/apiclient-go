@@ -123,17 +123,17 @@ func (s *SkillsService) GetSkills(params GetSkillsParams) (*GetSkillsReturn, *st
 }
 
 type BindSkillParams struct {
-	// The skill ID list separated by semicolon (;). Use the 'all' value to select all skills 
+	// The skill ID list separated by semicolons (;). Use the 'all' value to select all skills 
 	SkillId string `json:"skill_id"`
-	// The skill name list separated by semicolon (;). Can be used instead of <b>skill_id</b> 
+	// The skill name list separated by semicolons (;). Can be used instead of <b>skill_id</b> 
 	SkillName string `json:"skill_name"`
-	// The user ID list separated by semicolon (;). Use the 'all' value to select all users 
+	// The user ID list separated by semicolons (;). Use the 'all' value to select all users 
 	UserId string `json:"user_id"`
-	// The user name list separated by semicolon (;). <b>user_name</b> can be used instead of <b>user_id</b> 
+	// The user name list separated by semicolons (;). <b>user_name</b> can be used instead of <b>user_id</b> 
 	UserName string `json:"user_name"`
-	// The ACD queue ID list separated by semicolon (;). Use the 'all' value to select all ACD queues 
+	// The ACD queue ID list separated by semicolons (;). Use the 'all' value to select all ACD queues 
 	AcdQueueId string `json:"acd_queue_id"`
-	// The ACD queue name that can be used instead of <b>acd_queue_id</b>. The ACD queue name list separated by semicolon (;) 
+	// The ACD queue name that can be used instead of <b>acd_queue_id</b>. The ACD queue name list separated by semicolons (;) 
 	AcdQueueName string `json:"acd_queue_name"`
 	// The application ID. It is required if the <b>user_name</b> is specified 
 	ApplicationId int `json:"application_id,string,omitempty"`

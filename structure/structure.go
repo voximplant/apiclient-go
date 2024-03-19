@@ -28,11 +28,11 @@ type AccountInfoType struct {
 	Location string `json:"location,omitempty"`
 	// The min balance value to notify by email or SMS 
 	MinBalanceToNotify float64 `json:"min_balance_to_notify,omitempty"`
-	// Voximplant notifications are required 
+	// Whether Voximplant notifications are required 
 	AccountNotifications *bool `json:"account_notifications,omitempty"`
-	// Voximplant plan changing notifications are required 
+	// Whether Voximplant plan changing notifications are required 
 	TariffChangingNotifications *bool `json:"tariff_changing_notifications,omitempty"`
-	// Voximplant news notifications are required 
+	// Whether Voximplant news notifications are required 
 	NewsNotifications *bool `json:"news_notifications,omitempty"`
 	// The company or businessman name 
 	BillingAddressName string `json:"billing_address_name,omitempty"`
@@ -46,9 +46,9 @@ type AccountInfoType struct {
 	BillingAddressPhone string `json:"billing_address_phone,omitempty"`
 	// The office state (US) or province (Canada), up to 100 characters. Examples: California, Illinois, British Columbia 
 	BillingAddressState string `json:"billing_address_state,omitempty"`
-	// The account activation flag 
+	// Whether the account is ctive 
 	Active *bool `json:"active"`
-	// Is account blocked by Voximplant admins or not 
+	// Whether account is blocked by Voximplant admins 
 	Frozen *bool `json:"frozen,omitempty"`
 	// The account's money 
 	Balance float64 `json:"balance,omitempty"`
@@ -56,27 +56,27 @@ type AccountInfoType struct {
 	CreditLimit float64 `json:"credit_limit,omitempty"`
 	// The currency code (USD, RUR, EUR, ...) 
 	Currency string `json:"currency,omitempty"`
-	// Robokassa payments are allowed 
+	// Whether Robokassa payments are allowed 
 	SupportRobokassa *bool `json:"support_robokassa,omitempty"`
-	// Bank card payments are allowed 
+	// Whether Bank card payments are allowed 
 	SupportBankCard *bool `json:"support_bank_card,omitempty"`
-	// Bank invoices are allowed 
+	// Whether Bank invoices are allowed 
 	SupportInvoice *bool `json:"support_invoice,omitempty"`
 	// The custom data 
 	AccountCustomData string `json:"account_custom_data,omitempty"`
 	// The allowed access entries (the API function names) 
 	AccessEntries []string `json:"access_entries,omitempty"`
-	// Set true to get the admin user permissions 
+	// Whether the admin user permissions are granted 
 	WithAccessEntries *bool `json:"with_access_entries,omitempty"`
 	// If URL is specified, Voximplant cloud will make HTTP POST requests to it when something happens. For a full list of reasons see the <b>type</b> field of the [AccountCallback] structure. The HTTP request will have a JSON-encoded body that conforms to the [AccountCallbacks] structure 
 	CallbackUrl string `json:"callback_url,omitempty"`
 	// If salt string is specified, each HTTP request made by the Voximplant cloud toward the <b>callback_url</b> will have a <b>salt</b> field set to MD5 hash of account information and salt. That hash can be used be a developer to ensure that HTTP request is made by the Voximplant cloud 
 	CallbackSalt string `json:"callback_salt,omitempty"`
-	// Sending email when a JS error occures 
+	// Whether to send an email when a JS error occures 
 	SendJsError *bool `json:"send_js_error,omitempty"`
 	// The payments limits applicable to each payment method 
 	BillingLimits BillingLimitsType `json:"billing_limits,omitempty"`
-	// One-way SMS activation flag 
+	// Whether to activate one-way SMS 
 	A2PSmsEnabled *bool `json:"a2p_sms_enabled,omitempty"`
 }
 
@@ -106,7 +106,7 @@ type BankCardBillingLimitInfoType struct {
 type ShortAccountInfoType struct {
 	// The account's ID 
 	AccountId int `json:"account_id"`
-	// Is account blocked by Voximplant admins or not 
+	// Whether account is blocked by Voximplant admins or not 
 	Frozen *bool `json:"frozen,omitempty"`
 	// The account's money 
 	Balance float64 `json:"balance,omitempty"`
@@ -121,7 +121,7 @@ type ClonedAccountType struct {
 	AccountName string `json:"account_name"`
 	// The account's email 
 	AccountEmail string `json:"account_email"`
-	// The account activation flag 
+	// Whether the account is active 
 	Active *bool `json:"active"`
 	// The account API key 
 	ApiKey string `json:"api_key"`
@@ -193,7 +193,7 @@ type PlanPackageType struct {
 	PriceGroupId []int `json:"price_group_id"`
 	// The package name 
 	PackageName string `json:"package_name,omitempty"`
-	// Overrun is enabled 
+	// Whether overrun is enabled 
 	MayOverrun *bool `json:"may_overrun"`
 	// The overrun amount 
 	OverrunPrice float64 `json:"overrun_price"`
@@ -210,7 +210,7 @@ type ApplicationInfoType struct {
 	ApplicationName string `json:"application_name"`
 	// The application editing UTC date in 24-h format: YYYY-MM-DD HH:mm:ss 
 	Modified Timestamp `json:"modified"`
-	// This flag indicates whether a secure storage for logs and records is enabled or not 
+	// Whether a secure storage for logs and records is enabled 
 	SecureRecordStorage *bool `json:"secure_record_storage"`
 }
 
@@ -230,9 +230,9 @@ type UserInfoType struct {
 	UserName string `json:"user_name"`
 	// The display user name 
 	UserDisplayName string `json:"user_display_name"`
-	// The user active flag 
+	// Whether the user is active 
 	UserActive *bool `json:"user_active"`
-	// 'True' if the user uses the parent account's money, 'false' if the user has a separate balance 
+	// Whether the user uses the parent account's money, 'false' if the user has a separate balance 
 	ParentAccounting *bool `json:"parent_accounting"`
 	// The current user's money in the currency specified for the account. The value is the number rounded to 4 decimal places and it changes during the calls, transcribing, purchases etc 
 	LiveBalance float64 `json:"live_balance"`
@@ -274,7 +274,7 @@ type ScenarioInfoType struct {
 	ScenarioScript string `json:"scenario_script,omitempty"`
 	// The scenario editing UTC date in 24-h format: YYYY-MM-DD HH:mm:ss 
 	Modified Timestamp `json:"modified"`
-	// 'True' if the scenario belongs to the parent account, 'false' if the scenario belongs to the current account 
+	// Whether the scenario belongs to the parent account, 'false' if the scenario belongs to the current account 
 	Parent *bool `json:"parent"`
 }
 
@@ -294,9 +294,9 @@ type RuleInfoType struct {
 	RuleName string `json:"rule_name"`
 	// The rule pattern regex 
 	RulePattern string `json:"rule_pattern"`
-	// The rule pattern exlude regex 
+	// The rule pattern excluding regex 
 	RulePatternExclude string `json:"rule_pattern_exclude,omitempty"`
-	// Video conference is required 
+	// Whether video conference is required 
 	VideoConference *bool `json:"video_conference"`
 	// The bound scenarios 
 	Scenarios []ScenarioInfoType `json:"scenarios"`
@@ -343,15 +343,15 @@ type CallSessionInfoType struct {
 	MediaServerAddress string `json:"media_server_address"`
 	// The link to the session log. The log retention policy is 1 month, after that time this field clears. If you have issues accessing the log file, check if the application has "Secure storage of applications and logs" feature enabled. In this case, you need to <a href='/docs/guides/managementapi/secureobjects'>authorize</a>. 
 	LogFileUrl string `json:"log_file_url"`
-	// The finish reason. Possible values are __Normal termination__, __Insufficient funds__, __Internal error (billing timeout)__, __Terminated administratively__, __JS session error__, __Timeout__ 
+	// Finish reason. Possible values are __Normal termination__, __Insufficient funds__, __Internal error (billing timeout)__, __Terminated administratively__, __JS session error__, __Timeout__ 
 	FinishReason string `json:"finish_reason,omitempty"`
-	// The calls within JS session, including durations, cost, phone numbers and other information 
+	// Calls within the JS session, including durations, cost, phone numbers and other information 
 	Calls []CallInfoType `json:"calls,omitempty"`
-	// The used resorces 
+	// Used resources 
 	OtherResourceUsage []ResourceUsageType `json:"other_resource_usage,omitempty"`
-	// The bound records 
+	// Bound records 
 	Records []RecordType `json:"records,omitempty"`
-	// The custom data 
+	// Custom data 
 	CustomData string `json:"custom_data,omitempty"`
 }
 
@@ -368,9 +368,9 @@ type CallInfoType struct {
 	RemoteNumber string `json:"remote_number"`
 	// The type of the remote number, such as PSTN, mobile, user or sip address 
 	RemoteNumberType string `json:"remote_number_type"`
-	// The incoming flag 
+	// Whether the call is incoming 
 	Incoming *bool `json:"incoming"`
-	// The success flag 
+	// Whether the call is successful 
 	Successful *bool `json:"successful"`
 	// The transaction ID 
 	TransactionId int `json:"transaction_id"`
@@ -395,7 +395,7 @@ type TransactionInfoType struct {
 	Amount float64 `json:"amount"`
 	// The amount currency (USD, RUR, EUR, ...).  
 	Currency string `json:"currency"`
-	// The transaction type. The following values are possible: resource_charge, money_distribution, subscription_charge, subscription_installation_charge, card_periodic_payment, card_overrun_payment, card_payment, rub_card_periodic_payment, rub_card_overrun_payment, rub_card_payment, robokassa_payment, gift, promo, adjustment, wire_transfer, us_wire_transfer, refund, discount, mgp_charge, mgp_startup, mgp_business, mgp_big_business, mgp_enterprise, mgp_large_enterprise, techsupport_charge, tax_charge, monthly_fee_charge, grace_credit_payment, grace_credit_provision, mau_charge, mau_overrun, im_charge, im_overrun, fmc_charge, sip_registration_charge, development_fee, money_transfer_to_child, money_transfer_to_parent, money_acceptance_from_child, money_acceptance_from_parent, phone_number_installation, phone_number_charge, toll_free_phone_number_installation, toll_free_phone_number_charge, services, user_money_transfer, paypal_payment, paypal_overrun_payment, paypal_periodic_payment 
+	// The transaction type. The following values are possible: gift_revoke, resource_charge, money_distribution, subscription_charge, subscription_installation_charge, card_periodic_payment, card_overrun_payment, card_payment, rub_card_periodic_payment, rub_card_overrun_payment, rub_card_payment, robokassa_payment, gift, promo, adjustment, wire_transfer, us_wire_transfer, refund, discount, mgp_charge, mgp_startup, mgp_business, mgp_big_business, mgp_enterprise, mgp_large_enterprise, techsupport_charge, tax_charge, monthly_fee_charge, grace_credit_payment, grace_credit_provision, mau_charge, mau_overrun, im_charge, im_overrun, fmc_charge, sip_registration_charge, development_fee, money_transfer_to_child, money_transfer_to_parent, money_acceptance_from_child, money_acceptance_from_parent, phone_number_installation, phone_number_charge, toll_free_phone_number_installation, toll_free_phone_number_charge, services, user_money_transfer, paypal_payment, paypal_overrun_payment, paypal_periodic_payment 
 	TransactionType string `json:"transaction_type"`
 	// The transaction description 
 	TransactionDescription string `json:"transaction_description,omitempty"`
@@ -1509,7 +1509,7 @@ type AccountCallback struct {
 	RobokassaPayment RobokassaPaymentCallback `json:"robokassa_payment,omitempty"`
 	// Received when a wire transfer is made 
 	WireTransfer WireTransferCallback `json:"wire_transfer,omitempty"`
-	// Received when <b>send_js_error</b> is set to true and a JS error occures. See the 'send_js_error' parameter of the 'SetAccountInfo' function 
+	// Received when <b>send_js_error</b> is set to true and a JS error occurs. See the 'send_js_error' parameter of the 'SetAccountInfo' function 
 	JsFail JSFailCallback `json:"js_fail,omitempty"`
 	// Received when the minimum balance is reached 
 	MinBalance MinBalanceCallback `json:"min_balance,omitempty"`
@@ -2455,7 +2455,7 @@ type KeyValueKeys struct {
 	ExpiresAt int `json:"expires_at"`
 }
 
-type AccountInvocie struct {
+type AccountInvoice struct {
 	// Invoice period 
 	Period InvoicePeriod `json:"period"`
 	// Info on all money spent in the invoice 

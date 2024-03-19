@@ -21,9 +21,9 @@ type AddRuleParams struct {
 	RulePatternExclude string `json:"rule_pattern_exclude,omitempty"`
 	// Video conference is required 
 	VideoConference *bool `json:"video_conference,string,omitempty"`
-	// The scenario ID list separated by semicolon (;) 
+	// The scenario ID list separated by semicolons (;) 
 	ScenarioId string `json:"scenario_id"`
-	// The scenario name list separated by semicolon (;). Can be used instead of <b>scenario_id</b> 
+	// The scenario name list separated by semicolons (;). Can be used instead of <b>scenario_id</b> 
 	ScenarioName string `json:"scenario_name"`
 }
 
@@ -49,13 +49,13 @@ func (s *RulesService) AddRule(params AddRuleParams) (*AddRuleReturn, *structure
 }
 
 type DelRuleParams struct {
-	// The rule ID list separated by semicolon (;). Use the 'all' value to select all rules 
+	// The rule ID list separated by semicolons (;). Use the 'all' value to select all rules 
 	RuleId string `json:"rule_id"`
-	// The rule name list separated by semicolon (;). Can be used instead of <b>rule_id</b> 
+	// The rule name list separated by semicolons (;). Can be used instead of <b>rule_id</b> 
 	RuleName string `json:"rule_name"`
-	// The application ID list separated by semicolon (;). Use the 'all' value to select all applications 
+	// The application ID list separated by semicolons (;). Use the 'all' value to select all applications 
 	ApplicationId string `json:"application_id"`
-	// The application name list separated by semicolon (;). Can be used instead of <b>application_id</b> 
+	// The application name list separated by semicolons (;). Can be used instead of <b>application_id</b> 
 	ApplicationName string `json:"application_name"`
 }
 
@@ -155,7 +155,7 @@ func (s *RulesService) GetRules(params GetRulesParams) (*GetRulesReturn, *struct
 }
 
 type ReorderRulesParams struct {
-	// The rule ID list separated by semicolon (;) 
+	// The rule ID list separated by semicolons (;) 
 	RuleId string `json:"rule_id"`
 }
 
