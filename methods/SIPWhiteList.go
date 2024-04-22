@@ -93,7 +93,7 @@ type GetSipWhiteListParams struct {
 	SipWhitelistId int `json:"sip_whitelist_id,string,omitempty"`
 	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output 
+	// The first <b>N</b> records are skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 }
 

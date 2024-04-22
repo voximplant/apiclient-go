@@ -15,7 +15,7 @@ type AddAdminUserParams struct {
 	AdminUserDisplayName string `json:"admin_user_display_name"`
 	// The admin user password. The length must be at least 6 symbols 
 	NewAdminUserPassword string `json:"new_admin_user_password"`
-	// The admin user enable flag 
+	// Whether the admin user is active 
 	AdminUserActive *bool `json:"admin_user_active,string,omitempty"`
 	// The role(s) ID created via <a href='/docs/references/httpapi/adminroles'>Managing Admin Roles</a> methods. The attaching admin role ID list separated by semicolons (;). Use the 'all' value to select all admin roles 
 	AdminRoleId string `json:"admin_role_id,omitempty"`
@@ -83,7 +83,7 @@ type SetAdminUserInfoParams struct {
 	AdminUserDisplayName string `json:"admin_user_display_name,omitempty"`
 	// The new admin user password. The length must be at least 6 symbols 
 	NewAdminUserPassword string `json:"new_admin_user_password,omitempty"`
-	// The admin user enable flag 
+	// Whether the admin user is active 
 	AdminUserActive *bool `json:"admin_user_active,string,omitempty"`
 }
 
@@ -113,15 +113,15 @@ type GetAdminUsersParams struct {
 	RequiredAdminUserName string `json:"required_admin_user_name,omitempty"`
 	// The admin user display name part to filter 
 	AdminUserDisplayName string `json:"admin_user_display_name,omitempty"`
-	// The admin user active flag to filter 
+	// Whether the admin user is active to filter 
 	AdminUserActive *bool `json:"admin_user_active,string,omitempty"`
-	// Set true to get the attached admin roles 
+	// Whether to get the attached admin roles 
 	WithRoles *bool `json:"with_roles,string,omitempty"`
-	// Set true to get the admin user permissions 
+	// Whether to get the admin user permissions 
 	WithAccessEntries *bool `json:"with_access_entries,string,omitempty"`
 	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output 
+	// The first <b>N</b> records are skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 }
 

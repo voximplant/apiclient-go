@@ -279,11 +279,11 @@ type SQAddQueueParams struct {
 	SqQueueName string `json:"sq_queue_name"`
 	// Agent selection strategy for calls. Accepts one of the following values: "MOST_QUALIFIED", "LEAST_QUALIFIED", "MAX_WAITING_TIME" 
 	CallAgentSelection string `json:"call_agent_selection"`
-	// Agent selection strategy for messages. Accepts one of the following values: "MOST_QUALIFIED", "LEAST_QUALIFIED", "MAX_WAITING_TIME". Equals to the **call_agent_selection** value by default 
+	// Agent selection strategy for messages. Accepts one of the following values: "MOST_QUALIFIED", "LEAST_QUALIFIED", "MAX_WAITING_TIME". The default value is **call_agent_selection** 
 	ImAgentSelection string `json:"im_agent_selection,omitempty"`
 	// Call type requests prioritizing strategy. Accepts one of the [SQTaskSelectionStrategies] enum values 
 	CallTaskSelection string `json:"call_task_selection"`
-	// IM type requests prioritizing strategy. Accepts one of the [SQTaskSelectionStrategies] enum values. Equals to the **call_task_selection** value by default 
+	// IM type requests prioritizing strategy. Accepts one of the [SQTaskSelectionStrategies] enum values. The default value is **call_task_selection** 
 	ImTaskSelection string `json:"im_task_selection,omitempty"`
 	// Agent selection strategy, applied when it is not possible to wait for a suitable free agent. Currently not used 
 	FallbackAgentSelection string `json:"fallback_agent_selection,omitempty"`
@@ -333,11 +333,11 @@ type SQSetQueueInfoParams struct {
 	NewSqQueueName string `json:"new_sq_queue_name,omitempty"`
 	// Agent selection strategy for calls. Accepts one of the following values: "MOST_QUALIFIED", "LEAST_QUALIFIED", "MAX_WAITING_TIME" 
 	CallAgentSelection string `json:"call_agent_selection,omitempty"`
-	// Agent selection strategy for messages. Accepts one of the following values: "MOST_QUALIFIED", "LEAST_QUALIFIED", "MAX_WAITING_TIME". Equals to the **call_agent_selection** value by default 
+	// Agent selection strategy for messages. Accepts one of the following values: "MOST_QUALIFIED", "LEAST_QUALIFIED", "MAX_WAITING_TIME". The default value is **call_agent_selection** 
 	ImAgentSelection string `json:"im_agent_selection,omitempty"`
 	// Strategy of prioritizing CALL-type requests for service. Accepts one of the following values: "MAX_PRIORITY", "MAX_WAITING_TIME" 
 	CallTaskSelection string `json:"call_task_selection,omitempty"`
-	// Strategy of prioritizing IM-type requests for service. Accepts one of the following values: "MAX_PRIORITY", "MAX_WAITING_TIME". Equals to the **call_task_selection** value by default 
+	// Strategy of prioritizing IM-type requests for service. Accepts one of the following values: "MAX_PRIORITY", "MAX_WAITING_TIME". The default value is **call_task_selection** 
 	ImTaskSelection string `json:"im_task_selection,omitempty"`
 	// Agent selection strategy, applied when it is not possible to wait for a suitable free agent. Currently not used 
 	FallbackAgentSelection string `json:"fallback_agent_selection,omitempty"`
@@ -427,7 +427,7 @@ type SQGetQueuesParams struct {
 	Count int `json:"count,string,omitempty"`
 	// Number of items to skip in the output 
 	Offset int `json:"offset,string,omitempty"`
-	// Number of agents bound to the queue 
+	// Whether to include the number of agents bound to the queue 
 	WithAgentcount *bool `json:"with_agentcount,string,omitempty"`
 }
 
@@ -749,17 +749,17 @@ type SQGetAgentsParams struct {
 	UserNameTemplate string `json:"user_name_template,omitempty"`
 	// Filter statuses in the json array format. The array should contain objects with the <b>sq_status_type</b> and <b>sq_status_name</b> keys. Possible values for <b>sq_status_type</b> are 'CALL' and'IM'. Possible values for <b>sq_status_name</b> are 'OFFLINE', 'ONLINE', 'READY', 'IN_SERVICE', 'AFTER_SERVICE', 'DND' 
 	SqStatuses interface{} `json:"sq_statuses,string,omitempty"`
-	// Display agent skills 
+	// Whether to display agent skills 
 	WithSqSkills *bool `json:"with_sq_skills,string,omitempty"`
-	// Display agent queues 
+	// Whether to display agent queues 
 	WithSqQueues *bool `json:"with_sq_queues,string,omitempty"`
-	// Display agent current statuses 
+	// Whether to display agent current statuses 
 	WithSqStatuses *bool `json:"with_sq_statuses,string,omitempty"`
 	// Number of items to show in the output 
 	Count int `json:"count,string,omitempty"`
 	// Number of items to skip in the output 
 	Offset int `json:"offset,string,omitempty"`
-	// The agent can handle calls. When set to false, the agent is excluded from the CALL-request distribution 
+	// Whether the agent can handle calls. When set to false, the agent is excluded from the CALL-request distribution 
 	HandleCalls *bool `json:"handle_calls,string"`
 }
 
@@ -793,7 +793,7 @@ type SQSetAgentInfoParams struct {
 	UserName string `json:"user_name,omitempty"`
 	// Maximum number of chats that the user processes simultaneously 
 	MaxSimultaneousConversations int `json:"max_simultaneous_conversations,string,omitempty"`
-	// The agent can handle calls. When set to false, the agent is excluded from the CALL-request distribution 
+	// Whether the agent can handle calls. When set to false, the agent is excluded from the CALL-request distribution 
 	HandleCalls *bool `json:"handle_calls,string"`
 }
 

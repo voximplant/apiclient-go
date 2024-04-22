@@ -68,9 +68,9 @@ type AccountInfoType struct {
 	AccessEntries []string `json:"access_entries,omitempty"`
 	// Whether the admin user permissions are granted 
 	WithAccessEntries *bool `json:"with_access_entries,omitempty"`
-	// If URL is specified, Voximplant cloud will make HTTP POST requests to it when something happens. For a full list of reasons see the <b>type</b> field of the [AccountCallback] structure. The HTTP request will have a JSON-encoded body that conforms to the [AccountCallbacks] structure 
+	// If URL is specified, Voximplant cloud makes HTTP POST requests to it when something happens. For a full list of reasons see the <b>type</b> field of the [AccountCallback] structure. The HTTP request has a JSON-encoded body that conforms to the [AccountCallbacks] structure 
 	CallbackUrl string `json:"callback_url,omitempty"`
-	// If salt string is specified, each HTTP request made by the Voximplant cloud toward the <b>callback_url</b> will have a <b>salt</b> field set to MD5 hash of account information and salt. That hash can be used be a developer to ensure that HTTP request is made by the Voximplant cloud 
+	// If salt string is specified, each HTTP request made by the Voximplant cloud toward the <b>callback_url</b> has a <b>salt</b> field set to MD5 hash of account information and salt. That hash can be used be a developer to ensure that HTTP request is made by the Voximplant cloud 
 	CallbackSalt string `json:"callback_salt,omitempty"`
 	// Whether to send an email when a JS error occures 
 	SendJsError *bool `json:"send_js_error,omitempty"`
@@ -161,7 +161,7 @@ type AccountPlanPackageType struct {
 	PriceGroupId []int `json:"price_group_id"`
 	// The package name 
 	PackageName string `json:"package_name,omitempty"`
-	// Overrun is enabled 
+	// Whether overrun is enabled 
 	MayOverrun *bool `json:"may_overrun"`
 	// The overrun amount 
 	OverrunPrice float64 `json:"overrun_price"`
@@ -230,7 +230,7 @@ type UserInfoType struct {
 	UserName string `json:"user_name"`
 	// The display user name 
 	UserDisplayName string `json:"user_display_name"`
-	// Whether the user is active 
+	// Whether the user is active. Inactive users cannot log in to applications 
 	UserActive *bool `json:"user_active"`
 	// Whether the user uses the parent account's money, 'false' if the user has a separate balance 
 	ParentAccounting *bool `json:"parent_accounting"`
@@ -238,7 +238,7 @@ type UserInfoType struct {
 	LiveBalance float64 `json:"live_balance"`
 	// The current user's money in the currency specified for the account. The value is the number rounded to 4 decimal places. The parameter is the alias to live_balance by default. But there is a possibility to make the alias to fixed_balance: just to pass return_live_balance=false into the [GetAccountInfo] method 
 	Balance float64 `json:"balance"`
-	// The last committed balance which was approved by billing's transaction 
+	// The last committed balance which has been approved by billing's transaction 
 	FixedBalance float64 `json:"fixed_balance"`
 	// The custom data 
 	UserCustomData string `json:"user_custom_data,omitempty"`
@@ -570,7 +570,7 @@ type QueueInfoType struct {
 	AcdQueuePriority int `json:"acd_queue_priority"`
 	// The value in the range of [0.5 ... 1.0]. The value 1.0 means the service probability 100% in challenge with a lower priority queue 
 	ServiceProbability int `json:"service_probability"`
-	// Set false to disable the auto binding of operators to a queue by skills comparing 
+	// Whether to enable the auto binding of operators to a queue by skills comparing 
 	AutoBinding *bool `json:"auto_binding"`
 	// The maximum predicted waiting time in minutes. When a call is going to be enqueued to the queue, its predicted waiting time should be less or equal to the maximum predicted waiting time; otherwise, a call would be rejected 
 	MaxWaitingTime int `json:"max_waiting_time,omitempty"`
@@ -612,33 +612,33 @@ type ACDStateType struct {
 }
 
 type ACDOperatorAggregationGroupType struct {
-	// If aggregation was enabled, contains user ID for the results 
+	// If aggregation is enabled, contains user ID for the results 
 	UserId string `json:"user_id,omitempty"`
-	// If aggregation was enabled, contains UTC date for the results in 24-h 'YYYY-MM-DD' format 
+	// If aggregation is enabled, contains UTC date for the results in 24-h 'YYYY-MM-DD' format 
 	Date Date `json:"date,omitempty"`
-	// If aggregation was enabled, contains the 60-minute interval number from 1 to 24 
+	// If aggregation is enabled, contains the 60-minute interval number from 1 to 24 
 	Hour int `json:"hour,omitempty"`
 	// List of records grouped by date or user ID according to the 'group' method call argument 
 	Statistics []ACDOperatorStatisticsType `json:"statistics"`
 }
 
 type ACDOperatorStatusAggregationGroupType struct {
-	// If aggregation was enabled, contains user ID for the results 
+	// If aggregation is enabled, contains user ID for the results 
 	UserId string `json:"user_id,omitempty"`
-	// If aggregation was enabled, contains UTC date for the results in 24-h 'YYYY-MM-DD' format 
+	// If aggregation is enabled, contains UTC date for the results in 24-h 'YYYY-MM-DD' format 
 	Date Date `json:"date,omitempty"`
-	// If aggregation was enabled, contains the 60-minute interval number from 1 to 24 
+	// If aggregation is enabled, contains the 60-minute interval number from 1 to 24 
 	Hour int `json:"hour,omitempty"`
 	// List of records grouped by date or user ID according to the 'group' method call argument 
 	Statistics []ACDOperatorStatusStatisticsType `json:"statistics"`
 }
 
 type ACDOperatorStatisticsType struct {
-	// If aggregation was enabled, contains user ID for the results 
+	// If aggregation is enabled, contains user ID for the results 
 	UserId string `json:"user_id,omitempty"`
-	// If aggregation was enabled, contains UTC date for the results in 24-h 'YYYY-MM-DD' format 
+	// If aggregation is enabled, contains UTC date for the results in 24-h 'YYYY-MM-DD' format 
 	Date Date `json:"date,omitempty"`
-	// If aggregation was enabled, contains the 60-minute interval number from 1 to 24 
+	// If aggregation is enabled, contains the 60-minute interval number from 1 to 24 
 	Hour int `json:"hour,omitempty"`
 	// Delay between a call started to ring and operator answered it. Name is 'SpeedOfAnswer' if 'abbreviation' is set to 'false' 
 	SA ACDStatisticsItemType `json:"SA,omitempty"`
@@ -663,11 +663,11 @@ type ACDOperatorStatisticsType struct {
 }
 
 type ACDOperatorStatusStatisticsType struct {
-	// If aggregation was enabled, contains user ID  for the results 
+	// If aggregation is enabled, contains user ID for the results 
 	UserId string `json:"user_id,omitempty"`
-	// If aggregation was enabled, contains UTC date  for the results in 24-h 'YYYY-MM-DD' format 
+	// If aggregation is enabled, contains UTC date for the results in 24-h 'YYYY-MM-DD' format 
 	Date Date `json:"date,omitempty"`
-	// If aggregation was enabled, contains the  60-minute interval number from 1 to 24 
+	// If aggregation is enabled, contains the 60-minute interval number from 1 to 24 
 	Hour int `json:"hour,omitempty"`
 	// The user statistics 
 	AcdStatus []ACDOperatorStatusStatisticsDetail `json:"acd_status,omitempty"`
@@ -693,9 +693,9 @@ type ACDOperatorStatusStatisticsDetail struct {
 }
 
 type ACDQueueStatisticsType struct {
-	// If aggregation was enabled, contains UTC date for the results in 24-h 'YYYY-MM-DD' format 
+	// If aggregation is enabled, contains UTC date for the results in 24-h 'YYYY-MM-DD' format 
 	Date Date `json:"date,omitempty"`
-	// If aggregation was enabled, contains the 60-minute interval number from 1 to 24 
+	// If aggregation is enabled, contains the 60-minute interval number from 1 to 24 
 	Hour int `json:"hour,omitempty"`
 	// Delay between user called and operator answered the call (or call is terminated). Name is 'WaitingTime' if 'abbreviation' is set to 'false' 
 	WT ACDStatisticsItemType `json:"WT,omitempty"`
@@ -736,7 +736,7 @@ type ACDQueueStatisticsType struct {
 }
 
 type ACDQueueStatisticsServiceLevelType struct {
-	// Maximum time, is seconds, user was waiting operator for a given service level 
+	// Maximum time, is seconds, user is waiting operator for a given service level 
 	AcceptableWaitingTime int `json:"acceptable_waiting_time"`
 	// Number of calls for a given service level 
 	CallCount int `json:"call_count"`
@@ -771,7 +771,7 @@ type ACDQueueStateType struct {
 	ReadyOperators []ACDReadyOperatorStateType `json:"ready_operators"`
 	// Number of ready operators 
 	ReadyOperatorsCount int `json:"ready_operators_count"`
-	// List of operators with the 'READY' state that can't accept a call from this queue. Operator can't accept a call if they are temporarily banned or they are servicing a call right now 
+	// List of operators with the 'READY' state that cannot accept a call from this queue. Operator cannot accept a call if they are temporarily banned or they are servicing a call right now 
 	LockedOperators []ACDLockedOperatorStateType `json:"locked_operators"`
 	// Number of locked operators 
 	LockedOperatorsCount int `json:"locked_operators_count"`
@@ -924,11 +924,11 @@ type AttachedPhoneInfoType struct {
 	PhoneNextRenewal Date `json:"phone_next_renewal"`
 	// The purchase date in 24-h format: YYYY-MM-DD HH:mm:ss 
 	PhonePurchaseDate Timestamp `json:"phone_purchase_date"`
-	// The flag of the frozen subscription 
+	// Whether the subscription is frozen 
 	Deactivated *bool `json:"deactivated"`
-	// The flag of the deleted subscription 
+	// Whether the subscription is cancelled 
 	Canceled *bool `json:"canceled"`
-	// The auto_charge flag 
+	// Whether to charge automatically 
 	AutoCharge *bool `json:"auto_charge"`
 	// The id of the bound application 
 	ApplicationId int `json:"application_id,omitempty"`
@@ -940,23 +940,23 @@ type AttachedPhoneInfoType struct {
 	RuleName string `json:"rule_name,omitempty"`
 	// The phone category name (MOBILE, GEOGRAPHIC, TOLLFREE, MOSCOW495) 
 	CategoryName string `json:"category_name"`
-	// Verification is required for the account 
+	// Whether the verification is required for the account 
 	RequiredVerification *bool `json:"required_verification,omitempty"`
 	// The account verification status. The following values are possible: REQUIRED, IN_PROGRESS, VERIFIED 
 	VerificationStatus string `json:"verification_status,omitempty"`
-	// Unverified phone hold until the date in format: YYYY-MM-DD (if the account verification is required). The number will be detached on that day automatically! 
+	// Unverified phone hold until the date in format: YYYY-MM-DD (if the account verification is required). The number is detached on that day automatically! 
 	UnverifiedHoldUntil Date `json:"unverified_hold_until,omitempty"`
-	// Unverified account can use the phone 
+	// Whether a not verified account can use the phone 
 	CanBeUsed *bool `json:"can_be_used"`
-	// If <b>true</b>, SMS is supported for this phone number. SMS needs to be explicitly enabled via the [ControlSms] Management API before sending or receiving SMS. If SMS is supported and enabled, SMS can be sent from this phone number using the [SendSmsMessage] Management API and received using the [InboundSmsCallback] property of the HTTP callback. See <a href='/docs/guides/managementapi/callbacks'>this article</a> for HTTP callback details 
+	// Whether SMS is supported for this phone number. SMS needs to be explicitly enabled via the [ControlSms] Management API before sending or receiving SMS. If SMS is supported and enabled, SMS can be sent from this phone number via the [SendSmsMessage] Management API and received via the [InboundSmsCallback] property of the HTTP callback. See <a href='/docs/guides/managementapi/callbacks'>this article</a> for HTTP callback details 
 	IsSmsSupported *bool `json:"is_sms_supported"`
-	// If <b>true</b>, SMS sending and receiving is enabled for this phone number via the [ControlSms] Management API 
+	// Whether SMS sending and receiving is enabled for this phone number via the [ControlSms] Management API 
 	IsSmsEnabled *bool `json:"is_sms_enabled"`
-	// If set, the callback of an incoming SMS will be sent to this url, otherwise, it will be sent to the general account URL 
+	// If set, the callback of an incoming SMS is sent to this url, otherwise, it is sent to the general account URL 
 	IncomingSmsCallbackUrl string `json:"incoming_sms_callback_url,omitempty"`
-	// If <b>true</b>, you need to make a request to enable calls to emergency numbers 
+	// Whether you need to make a request to enable calls to emergency numbers 
 	EmergencyCallsToBeEnabled *bool `json:"emergency_calls_to_be_enabled"`
-	// If <b>true</b>, calls to emergency numbers are enabled 
+	// Whether calls to emergency numbers are enabled 
 	EmergencyCallsEnabled *bool `json:"emergency_calls_enabled"`
 	// Phone number subscription ID 
 	SubscriptionId int `json:"subscription_id"`
@@ -973,11 +973,11 @@ type NewAttachedPhoneInfoType struct {
 	PhoneId int `json:"phone_id"`
 	// The phone number 
 	PhoneNumber string `json:"phone_number"`
-	// Verification is required for the account 
+	// Whether verification is required for the account 
 	RequiredVerification *bool `json:"required_verification,omitempty"`
 	// The account verification status. The following values are possible: REQUIRED, IN_PROGRESS, VERIFIED 
 	VerificationStatus string `json:"verification_status,omitempty"`
-	// Unverified phone hold until the date in format: YYYY-MM-DD (if the account verification is required). The number will be detached on that day automatically! 
+	// Unverified phone hold until the date in format: YYYY-MM-DD (if the account verification is required). The number is detached on that day automatically! 
 	UnverifiedHoldUntil Date `json:"unverified_hold_until,omitempty"`
 }
 
@@ -986,18 +986,18 @@ type PhoneNumberCountryInfoType struct {
 	CountryCode string `json:"country_code"`
 	// The country phone prefix 
 	PhonePrefix string `json:"phone_prefix"`
-	// True if can list phone numbers 
+	// Whether to list phone numbers 
 	CanListPhoneNumbers *bool `json:"can_list_phone_numbers"`
 	// The phone categories 
 	PhoneCategories []PhoneNumberCountryCategoryInfoType `json:"phone_categories"`
-	// If <b>true</b>, you need to make a request to enable calls to emergency numbers 
+	// Whether you need to make a request to enable calls to emergency numbers 
 	EmergencyCallsToBeEnabled *bool `json:"emergency_calls_to_be_enabled"`
 }
 
 type PhoneNumberCountryCategoryInfoType struct {
 	// The phone category name 
 	PhoneCategoryName string `json:"phone_category_name"`
-	// True if a country state is used to choose the phone with the category 
+	// Whether the chosen phone number country has states 
 	CountryHasStates *bool `json:"country_has_states"`
 	// The localized country name 
 	LocalizedCountryName string `json:"localized_country_name"`
@@ -1025,15 +1025,15 @@ type PhoneNumberCountryRegionInfoType struct {
 	PhoneCount int `json:"phone_count"`
 	// The account verification status. The following values are possible: REQUIRED, IN_PROGRESS, VERIFIED 
 	VerificationStatus string `json:"verification_status,omitempty"`
-	// Verification is required for the account 
+	// Whether verification is required for the account 
 	RequiredVerification *bool `json:"required_verification,omitempty"`
 	// The charge period in 24-h format: Y-M-D H:m:s. Example: 0-1-0 0:0:0 is 1 month 
 	PhonePeriod string `json:"phone_period"`
-	// The flag of the need proof of address 
+	// Whether to need proof of address 
 	IsNeedRegulationAddress *bool `json:"is_need_regulation_address,omitempty"`
 	// The type of regulation address. The possible values are LOCAL, NATIONAL, WORLDWIDE 
 	RegulationAddressType string `json:"regulation_address_type,omitempty"`
-	// If <b>true</b>, SMS is supported for phone numbers in this region. SMS needs to be explicitly enabled for a phone number via the [ControlSms] Management API before sending or receiving SMS. If SMS is supported and enabled, SMS can be sent from a phone number using the [SendSmsMessage] Management API and received using the [InboundSmsCallback] property of the HTTP callback. See <a href='/docs/guides/managementapi/callbacks'>this article</a> for HTTP callback details 
+	// Whether SMS is supported for phone numbers in this region. SMS needs to be explicitly enabled for a phone number via the [ControlSms] Management API before sending or receiving SMS. If SMS is supported and enabled, SMS can be sent from a phone number via the [SendSmsMessage] Management API and received via the [InboundSmsCallback] property of the HTTP callback. See <a href='/docs/guides/managementapi/callbacks'>this article</a> for HTTP callback details 
 	IsSmsSupported *bool `json:"is_sms_supported"`
 	// [Array](MultipleNumbersPrice) with info about multiple numbers subscription for the child accounts 
 	MultipleNumbersPrice []MultipleNumbersPrice `json:"multiple_numbers_price"`
@@ -1087,7 +1087,7 @@ type CallerIDInfoType struct {
 	CalleridId int `json:"callerid_id"`
 	// The callerID number 
 	CalleridNumber string `json:"callerid_number"`
-	// The active flag 
+	// Whether active 
 	Active *bool `json:"active"`
 	// The code entering attempts left for the unverified callerID 
 	CodeEnteringAttemptsLeft int `json:"code_entering_attempts_left,omitempty"`
@@ -1100,7 +1100,7 @@ type CallerIDInfoType struct {
 type OutboundTestPhonenumberInfoType struct {
 	// The personal phone number 
 	PhoneNumber string `json:"phone_number"`
-	// The verification status 
+	// Whether the phone number is verified 
 	IsVerified *bool `json:"is_verified"`
 	// The country code 
 	CountryCode string `json:"country_code"`
@@ -1113,7 +1113,7 @@ type ContactInfoType struct {
 	ContactType string `json:"contact_type"`
 	// The contact data (i.g. email) 
 	ContactData string `json:"contact_data"`
-	// The persistent flag 
+	// Whether the contact is persistent 
 	IsPersistent *bool `json:"is_persistent"`
 	// The contact description 
 	Description string `json:"description,omitempty"`
@@ -1134,7 +1134,7 @@ type ACDQueueOperatorInfoType struct {
 	AcdQueueId int `json:"acd_queue_id"`
 	// The ACD queue name 
 	AcdQueueName string `json:"acd_queue_name"`
-	// The user is bound to the ACD queue in manual mode if false 
+	// Whether the user is bound to the ACD queue in manual mode if false 
 	AutoLink *bool `json:"auto_link"`
 }
 
@@ -1166,7 +1166,7 @@ type ExchangeRates struct {
 	KZT float64 `json:"KZT,omitempty"`
 	// The EUR exchange rate 
 	EUR float64 `json:"EUR,omitempty"`
-	// The USD exchange rate. It's always equal to 1 
+	// The USD exchange rate. It is always equal to 1 
 	USD float64 `json:"USD,omitempty"`
 }
 
@@ -1233,7 +1233,7 @@ type CallListDetailType struct {
 	StartExecutionTime Timestamp `json:"start_execution_time"`
 	// Time after which the task cannot be performed in 24-h format: HH:mm:ss 
 	FinishExecutionTime Timestamp `json:"finish_execution_time"`
-	// Results of the task, if it was granted, or information about the runtime error 
+	// Results of the task, if it is granted, or information about the runtime error 
 	ResultData string `json:"result_data"`
 	// Date and time of the last attempt to perform a task 
 	LastAttempt string `json:"last_attempt"`
@@ -1256,15 +1256,15 @@ type SIPRegistrationType struct {
 	LastUpdated int `json:"last_updated"`
 	// The SIP authentications user 
 	AuthUser string `json:"auth_user,omitempty"`
-	// The outbound proxy 
+	// The outgoing proxy 
 	OutboundProxy string `json:"outbound_proxy,omitempty"`
-	// The successful SIP registration 
+	// Whether the SIP registration is successful 
 	Successful *bool `json:"successful,omitempty"`
 	// The status code from a SIP registration 
 	StatusCode int `json:"status_code,omitempty"`
 	// The error message from a SIP registration 
 	ErrorMessage string `json:"error_message,omitempty"`
-	// The subscription deactivation flag. The SIP registration is frozen if true 
+	// Whether the subscription is deactivation. The SIP registration is frozen if true 
 	Deactivated *bool `json:"deactivated"`
 	// The next subscription renewal date in format: YYYY-MM-DD 
 	NextSubscriptionRenewal Date `json:"next_subscription_renewal"`
@@ -1272,7 +1272,7 @@ type SIPRegistrationType struct {
 	PurchaseDate Timestamp `json:"purchase_date"`
 	// The subscription monthly charge 
 	SubscriptionPrice string `json:"subscription_price"`
-	// SIP registration is persistent. Set false to activate it only on the user login 
+	// Whether the SIP registration is persistent. Set false to activate it only on the user login 
 	IsPersistent *bool `json:"is_persistent"`
 	// The id of the bound user 
 	UserId int `json:"user_id,omitempty"`
@@ -1293,9 +1293,9 @@ type AdminRoleType struct {
 	AdminRoleId int `json:"admin_role_id"`
 	// The admin role name 
 	AdminRoleName string `json:"admin_role_name"`
-	// If false the allowed and denied entries have no affect 
+	// Whether to ignore the allowed and denied entries 
 	AdminRoleActive *bool `json:"admin_role_active"`
-	// It's a system role 
+	// Whether it is a system role 
 	SystemRole *bool `json:"system_role"`
 	// The admin role editing UTC date in 24-h format: YYYY-MM-DD HH:mm:ss 
 	Modified Timestamp `json:"modified"`
@@ -1319,7 +1319,7 @@ type AdminUserType struct {
 	AdminUserName string `json:"admin_user_name"`
 	// The admin user display name 
 	AdminUserDisplayName string `json:"admin_user_display_name"`
-	// Login is allowed 
+	// Whether login is allowed 
 	AdminUserActive *bool `json:"admin_user_active"`
 	// The admin user editing UTC date in 24-h format: YYYY-MM-DD HH:mm:ss 
 	Modified Timestamp `json:"modified"`
@@ -1343,13 +1343,13 @@ type GetMoneyAmountToChargeResult struct {
 	Amount float64 `json:"amount"`
 	// The 'amount' value minus the positive account balance in the specified currency 
 	MinAmount float64 `json:"min_amount"`
-	// Exists if bank card payments are allowed. It's the maximum of the 'amount' in USD and the min_card_payment (10$) 
+	// Exists if bank card payments are allowed. It is the maximum of the 'amount' in USD and the min_card_payment (10$) 
 	BankCardAmountUsd float64 `json:"bank_card_amount_usd,omitempty"`
-	// Exists if bank card payments are allowed. It's the maximum of the 'min_amount' in USD and the min_card_payment (10$) 
+	// Exists if bank card payments are allowed. It is the maximum of the 'min_amount' in USD and the min_card_payment (10$) 
 	MinBankCardAmountUsd float64 `json:"min_bank_card_amount_usd,omitempty"`
-	// Exists if robokassa payments are allowed. It's the maximum of the 'min_amount' in RUR and the min_robokassa_payment (500 RUR) 
+	// Exists if robokassa payments are allowed. It is the maximum of the 'min_amount' in RUR and the min_robokassa_payment (500 RUR) 
 	RobokassaAmountRub float64 `json:"robokassa_amount_rub,omitempty"`
-	// Exists if robokassa payments are allowed. It's the maximum of the 'min_amount' in RUR and the min_robokassa_payment (500 RUR) 
+	// Exists if robokassa payments are allowed. It is the maximum of the 'min_amount' in RUR and the min_robokassa_payment (500 RUR) 
 	MinRobokassaAmountRub float64 `json:"min_robokassa_amount_rub,omitempty"`
 	// The subscriptions to charge 
 	Subscriptions []SubscriptionsToChargeType `json:"subscriptions"`
@@ -1367,9 +1367,9 @@ type ChargedPhoneType struct {
 	PhoneId int `json:"phone_id"`
 	// The phone number 
 	PhoneNumber string `json:"phone_number"`
-	// Subscription is frozen 
+	// Whether the subscription is frozen 
 	Deactivated *bool `json:"deactivated"`
-	// Phone number has been charged 
+	// Whether the phone number has been charged 
 	IsCharged *bool `json:"is_charged"`
 }
 
@@ -1380,7 +1380,7 @@ type SubscriptionsToChargeType struct {
 	SubscriptionType string `json:"subscription_type"`
 	// The subscription description (details). Example: the subscribed phone number 
 	SubscriptionDescription string `json:"subscription_description"`
-	// The auto charge flag 
+	// Whether the subscription charges automatically 
 	SubscriptionAutoCharge *bool `json:"subscription_auto_charge"`
 	// The next renewal date, format: YYYY-MM-DD. Displayed for only verified phone numbers 
 	SubscriptionNextRenewal Date `json:"subscription_next_renewal,omitempty"`
@@ -1389,7 +1389,7 @@ type SubscriptionsToChargeType struct {
 type AuthorizedAccountIPType struct {
 	// The authorized IP4 or network 
 	AuthorizedIp string `json:"authorized_ip"`
-	// The allowed flag (true - whitelist, false - blacklist) 
+	// Whether the IP is allowed (true - whitelist, false - blacklist) 
 	Allowed *bool `json:"allowed"`
 	// The item creating UTC date in 24-h format: YYYY-MM-DD HH:mm:ss 
 	Created Timestamp `json:"created"`
@@ -1398,7 +1398,7 @@ type AuthorizedAccountIPType struct {
 type AccountVerificationDocument struct {
 	// The account verification document ID 
 	AccountDocumentId int `json:"account_document_id"`
-	// Account belongs to an individual 
+	// Whether the account belongs to an individual 
 	IsIndividual *bool `json:"is_individual"`
 	// The reviewer's comment 
 	Comment string `json:"comment,omitempty"`
@@ -1413,7 +1413,7 @@ type AccountVerificationType struct {
 	VerificationName string `json:"verification_name"`
 	// The account verification status. The following values are possible: REQUIRED, IN_PROGRESS, VERIFIED, NOT_REQUIRED 
 	VerificationStatus string `json:"verification_status"`
-	// Unverified subscriptions hold until the date in format: YYYY-MM-DD (if the account verification is required). Some subscriptions will be detached on that day automatically! 
+	// Unverified subscriptions hold until the date in format: YYYY-MM-DD (if the account verification is required). Some subscriptions are detached on that day automatically! 
 	UnverifiedHoldUntil Date `json:"unverified_hold_until,omitempty"`
 	// The uploaded documents 
 	Documents []AccountVerificationDocument `json:"documents,omitempty"`
@@ -1445,7 +1445,7 @@ type SubscriptionTemplateType struct {
 	SubscriptionTemplateType string `json:"subscription_template_type"`
 	// The subscription template name (example: SIP registration, Phone GB, Phone RU 495, ...) 
 	SubscriptionTemplateName string `json:"subscription_template_name"`
-	// Verification is required for the account 
+	// Whether verification is required for the account 
 	RequiredVerification *bool `json:"required_verification"`
 	// The verification status. Possible values are REQUIRED, IN_PROGRESS, VERIFIED, NOT_REQUIRED 
 	VerificationStatus string `json:"verification_status"`
@@ -1588,7 +1588,7 @@ type RegulationAddressUploadedCallback struct {
 	RegulationAddressId int `json:"regulation_address_id"`
 	// The UTC date of the document upload in format: YYYY-MM-DD HH::mm:ss 
 	Uploaded Timestamp `json:"uploaded"`
-	// Account belongs to an individual 
+	// Whether the account belongs to an individual 
 	IsIndividual *bool `json:"is_individual"`
 	// The regulation address name 
 	RegulationAddressName string `json:"regulation_address_name"`
@@ -1621,7 +1621,7 @@ type ActivateSuccessfulCallback struct {
 type CallHistoryReportCallback struct {
 	// The history report ID 
 	HistoryReportId int `json:"history_report_id"`
-	// Success flag 
+	// Whether the request is successful 
 	Success *bool `json:"success"`
 	// The UTC order date in format: YYYY-MM-DD HH::mm:ss 
 	OrderDate Timestamp `json:"order_date"`
@@ -1667,9 +1667,9 @@ type JSFailCallback struct {
 }
 
 type MinBalanceCallback struct {
-	// True if the credit threshold exceeded. The credit threshold = credit_limit - min_balance_to_notify, wherein min_balance_to_notify > 0 
+	// Whether the credit threshold exceeded. The credit threshold = credit_limit - min_balance_to_notify, wherein min_balance_to_notify > 0 
 	IsMinCredit *bool `json:"is_min_credit"`
-	// True if the callback is repeated 
+	// Whether the callback is repeated 
 	IsRepeated *bool `json:"is_repeated"`
 }
 
@@ -1680,7 +1680,7 @@ type RegulationAddressVerifiedCallback struct {
 	RegulationAddressStatus string `json:"regulation_address_status"`
 	// The UTC date of the document upload in format: YYYY-MM-DD HH::mm:ss 
 	Uploaded Timestamp `json:"uploaded"`
-	// Account belongs to an individual 
+	// Whether the account belongs to an individual 
 	IsIndividual *bool `json:"is_individual"`
 	// The reviewer's comment 
 	Comment string `json:"comment,omitempty"`
@@ -1766,7 +1766,7 @@ type SubscriptionIsFrozenCallbackItem struct {
 type TransactionHistoryReportCallback struct {
 	// The history report ID 
 	HistoryReportId int `json:"history_report_id"`
-	// Success flag 
+	// Whether the request is successful 
 	Success *bool `json:"success"`
 	// The UTC order date in format: YYYY-MM-DD HH::mm:ss 
 	OrderDate Timestamp `json:"order_date"`
@@ -1869,7 +1869,7 @@ type SubscriptionCallbackDetailsSipRegistrations struct {
 }
 
 type A2PActivatedCallback struct {
-	// A2P messages are allowed 
+	// Whether A2P messages are allowed 
 	A2PEnabled *bool `json:"a2p_enabled"`
 }
 
@@ -1897,7 +1897,7 @@ type RegulationAddressDocumentsRequestedCallback struct {
 	RegulationAddressStatus string `json:"regulation_address_status"`
 	// UTC time when the status is updated 
 	UpdateTime Timestamp `json:"update_time"`
-	// Account belongs to an individual 
+	// Whether the account belongs to an individual 
 	IsIndividual *bool `json:"is_individual"`
 	// Reviewer's comment 
 	Comment string `json:"comment,omitempty"`
@@ -1974,7 +1974,7 @@ type RegulationRegionRecord struct {
 	PhoneRegionName string `json:"phone_region_name"`
 	// The phone region code  
 	PhoneRegionCode string `json:"phone_region_code"`
-	// The need to confirm the address 
+	// Whether need to confirm the address 
 	IsNeedRegulationAddress *bool `json:"is_need_regulation_address"`
 	// The regulation address type. Available: LOCAL, NATIONAL, WORLDWIDE 
 	RegulationAddressType string `json:"regulation_address_type"`
@@ -1983,7 +1983,7 @@ type RegulationRegionRecord struct {
 type BankCardType struct {
 	// The payment system. The possible values are ALFABANK, BRAINTREE 
 	BankCardProvider string `json:"bank_card_provider"`
-	// The auto_charge flag 
+	// Whether the auto_charge is enabled 
 	AutoCharge *bool `json:"auto_charge"`
 	// The min account balance to trigger the auto charging 
 	MinBalance float64 `json:"min_balance "`
@@ -2055,7 +2055,7 @@ type PushCredentialContent struct {
 	CertFileName string `json:"cert_file_name,omitempty"`
 	// The certificate content in BASE64. Credentials for APPLE push 
 	CertContent string `json:"cert_content,omitempty"`
-	// The use in a Apple sandbox environment. Credentials for APPLE push 
+	// Whether to use in a Apple sandbox environment. Credentials for APPLE push 
 	IsDevMode *bool `json:"is_dev_mode"`
 	// The sender id provided by Google. Credentials for GOOGLE push 
 	SenderId string `json:"sender_id,omitempty"`
@@ -2122,6 +2122,8 @@ type KeyView struct {
 	Description string `json:"description"`
 	// The key subuser 
 	Subuser []SubUserView `json:"subuser,omitempty"`
+	// The key's name 
+	KeyName string `json:"key_name"`
 }
 
 type SubUserView struct {
@@ -2145,13 +2147,13 @@ type RoleView struct {
 	RoleName string `json:"role_name"`
 	// The role ID 
 	RoleId int `json:"role_id"`
-	// Shows that the role is inherited 
+	// Whether the role is inherited 
 	Inherited *bool `json:"inherited,omitempty"`
 	// Child roles IDs array 
 	ChildIds []int `json:"child_ids,omitempty"`
 	// Parent roles IDs array 
 	ParentRoleId []int `json:"parent_role_id,omitempty"`
-	// Shows that the role is gui only 
+	// Whether the role is gui only 
 	GuiOnly *bool `json:"gui_only"`
 }
 
@@ -2171,7 +2173,7 @@ type SmsHistoryType struct {
 	DestinationNumber int `json:"destination_number"`
 	// Incoming or outgoing message 
 	Direction string `json:"direction"`
-	// Number of fragments the initial message was divided into 
+	// Number of fragments the initial message is divided into 
 	Fragments int `json:"fragments"`
 	// Cost of the message 
 	Cost float64 `json:"cost"`
@@ -2194,7 +2196,7 @@ type A2PSmsHistoryType struct {
 	SourceNumber int `json:"source_number"`
 	// SMS destination number 
 	DestinationNumber int `json:"destination_number"`
-	// Number of fragments the initial message was divided into 
+	// Number of fragments the initial message is divided into 
 	Fragments int `json:"fragments"`
 	// The message cost 
 	Cost float64 `json:"cost"`
@@ -2225,7 +2227,7 @@ type RestoredAgreementStatusCallback struct {
 }
 
 type GetMaxBankCardPaymentResultType struct {
-	// The maximum payment for the specified card. It's always equal or less than **new_max_payment** 
+	// The maximum payment for the specified card. It always equals or less than **new_max_payment** 
 	MaxPayment int `json:"max_payment"`
 	// The maximum payment available for any card. The values depends on payment gateways, previous transactions during the last 24 hours, etc 
 	NewMaxPayment int `json:"new_max_payment"`
@@ -2234,7 +2236,7 @@ type GetMaxBankCardPaymentResultType struct {
 }
 
 type GetAutochargeConfigResultType struct {
-	// Is auto charge enabled or not 
+	// Whether auto charge enabled or not 
 	AutoCharge *bool `json:"auto_charge"`
 	// The auto charge threshold 
 	MinBalance int `json:"min_balance"`

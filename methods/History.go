@@ -21,7 +21,7 @@ type GetCallHistoryParams struct {
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// The application name, can be used instead of <b>application_id</b> 
 	ApplicationName string `json:"application_name,omitempty"`
-	// To receive the call history for a specific users, pass the user ID list separated by semicolons (;). If it's specified, the output contains the calls from the listed users only 
+	// To receive the call history for a specific users, pass the user ID list separated by semicolons (;). If it is specified, the output contains the calls from the listed users only 
 	UserId string `json:"user_id,omitempty"`
 	// To receive the call history for a specific routing rule, pass the rule name to this parameter. Applies only if you set application_id or application_name 
 	RuleName string `json:"rule_name,omitempty"`
@@ -31,21 +31,21 @@ type GetCallHistoryParams struct {
 	LocalNumber string `json:"local_number,omitempty"`
 	// To filter the call history by the custom_data passed to the call sessions, pass the custom data to this parameter 
 	CallSessionHistoryCustomData string `json:"call_session_history_custom_data,omitempty"`
-	// Specifies whether to receive a list of sessions with all calls within the sessions, including phone numbers, call cost and other information 
+	// Whether to receive a list of sessions with all calls within the sessions, including phone numbers, call cost and other information 
 	WithCalls *bool `json:"with_calls,string,omitempty"`
-	// Specifies whether to get the calls' records 
+	// Whether to get the calls' records 
 	WithRecords *bool `json:"with_records,string,omitempty"`
-	// Set true to get other resources usage (see [ResourceUsageType]) 
+	// Whether to get other resources usage (see [ResourceUsageType]) 
 	WithOtherResources *bool `json:"with_other_resources,string,omitempty"`
 	// The child account ID list separated by semicolons (;) 
 	ChildAccountId string `json:"child_account_id,omitempty"`
-	// Set true to get the children account calls only 
+	// Whether to get the children account calls only 
 	ChildrenCallsOnly *bool `json:"children_calls_only,string,omitempty"`
-	// Set false to get a CSV file without the column names if the output=csv 
+	// Whether to get a CSV file with the column names if the output=csv 
 	WithHeader *bool `json:"with_header,string,omitempty"`
-	// Set true to get records in the descent order 
+	// Whether to get records in the descent order 
 	DescOrder *bool `json:"desc_order,string,omitempty"`
-	// Set false to omit the 'total_count' and increase performance 
+	// Whether to include the 'total_count' and increase performance 
 	WithTotalCount *bool `json:"with_total_count,string,omitempty"`
 	// The number of returning records. In the synchronous mode, the maximum value is 1000 
 	Count int `json:"count,string,omitempty"`
@@ -53,7 +53,7 @@ type GetCallHistoryParams struct {
 	Offset int `json:"offset,string,omitempty"`
 	// The output format. The following values available: json, csv 
 	Output string `json:"output,omitempty"`
-	// Set true to get records in the asynchronous mode (for csv output only). <b>Use this mode to download large amounts of data</b>. See the [GetHistoryReports], [DownloadHistoryReport] functions for details 
+	// Whether to get records in the asynchronous mode (for csv output only). <b>Use this mode to download large amounts of data</b>. See the [GetHistoryReports], [DownloadHistoryReport] functions for details 
 	IsAsync *bool `json:"is_async,string,omitempty"`
 }
 
@@ -105,13 +105,13 @@ type GetBriefCallHistoryParams struct {
 	LocalNumber string `json:"local_number,omitempty"`
 	// To filter the call history by the custom_data passed to the call sessions, pass the custom data to this parameter 
 	CallSessionHistoryCustomData string `json:"call_session_history_custom_data,omitempty"`
-	// Set false to get a CSV file without the column names if the output=csv 
+	// Whether to get a CSV file with the column names if the output=csv 
 	WithHeader *bool `json:"with_header,string,omitempty"`
-	// Set true to get records in the descent order 
+	// Whether to get records in the descent order 
 	DescOrder *bool `json:"desc_order,string,omitempty"`
 	// The output format. The following values available: csv 
 	Output string `json:"output"`
-	// Set true to get records in the asynchronous mode. <b>Use this mode to download large amounts of data</b>. See the [GetHistoryReports], [DownloadHistoryReport] functions for details 
+	// Whether to get records in the asynchronous mode. <b>Use this mode to download large amounts of data</b>. See the [GetHistoryReports], [DownloadHistoryReport] functions for details 
 	IsAsync *bool `json:"is_async,string"`
 }
 
@@ -145,13 +145,13 @@ type GetHistoryReportsParams struct {
 	CreatedFrom *structure.Timestamp `json:"created_from,string,omitempty"`
 	// The UTC creation to date filter in 24-h format: YYYY-MM-DD HH:mm:ss 
 	CreatedTo *structure.Timestamp `json:"created_to,string,omitempty"`
-	// Report is completed 
+	// Whether the report is completed 
 	IsCompleted *bool `json:"is_completed,string,omitempty"`
-	// Set true to get records in the descent order 
+	// Whether to get records in the descent order 
 	DescOrder *bool `json:"desc_order,string,omitempty"`
 	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output 
+	// The first <b>N</b> records are skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 	// The application ID to filter. Can be a list separated by semicolons (;). Use the 'all' value to select all applications 
 	ApplicationId string `json:"application_id,omitempty"`
@@ -197,11 +197,11 @@ type GetTransactionHistoryParams struct {
 	UserId string `json:"user_id,omitempty"`
 	// The child account ID list separated by semicolons (;). Use the 'all' value to select all child accounts 
 	ChildAccountId string `json:"child_account_id,omitempty"`
-	// Set true to get the children account transactions only 
+	// Whether to get the children account transactions only 
 	ChildrenTransactionsOnly *bool `json:"children_transactions_only,string,omitempty"`
-	// Set true to get the users' transactions only 
+	// Whether to get the users' transactions only 
 	UsersTransactionsOnly *bool `json:"users_transactions_only,string,omitempty"`
-	// Set true to get records in the descent order 
+	// Whether to get records in the descent order 
 	DescOrder *bool `json:"desc_order,string,omitempty"`
 	// The number of returning records. In the synchronous mode, the maximum value is 1000 
 	Count int `json:"count,string,omitempty"`
@@ -209,9 +209,9 @@ type GetTransactionHistoryParams struct {
 	Offset int `json:"offset,string,omitempty"`
 	// The output format. The following values available: json, csv 
 	Output string `json:"output,omitempty"`
-	// Set true to get records in the asynchronous mode (for csv output only). <b>Use this mode to download large amounts of data</b>. See the [GetHistoryReports], [DownloadHistoryReport] functions for details 
+	// Whether to get records in the asynchronous mode (for csv output only). <b>Use this mode to download large amounts of data</b>. See the [GetHistoryReports], [DownloadHistoryReport] functions for details 
 	IsAsync *bool `json:"is_async,string,omitempty"`
-	// Set true to get transactions on hold (transactions for which money is reserved but not yet withdrawn from the account) 
+	// Whether to get transactions on hold (transactions for which money is reserved but not yet withdrawn from the account) 
 	IsUncommitted *bool `json:"is_uncommitted,string,omitempty"`
 }
 
@@ -281,23 +281,23 @@ type GetACDHistoryParams struct {
 	AcdQueueId string `json:"acd_queue_id,omitempty"`
 	// The user ID list to filter separated by semicolons (;) 
 	UserId string `json:"user_id,omitempty"`
-	// Set true to get the calls terminated by the operator 
+	// Whether to get the calls terminated by the operator 
 	OperatorHangup *bool `json:"operator_hangup,string,omitempty"`
-	// The unserviced calls by the operator 
+	// Whether the call is unserviced by the operator 
 	Unserviced *bool `json:"unserviced,string,omitempty"`
 	// The min waiting time filter 
 	MinWaitingTime int `json:"min_waiting_time,string,omitempty"`
-	// The rejected calls by the 'max_queue_size', 'max_waiting_time' threshold 
+	// Whether the call is rejected calls by the 'max_queue_size', 'max_waiting_time' threshold 
 	Rejected *bool `json:"rejected,string,omitempty"`
-	// Set true to get the bound events 
+	// Whether to get the bound events 
 	WithEvents *bool `json:"with_events,string,omitempty"`
-	// Set false to get a CSV file without the column names if the output=csv 
+	// Whether to get a CSV file with the column names if the output=csv 
 	WithHeader *bool `json:"with_header,string,omitempty"`
-	// Set true to get records in the descent order 
+	// Whether to get records in the descent order 
 	DescOrder *bool `json:"desc_order,string,omitempty"`
 	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output 
+	// The first <b>N</b> records are skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 	// The output format. The following values available: json, csv 
 	Output string `json:"output,omitempty"`
@@ -343,19 +343,19 @@ type GetAuditLogParams struct {
 	FilteredCmd string `json:"filtered_cmd,omitempty"`
 	// A relation ID to filter (for example: a phone_number value, a user_id value, an application_id value) 
 	AdvancedFilters string `json:"advanced_filters,omitempty"`
-	// Set false to get a CSV file without the column names if the output=csv 
+	// Whether to get a CSV file with the column names if the output=csv 
 	WithHeader *bool `json:"with_header,string,omitempty"`
-	// Set true to get records in the descent order 
+	// Whether to get records in the descent order 
 	DescOrder *bool `json:"desc_order,string,omitempty"`
-	// Set false to omit the 'total_count' and increase performance 
+	// Whether to include the 'total_count' and increase performance 
 	WithTotalCount *bool `json:"with_total_count,string,omitempty"`
 	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output 
+	// The first <b>N</b> records are skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 	// The output format. The following values available: json, csv 
 	Output string `json:"output,omitempty"`
-	// Set true to get records in the asynchronous mode (for csv output only). If it's true, the request is available via [GetHistoryReports] and [DownloadHistoryReport] methods 
+	// Whether to get records in the asynchronous mode (for csv output only). If it is true, the request is available via [GetHistoryReports] and [DownloadHistoryReport] methods 
 	IsAsync *bool `json:"is_async,string,omitempty"`
 }
 

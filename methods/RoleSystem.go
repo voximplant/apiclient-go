@@ -11,6 +11,8 @@ type RoleSystemService struct {
 type CreateKeyParams struct {
 	// The key's description 
 	Description string `json:"description,omitempty"`
+	// The key's name, up to 50 characters. Cannot be empty 
+	KeyName string `json:"key_name,omitempty"`
 	// The role ID list separated by semicolons (;). Use it instead of **role_name**, but not combine with 
 	RoleId string `json:"role_id,omitempty"`
 	// The role name list separated by semicolons (;). Use it instead of **role_id**, but not combine with 
@@ -39,9 +41,9 @@ func (s *RoleSystemService) CreateKey(params CreateKeyParams) (*CreateKeyReturn,
 type GetKeysParams struct {
 	// The key's ID 
 	KeyId string `json:"key_id,omitempty"`
-	// Show roles for the key 
+	// Whether to show roles for the key 
 	WithRoles *bool `json:"with_roles,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output 
+	// The first <b>N</b> records are skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
@@ -71,6 +73,8 @@ type UpdateKeyParams struct {
 	KeyId string `json:"key_id"`
 	// The key's description 
 	Description string `json:"description"`
+	// The key's name, up to 50 characters. Cannot be empty 
+	KeyName string `json:"key_name,omitempty"`
 }
 
 type UpdateKeyReturn struct {
@@ -147,7 +151,7 @@ func (s *RoleSystemService) SetKeyRoles(params SetKeyRolesParams) (*SetKeyRolesR
 type GetKeyRolesParams struct {
 	// The key's ID 
 	KeyId string `json:"key_id"`
-	// Show the roles' additional properties 
+	// Whether to show the roles' additional properties 
 	WithExpandedRoles *bool `json:"with_expanded_roles,string,omitempty"`
 }
 
@@ -233,9 +237,9 @@ func (s *RoleSystemService) AddSubUser(params AddSubUserParams) (*AddSubUserRetu
 type GetSubUsersParams struct {
 	// The subuser's ID 
 	SubuserId int `json:"subuser_id,string,omitempty"`
-	// Show subuser's roles 
+	// Whether to show subuser's roles 
 	WithRoles *bool `json:"with_roles,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output 
+	// The first <b>N</b> records are skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
@@ -345,7 +349,7 @@ func (s *RoleSystemService) SetSubUserRoles(params SetSubUserRolesParams) (*SetS
 type GetSubUserRolesParams struct {
 	// The subuser's ID 
 	SubuserId int `json:"subuser_id,string"`
-	// Show the roles' additional properties 
+	// Whether to show the roles' additional properties 
 	WithExpandedRoles *bool `json:"with_expanded_roles,string,omitempty"`
 }
 
@@ -375,7 +379,7 @@ type RemoveSubUserRolesParams struct {
 	RoleId string `json:"role_id,omitempty"`
 	// The role name list separated by semicolons (;) 
 	RoleName string `json:"role_name,omitempty"`
-	// Remove roles from all subuser keys 
+	// Whether to remove roles from all subuser keys 
 	Force *bool `json:"force,string,omitempty"`
 }
 

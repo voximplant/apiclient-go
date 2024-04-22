@@ -95,7 +95,7 @@ type GetSkillsParams struct {
 	SkillName string `json:"skill_name,omitempty"`
 	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output 
+	// The first <b>N</b> records are skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 }
 
@@ -139,7 +139,7 @@ type BindSkillParams struct {
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// The application name that can be used instead of <b>application_id</b> 
 	ApplicationName string `json:"application_name,omitempty"`
-	// Bind or unbind (set true or false respectively) 
+	// Whether to bind or unbind (set true or false respectively) 
 	Bind *bool `json:"bind,string,omitempty"`
 }
 

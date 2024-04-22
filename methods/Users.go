@@ -15,15 +15,15 @@ type AddUserParams struct {
 	UserDisplayName string `json:"user_display_name"`
 	// The user password. Must be at least 8 characters long and contain at least one uppercase and lowercase letter, one number, and one special character 
 	UserPassword string `json:"user_password"`
-	// The application ID which a new user will be bound to. Can be used instead of the <b>application_name</b> parameter 
+	// The application ID which a new user is to be bound to. Can be used instead of the <b>application_name</b> parameter 
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// The application name which a new user will be bound to. Can be used instead of the <b>application_id</b> parameter 
+	// The application name which a new user is to be bound to. Can be used instead of the <b>application_id</b> parameter 
 	ApplicationName string `json:"application_name,omitempty"`
-	// 'True' if the user will use the parent account's money, 'false' if the user will have a separate balance 
+	// Whether the user uses the parent account's money, 'false' if the user has a separate balance 
 	ParentAccounting *bool `json:"parent_accounting,string,omitempty"`
 	// The user mobile phone. The length must be less than 50 
 	MobilePhone string `json:"mobile_phone,omitempty"`
-	// The user enable flag 
+	// Whether the user is active. Inactive users cannot log in to applications 
 	UserActive *bool `json:"user_active,string,omitempty"`
 	// Any string 
 	UserCustomData string `json:"user_custom_data,omitempty"`
@@ -95,9 +95,9 @@ type SetUserInfoParams struct {
 	UserDisplayName string `json:"user_display_name,omitempty"`
 	// The new user password. Must be at least 8 characters long and contain at least one uppercase and lowercase letter, one number, and one special character 
 	UserPassword string `json:"user_password,omitempty"`
-	//  Set 'true' to use the parent account's money, 'false' to use a separate user balance 
+	// Whether to use the parent account's money, 'false' to use a separate user balance 
 	ParentAccounting *bool `json:"parent_accounting,string,omitempty"`
-	// The user enable flag 
+	// Whether the user is active. Inactive users cannot log in to applications 
 	UserActive *bool `json:"user_active,string,omitempty"`
 	// Any string 
 	UserCustomData string `json:"user_custom_data,omitempty"`
@@ -141,13 +141,13 @@ type GetUsersParams struct {
 	UserId int `json:"user_id,string,omitempty"`
 	// The user name part to filter 
 	UserName string `json:"user_name,omitempty"`
-	// The user active flag to filter 
+	// Whether the user is active to filter. Inactive users cannot log in to applications 
 	UserActive *bool `json:"user_active,string,omitempty"`
 	// The user display name part to filter 
 	UserDisplayName string `json:"user_display_name,omitempty"`
-	// Set true to get the bound skills 
+	// Whether to get the bound skills 
 	WithSkills *bool `json:"with_skills,string,omitempty"`
-	// Set true to get the bound queues 
+	// Whether to get the bound queues 
 	WithQueues *bool `json:"with_queues,string,omitempty"`
 	// The ACD status list separated by semicolons (;) to filter. The following values are possible: OFFLINE, ONLINE, READY, BANNED, IN_SERVICE, AFTER_SERVICE, TIMEOUT, DND 
 	AcdStatus string `json:"acd_status,omitempty"`
@@ -155,11 +155,11 @@ type GetUsersParams struct {
 	ShowingSkillId int `json:"showing_skill_id,string,omitempty"`
 	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output 
+	// The first <b>N</b> records are skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 	// The following values are available: 'user_id', 'user_name' and 'user_display_name' 
 	OrderBy string `json:"order_by,omitempty"`
-	// Set true to get the user live balance 
+	// Whether to get the user live balance 
 	ReturnLiveBalance *bool `json:"return_live_balance,string,omitempty"`
 }
 
@@ -199,7 +199,7 @@ type TransferMoneyToUserParams struct {
 	ApplicationName string `json:"application_name,omitempty"`
 	// The amount currency. Examples: RUR, EUR, USD 
 	Currency string `json:"currency,omitempty"`
-	// Returns error if strict_mode is true and a user or the account hasn't enough money 
+	// Whether to enable the strict mode. Returns error if strict_mode is true and a user or the account does not have enough money 
 	StrictMode *bool `json:"strict_mode,string,omitempty"`
 	// The user transaction description 
 	UserTransactionDescription string `json:"user_transaction_description,omitempty"`

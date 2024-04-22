@@ -25,7 +25,7 @@ type AddPushCredentialParams struct {
 	CertFileName string `json:"cert_file_name,omitempty"`
 	// The secret password for private key. Credentials for APPLE push 
 	CertPassword string `json:"cert_password,omitempty"`
-	// Set true to use this certificate in apple's sandbox environment. Credentials for APPLE push 
+	// Whether to use this certificate in apple's sandbox environment. Credentials for APPLE push 
 	IsDevMode *bool `json:"is_dev_mode,string,omitempty"`
 	// The sender id, provided by Google. Credentials for GOOGLE push 
 	SenderId string `json:"sender_id,omitempty"`
@@ -69,7 +69,7 @@ type SetPushCredentialParams struct {
 	CertContent string `json:"cert_content,omitempty"`
 	// The secret password for private key. Credentials for APPLE push 
 	CertPassword string `json:"cert_password,omitempty"`
-	// Set true to use this certificate in apple's sandbox environment. Credentials for APPLE push 
+	// Whether to use this certificate in apple's sandbox environment. Credentials for APPLE push 
 	IsDevMode *bool `json:"is_dev_mode,string,omitempty"`
 	// The sender id, provided by Google. Credentials for GOOGLE push 
 	SenderId string `json:"sender_id,omitempty"`
@@ -139,9 +139,9 @@ type GetPushCredentialParams struct {
 	ApplicationName string `json:"application_name,omitempty"`
 	// The id of the bound application 
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// Set true to get the user's certificate 
+	// Whether to get the user's certificate 
 	WithCert *bool `json:"with_cert,string,omitempty"`
-	// Set true to get the certificate's password 
+	// Whether to get the certificate's password 
 	WithSecretInfo *bool `json:"with_secret_info,string,omitempty"`
 }
 
@@ -169,7 +169,7 @@ type BindPushCredentialParams struct {
 	PushCredentialId string `json:"push_credential_id"`
 	// The application ID list separated by semicolons (;). Use the 'all' value to select all applications 
 	ApplicationId string `json:"application_id"`
-	// Set to false for unbind. Default value is true 
+	// Whether to bind or unbind (set true or false respectively) 
 	Bind *bool `json:"bind,string,omitempty"`
 }
 

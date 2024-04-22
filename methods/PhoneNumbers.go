@@ -23,7 +23,7 @@ type AttachPhoneNumberParams struct {
 	PhoneRegionId int `json:"phone_region_id,string"`
 	// The phone regulation address ID 
 	RegulationAddressId int `json:"regulation_address_id,string,omitempty"`
-	// The force verification flag 
+	// Whether the force verification is enabled 
 	ForceVerification *bool `json:"force_verification,string,omitempty"`
 }
 
@@ -61,7 +61,7 @@ type BindPhoneNumberToApplicationParams struct {
 	RuleId int `json:"rule_id,string,omitempty"`
 	// The rule name that can be used instead of <b>rule_id</b> 
 	RuleName string `json:"rule_name,omitempty"`
-	// Bind or unbind (set true or false respectively) 
+	// Whether to bind or unbind (set true or false respectively) 
 	Bind *bool `json:"bind,string,omitempty"`
 }
 
@@ -115,9 +115,9 @@ type SetPhoneNumberInfoParams struct {
 	PhoneId string `json:"phone_id"`
 	// The phone number list separated by semicolons (;) that can be used instead of <b>phone_id</b> 
 	PhoneNumber string `json:"phone_number"`
-	// If set, the callback of an incoming SMS will be sent to this url, otherwise, it will be sent to the general account URL 
+	// If set, the callback of an incoming SMS is sent to this url, otherwise, it is sent to the general account URL 
 	IncomingSmsCallbackUrl string `json:"incoming_sms_callback_url,omitempty"`
-	// Set true to enable the auto charging 
+	// Whether to enable the auto charging 
 	AutoCharge *bool `json:"auto_charge,string"`
 }
 
@@ -149,7 +149,7 @@ type GetPhoneNumbersParams struct {
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// The application name that can be used instead of <b>application_id</b> 
 	ApplicationName string `json:"application_name,omitempty"`
-	// Is a phone bound to an application 
+	// Whether the phone number bound to an application 
 	IsBoundToApplication *bool `json:"is_bound_to_application,string,omitempty"`
 	// The phone number start to filter 
 	PhoneTemplate string `json:"phone_template,omitempty"`
@@ -157,11 +157,11 @@ type GetPhoneNumbersParams struct {
 	CountryCode string `json:"country_code,omitempty"`
 	// The phone category name. See the [GetPhoneNumberCategories] method 
 	PhoneCategoryName string `json:"phone_category_name,omitempty"`
-	// The flag of the canceled (deleted) subscription to filter 
+	// Whether the subscription is cancelled to filter 
 	Canceled *bool `json:"canceled,string,omitempty"`
-	// The flag of the deactivated (frozen) subscription to filter 
+	// Whether the subscription is frozen to filter 
 	Deactivated *bool `json:"deactivated,string,omitempty"`
-	// The auto_charge flag to filter 
+	// Whether the auto_charge flag is enabled 
 	AutoCharge *bool `json:"auto_charge,string,omitempty"`
 	// The UTC 'from' date filter in format: YYYY-MM-DD 
 	FromPhoneNextRenewal *structure.Date `json:"from_phone_next_renewal,string,omitempty"`
@@ -173,7 +173,7 @@ type GetPhoneNumbersParams struct {
 	ToPhonePurchaseDate *structure.Timestamp `json:"to_phone_purchase_date,string,omitempty"`
 	// The child account ID list separated by semicolons (;). Use the 'all' value to select all child accounts 
 	ChildAccountId string `json:"child_account_id,omitempty"`
-	// Set true to get the children phones only 
+	// Whether to get the children phones only 
 	ChildrenPhonesOnly *bool `json:"children_phones_only,string,omitempty"`
 	// The required account verification name to filter 
 	VerificationName string `json:"verification_name,omitempty"`
@@ -183,7 +183,7 @@ type GetPhoneNumbersParams struct {
 	FromUnverifiedHoldUntil *structure.Date `json:"from_unverified_hold_until,string,omitempty"`
 	// Unverified phone hold until the date (... to) in format: YYYY-MM-DD 
 	ToUnverifiedHoldUntil *structure.Date `json:"to_unverified_hold_until,string,omitempty"`
-	// Unverified account can use the phone 
+	// Whether a not verified account can use the phone 
 	CanBeUsed *bool `json:"can_be_used,string,omitempty"`
 	// The following values are available: 'phone_number' (ascent order), 'phone_price' (ascent order), 'phone_country_code' (ascent order), 'deactivated' (deactivated first, active last), 'purchase_date' (descent order), 'phone_next_renewal' (ascent order), 'verification_status', 'unverified_hold_until' (ascent order), 'verification_name' 
 	OrderBy string `json:"order_by,omitempty"`
@@ -191,9 +191,9 @@ type GetPhoneNumbersParams struct {
 	Sandbox string `json:"sandbox,omitempty"`
 	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output 
+	// The first <b>N</b> records are skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
-	// The flag of the SMS support 
+	// Whether the SMS support is enabled 
 	SmsSupported *bool `json:"sms_supported,string,omitempty"`
 	// The region names list separated by semicolons (;) 
 	PhoneRegionName string `json:"phone_region_name,omitempty"`
@@ -201,7 +201,7 @@ type GetPhoneNumbersParams struct {
 	RuleId string `json:"rule_id,omitempty"`
 	// The rule names list separated by semicolons (;). Can be used only if __application_id__ or __application_name__ is specified 
 	RuleName string `json:"rule_name,omitempty"`
-	// Number is bound to some rule 
+	// Whether the phone number is bound to some rule 
 	IsBoundToRule *bool `json:"is_bound_to_rule,string,omitempty"`
 }
 
@@ -239,7 +239,7 @@ type GetNewPhoneNumbersParams struct {
 	PhoneRegionId int `json:"phone_region_id,string"`
 	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output 
+	// The first <b>N</b> records are skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 }
 
@@ -329,7 +329,7 @@ type GetPhoneNumberRegionsParams struct {
 	PhoneCategoryName string `json:"phone_category_name"`
 	// The country state code (example: AL, CA, ... ) 
 	CountryState string `json:"country_state,omitempty"`
-	// Set to 'false' to show all the regions (with and without phone numbers in stock) 
+	// Whether not to show all the regions (with and without phone numbers in stock) 
 	OmitEmpty *bool `json:"omit_empty,string,omitempty"`
 	// The phone region ID to filter 
 	PhoneRegionId int `json:"phone_region_id,string,omitempty"`
@@ -346,7 +346,7 @@ type GetPhoneNumberRegionsReturn struct {
 	Result []*structure.PhoneNumberCountryRegionInfoType `json:"result"`
 }
 
-// Get the country regions of the phone numbers. The response will also contain the info about multiple numbers subscription for the child accounts. 
+// Get the country regions of the phone numbers. The response also contains the info about multiple numbers subscription for the child accounts. 
 func (s *PhoneNumbersService) GetPhoneNumberRegions(params GetPhoneNumberRegionsParams) (*GetPhoneNumberRegionsReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "GetPhoneNumberRegions", params)
 	if err != nil {
@@ -378,7 +378,7 @@ type GetActualPhoneNumberRegionReturn struct {
 	Result *structure.PhoneNumberCountryRegionInfoType `json:"result"`
 }
 
-// Get actual info on the country region of the phone numbers. The response will also contain the info about multiple numbers subscription for the child accounts. 
+// Get actual info on the country region of the phone numbers. The response also contains the info about multiple numbers subscription for the child accounts. 
 func (s *PhoneNumbersService) GetActualPhoneNumberRegion(params GetActualPhoneNumberRegionParams) (*GetActualPhoneNumberRegionReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "GetActualPhoneNumberRegion", params)
 	if err != nil {

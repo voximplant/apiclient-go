@@ -11,7 +11,7 @@ type ApplicationsService struct {
 type AddApplicationParams struct {
 	// The short application name in format \[a-z\]\[a-z0-9-\]{1,64} 
 	ApplicationName string `json:"application_name"`
-	// Enable secure storage for all logs and records of the application 
+	// Whether to enable secure storage for all logs and records of the application 
 	SecureRecordStorage *bool `json:"secure_record_storage,string,omitempty"`
 }
 
@@ -22,7 +22,7 @@ type AddApplicationReturn struct {
 	ApplicationId int `json:"application_id"`
 	// The full application name 
 	ApplicationName string `json:"application_name"`
-	// This flag indicates whether a secure storage for logs and records is enabled or not 
+	// Whether a secure storage for logs and records is enabled or not 
 	SecureRecordStorage *bool `json:"secure_record_storage"`
 }
 
@@ -73,7 +73,7 @@ type SetApplicationInfoParams struct {
 	RequiredApplicationName string `json:"required_application_name"`
 	// The new short application name in format [a-z][a-z0-9-]{1,79} 
 	ApplicationName string `json:"application_name,omitempty"`
-	// Enable secure storage for all logs and records of the application 
+	// Whether to enable secure storage for all logs and records of the application 
 	SecureRecordStorage *bool `json:"secure_record_storage,string,omitempty"`
 }
 
@@ -82,7 +82,7 @@ type SetApplicationInfoReturn struct {
 	Result int `json:"result"`
 	// The new full application name 
 	ApplicationName string `json:"application_name"`
-	// This flag indicates whether a secure storage for logs and records is enabled or not 
+	// Whether a secure storage for logs and records is enabled or not 
 	SecureRecordStorage *bool `json:"secure_record_storage"`
 }
 
@@ -105,13 +105,13 @@ type GetApplicationsParams struct {
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// The application name part to filter 
 	ApplicationName string `json:"application_name,omitempty"`
-	// Set true to get bound rules info 
+	// Whether to get bound rules info 
 	WithRules *bool `json:"with_rules,string,omitempty"`
-	// Set true to get bound rules and scenarios info 
+	// Whether to get bound rules and scenarios info 
 	WithScenarios *bool `json:"with_scenarios,string,omitempty"`
 	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output 
+	// The first <b>N</b> records are skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 }
 

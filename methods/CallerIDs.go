@@ -20,7 +20,7 @@ type AddCallerIDReturn struct {
 	CalleridId int `json:"callerid_id"`
 }
 
-// Adds a new caller ID. Caller ID is the phone that will be displayed to the called user. This number can be used for call back. 
+// Adds a new caller ID. Caller ID is the phone that is displayed to the called user. This number can be used for call back. 
 func (s *CallerIDsService) AddCallerID(params AddCallerIDParams) (*AddCallerIDReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "AddCallerID", params)
 	if err != nil {
@@ -74,7 +74,7 @@ type DelCallerIDReturn struct {
 	Result int `json:"result"`
 }
 
-// Deletes the CallerID. Note: you can't delete a CID permanently (the antispam defence). 
+// Deletes the CallerID. Note: you cannot delete a CID permanently (the antispam defence). 
 func (s *CallerIDsService) DelCallerID(params DelCallerIDParams) (*DelCallerIDReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "DelCallerID", params)
 	if err != nil {
@@ -93,13 +93,13 @@ type GetCallerIDsParams struct {
 	CalleridId int `json:"callerid_id,string,omitempty"`
 	// The phone number to filter 
 	CalleridNumber string `json:"callerid_number,omitempty"`
-	// The active flag to filter 
+	// Whether the account is active to filter 
 	Active *bool `json:"active,string,omitempty"`
 	// The following values are available: 'caller_number' (ascent order), 'verified_until' (ascent order) 
 	OrderBy string `json:"order_by,omitempty"`
 	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output 
+	// The first <b>N</b> records are skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 }
 

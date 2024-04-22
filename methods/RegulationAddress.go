@@ -43,7 +43,7 @@ type GetZIPCodesParams struct {
 	PhoneRegionCode string `json:"phone_region_code,omitempty"`
 	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output 
+	// The first <b>N</b> records are skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 }
 
@@ -79,11 +79,11 @@ type GetRegulationsAddressParams struct {
 	RegulationAddressId int `json:"regulation_address_id,string,omitempty"`
 	// The regulation address type ID 
 	VerificationId int `json:"verification_id,string,omitempty"`
-	// Show only verified regulation address 
+	// Whether to show only verified regulation address 
 	Verified *bool `json:"verified,string,omitempty"`
-	// Show only in progress regulation address 
+	// Whether to show only in progress regulation address 
 	InProgress *bool `json:"in_progress,string,omitempty"`
-	// Return with phone_region_code parameters 
+	// Whether to return with phone_region_code parameters 
 	WithRegionCode *bool `json:"with_region_code,string,omitempty"`
 }
 
@@ -118,7 +118,7 @@ type GetAvailableRegulationsParams struct {
 }
 
 type GetAvailableRegulationsReturn struct {
-	// If result equals 1: 1) the user has at least one regulation address which is appropriate for verification or 2) the verification is not required. If result equals 0, the regulations address needs to be created 
+	// Whether the user has at least one regulation address which is appropriate for verification or the verification is not required. If result is false, the regulations address needs to be created 
 	Result *bool `json:"result"`
 	// The available RegulationAddress records 
 	AvailableAddress []*structure.RegulationAddress `json:"available_address"`
@@ -175,7 +175,7 @@ type GetRegionsParams struct {
 	CityName string `json:"city_name,omitempty"`
 	// The returned regions count 
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output 
+	// The first <b>N</b> records are skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 }
 

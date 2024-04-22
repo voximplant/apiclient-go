@@ -11,7 +11,7 @@ type AdminRolesService struct {
 type AddAdminRoleParams struct {
 	// The admin role name. The length must be less than 50 
 	AdminRoleName string `json:"admin_role_name"`
-	// The admin role enable flag. If false the allowed and denied entries have no affect 
+	// Whether the admin role is enabled. If false the allowed and denied entries have no affect 
 	AdminRoleActive *bool `json:"admin_role_active,string,omitempty"`
 	// The admin role ID list separated by semicolons (;). Use the 'all' value to select all admin roles. The list specifies the roles from which the new role automatically copies all permissions (allowed_entries and denied_entries) 
 	LikeAdminRoleId string `json:"like_admin_role_id,omitempty"`
@@ -77,7 +77,7 @@ type SetAdminRoleInfoParams struct {
 	AdminRoleName string `json:"admin_role_name"`
 	// The new admin role name. The length must be less than 50 
 	NewAdminRoleName string `json:"new_admin_role_name,omitempty"`
-	// The admin role enable flag. If false the allowed and denied entries have no affect 
+	// Whether the admin role is enabled. If false the allowed and denied entries have no affect 
 	AdminRoleActive *bool `json:"admin_role_active,string,omitempty"`
 	// The modification mode of the permission lists (allowed_entries and denied_entries). The following values are possible: add, del, set 
 	EntryModificationMode string `json:"entry_modification_mode,omitempty"`
@@ -85,9 +85,9 @@ type SetAdminRoleInfoParams struct {
 	AllowedEntries string `json:"allowed_entries,omitempty"`
 	// The list of denied access entry changes separated by semicolons (;) (the API function names) 
 	DeniedEntries string `json:"denied_entries,omitempty"`
-	// The admin role ID list separated by semicolons (;). Use the 'all' value to select all admin roles. The list specifies the roles from which the allowed_entries and denied_entries will be merged 
+	// The admin role ID list separated by semicolons (;). Use the 'all' value to select all admin roles. The list specifies the roles from which the allowed_entries and denied_entries are merged 
 	LikeAdminRoleId string `json:"like_admin_role_id,omitempty"`
-	// The admin role name, can be used instead of <b>like_admin_role_id</b>. The name specifies a role from which the allowed_entries and denied_entries will be merged 
+	// The admin role name, can be used instead of <b>like_admin_role_id</b>. The name specifies a role from which the allowed_entries and denied_entries are merged 
 	LikeAdminRoleName string `json:"like_admin_role_name,omitempty"`
 }
 
@@ -115,15 +115,15 @@ type GetAdminRolesParams struct {
 	AdminRoleId int `json:"admin_role_id,string,omitempty"`
 	// The admin role name part to filter 
 	AdminRoleName string `json:"admin_role_name,omitempty"`
-	// The admin role active flag to filter 
+	// Whether the admin role is enabled to filter 
 	AdminRoleActive *bool `json:"admin_role_active,string,omitempty"`
-	// Set true to get the permissions 
+	// Whether to get the permissions 
 	WithEntries *bool `json:"with_entries,string,omitempty"`
-	// Set false to omit the account roles 
+	// Whether to include the account roles 
 	WithAccountRoles *bool `json:"with_account_roles,string,omitempty"`
-	// Set false to omit the parent roles 
+	// Whether to include the parent roles 
 	WithParentRoles *bool `json:"with_parent_roles,string,omitempty"`
-	// Set false to omit the system roles 
+	// Whether to include the system roles 
 	WithSystemRoles *bool `json:"with_system_roles,string,omitempty"`
 	// The attached admin user ID list separated by semicolons (;). Use the 'all' value to select all admin users 
 	IncludedAdminUserId string `json:"included_admin_user_id,omitempty"`
@@ -135,7 +135,7 @@ type GetAdminRolesParams struct {
 	ShowingAdminUserId int `json:"showing_admin_user_id,string,omitempty"`
 	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output 
+	// The first <b>N</b> records are skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 }
 

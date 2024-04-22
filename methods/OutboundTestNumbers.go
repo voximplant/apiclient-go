@@ -18,7 +18,7 @@ type AddOutboundTestPhoneNumberReturn struct {
 	Result int `json:"result"`
 }
 
-// Adds a personal phone number to test outbound calls. Only one personal phone number can be used. To replace it with another, delete the existing one first. 
+// Adds a personal phone number to test outgoing calls. Only one personal phone number can be used. To replace it with another, delete the existing one first. 
 func (s *OutboundTestNumbersService) AddOutboundTestPhoneNumber(params AddOutboundTestPhoneNumberParams) (*AddOutboundTestPhoneNumberReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "AddOutboundTestPhoneNumber", params)
 	if err != nil {

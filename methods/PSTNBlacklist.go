@@ -20,7 +20,7 @@ type AddPstnBlackListItemReturn struct {
 	PstnBlacklistId int `json:"pstn_blacklist_id"`
 }
 
-// Add a new phone number to the PSTN blacklist. Blacklist is used to block incoming calls from specified phone numbers to numbers purchased from Voximplant. Since we have no control over exact phone number format for calls from SIP integrations, blacklisting such numbers should be done via JavaScript scenarios. 
+// Add a new phone number to the PSTN blacklist. Use blacklist to block incoming calls from specified phone numbers to numbers purchased from Voximplant. Since we have no control over exact phone number format for calls from SIP integrations, blacklisting such numbers should be done via JavaScript scenarios. 
 func (s *PSTNBlacklistService) AddPstnBlackListItem(params AddPstnBlackListItemParams) (*AddPstnBlackListItemReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "AddPstnBlackListItem", params)
 	if err != nil {
@@ -91,7 +91,7 @@ type GetPstnBlackListParams struct {
 	PstnBlacklistPhone string `json:"pstn_blacklist_phone,omitempty"`
 	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output 
+	// The first <b>N</b> records are skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 }
 

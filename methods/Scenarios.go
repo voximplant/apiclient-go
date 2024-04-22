@@ -17,7 +17,7 @@ type AddScenarioParams struct {
 	RuleId int `json:"rule_id,string,omitempty"`
 	// The rule name that can be used instead of <b>rule_id</b> 
 	RuleName string `json:"rule_name,omitempty"`
-	// Rewrite the existing scenario 
+	// Whether to rewrite the existing scenario 
 	Rewrite *bool `json:"rewrite,string,omitempty"`
 }
 
@@ -81,7 +81,7 @@ type BindScenarioParams struct {
 	ApplicationId int `json:"application_id,string"`
 	// The application name that can be used instead of <b>application_id</b> 
 	ApplicationName string `json:"application_name"`
-	// Bind or unbind (set true or false respectively) 
+	// Whether to bind or unbind (set true or false respectively) 
 	Bind *bool `json:"bind,string,omitempty"`
 }
 
@@ -107,13 +107,13 @@ func (s *ScenariosService) BindScenario(params BindScenarioParams) (*BindScenari
 type GetScenariosParams struct {
 	// The scenario ID to filter 
 	ScenarioId int `json:"scenario_id,string,omitempty"`
-	// The scenario name to filter. Can be used instead of <b>scenario_id</b>. All scenarios containing this param in their names will be returned. The parameter is case insensitive 
+	// The scenario name to filter. Can be used instead of <b>scenario_id</b>. All scenarios containing this param in their names are returned. The parameter is case insensitive 
 	ScenarioName string `json:"scenario_name,omitempty"`
-	// Set true to get the scenario text. You must specify the 'scenario_id' too! 
+	// Whether to get the scenario text. You must specify the 'scenario_id' too! 
 	WithScript *bool `json:"with_script,string,omitempty"`
 	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output 
+	// The first <b>N</b> records are skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 }
 
@@ -215,16 +215,16 @@ type StartScenariosParams struct {
 	ReferenceIp string `json:"reference_ip,omitempty"`
 	// Specifies the location of the server where the scenario needs to be executed. Has higher priority than `reference_ip`. Request [getServerLocations](https://api.voximplant.com/getServerLocations) for possible values 
 	ServerLocation string `json:"server_location,omitempty"`
-	// Set true to get media server session lists url 
+	// Whether to get media server session lists url 
 	WithCheckUrl *bool `json:"with_check_url,string,omitempty"`
 }
 
 type StartScenariosReturn struct {
 	// 1 
 	Result int `json:"result"`
-	// The URL to control a created media session. You can use it for arbitrary tasks such as stopping scenario or passing additional data to it. Making HTTP request on this URL will result in the [AppEvents.HttpRequest](/docs/references/voxengine/appevents#httprequest) VoxEngine event being triggered for scenario, with HTTP request data passed to it 
+	// The URL to control a created media session. You can use it for arbitrary tasks such as stopping scenario or passing additional data to it. Making HTTP request on this URL results in the [AppEvents.HttpRequest](/docs/references/voxengine/appevents#httprequest) VoxEngine event being triggered for scenario, with HTTP request data passed to it 
 	MediaSessionAccessUrl string `json:"media_session_access_url"`
-	// The URL to control a created media session. You can use it for arbitrary tasks such as stopping scenario or passing additional data to it. Making HTTPS request on this URL will result in the [AppEvents.HttpRequest](/docs/references/voxengine/appevents#httprequest) VoxEngine event being triggered for scenario, with HTTP request data passed to it 
+	// The URL to control a created media session. You can use it for arbitrary tasks such as stopping scenario or passing additional data to it. Making HTTPS request on this URL results in the [AppEvents.HttpRequest](/docs/references/voxengine/appevents#httprequest) VoxEngine event being triggered for scenario, with HTTP request data passed to it 
 	MediaSessionAccessSecureUrl string `json:"media_session_access_secure_url"`
 	// The URL to check media session 
 	MediaSessionCheckUrl string `json:"media_session_check_url"`
@@ -270,15 +270,15 @@ type StartConferenceParams struct {
 type StartConferenceReturn struct {
 	// 1 
 	Result int `json:"result"`
-	// The URL to control a created media session. It can be used for arbitrary tasks such as stopping scenario or passing additional data to it. Making HTTP request on this URL will result in the [AppEvents.HttpRequest](/docs/references/voxengine/appevents#httprequest) VoxEngine event being triggered for a scenario, with an HTTP request data passed to it 
+	// The URL to control a created media session. It can be used for arbitrary tasks such as stopping scenario or passing additional data to it. Making HTTP request on this URL results in the [AppEvents.HttpRequest](/docs/references/voxengine/appevents#httprequest) VoxEngine event being triggered for a scenario, with an HTTP request data passed to it 
 	MediaSessionAccessUrl string `json:"media_session_access_url"`
-	// The URL to control a created media session. It can be used for arbitrary tasks such as stopping scenario or passing additional data to it. Making HTTPS request on this URL will result in the [AppEvents.HttpRequest](/docs/references/voxengine/appevents#httprequest) VoxEngine event being triggered for a scenario, with an HTTP request data passed to it 
+	// The URL to control a created media session. It can be used for arbitrary tasks such as stopping scenario or passing additional data to it. Making HTTPS request on this URL results in the [AppEvents.HttpRequest](/docs/references/voxengine/appevents#httprequest) VoxEngine event being triggered for a scenario, with an HTTP request data passed to it 
 	MediaSessionAccessSecureUrl string `json:"media_session_access_secure_url"`
 	// The call session history ID. To search a call session result, paste the ID to the <a href='/docs/references/httpapi/history#getcallhistory'>GetCallHistory</a> method's <b>call_session_history_id</b> parameter 
 	CallSessionHistoryId int `json:"call_session_history_id"`
 }
 
-// Runs a session for video conferencing or joins the existing video conference session.<br/><br/>When you create a session by calling this method, a scenario runs on one of the servers dedicated to video conferencing. All further method calls with the same **conference_name** won't create a new video conference session but join the existing one.<br/><br/>Use the [StartScenarios] method for creating audio conferences. 
+// Runs a session for video conferencing or joins the existing video conference session.<br/><br/>When you create a session by calling this method, a scenario runs on one of the servers dedicated to video conferencing. All further method calls with the same **conference_name** do not create a new video conference session but join the existing one.<br/><br/>Use the [StartScenarios] method for creating audio conferences. 
 func (s *ScenariosService) StartConference(params StartConferenceParams) (*StartConferenceReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "StartConference", params)
 	if err != nil {

@@ -15,7 +15,7 @@ type SendSmsMessageParams struct {
 	Destination string `json:"destination"`
 	// The message text, up to 765 characters. We split long messages greater than 160 GSM-7 characters or 70 UTF-16 characters into multiple segments. Each segment is charged as one message 
 	SmsBody string `json:"sms_body"`
-	// Set to true to store outbound message texts. Default value is false 
+	// Whether to store outgoing message texts. Default value is false 
 	StoreBody *bool `json:"store_body,string,omitempty"`
 }
 
@@ -24,7 +24,7 @@ type SendSmsMessageReturn struct {
 	Result int `json:"result"`
 	// Message ID 
 	MessageId int `json:"message_id"`
-	// The number of fragments the message was divided into 
+	// The number of fragments the message is divided into 
 	FragmentsCount int `json:"fragments_count"`
 }
 
@@ -43,13 +43,13 @@ func (s *SMSService) SendSmsMessage(params SendSmsMessageParams) (*SendSmsMessag
 }
 
 type A2PSendSmsParams struct {
-	// The SenderID for outbound SMS. Please contact support for installing a SenderID 
+	// The SenderID for outgoing SMS. Please contact support for installing a SenderID 
 	SrcNumber string `json:"src_number"`
 	// The destination phone numbers separated by semicolons (;). The maximum number of these phone numbers is 100 
 	DstNumbers string `json:"dst_numbers"`
 	// The message text, up to 1600 characters. We split long messages greater than 160 GSM-7 characters or 70 UTF-16 characters into multiple segments. Each segment is charged as one message 
 	Text string `json:"text"`
-	// Set to true to store outbound message texts. Default value is false 
+	// Whether to store outgoing message texts. Default value is false 
 	StoreBody *bool `json:"store_body,string,omitempty"`
 }
 
@@ -88,7 +88,7 @@ type ControlSmsReturn struct {
 	Result int `json:"result"`
 }
 
-// Enables or disables sending and receiving SMS for the phone number. Can be used only for phone numbers with SMS support, which is indicated by the <b>is_sms_supported</b> property in the objects returned by the [GetPhoneNumbers] Management API. Each incoming SMS message is charged according to the <a href='//voximplant.com/pricing'>pricing</a>. If enabled, SMS can be sent from this phone number using the [SendSmsMessage] Management API and received using the [InboundSmsCallback] property of the HTTP callback. See <a href='/docs/guides/managementapi/callbacks'>this article</a> for HTTP callback details. 
+// Enables or disables sending and receiving SMS for the phone number. Can be used only for phone numbers with SMS support, which is indicated by the <b>is_sms_supported</b> property in the objects returned by the [GetPhoneNumbers] Management API. Each incoming SMS message is charged according to the <a href='//voximplant.com/pricing'>pricing</a>. If enabled, SMS can be sent from this phone number via the [SendSmsMessage] Management API and received via the [InboundSmsCallback] property of the HTTP callback. See <a href='/docs/guides/managementapi/callbacks'>this article</a> for HTTP callback details. 
 func (s *SMSService) ControlSms(params ControlSmsParams) (*ControlSmsReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "ControlSms", params)
 	if err != nil {
@@ -109,9 +109,9 @@ type GetSmsHistoryParams struct {
 	DestinationNumber string `json:"destination_number,omitempty"`
 	// Sent or received SMS. Possible values: 'IN', 'OUT', 'in, 'out'. Leave blank to get both incoming and outgoing messages 
 	Direction string `json:"direction,omitempty"`
-	// Maximum number of resulting rows fetched. Must be not bigger than 1000. If left blank, then the default value of 1000 will be used 
+	// Maximum number of resulting rows fetched. Must be not bigger than 1000. If left blank, then the default value of 1000 is used 
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output 
+	// The first <b>N</b> records are skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 	// Date from which to perform search. Format is 'yyyy-MM-dd HH:mm:ss', time zone is UTC 
 	FromDate *structure.Timestamp `json:"from_date,string,omitempty"`
@@ -147,9 +147,9 @@ type A2PGetSmsHistoryParams struct {
 	SourceNumber string `json:"source_number,omitempty"`
 	// The destination phone number 
 	DestinationNumber string `json:"destination_number,omitempty"`
-	// Maximum number of resulting rows fetched. Must be not bigger than 1000. If left blank, then the default value of 1000 will be used 
+	// Maximum number of resulting rows fetched. Must be not bigger than 1000. If left blank, then the default value of 1000 is used 
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output 
+	// The first <b>N</b> records are skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 	// Date from which the search is to start. Format is 'yyyy-MM-dd HH:mm:ss', time zone is UTC 
 	FromDate *structure.Timestamp `json:"from_date,string,omitempty"`

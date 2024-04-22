@@ -28,7 +28,7 @@ type SetKeyValueItemReturn struct {
 	Result *structure.KeyValueItems `json:"result"`
 }
 
-// Creates or updates a key-value pair. If an existing key is passed, the method will return the existing item and will change the value if needed. The keys should be unique within a Voximplant application. 
+// Creates or updates a key-value pair. If an existing key is passed, the method returns the existing item and changes the value if needed. The keys should be unique within a Voximplant application. 
 func (s *KeyvaluestorageService) SetKeyValueItem(params SetKeyValueItemParams) (*SetKeyValueItemReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "SetKeyValueItem", params)
 	if err != nil {

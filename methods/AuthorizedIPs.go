@@ -11,7 +11,7 @@ type AuthorizedIPsService struct {
 type AddAuthorizedAccountIPParams struct {
 	// The authorized IP4 or network 
 	AuthorizedIp string `json:"authorized_ip"`
-	// Set false to add the IP to the blacklist 
+	// Whether to remove the IP from the blacklist 
 	Allowed *bool `json:"allowed,string,omitempty"`
 	// The IP address description 
 	Description string `json:"description,omitempty"`
@@ -41,7 +41,7 @@ type DelAuthorizedAccountIPParams struct {
 	AuthorizedIp string `json:"authorized_ip"`
 	// Specify the parameter to remove the networks that contains the particular IP4. Can be used instead of <b>autharized_ip</b> 
 	ContainsIp string `json:"contains_ip"`
-	// Set true to remove the network from the white list. Set false to remove the network from the black list. Omit the parameter to remove the network from all lists 
+	// Whether to remove the network from the white list. Set false to remove the network from the black list. Omit the parameter to remove the network from all lists 
 	Allowed *bool `json:"allowed,string,omitempty"`
 }
 
@@ -67,13 +67,13 @@ func (s *AuthorizedIPsService) DelAuthorizedAccountIP(params DelAuthorizedAccoun
 type GetAuthorizedAccountIPsParams struct {
 	// The authorized IP4 or network to filter 
 	AuthorizedIp string `json:"authorized_ip,omitempty"`
-	// The allowed flag to filter 
+	// Whether the IP is allowed 
 	Allowed *bool `json:"allowed,string,omitempty"`
 	// Specify the parameter to filter the networks that contains the particular IP4 
 	ContainsIp string `json:"contains_ip,omitempty"`
 	// The max returning record count 
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records will be skipped in the output 
+	// The first <b>N</b> records are skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
 	// The IP address description 
 	Description string `json:"description,omitempty"`
@@ -108,7 +108,7 @@ type CheckAuthorizedAccountIPParams struct {
 }
 
 type CheckAuthorizedAccountIPReturn struct {
-	// True if IP is allowed 
+	// Whether the IP is allowed 
 	Result *bool `json:"result"`
 	// The matched authorized IP or network (if found) 
 	AuthorizedIp string `json:"authorized_ip,omitempty"`
