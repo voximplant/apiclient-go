@@ -1243,6 +1243,10 @@ type CallListDetailType struct {
 	StatusId int `json:"status_id"`
 	// The status name. The possible values are __New__ (status_id = 0), __In progress__ (status_id = 1), __Processed__ (status_id = 2), __Error__ (status_id = 3), __Canceled__ (status_id = 4) 
 	Status string `json:"status"`
+	// The call list task ID 
+	TaskId int `json:"task_id"`
+	// The call list task UUID 
+	TaskUuid string `json:"task_uuid"`
 }
 
 type SIPRegistrationType struct {

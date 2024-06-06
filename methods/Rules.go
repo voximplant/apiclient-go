@@ -21,6 +21,8 @@ type AddRuleParams struct {
 	RulePatternExclude string `json:"rule_pattern_exclude,omitempty"`
 	// Whether video conference is required 
 	VideoConference *bool `json:"video_conference,string,omitempty"`
+	// The service account ID to bind to the rule. Read more in the [guide](/docs/guides/voxengine/management-api) 
+	BindKeyId string `json:"bind_key_id,omitempty"`
 	// The scenario ID list separated by semicolons (;) 
 	ScenarioId string `json:"scenario_id"`
 	// The scenario name list separated by semicolons (;). Can be used instead of <b>scenario_id</b> 
@@ -89,6 +91,8 @@ type SetRuleInfoParams struct {
 	RulePatternExclude string `json:"rule_pattern_exclude,omitempty"`
 	// Whether video conference is required 
 	VideoConference *bool `json:"video_conference,string,omitempty"`
+	// The service account ID to bind to the rule. Read more in the [guide](/docs/guides/voxengine/management-api) 
+	BindKeyId string `json:"bind_key_id,omitempty"`
 }
 
 type SetRuleInfoReturn struct {
@@ -121,6 +125,8 @@ type GetRulesParams struct {
 	RuleName string `json:"rule_name,omitempty"`
 	// Whether it is a video conference to filter 
 	VideoConference *bool `json:"video_conference,string,omitempty"`
+	// The service account ID bound to the rule. Read more in the [guide](/docs/guides/voxengine/management-api) 
+	AttachedKeyId string `json:"attached_key_id,omitempty"`
 	// Search for template matching 
 	Template string `json:"template,omitempty"`
 	// Whether to get bound scenarios info 
