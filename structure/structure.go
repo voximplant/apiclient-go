@@ -483,10 +483,8 @@ type HistoryReportType struct {
 	DownloadCount int `json:"download_count,omitempty"`
 	// The last download UTC time in 24-h format: YYYY-MM-DD HH:mm:ss. The report is completed if the field exists 
 	LastDownloaded Timestamp `json:"last_downloaded,omitempty"`
-	// Store the report until the UTC time in 24-h format: YYYY-MM-DD HH:mm:ss. The report is completed if the field exists 
-	StoreUntil Timestamp `json:"store_until,omitempty"`
-	// The report error 
-	Error APIError `json:"error,omitempty"`
+	// Store the report until the date in format: YYYY-MM-DD. The report is completed if the field exists 
+	StoreUntil Date `json:"store_until,omitempty"`
 	// The report order filters (the saved [GetCallHistory], [GetTransactionHistory] parameters) 
 	Filters interface{} `json:"filters,omitempty"`
 	// The calculated report data (the specific report data, see [CalculatedCallHistoryDataType], [CalculatedTransactionHistoryDataType]) 
@@ -2046,6 +2044,8 @@ type PushCredentialInfo struct {
 	PushProviderId int `json:"push_provider_id"`
 	// The push provider name. The possible values are APPLE, APPLE_VOIP, GOOGLE, HUAWEI 
 	PushProviderName string `json:"push_provider_name"`
+	// The expiration date of the push certificate 
+	ExpirationDate string `json:"expiration_date"`
 	// The bundle of Android/iOS application 
 	CredentialBundle string `json:"credential_bundle,omitempty"`
 	// The credentials content 

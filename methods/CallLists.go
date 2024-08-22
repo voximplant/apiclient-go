@@ -124,13 +124,49 @@ type GetCallListDetailsReturn struct {
 	Count int `json:"count"`
 }
 
-// Get details of the specified call list. Returns a CSV file by default. 
+// Gets details of the specified call list. Returns a CSV file by default. 
 func (s *CallListsService) GetCallListDetails(params GetCallListDetailsParams) (*GetCallListDetailsReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "GetCallListDetails", params)
 	if err != nil {
 		return nil, nil, err
 	}
 	response := &GetCallListDetailsReturn{}
+	verr, err := s.client.MakeResponse(req, response)
+	if verr != nil || err != nil {
+		return nil, verr, err
+	}
+	return response, nil, nil
+}
+
+type EditCallListTaskParams struct {
+	// Call list's ID 
+	ListId int `json:"list_id,string"`
+	// Call list's task ID. Please specify either the task's ID or the task's UUID to edit the task 
+	TaskId int `json:"task_id,string,omitempty"`
+	// Call list's task ID. Please specify either the task's ID or the task's UUID to edit the task 
+	TaskUuid string `json:"task_uuid,omitempty"`
+	// Next calling attempts timestamp in the yyyy-MM-dd HH:mm:ss format 
+	StartAt *structure.Timestamp `json:"start_at,string,omitempty"`
+	// Number of remaining calling attempts 
+	AttemptsLeft int `json:"attempts_left,string,omitempty"`
+	// Custom data string 
+	CustomData string `json:"custom_data,omitempty"`
+	// Start time for the daily calling attempts in the UTC+0 24-h format: HH:mm:ss format 
+	MinExecutionTime *structure.Timestamp `json:"min_execution_time,string,omitempty"`
+}
+
+type EditCallListTaskReturn struct {
+	// true 
+	Result *bool `json:"result"`
+}
+
+// Edits the specified call list's task. 
+func (s *CallListsService) EditCallListTask(params EditCallListTaskParams) (*EditCallListTaskReturn, *structure.VError, error) {
+	req, err := s.client.NewRequest("POST", "EditCallListTask", params)
+	if err != nil {
+		return nil, nil, err
+	}
+	response := &EditCallListTaskReturn{}
 	verr, err := s.client.MakeResponse(req, response)
 	if verr != nil || err != nil {
 		return nil, verr, err
@@ -150,7 +186,7 @@ type StopCallListProcessingReturn struct {
 	Msg string `json:"msg"`
 }
 
-// Stop processing the specified call list. 
+// Stops processing the specified call list. 
 func (s *CallListsService) StopCallListProcessing(params StopCallListProcessingParams) (*StopCallListProcessingReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "StopCallListProcessing", params)
 	if err != nil {
