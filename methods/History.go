@@ -139,7 +139,7 @@ func (s *HistoryService) GetBriefCallHistory(params GetBriefCallHistoryParams) (
 type GetHistoryReportsParams struct {
 	// The history report ID to filter 
 	HistoryReportId int `json:"history_report_id,string,omitempty"`
-	// The history report type list separated by semicolons (;). Use the 'all' value to select all history report types. The following values are possible: calls, calls_brief, transactions, audit, call_list 
+	// The history report type list separated by semicolons (;). Use the 'all' value to select all history report types. The following values are possible: calls, calls_brief, transactions, audit, call_list, transactions_on_hold 
 	HistoryType string `json:"history_type,omitempty"`
 	// The UTC creation from date filter in 24-h format: YYYY-MM-DD HH:mm:ss 
 	CreatedFrom *structure.Timestamp `json:"created_from,string,omitempty"`

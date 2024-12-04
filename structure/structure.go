@@ -446,8 +446,12 @@ type RecordType struct {
 }
 
 type AuditLogInfoType struct {
-	// The  ID 
+	// The audit log ID 
 	AuditLogId int `json:"audit_log_id"`
+	// The subuser's ID 
+	SubuserId int `json:"subuser_id,omitempty"`
+	// The subuser's name 
+	SubuserName string `json:"subuser_name,omitempty"`
 	// The account ID 
 	AccountId int `json:"account_id"`
 	// The action time in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss 
