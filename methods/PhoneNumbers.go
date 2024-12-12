@@ -241,6 +241,8 @@ type GetNewPhoneNumbersParams struct {
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
+	// The phone number searching mask. Asterisk represents zero or more occurrences of any character 
+	PhoneNumberMask string `json:"phone_number_mask,omitempty"`
 }
 
 type GetNewPhoneNumbersReturn struct {

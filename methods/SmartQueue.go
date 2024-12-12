@@ -17,8 +17,6 @@ type GetSmartQueueRealtimeMetricsParams struct {
 	UserId string `json:"user_id,omitempty"`
 	// The user name list separated by semicolons (;). <b>user_name</b> can be used instead of <b>user_id</b> 
 	UserName string `json:"user_name,omitempty"`
-	// The SmartQueue ID list with a maximum of 5 values separated by semicolons (;). Can operate as filter for the **calls_blocked_percentage**, **count_blocked_calls**, **average_abandonment_rate**, **count_abandonment_calls**, **service_level**, **occupancy_rate**, **min_time_in_queue**, **max_time_in_queue**, **average_time_in_queue**, **min_answer_speed**, **max_answer_speed**, **average_answer_speed**, **min_handle_time**, **max_handle_time**, **average_handle_time**, **count_handled_calls**, **min_after_call_worktime**, **max_after_call_worktime**, **average_after_call_worktime** report types 
-	SqQueueId string `json:"sq_queue_id,omitempty"`
 	// The SmartQueue name list separated by semicolons (;). Can be used instead of <b>sq_queue_id</b> 
 	SqQueueName string `json:"sq_queue_name,omitempty"`
 	// The from date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss. Default is the current time minus 30 minutes 

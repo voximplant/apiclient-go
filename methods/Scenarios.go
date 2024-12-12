@@ -19,6 +19,10 @@ type AddScenarioParams struct {
 	RuleName string `json:"rule_name,omitempty"`
 	// Whether to rewrite the existing scenario 
 	Rewrite *bool `json:"rewrite,string,omitempty"`
+	// ID of the application to bind the scenario to 
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// Name of the application to bind the scenario to 
+	ApplicationName string `json:"application_name,omitempty"`
 }
 
 type AddScenarioReturn struct {
@@ -115,6 +119,10 @@ type GetScenariosParams struct {
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output 
 	Offset int `json:"offset,string,omitempty"`
+	// ID of the scenario's application 
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// Name of the scenario's application 
+	ApplicationName string `json:"application_name,omitempty"`
 }
 
 type GetScenariosReturn struct {
@@ -124,6 +132,10 @@ type GetScenariosReturn struct {
 	TotalCount int `json:"total_count"`
 	// The returned scenario count 
 	Count int `json:"count"`
+	// ID of the scenario's application 
+	ApplicationId int `json:"application_id"`
+	// Name of the scenario's application 
+	ApplicationName string `json:"application_name"`
 }
 
 // Gets the account's scenarios. 
