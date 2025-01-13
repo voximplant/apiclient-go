@@ -27,10 +27,6 @@ type AddPushCredentialParams struct {
 	CertPassword string `json:"cert_password,omitempty"`
 	// Whether to use this certificate in apple's sandbox environment. Credentials for APPLE push 
 	IsDevMode *bool `json:"is_dev_mode,string,omitempty"`
-	// The sender id, provided by Google. Credentials for GOOGLE push 
-	SenderId string `json:"sender_id,omitempty"`
-	// The server key, provided by Google. Credentials for GOOGLE push 
-	ServerKey string `json:"server_key,omitempty"`
 	// The service account key file, provided by Google. Can be used instead of <b>server_key</b>. Credentials for GOOGLE push 
 	ServiceAccountFile string `json:"service_account_file,omitempty"`
 	// The client id, provided by Huawei. Credentials for HUAWEI push 
@@ -71,10 +67,6 @@ type SetPushCredentialParams struct {
 	CertPassword string `json:"cert_password,omitempty"`
 	// Whether to use this certificate in apple's sandbox environment. Credentials for APPLE push 
 	IsDevMode *bool `json:"is_dev_mode,string,omitempty"`
-	// The sender id, provided by Google. Credentials for GOOGLE push 
-	SenderId string `json:"sender_id,omitempty"`
-	// The server key, provided by Google. Credentials for GOOGLE push 
-	ServerKey string `json:"server_key,omitempty"`
 	// The service account key file, provided by Google. Can be used instead of <b>server_key</b>. Credentials for GOOGLE push 
 	ServiceAccountFile string `json:"service_account_file,omitempty"`
 	// The client id, provided by Huawei. Credentials for HUAWEI push 

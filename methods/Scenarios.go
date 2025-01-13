@@ -136,6 +136,8 @@ type GetScenariosReturn struct {
 	ApplicationId int `json:"application_id"`
 	// Name of the scenario's application 
 	ApplicationName string `json:"application_name"`
+	// Application name including the node name 
+	ExtendedApplicationName string `json:"extended_application_name"`
 }
 
 // Gets the account's scenarios. 

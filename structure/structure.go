@@ -382,6 +382,8 @@ type CallInfoType struct {
 	Cost float64 `json:"cost,omitempty"`
 	// The custom data passed to the JS session 
 	CustomData string `json:"custom_data,omitempty"`
+	// End reason code and description 
+	EndReason interface{} `json:"end_reason,omitempty"`
 }
 
 type TransactionInfoType struct {
