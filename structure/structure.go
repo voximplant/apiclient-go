@@ -945,7 +945,7 @@ type AttachedPhoneInfoType struct {
 	// The phone category name (MOBILE, GEOGRAPHIC, TOLLFREE, MOSCOW495) 
 	CategoryName string `json:"category_name"`
 	// Whether the verification is required for the account 
-	RequiredVerification *bool `json:"required_verification,omitempty"`
+	RequiredVerification string `json:"required_verification,omitempty"`
 	// The account verification status. The following values are possible: REQUIRED, IN_PROGRESS, VERIFIED 
 	VerificationStatus string `json:"verification_status,omitempty"`
 	// Unverified phone hold until the date in format: YYYY-MM-DD (if the account verification is required). The number is detached on that day automatically! 
@@ -978,7 +978,7 @@ type NewAttachedPhoneInfoType struct {
 	// The phone number 
 	PhoneNumber string `json:"phone_number"`
 	// Whether verification is required for the account 
-	RequiredVerification *bool `json:"required_verification,omitempty"`
+	RequiredVerification string `json:"required_verification,omitempty"`
 	// The account verification status. The following values are possible: REQUIRED, IN_PROGRESS, VERIFIED 
 	VerificationStatus string `json:"verification_status,omitempty"`
 	// Unverified phone hold until the date in format: YYYY-MM-DD (if the account verification is required). The number is detached on that day automatically! 
@@ -988,6 +988,8 @@ type NewAttachedPhoneInfoType struct {
 type PhoneNumberCountryInfoType struct {
 	// The country code 
 	CountryCode string `json:"country_code"`
+	// The localized country name 
+	LocalizedCountryName string `json:"localized_country_name"`
 	// The country phone prefix 
 	PhonePrefix string `json:"phone_prefix"`
 	// Whether to list phone numbers 
@@ -1030,7 +1032,7 @@ type PhoneNumberCountryRegionInfoType struct {
 	// The account verification status. The following values are possible: REQUIRED, IN_PROGRESS, VERIFIED 
 	VerificationStatus string `json:"verification_status,omitempty"`
 	// Whether verification is required for the account 
-	RequiredVerification *bool `json:"required_verification,omitempty"`
+	RequiredVerification string `json:"required_verification,omitempty"`
 	// The charge period in 24-h format: Y-M-D H:m:s. Example: 0-1-0 0:0:0 is 1 month 
 	PhonePeriod string `json:"phone_period"`
 	// Whether to need proof of address 
@@ -1454,7 +1456,7 @@ type SubscriptionTemplateType struct {
 	// The subscription template name (example: SIP registration, Phone GB, Phone RU 495, ...) 
 	SubscriptionTemplateName string `json:"subscription_template_name"`
 	// Whether verification is required for the account 
-	RequiredVerification *bool `json:"required_verification"`
+	RequiredVerification string `json:"required_verification"`
 	// The verification status. Possible values are REQUIRED, IN_PROGRESS, VERIFIED, NOT_REQUIRED 
 	VerificationStatus string `json:"verification_status"`
 	// The phone number installation tax reserve 
@@ -2341,7 +2343,7 @@ type SQAgentBindingModes struct {
 }
 
 type SmartQueueMetricsResult struct {
-	// The report type(s). Possible values are calls_blocked_percentage, count_blocked_calls, average_abandonment_rate, count_abandonment_calls, service_level, occupancy_rate, sum_agents_online_time, sum_agents_ready_time, sum_agents_dialing_time, sum_agents_in_service_time, sum_agents_afterservice_time, sum_agents_dnd_time, sum_agents_banned_time, min_time_in_queue,max_time_in_queue, average_time_in_queue, min_answer_speed, max_answer_speed, average_answer_speed, min_handle_time, max_handle_time, average_handle_time, count_handled_calls, min_after_call_worktime, max_after_call_worktime, average_after_call_worktime, sum_agents_custom_1_time ... sum_agents_custom_10_time 
+	// The report type(s). Possible values are calls_blocked_percentage, count_blocked_calls, average_abandonment_rate, count_abandonment_calls, service_level, occupancy_rate, sum_agents_online_time, sum_agents_ready_time, sum_agents_dialing_time, sum_agents_in_service_time, sum_agents_afterservice_time, sum_agents_dnd_time, sum_agents_banned_time, min_time_in_queue,max_time_in_queue, average_time_in_queue, min_answer_speed, max_answer_speed, average_answer_speed, min_handle_time, max_handle_time, average_handle_time, count_handled_calls, min_after_call_worktime, max_after_call_worktime, average_after_call_worktime, sum_agents_custom_1_time ... sum_agents_custom_10_time, call_count_assigned_to_queue, im_count_assigned_to_queue 
 	ReportType string `json:"report_type"`
 	// Grouping by agent or queue 
 	Groups []SmartQueueMetricsGroups `json:"groups"`

@@ -25,8 +25,10 @@ type GetCallHistoryParams struct {
 	UserId string `json:"user_id,omitempty"`
 	// To receive the call history for a specific routing rule, pass the rule name to this parameter. Applies only if you set application_id or application_name 
 	RuleName string `json:"rule_name,omitempty"`
-	// To receive a call history for a specific remote numbers, pass the number list separated by semicolons (;). A remote number is a number on the client side 
+	// To receive a call history for a specific remote numbers, pass the number list separated by semicolons (;). A remote number is a number on the client side. Ignored if the `remote_number_list` parameter is not empty 
 	RemoteNumber string `json:"remote_number,omitempty"`
+	// A JS array of strings of specific remote phone numbers to sort the call history. Has higher priority than the `remote_number` parameter. If the array is empty, the `remote_number` parameter is used instead 
+	RemoteNumberList interface{} `json:"remote_number_list,string,omitempty"`
 	// To receive a call history for a specific local numbers, pass the number list separated by semicolons (;). A local number is a number on the platform side 
 	LocalNumber string `json:"local_number,omitempty"`
 	// To filter the call history by the custom_data passed to the call sessions, pass the custom data to this parameter 
