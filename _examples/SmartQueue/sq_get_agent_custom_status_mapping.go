@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.SQGetAgentCustomStatusMappingParams{ApplicationId:1}
+
+	params := methods.SQGetAgentCustomStatusMappingParams{ApplicationId: 1}
 	res, verr, err := client.SmartQueue.SQGetAgentCustomStatusMapping(params)
 	fmt.Println(res, verr, err)
 }

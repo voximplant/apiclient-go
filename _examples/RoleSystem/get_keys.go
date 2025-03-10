@@ -12,6 +12,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	params := methods.GetKeysParams{}
 	res, verr, err := client.RoleSystem.GetKeys(params)
 	fmt.Println(res, verr, err)

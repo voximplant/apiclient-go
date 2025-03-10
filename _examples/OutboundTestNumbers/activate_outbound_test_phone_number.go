@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.ActivateOutboundTestPhoneNumberParams{VerificationCode:"12345"}
+
+	params := methods.ActivateOutboundTestPhoneNumberParams{VerificationCode: "12345"}
 	res, verr, err := client.OutboundTestNumbers.ActivateOutboundTestPhoneNumber(params)
 	fmt.Println(res, verr, err)
 }

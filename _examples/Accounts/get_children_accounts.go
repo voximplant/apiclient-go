@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetChildrenAccountsParams{ChildAccountEmail:"mychild@gmail.com"}
+
+	params := methods.GetChildrenAccountsParams{ChildAccountEmail: "mychild@gmail.com"}
 	res, verr, err := client.Accounts.GetChildrenAccounts(params)
 	fmt.Println(res, verr, err)
 }

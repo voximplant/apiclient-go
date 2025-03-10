@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"github.com/voximplant/apiclient-go/config"
 	"github.com/voximplant/apiclient-go/methods"
+	"github.com/voximplant/apiclient-go/structure"
+	"time"
 )
 
 func main() {
@@ -12,7 +14,12 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetACDOperatorStatusStatisticsParams{FromDate:2019-05-20 11:00:00, ToDate:2019-05-20 13:00:00, AcdStatus:"READY;ONLINE", UserId:"all", Aggregation:"hour", Group:"user"}
+	FromDateRaw := time.Date(2019, 5, 20, 11, 0, 0, 0, time.UTC)
+	FromDate := (*structure.Timestamp)(&FromDateRaw)
+	ToDateRaw := time.Date(2019, 5, 20, 13, 0, 0, 0, time.UTC)
+	ToDate := (*structure.Timestamp)(&ToDateRaw)
+
+	params := methods.GetACDOperatorStatusStatisticsParams{FromDate: FromDate, ToDate: ToDate, AcdStatus: "READY;ONLINE", UserId: "all", Aggregation: "hour", Group: "user"}
 	res, verr, err := client.Queues.GetACDOperatorStatusStatistics(params)
 	fmt.Println(res, verr, err)
 }

@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.DeleteKeyParams{KeyId:"ab81c66e-570e-4446-9af9-105269dfafca"}
+
+	params := methods.DeleteKeyParams{KeyId: "ab81c66e-570e-4446-9af9-105269dfafca"}
 	res, verr, err := client.RoleSystem.DeleteKey(params)
 	fmt.Println(res, verr, err)
 }

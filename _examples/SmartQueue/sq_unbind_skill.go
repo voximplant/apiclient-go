@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.SQUnbindSkillParams{ApplicationId:1, UserId:"1", SqSkillId:"1"}
+
+	params := methods.SQUnbindSkillParams{ApplicationId: 1, UserId: "1", SqSkillId: "1"}
 	res, verr, err := client.SmartQueue.SQUnbindSkill(params)
 	fmt.Println(res, verr, err)
 }

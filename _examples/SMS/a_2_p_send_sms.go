@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.A2PSendSmsParams{SrcNumber:"447443332211", DstNumbers:"447443332212", Text:"Test message"}
+
+	params := methods.A2PSendSmsParams{SrcNumber: "447443332211", Text: "Test message"}
 	res, verr, err := client.SMS.A2PSendSms(params)
 	fmt.Println(res, verr, err)
 }

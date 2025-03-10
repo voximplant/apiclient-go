@@ -3,6 +3,7 @@ package structure
 import "time"
 
 type Timestamp time.Time
+
 //type Date time.Time
 
 type Date struct {
@@ -48,6 +49,7 @@ func (t *Date) UnmarshalJSON(b []byte) error {
 }
 
 var nilTime = (time.Time{}).UnixNano()
+
 // MarshalJSON will transform the Date object into a short
 // date string as JIRA expects during the creation of a
 // JIRA request

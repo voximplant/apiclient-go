@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetKeyValueItemParams{Key:"key1", ApplicationId:1}
-	res, verr, err := client.Keyvaluestorage.GetKeyValueItem(params)
+
+	params := methods.GetPhoneNumbersAsyncParams{}
+	res, verr, err := client.PhoneNumbers.GetPhoneNumbersAsync(params)
 	fmt.Println(res, verr, err)
 }

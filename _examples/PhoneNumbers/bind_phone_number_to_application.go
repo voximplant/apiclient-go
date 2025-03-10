@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.BindPhoneNumberToApplicationParams{PhoneId:"1", ApplicationId:1}
+
+	params := methods.BindPhoneNumberToApplicationParams{PhoneId: "1", ApplicationId: 1}
 	res, verr, err := client.PhoneNumbers.BindPhoneNumberToApplication(params)
 	fmt.Println(res, verr, err)
 }

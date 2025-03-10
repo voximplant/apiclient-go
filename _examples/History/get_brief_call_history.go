@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"github.com/voximplant/apiclient-go/config"
 	"github.com/voximplant/apiclient-go/methods"
+	"github.com/voximplant/apiclient-go/structure"
+	"time"
 )
 
 func main() {
@@ -12,7 +14,12 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetBriefCallHistoryParams{FromDate:2020-02-25 00:00:00, ToDate:2020-02-26 00:00:00, Timezone:"Etc/GMT", Output:"cvs", IsAsync:true}
+	FromDateRaw := time.Date(2020, 2, 25, 0, 0, 0, 0, time.UTC)
+	FromDate := (*structure.Timestamp)(&FromDateRaw)
+	ToDateRaw := time.Date(2020, 2, 26, 0, 0, 0, 0, time.UTC)
+	ToDate := (*structure.Timestamp)(&ToDateRaw)
+
+	params := methods.GetBriefCallHistoryParams{FromDate: FromDate, ToDate: ToDate, Timezone: "Etc/GMT", Output: "cvs"}
 	res, verr, err := client.History.GetBriefCallHistory(params)
 	fmt.Println(res, verr, err)
 }

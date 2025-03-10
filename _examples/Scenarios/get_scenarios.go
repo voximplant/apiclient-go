@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetScenariosParams{Count:2, Offset:1}
+
+	params := methods.GetScenariosParams{Count: 2, Offset: 1}
 	res, verr, err := client.Scenarios.GetScenarios(params)
 	fmt.Println(res, verr, err)
 }

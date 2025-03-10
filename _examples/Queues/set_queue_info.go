@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.SetQueueInfoParams{AcdQueueId:1, NewAcdQueueName:"support"}
+
+	params := methods.SetQueueInfoParams{AcdQueueId: 1, NewAcdQueueName: "support"}
 	res, verr, err := client.Queues.SetQueueInfo(params)
 	fmt.Println(res, verr, err)
 }

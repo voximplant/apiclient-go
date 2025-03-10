@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetSmartQueueRealtimeMetricsParams{ApplicationId:1, ReportType:"sum_agents_dialing_time"}
+
+	params := methods.GetSmartQueueRealtimeMetricsParams{ApplicationId: 1, ReportType: "sum_agents_dialing_time"}
 	res, verr, err := client.SmartQueue.GetSmartQueueRealtimeMetrics(params)
 	fmt.Println(res, verr, err)
 }

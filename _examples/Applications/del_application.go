@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.DelApplicationParams{ApplicationId:"all"}
+
+	params := methods.DelApplicationParams{ApplicationId: "all"}
 	res, verr, err := client.Applications.DelApplication(params)
 	fmt.Println(res, verr, err)
 }

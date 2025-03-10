@@ -12,7 +12,10 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.SQSetAgentInfoParams{ApplicationId:1, UserId:"2", HandleCalls:true}
+
+	HandleCallsRaw := true
+	HandleCalls := &HandleCallsRaw
+	params := methods.SQSetAgentInfoParams{ApplicationId: 1, UserId: "2", HandleCalls: HandleCalls}
 	res, verr, err := client.SmartQueue.SQSetAgentInfo(params)
 	fmt.Println(res, verr, err)
 }

@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.DelSubUserParams{SubuserId:12}
+
+	params := methods.DelSubUserParams{SubuserId: 12}
 	res, verr, err := client.RoleSystem.DelSubUser(params)
 	fmt.Println(res, verr, err)
 }

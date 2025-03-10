@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.SQDelQueueParams{ApplicationId:1, SqQueueId:"3"}
+
+	params := methods.SQDelQueueParams{ApplicationId: 1, SqQueueId: "3"}
 	res, verr, err := client.SmartQueue.SQDelQueue(params)
 	fmt.Println(res, verr, err)
 }

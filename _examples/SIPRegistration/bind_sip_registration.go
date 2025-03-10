@@ -12,7 +12,10 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.BindSipRegistrationParams{UserId:123, Bind:false}
+
+	BindRaw := false
+	Bind := &BindRaw
+	params := methods.BindSipRegistrationParams{UserId: 123, Bind: Bind}
 	res, verr, err := client.SIPRegistration.BindSipRegistration(params)
 	fmt.Println(res, verr, err)
 }

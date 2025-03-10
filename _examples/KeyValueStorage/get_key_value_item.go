@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.TransferMoneyToUserParams{UserId:"1", Amount:-10000000, StrictMode:false}
-	res, verr, err := client.Users.TransferMoneyToUser(params)
+
+	params := methods.GetKeyValueItemParams{Key: "key1", ApplicationId: 1}
+	res, verr, err := client.KeyValueStorage.GetKeyValueItem(params)
 	fmt.Println(res, verr, err)
 }

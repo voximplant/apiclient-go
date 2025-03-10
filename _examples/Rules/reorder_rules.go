@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.ReorderRulesParams{RuleId:"1;7;3"}
+
+	params := methods.ReorderRulesParams{RuleId: "1;7;3"}
 	res, verr, err := client.Rules.ReorderRules(params)
 	fmt.Println(res, verr, err)
 }

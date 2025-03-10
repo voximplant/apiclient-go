@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetHistoryReportsParams{HistoryType:"all"}
+
+	params := methods.GetHistoryReportsParams{HistoryType: "all"}
 	res, verr, err := client.History.GetHistoryReports(params)
 	fmt.Println(res, verr, err)
 }

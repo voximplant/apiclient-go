@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.RemoveKeyRolesParams{KeyId:"ab81c90e-543e-4446-9af9-105269dfafca", RoleId:"1"}
+
+	params := methods.RemoveKeyRolesParams{KeyId: "ab81c90e-543e-4446-9af9-105269dfafca"}
 	res, verr, err := client.RoleSystem.RemoveKeyRoles(params)
 	fmt.Println(res, verr, err)
 }

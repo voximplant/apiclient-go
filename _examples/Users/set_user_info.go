@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.SetUserInfoParams{UserId:1, UserPassword:"7654321"}
+
+	params := methods.SetUserInfoParams{UserId: 1, UserPassword: "7654321"}
 	res, verr, err := client.Users.SetUserInfo(params)
 	fmt.Println(res, verr, err)
 }

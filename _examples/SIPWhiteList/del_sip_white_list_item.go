@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.DelSipWhiteListItemParams{SipWhitelistId:1}
+
+	params := methods.DelSipWhiteListItemParams{SipWhitelistId: 1}
 	res, verr, err := client.SIPWhiteList.DelSipWhiteListItem(params)
 	fmt.Println(res, verr, err)
 }

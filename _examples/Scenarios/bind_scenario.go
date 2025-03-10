@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.BindScenarioParams{ScenarioId:"1;2;3", RuleId:1}
+
+	params := methods.BindScenarioParams{ScenarioId: "1;2;3", RuleId: 1}
 	res, verr, err := client.Scenarios.BindScenario(params)
 	fmt.Println(res, verr, err)
 }

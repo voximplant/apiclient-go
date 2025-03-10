@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.AddScenarioParams{ScenarioName:"call_scenario", ScenarioScript:"var s="hello";"}
+
+	params := methods.AddScenarioParams{ScenarioName: "call_scenario", ScenarioScript: "var s=\"hello\";"}
 	res, verr, err := client.Scenarios.AddScenario(params)
 	fmt.Println(res, verr, err)
 }

@@ -29,7 +29,7 @@ func NewKeyPair(path string) *KeyPair {
 	if path == "" {
 		path = os.Getenv("VOXIMPLANT_CREDENTIALS")
 	}
-	return &KeyPair{Path:path}
+	return &KeyPair{Path: path}
 }
 
 func (kp *KeyPair) validate() bool {
@@ -85,4 +85,3 @@ func (kp *KeyPair) GenerateToken() error {
 
 	return err
 }
-

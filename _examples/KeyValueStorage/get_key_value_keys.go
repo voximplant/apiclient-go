@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.StartNextCallTaskParams{ListId:"1"}
-	res, verr, err := client.CallLists.StartNextCallTask(params)
+
+	params := methods.GetKeyValueKeysParams{ApplicationId: 1}
+	res, verr, err := client.KeyValueStorage.GetKeyValueKeys(params)
 	fmt.Println(res, verr, err)
 }

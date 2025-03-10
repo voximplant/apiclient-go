@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.SQDeleteAgentCustomStatusMappingParams{SqStatusName:"READY", ApplicationId:1}
+
+	params := methods.SQDeleteAgentCustomStatusMappingParams{SqStatusName: "READY", ApplicationId: 1}
 	res, verr, err := client.SmartQueue.SQDeleteAgentCustomStatusMapping(params)
 	fmt.Println(res, verr, err)
 }

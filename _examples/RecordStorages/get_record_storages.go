@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetRecordStoragesParams{RecordStorageName:"ru1"}
+
+	params := methods.GetRecordStoragesParams{RecordStorageName: "ru1"}
 	res, verr, err := client.RecordStorages.GetRecordStorages(params)
 	fmt.Println(res, verr, err)
 }

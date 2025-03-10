@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.AttachPhoneNumberParams{PhoneNumber:"74953332211", CountryCode:"RU", PhoneCategoryName:"GEOGRAPHIC", PhoneRegionId:4}
+
+	params := methods.AttachPhoneNumberParams{CountryCode: "RU", PhoneCategoryName: "GEOGRAPHIC", PhoneRegionId: 4}
 	res, verr, err := client.PhoneNumbers.AttachPhoneNumber(params)
 	fmt.Println(res, verr, err)
 }

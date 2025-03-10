@@ -1,18 +1,20 @@
 package methods
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"github.com/voximplant/apiclient-go/config"
+	"github.com/voximplant/apiclient-go/jwt"
+	"github.com/voximplant/apiclient-go/misc"
+	"github.com/voximplant/apiclient-go/structure"
+	"io"
+	"mime/multipart"
 	"net/http"
 	"net/url"
 	"reflect"
 	"strings"
 	"sync"
-
-	"github.com/voximplant/apiclient-go/config"
-	"github.com/voximplant/apiclient-go/jwt"
-	"github.com/voximplant/apiclient-go/structure"
 )
 
 type Client struct {
@@ -24,104 +26,116 @@ type Client struct {
 	config *config.Config
 	// Path to file with result CreateKey method
 	keyPair *jwt.KeyPair
-	// Path to file with result CreateKey method
+	// Lock
 	mux sync.Mutex
 
-	Accounts     *AccountsService
-	AdminRoles   *AdminRolesService
-	AdminUsers   *AdminUsersService
-	Applications *ApplicationsService
+	SIPRegistration       *SIPRegistrationService
+	AdminUsers            *AdminUsersService
+	CallerIDs             *CallerIDsService
+	CallLists             *CallListsService
+	AuthorizedIPs         *AuthorizedIPsService
+	PushCredentials       *PushCredentialsService
+	DialogflowCredentials *DialogflowCredentialsService
+	Users                 *UsersService
+	Scenarios             *ScenariosService
+	SIPWhiteList          *SIPWhiteListService
+	Skills                *SkillsService
+	RegulationAddress     *RegulationAddressService
+	Accounts              *AccountsService
+	PSTNBlacklist         *PSTNBlacklistService
+	Queues                *QueuesService
+	SmartQueue            *SmartQueueService
+	Rules                 *RulesService
+	History               *HistoryService
+	SMS                   *SMSService
+	RecordStorages        *RecordStoragesService
+	Invoices              *InvoicesService
+	PhoneNumbers          *PhoneNumbersService
+	OutboundTestNumbers   *OutboundTestNumbersService
+	RoleSystem            *RoleSystemService
+	KeyValueStorage       *KeyValueStorageService
+	Applications          *ApplicationsService
+	AdminRoles            *AdminRolesService
+
 	// AuthorizedIps deprecated: use AuthorizedIPs instead
 	AuthorizedIps *AuthorizedIPsService
-	AuthorizedIPs *AuthorizedIPsService
-	CallLists     *CallListsService
 	// CallerIds deprecated: use CallerIDs instead
 	CallerIds *CallerIDsService
-	CallerIDs *CallerIDsService
-	// ChildAccounts         *ChildAccountsService
-	DialogflowCredentials *DialogflowCredentialsService
-	History               *HistoryService
-	PhoneNumbers          *PhoneNumbersService
+	// Keyvaluestorage deprecated: use KeyValueStorage instead
+	Keyvaluestorage *KeyValueStorageService
 	// PstnBlacklist deprecated: use PSTNBlacklist instead
-	PstnBlacklist     *PSTNBlacklistService
-	PSTNBlacklist     *PSTNBlacklistService
-	PushCredentials   *PushCredentialsService
-	Queues            *QueuesService
-	RecordStorages    *RecordStoragesService
-	RegulationAddress *RegulationAddressService
-	RoleSystem        *RoleSystemService
-	Rules             *RulesService
-	Scenarios         *ScenariosService
+	PstnBlacklist *PSTNBlacklistService
 	// SipRegistration deprecated: use SIPRegistration instead
 	SipRegistration *SIPRegistrationService
-	SIPRegistration *SIPRegistrationService
 	// SipWhiteList deprecated: use SIPWhiteList instead
 	SipWhiteList *SIPWhiteListService
-	SIPWhiteList *SIPWhiteListService
-	Skills       *SkillsService
 	// Sms deprecated: use SMS instead
-	Sms   *SMSService
-	SMS   *SMSService
-	Users *UsersService
+	Sms *SMSService
 }
 
 func NewClient(config *config.Config) (*Client, error) {
-
 	if config.HTTPClient == nil {
 		config.HTTPClient = http.DefaultClient
 	}
-
 	parsedBaseURL, err := url.Parse(config.Endpoint)
 	if err != nil {
 		return nil, err
 	}
-
 	keyPair := jwt.NewKeyPair(config.KeyPath)
-
 	if err := keyPair.Parse(); err != nil {
 		return nil, err
 	}
-
 	if err := keyPair.GenerateToken(); err != nil {
 		return nil, err
 	}
-
 	c := &Client{
 		client:  config.HTTPClient,
 		baseURL: parsedBaseURL,
 		keyPair: keyPair,
 	}
 
-	c.Accounts = &AccountsService{c}
-	c.AdminRoles = &AdminRolesService{c}
-	c.AdminUsers = &AdminUsersService{c}
-	c.Applications = &ApplicationsService{c}
-	c.AuthorizedIps = &AuthorizedIPsService{c}
-	c.AuthorizedIPs = &AuthorizedIPsService{c}
-	c.CallLists = &CallListsService{c}
-	c.CallerIds = &CallerIDsService{c}
-	c.CallerIDs = &CallerIDsService{c}
-	// c.ChildAccounts = &ChildAccountsService{c}
-	c.DialogflowCredentials = &DialogflowCredentialsService{c}
-	c.History = &HistoryService{c}
-	c.PhoneNumbers = &PhoneNumbersService{c}
-	c.PstnBlacklist = &PSTNBlacklistService{c}
-	c.PSTNBlacklist = &PSTNBlacklistService{c}
-	c.PushCredentials = &PushCredentialsService{c}
-	c.Queues = &QueuesService{c}
-	c.RecordStorages = &RecordStoragesService{c}
-	c.RegulationAddress = &RegulationAddressService{c}
-	c.RoleSystem = &RoleSystemService{c}
-	c.Rules = &RulesService{c}
-	c.Scenarios = &ScenariosService{c}
-	c.SipRegistration = &SIPRegistrationService{c}
 	c.SIPRegistration = &SIPRegistrationService{c}
-	c.SipWhiteList = &SIPWhiteListService{c}
+	c.AdminUsers = &AdminUsersService{c}
+	c.CallerIDs = &CallerIDsService{c}
+	c.CallLists = &CallListsService{c}
+	c.AuthorizedIPs = &AuthorizedIPsService{c}
+	c.PushCredentials = &PushCredentialsService{c}
+	c.DialogflowCredentials = &DialogflowCredentialsService{c}
+	c.Users = &UsersService{c}
+	c.Scenarios = &ScenariosService{c}
 	c.SIPWhiteList = &SIPWhiteListService{c}
 	c.Skills = &SkillsService{c}
-	c.Sms = &SMSService{c}
+	c.RegulationAddress = &RegulationAddressService{c}
+	c.Accounts = &AccountsService{c}
+	c.PSTNBlacklist = &PSTNBlacklistService{c}
+	c.Queues = &QueuesService{c}
+	c.SmartQueue = &SmartQueueService{c}
+	c.Rules = &RulesService{c}
+	c.History = &HistoryService{c}
 	c.SMS = &SMSService{c}
-	c.Users = &UsersService{c}
+	c.RecordStorages = &RecordStoragesService{c}
+	c.Invoices = &InvoicesService{c}
+	c.PhoneNumbers = &PhoneNumbersService{c}
+	c.OutboundTestNumbers = &OutboundTestNumbersService{c}
+	c.RoleSystem = &RoleSystemService{c}
+	c.KeyValueStorage = &KeyValueStorageService{c}
+	c.Applications = &ApplicationsService{c}
+	c.AdminRoles = &AdminRolesService{c}
+
+	// AuthorizedIps deprecated: use AuthorizedIPs instead
+	c.AuthorizedIps = &AuthorizedIPsService{c}
+	// CallerIds deprecated: use CallerIDs instead
+	c.CallerIds = &CallerIDsService{c}
+	// Keyvaluestorage deprecated: use KeyValueStorage instead
+	c.Keyvaluestorage = &KeyValueStorageService{c}
+	// PstnBlacklist deprecated: use PSTNBlacklist instead
+	c.PstnBlacklist = &PSTNBlacklistService{c}
+	// SipRegistration deprecated: use SIPRegistration instead
+	c.SipRegistration = &SIPRegistrationService{c}
+	// SipWhiteList deprecated: use SIPWhiteList instead
+	c.SipWhiteList = &SIPWhiteListService{c}
+	// Sms deprecated: use SMS instead
+	c.Sms = &SMSService{c}
 
 	return c, nil
 }
@@ -133,28 +147,51 @@ func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Requ
 	}
 	// Relative URLs should be specified without a preceding slash since baseURL will have the trailing slash
 	rel.Path = strings.TrimLeft(rel.Path, "/")
-
 	u := c.baseURL.ResolveReference(rel)
-
-	bodyMarshal, _ := json.Marshal(body)
-
-	b := make(map[string]string)
-	err = json.Unmarshal(bodyMarshal, &b)
-
-	values := url.Values{}
-
-	for i, v := range b {
-		values.Set(i, v)
-	}
-
-	req, err := http.NewRequest(method, u.String(), strings.NewReader(values.Encode()))
-
+	var b bytes.Buffer
+	writer := multipart.NewWriter(&b)
+	bodyMap := make(map[string]interface{})
+	bodyMarshal, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
-
+	err = json.Unmarshal(bodyMarshal, &bodyMap)
+	if err != nil {
+		return nil, err
+	}
+	for key, value := range bodyMap {
+		if str, ok := value.(string); ok {
+			if err = writer.WriteField(key, str); err != nil {
+				return nil, fmt.Errorf("error writing field, %v", err)
+			}
+		}
+	}
+	structBody, err := misc.StructToMap(body)
+	for key, value := range structBody {
+		switch v := value.(type) {
+		case io.Reader:
+			if v == nil {
+				continue
+			}
+			fileWriter, err := writer.CreateFormField(misc.ToSnakeCase(key))
+			if err != nil {
+				return nil, fmt.Errorf("error creating form file, %v", err)
+			}
+			_, err = io.Copy(fileWriter, v)
+			if err != nil {
+				return nil, fmt.Errorf("error copying file content, %v", err)
+			}
+		default:
+		}
+	}
+	if err = writer.Close(); err != nil {
+		return nil, err
+	}
+	req, err := http.NewRequest(method, u.String(), &b)
+	if err != nil {
+		return nil, err
+	}
 	err = c.keyPair.Valid()
-
 	if err != nil {
 		c.mux.Lock()
 		err := c.keyPair.GenerateToken()
@@ -163,9 +200,8 @@ func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Requ
 		}
 		c.mux.Unlock()
 	}
-
 	req.Header.Set("Authorization", "Bearer "+c.keyPair.Token)
-
+	req.Header.Set("Content-Type", writer.FormDataContentType())
 	return req, nil
 }
 
@@ -174,52 +210,55 @@ func (c *Client) Do(req *http.Request, v interface{}) (*http.Response, error) {
 	if err != nil {
 		return nil, err
 	}
-
 	err = CheckResponse(httpResp)
 	if err != nil {
 		// Even though there was an error, we still return the response
 		// in case the caller wants to inspect it further
 		return httpResp, err
 	}
-
 	if v != nil {
 		// Open a NewDecoder and defer closing the reader only if there is a provided interface to decode to
 		defer httpResp.Body.Close()
 		err = json.NewDecoder(httpResp.Body).Decode(v)
 	}
-
 	return httpResp, err
 }
 
 func (c *Client) MakeResponse(request *http.Request, response interface{}) (*structure.VError, error) {
 	resp, err := c.Do(request, nil)
-
 	if err != nil {
 		return nil, err
 	}
+	if resp.Header.Get("Content-Type") == "application/octet-stream" {
+		if v, ok := response.(interface{ SetFileContent(io.Reader) }); ok {
+			pr, pw := io.Pipe()
+			v.SetFileContent(pr)
+			go func() {
+				_, err := io.Copy(pw, resp.Body)
+				resp.Body.Close()
+				pw.CloseWithError(err)
+			}()
+			return nil, nil
+		} else {
+			return nil, fmt.Errorf("could not cast the io.Reader param type")
+		}
+	}
 
 	defer resp.Body.Close()
-
-	data, err := ioutil.ReadAll(resp.Body)
-
+	data, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, fmt.Errorf("could not read the returned data")
 	}
-
 	vError := new(structure.VError)
-
 	if err = json.Unmarshal(data, vError); err != nil {
 		return nil, fmt.Errorf("could not unmarshall the error into struct")
 	}
-
 	if !reflect.DeepEqual(*vError, structure.VError{}) {
 		return vError, nil
 	}
-
 	if err = json.Unmarshal(data, response); err != nil {
 		return nil, fmt.Errorf("could not unmarshall the data into struct: %s", err)
 	}
-
 	return nil, nil
 }
 

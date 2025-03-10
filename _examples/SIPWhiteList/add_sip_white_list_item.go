@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.AddSipWhiteListItemParams{SipWhitelistNetwork:"192.168.1.5/16"}
+
+	params := methods.AddSipWhiteListItemParams{SipWhitelistNetwork: "192.168.1.5/16"}
 	res, verr, err := client.SIPWhiteList.AddSipWhiteListItem(params)
 	fmt.Println(res, verr, err)
 }

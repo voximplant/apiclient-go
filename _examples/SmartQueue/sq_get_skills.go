@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.SQGetSkillsParams{ApplicationId:1}
+
+	params := methods.SQGetSkillsParams{ApplicationId: 1}
 	res, verr, err := client.SmartQueue.SQGetSkills(params)
 	fmt.Println(res, verr, err)
 }

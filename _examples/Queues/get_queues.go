@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetQueuesParams{Count:2}
+
+	params := methods.GetQueuesParams{Count: 2}
 	res, verr, err := client.Queues.GetQueues(params)
 	fmt.Println(res, verr, err)
 }

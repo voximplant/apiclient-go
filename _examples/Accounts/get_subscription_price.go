@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetSubscriptionPriceParams{SubscriptionTemplateType:"SIP_REGISTRATION"}
+
+	params := methods.GetSubscriptionPriceParams{SubscriptionTemplateType: "SIP_REGISTRATION"}
 	res, verr, err := client.Accounts.GetSubscriptionPrice(params)
 	fmt.Println(res, verr, err)
 }

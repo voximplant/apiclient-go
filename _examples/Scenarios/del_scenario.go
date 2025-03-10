@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.DelScenarioParams{ScenarioId:"all"}
+
+	params := methods.DelScenarioParams{ScenarioId: "all"}
 	res, verr, err := client.Scenarios.DelScenario(params)
 	fmt.Println(res, verr, err)
 }

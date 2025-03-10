@@ -12,6 +12,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	params := methods.VerifyOutboundTestPhoneNumberParams{}
 	res, verr, err := client.OutboundTestNumbers.VerifyOutboundTestPhoneNumber(params)
 	fmt.Println(res, verr, err)

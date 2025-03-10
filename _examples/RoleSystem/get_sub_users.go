@@ -12,6 +12,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	params := methods.GetSubUsersParams{}
 	res, verr, err := client.RoleSystem.GetSubUsers(params)
 	fmt.Println(res, verr, err)

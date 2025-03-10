@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.AddOutboundTestPhoneNumberParams{PhoneNumber:"12223334444"}
+
+	params := methods.AddOutboundTestPhoneNumberParams{PhoneNumber: "12223334444"}
 	res, verr, err := client.OutboundTestNumbers.AddOutboundTestPhoneNumber(params)
 	fmt.Println(res, verr, err)
 }

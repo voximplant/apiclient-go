@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.DelUserParams{UserId:"all", ApplicationName:"myapp1"}
+
+	params := methods.DelUserParams{UserId: "all", ApplicationName: "myapp1"}
 	res, verr, err := client.Users.DelUser(params)
 	fmt.Println(res, verr, err)
 }

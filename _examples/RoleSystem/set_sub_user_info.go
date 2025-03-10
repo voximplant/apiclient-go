@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.SetSubUserInfoParams{SubuserId:12, OldSubuserPassword:"old_test_password", NewSubuserPassword:"test_pass", Description:"test_desc"}
+
+	params := methods.SetSubUserInfoParams{SubuserId: 12, OldSubuserPassword: "old_test_password", NewSubuserPassword: "test_pass", Description: "test_desc"}
 	res, verr, err := client.RoleSystem.SetSubUserInfo(params)
 	fmt.Println(res, verr, err)
 }

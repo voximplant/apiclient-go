@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetKeyValueItemsParams{Key:"test", ApplicationId:1}
-	res, verr, err := client.Keyvaluestorage.GetKeyValueItems(params)
+
+	params := methods.AppendToCallListParams{ListId: 1}
+	res, verr, err := client.CallLists.AppendToCallList(params)
 	fmt.Println(res, verr, err)
 }

@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetSipWhiteListParams{Count:2, Offset:1}
+
+	params := methods.GetSipWhiteListParams{Count: 2, Offset: 1}
 	res, verr, err := client.SIPWhiteList.GetSipWhiteList(params)
 	fmt.Println(res, verr, err)
 }

@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.RemoveSubUserRolesParams{SubuserId:12, RoleId:"1"}
+
+	params := methods.RemoveSubUserRolesParams{SubuserId: 12}
 	res, verr, err := client.RoleSystem.RemoveSubUserRoles(params)
 	fmt.Println(res, verr, err)
 }

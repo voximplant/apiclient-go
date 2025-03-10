@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"github.com/voximplant/apiclient-go/config"
 	"github.com/voximplant/apiclient-go/methods"
+	"github.com/voximplant/apiclient-go/structure"
+	"time"
 )
 
 func main() {
@@ -12,7 +14,14 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetACDHistoryParams{FromDate:2012-01-01 00:00:00, ToDate:2014-01-01 00:00:00, WithEvents:true, Count:2}
+	FromDateRaw := time.Date(2012, 1, 1, 0, 0, 0, 0, time.UTC)
+	FromDate := (*structure.Timestamp)(&FromDateRaw)
+	ToDateRaw := time.Date(2014, 1, 1, 0, 0, 0, 0, time.UTC)
+	ToDate := (*structure.Timestamp)(&ToDateRaw)
+	WithEventsRaw := true
+	WithEvents := &WithEventsRaw
+
+	params := methods.GetACDHistoryParams{FromDate: FromDate, ToDate: ToDate, WithEvents: WithEvents, Count: 2}
 	res, verr, err := client.History.GetACDHistory(params)
 	fmt.Println(res, verr, err)
 }

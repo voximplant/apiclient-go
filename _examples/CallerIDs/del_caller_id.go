@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.DelCallerIDParams{CalleridId:1}
+
+	params := methods.DelCallerIDParams{CalleridId: 1}
 	res, verr, err := client.CallerIDs.DelCallerID(params)
 	fmt.Println(res, verr, err)
 }

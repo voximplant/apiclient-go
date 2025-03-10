@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.SQBindAgentParams{ApplicationId:1, SqQueueId:"1"}
+
+	params := methods.SQBindAgentParams{ApplicationId: 1, SqQueueId: "1"}
 	res, verr, err := client.SmartQueue.SQBindAgent(params)
 	fmt.Println(res, verr, err)
 }

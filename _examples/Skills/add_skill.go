@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.AddSkillParams{SkillName:"English"}
+
+	params := methods.AddSkillParams{SkillName: "English"}
 	res, verr, err := client.Skills.AddSkill(params)
 	fmt.Println(res, verr, err)
 }

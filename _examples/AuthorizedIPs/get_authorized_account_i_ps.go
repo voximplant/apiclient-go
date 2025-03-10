@@ -12,6 +12,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	params := methods.GetAuthorizedAccountIPsParams{}
 	res, verr, err := client.AuthorizedIPs.GetAuthorizedAccountIPs(params)
 	fmt.Println(res, verr, err)

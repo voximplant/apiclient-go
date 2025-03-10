@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetCountriesParams{CountryCode:"DE"}
+
+	params := methods.GetCountriesParams{CountryCode: "DE"}
 	res, verr, err := client.RegulationAddress.GetCountries(params)
 	fmt.Println(res, verr, err)
 }

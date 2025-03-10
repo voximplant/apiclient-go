@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.DelAdminRoleParams{AdminRoleId:"10"}
+
+	params := methods.DelAdminRoleParams{AdminRoleId: "10"}
 	res, verr, err := client.AdminRoles.DelAdminRole(params)
 	fmt.Println(res, verr, err)
 }

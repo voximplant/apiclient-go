@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.StartConferenceParams{ConferenceName:"boss", RuleId:1, UserId:1, ScriptCustomData:"mystr"}
+
+	params := methods.StartConferenceParams{ConferenceName: "boss", RuleId: 1, UserId: 1, ScriptCustomData: "mystr"}
 	res, verr, err := client.Scenarios.StartConference(params)
 	fmt.Println(res, verr, err)
 }

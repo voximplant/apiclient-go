@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.AddPushCredentialParams{PushProviderName:"GOOGLE", SenderId:"704777431520", ServerKey:"AAAAjM-LQsc:APA91bGyCb5WhcGtaM-RaOI1GqWps1Uh9K-YoY75HIBy-En-4piH4c6_50gIEbSaCfuDrsLNfyZCvteiu6EjxA_rEBOvlc4xZ30uiGgbuM_jdT6y6Ku55OwnCyIxRNznvmx1jkkLexSU"}
+
+	params := methods.AddPushCredentialParams{PushProviderName: "GOOGLE"}
 	res, verr, err := client.PushCredentials.AddPushCredential(params)
 	fmt.Println(res, verr, err)
 }

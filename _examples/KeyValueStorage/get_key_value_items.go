@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.LinkregulationAddressParams{RegulationAddressId:1, PhoneId:1}
-	res, verr, err := client.RegulationAddress.LinkregulationAddress(params)
+
+	params := methods.GetKeyValueItemsParams{Key: "test", ApplicationId: 1}
+	res, verr, err := client.KeyValueStorage.GetKeyValueItems(params)
 	fmt.Println(res, verr, err)
 }

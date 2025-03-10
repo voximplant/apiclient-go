@@ -9,18 +9,18 @@ type PSTNBlacklistService struct {
 }
 
 type AddPstnBlackListItemParams struct {
-	// The phone number in format e164 or regex pattern 
+	// The phone number in format e164 or regex pattern
 	PstnBlacklistPhone string `json:"pstn_blacklist_phone"`
 }
 
 type AddPstnBlackListItemReturn struct {
-	// 1 
+	// 1
 	Result int `json:"result"`
-	// The PSTN black list item ID 
+	// The PSTN black list item ID
 	PstnBlacklistId int `json:"pstn_blacklist_id"`
 }
 
-// Add a new phone number to the PSTN blacklist. Use blacklist to block incoming calls from specified phone numbers to numbers purchased from Voximplant. Since we have no control over exact phone number format for calls from SIP integrations, blacklisting such numbers should be done via JavaScript scenarios. 
+// Add a new phone number to the PSTN blacklist. Use blacklist to block incoming calls from specified phone numbers to numbers purchased from Voximplant. Since we have no control over exact phone number format for calls from SIP integrations, blacklisting such numbers should be done via JavaScript scenarios.
 func (s *PSTNBlacklistService) AddPstnBlackListItem(params AddPstnBlackListItemParams) (*AddPstnBlackListItemReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "AddPstnBlackListItem", params)
 	if err != nil {
@@ -35,18 +35,18 @@ func (s *PSTNBlacklistService) AddPstnBlackListItem(params AddPstnBlackListItemP
 }
 
 type SetPstnBlackListItemParams struct {
-	// The PSTN black list item ID 
+	// The PSTN black list item ID
 	PstnBlacklistId int `json:"pstn_blacklist_id,string"`
-	// The new phone number in format e164 
+	// The new phone number in format e164
 	PstnBlacklistPhone string `json:"pstn_blacklist_phone"`
 }
 
 type SetPstnBlackListItemReturn struct {
-	// 1 
+	// 1
 	Result int `json:"result"`
 }
 
-// Update the PSTN blacklist item. BlackList works for numbers that are purchased from Voximplant only. Since we have no control over exact phone number format for calls from SIP integrations, blacklisting such numbers should be done via JavaScript scenarios. 
+// Update the PSTN blacklist item. BlackList works for numbers that are purchased from Voximplant only. Since we have no control over exact phone number format for calls from SIP integrations, blacklisting such numbers should be done via JavaScript scenarios.
 func (s *PSTNBlacklistService) SetPstnBlackListItem(params SetPstnBlackListItemParams) (*SetPstnBlackListItemReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "SetPstnBlackListItem", params)
 	if err != nil {
@@ -61,16 +61,16 @@ func (s *PSTNBlacklistService) SetPstnBlackListItem(params SetPstnBlackListItemP
 }
 
 type DelPstnBlackListItemParams struct {
-	// The PSTN black list item ID 
+	// The PSTN black list item ID
 	PstnBlacklistId int `json:"pstn_blacklist_id,string"`
 }
 
 type DelPstnBlackListItemReturn struct {
-	// 1 
+	// 1
 	Result int `json:"result"`
 }
 
-// Remove phone number from the PSTN blacklist. 
+// Remove phone number from the PSTN blacklist.
 func (s *PSTNBlacklistService) DelPstnBlackListItem(params DelPstnBlackListItemParams) (*DelPstnBlackListItemReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "DelPstnBlackListItem", params)
 	if err != nil {
@@ -85,26 +85,25 @@ func (s *PSTNBlacklistService) DelPstnBlackListItem(params DelPstnBlackListItemP
 }
 
 type GetPstnBlackListParams struct {
-	// The PSTN black list item ID for filter 
+	// The PSTN black list item ID for filter
 	PstnBlacklistId int `json:"pstn_blacklist_id,string,omitempty"`
-	// The phone number in format e164 for filter 
+	// The phone number in format e164 for filter
 	PstnBlacklistPhone string `json:"pstn_blacklist_phone,omitempty"`
-	// The max returning record count 
+	// The max returning record count
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records are skipped in the output 
+	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`
 }
 
 type GetPstnBlackListReturn struct {
-	//  
 	Result []*structure.PstnBlackListInfoType `json:"result"`
-	// The total found phone numbers count 
+	// The total found phone numbers count
 	TotalCount int `json:"total_count"`
-	// The returned phone numbers count 
+	// The returned phone numbers count
 	Count int `json:"count"`
 }
 
-// Get the whole PSTN blacklist. 
+// Get the whole PSTN blacklist.
 func (s *PSTNBlacklistService) GetPstnBlackList(params GetPstnBlackListParams) (*GetPstnBlackListReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "GetPstnBlackList", params)
 	if err != nil {
@@ -117,4 +116,3 @@ func (s *PSTNBlacklistService) GetPstnBlackList(params GetPstnBlackListParams) (
 	}
 	return response, nil, nil
 }
-

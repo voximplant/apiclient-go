@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetSkillsParams{Count:2, Offset:1}
+
+	params := methods.GetSkillsParams{Count: 2, Offset: 1}
 	res, verr, err := client.Skills.GetSkills(params)
 	fmt.Println(res, verr, err)
 }

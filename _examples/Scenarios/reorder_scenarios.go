@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.ReorderScenariosParams{RuleId:2, ScenarioId:"17;15;20"}
+
+	params := methods.ReorderScenariosParams{RuleId: 2, ScenarioId: "17;15;20"}
 	res, verr, err := client.Scenarios.ReorderScenarios(params)
 	fmt.Println(res, verr, err)
 }

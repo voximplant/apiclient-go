@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetResourcePriceParams{ResourceType:"PSTNOUT", ResourceParam:"79263332211"}
+
+	params := methods.GetResourcePriceParams{ResourceType: "PSTNOUT", ResourceParam: "79263332211"}
 	res, verr, err := client.Accounts.GetResourcePrice(params)
 	fmt.Println(res, verr, err)
 }

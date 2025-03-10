@@ -9,20 +9,19 @@ type RecordStoragesService struct {
 }
 
 type GetRecordStoragesParams struct {
-	// The record storage ID list separated by semicolons (;) 
+	// The record storage ID list separated by semicolons (;)
 	RecordStorageId string `json:"record_storage_id,omitempty"`
-	// The record storage name list separated by semicolons (;) 
+	// The record storage name list separated by semicolons (;)
 	RecordStorageName string `json:"record_storage_name,omitempty"`
-	// Whether to get the private record storages. If set to true, there is the __is_public : bool__ parameter in a response 
+	// Whether to get the private record storages. If set to true, there is the __is_public : bool__ parameter in a response
 	WithPrivate *bool `json:"with_private,string,omitempty"`
 }
 
 type GetRecordStoragesReturn struct {
-	//  
 	Result *structure.RecordStorageInfoType `json:"result"`
 }
 
-// Gets the record storages. 
+// Gets the record storages.
 func (s *RecordStoragesService) GetRecordStorages(params GetRecordStoragesParams) (*GetRecordStoragesReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "GetRecordStorages", params)
 	if err != nil {
@@ -35,4 +34,3 @@ func (s *RecordStoragesService) GetRecordStorages(params GetRecordStoragesParams
 	}
 	return response, nil, nil
 }
-

@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.AddAdminRoleParams{AdminRoleName:"read_only", AllowedEntries:"GetAccountInfo;GetCallHistory"}
+
+	params := methods.AddAdminRoleParams{AdminRoleName: "read_only", AllowedEntries: "GetAccountInfo;GetCallHistory"}
 	res, verr, err := client.AdminRoles.AddAdminRole(params)
 	fmt.Println(res, verr, err)
 }

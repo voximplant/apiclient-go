@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetRegulationsAddressParams{RegulationAddressId:1}
+
+	params := methods.GetRegulationsAddressParams{RegulationAddressId: 1}
 	res, verr, err := client.RegulationAddress.GetRegulationsAddress(params)
 	fmt.Println(res, verr, err)
 }

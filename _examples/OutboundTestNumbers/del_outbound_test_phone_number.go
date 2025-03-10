@@ -12,6 +12,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	params := methods.DelOutboundTestPhoneNumberParams{}
 	res, verr, err := client.OutboundTestNumbers.DelOutboundTestPhoneNumber(params)
 	fmt.Println(res, verr, err)

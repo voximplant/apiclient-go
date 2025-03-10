@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetSmartQueueDayHistoryParams{ApplicationId:1, ReportType:"sum_agents_online_time"}
+
+	params := methods.GetSmartQueueDayHistoryParams{ApplicationId: 1, ReportType: "sum_agents_online_time"}
 	res, verr, err := client.SmartQueue.GetSmartQueueDayHistory(params)
 	fmt.Println(res, verr, err)
 }

@@ -12,6 +12,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	params := methods.GetAvailableAdminRoleEntriesParams{}
 	res, verr, err := client.AdminRoles.GetAvailableAdminRoleEntries(params)
 	fmt.Println(res, verr, err)

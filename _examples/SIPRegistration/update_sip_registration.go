@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.UpdateSipRegistrationParams{SipRegistrationId:1, ApplicationId:123}
+
+	params := methods.UpdateSipRegistrationParams{SipRegistrationId: 1, ApplicationId: 123}
 	res, verr, err := client.SIPRegistration.UpdateSipRegistration(params)
 	fmt.Println(res, verr, err)
 }

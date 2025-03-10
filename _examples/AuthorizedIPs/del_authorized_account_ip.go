@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.DelAuthorizedAccountIPParams{AuthorizedIp:"92.255.220.0/24"}
+
+	params := methods.DelAuthorizedAccountIPParams{AuthorizedIp: "92.255.220.0/24"}
 	res, verr, err := client.AuthorizedIPs.DelAuthorizedAccountIP(params)
 	fmt.Println(res, verr, err)
 }

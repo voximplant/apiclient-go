@@ -12,7 +12,10 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.BindUserToQueueParams{Bind:true, ApplicationId:1, UserId:"12;987;456", AcdQueueName:"myqueue"}
+	BindRaw := true
+	Bind := &BindRaw
+
+	params := methods.BindUserToQueueParams{Bind: Bind, ApplicationId: 1, UserId: "12;987;456", AcdQueueName: "myqueue"}
 	res, verr, err := client.Queues.BindUserToQueue(params)
 	fmt.Println(res, verr, err)
 }

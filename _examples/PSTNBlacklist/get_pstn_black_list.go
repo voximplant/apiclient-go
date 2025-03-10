@@ -12,6 +12,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	params := methods.GetPstnBlackListParams{}
 	res, verr, err := client.PSTNBlacklist.GetPstnBlackList(params)
 	fmt.Println(res, verr, err)

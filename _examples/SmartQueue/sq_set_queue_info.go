@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.SQSetQueueInfoParams{ApplicationId:1, SqQueueId:1, NewSqQueueName:"myNewSmartQueue"}
+
+	params := methods.SQSetQueueInfoParams{ApplicationId: 1, SqQueueId: 1, NewSqQueueName: "myNewSmartQueue"}
 	res, verr, err := client.SmartQueue.SQSetQueueInfo(params)
 	fmt.Println(res, verr, err)
 }

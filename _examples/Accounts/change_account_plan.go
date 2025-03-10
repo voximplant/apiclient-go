@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.ChangeAccountPlanParams{PlanType:"IM", PlanSubscriptionTemplateId:3}
+
+	params := methods.ChangeAccountPlanParams{PlanType: "IM", PlanSubscriptionTemplateId: 3}
 	res, verr, err := client.Accounts.ChangeAccountPlan(params)
 	fmt.Println(res, verr, err)
 }

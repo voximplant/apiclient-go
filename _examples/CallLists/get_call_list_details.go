@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetCallListDetailsParams{ListId:1, Output:"json"}
+
+	params := methods.GetCallListDetailsParams{ListId: 1, Output: "json"}
 	res, verr, err := client.CallLists.GetCallListDetails(params)
 	fmt.Println(res, verr, err)
 }

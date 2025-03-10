@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetPhoneNumbersParams{Count:2}
+
+	params := methods.GetPhoneNumbersParams{Count: 2}
 	res, verr, err := client.PhoneNumbers.GetPhoneNumbers(params)
 	fmt.Println(res, verr, err)
 }

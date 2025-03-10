@@ -12,7 +12,9 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetAccountDocumentsParams{WithDetails:true}
+	WithDetailsRaw := true
+	WithDetails := &WithDetailsRaw
+	params := methods.GetAccountDocumentsParams{WithDetails: WithDetails}
 	res, verr, err := client.Accounts.GetAccountDocuments(params)
 	fmt.Println(res, verr, err)
 }

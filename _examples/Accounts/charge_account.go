@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.ChargeAccountParams{PhoneNumber:"all"}
+
+	params := methods.ChargeAccountParams{PhoneNumber: "all"}
 	res, verr, err := client.Accounts.ChargeAccount(params)
 	fmt.Println(res, verr, err)
 }

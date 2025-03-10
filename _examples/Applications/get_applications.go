@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetApplicationsParams{Count:2, Offset:1}
+
+	params := methods.GetApplicationsParams{Count: 2, Offset: 1}
 	res, verr, err := client.Applications.GetApplications(params)
 	fmt.Println(res, verr, err)
 }

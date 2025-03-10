@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.DeleteSipRegistrationParams{SipRegistrationId:1}
+
+	params := methods.DeleteSipRegistrationParams{SipRegistrationId: 1}
 	res, verr, err := client.SIPRegistration.DeleteSipRegistration(params)
 	fmt.Println(res, verr, err)
 }

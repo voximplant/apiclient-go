@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.SetRuleInfoParams{RuleId:1, RuleName:"denyall", RulePatternExclude:".*"}
+
+	params := methods.SetRuleInfoParams{RuleId: 1, RuleName: "denyall", RulePatternExclude: ".*"}
 	res, verr, err := client.Rules.SetRuleInfo(params)
 	fmt.Println(res, verr, err)
 }

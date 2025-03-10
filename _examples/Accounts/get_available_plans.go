@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetAvailablePlansParams{PlanType:"IM"}
+
+	params := methods.GetAvailablePlansParams{PlanType: "IM"}
 	res, verr, err := client.Accounts.GetAvailablePlans(params)
 	fmt.Println(res, verr, err)
 }

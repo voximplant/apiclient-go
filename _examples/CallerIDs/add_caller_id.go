@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.AddCallerIDParams{CalleridNumber:"74953331122"}
+
+	params := methods.AddCallerIDParams{CalleridNumber: "74953331122"}
 	res, verr, err := client.CallerIDs.AddCallerID(params)
 	fmt.Println(res, verr, err)
 }

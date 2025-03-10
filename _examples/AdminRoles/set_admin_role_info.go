@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.SetAdminRoleInfoParams{AdminRoleId:1, EntryModificationMode:"set", AllowedEntries:"all", DeniedEntries:"DelUser;DelApplication"}
+
+	params := methods.SetAdminRoleInfoParams{AdminRoleId: 1, EntryModificationMode: "set", AllowedEntries: "all", DeniedEntries: "DelUser;DelApplication"}
 	res, verr, err := client.AdminRoles.SetAdminRoleInfo(params)
 	fmt.Println(res, verr, err)
 }

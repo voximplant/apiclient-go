@@ -12,6 +12,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	params := methods.GetAccountInfoParams{}
 	res, verr, err := client.Accounts.GetAccountInfo(params)
 	fmt.Println(res, verr, err)

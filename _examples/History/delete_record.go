@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.DeleteRecordParams{RecordId:1}
+
+	params := methods.DeleteRecordParams{RecordId: 1}
 	res, verr, err := client.History.DeleteRecord(params)
 	fmt.Println(res, verr, err)
 }

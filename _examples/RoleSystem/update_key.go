@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.UpdateKeyParams{KeyId:"ab98c70e-573e-4446-9af9-105269dfafca", Description:"test_desc"}
+
+	params := methods.UpdateKeyParams{KeyId: "ab98c70e-573e-4446-9af9-105269dfafca", Description: "test_desc"}
 	res, verr, err := client.RoleSystem.UpdateKey(params)
 	fmt.Println(res, verr, err)
 }

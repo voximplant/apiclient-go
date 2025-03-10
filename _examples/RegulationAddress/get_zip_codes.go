@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetZIPCodesParams{CountryCode:"DE", Count:1}
+
+	params := methods.GetZIPCodesParams{CountryCode: "DE", Count: 1}
 	res, verr, err := client.RegulationAddress.GetZIPCodes(params)
 	fmt.Println(res, verr, err)
 }

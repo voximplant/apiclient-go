@@ -12,6 +12,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	params := methods.GetSipRegistrationsParams{}
 	res, verr, err := client.SIPRegistration.GetSipRegistrations(params)
 	fmt.Println(res, verr, err)

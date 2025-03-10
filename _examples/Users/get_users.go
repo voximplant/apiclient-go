@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetUsersParams{ApplicationId:1, Count:2}
+
+	params := methods.GetUsersParams{ApplicationId: 1, Count: 2}
 	res, verr, err := client.Users.GetUsers(params)
 	fmt.Println(res, verr, err)
 }

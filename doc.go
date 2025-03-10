@@ -8,7 +8,7 @@ A private API key. There are 2 options to obtain it:
 Either generate it in the Voximplant Control panel
 Or call the CreateKey HTTP API method with the specified authentication parameters. You'll receive a response with the result field in it. Save the result value in a file (since we don't store the keys, save it securely on your side).
 
-Getting started
+# Getting started
 
 The best way to start is to use go get to add the SDK to your Go Workspace or application using Go modules:
 
@@ -18,7 +18,7 @@ Without Go Modules (or in a GOPATH with Go 1.11 or 1.12), use go get with the /.
 
 	go get github.com/voximplant/apiclient-go/...
 
-Example
+# Example
 
 This example shows how you can use the API client.
 
@@ -45,4 +45,4 @@ This example shows how you can use the API client.
 		fmt.Println(res, verr, err)
 	}
 */
-package sdk
+package src

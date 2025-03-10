@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.SetPushCredentialParams{PushCredentialId:1, CertPassword:"1234567"}
+
+	params := methods.SetPushCredentialParams{PushCredentialId: 1, CertPassword: "1234567"}
 	res, verr, err := client.PushCredentials.SetPushCredential(params)
 	fmt.Println(res, verr, err)
 }

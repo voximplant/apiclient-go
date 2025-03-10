@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.StopCallListProcessingParams{ListId:1}
+
+	params := methods.StopCallListProcessingParams{ListId: 1}
 	res, verr, err := client.CallLists.StopCallListProcessing(params)
 	fmt.Println(res, verr, err)
 }

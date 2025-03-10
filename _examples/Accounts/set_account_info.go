@@ -12,7 +12,12 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.SetAccountInfoParams{LanguageCode:"en", Location:"GMT-8", MinBalanceToNotify:1.50, TariffChangingNotifications:true, NewsNotifications:true}
+
+	TariffChangingNotificationsRaw := true
+	TariffChangingNotifications := &TariffChangingNotificationsRaw
+	NewsNotificationsRaw := true
+	NewsNotifications := &NewsNotificationsRaw
+	params := methods.SetAccountInfoParams{LanguageCode: "en", Location: "GMT-8", MinBalanceToNotify: 1.50, TariffChangingNotifications: TariffChangingNotifications, NewsNotifications: NewsNotifications}
 	res, verr, err := client.Accounts.SetAccountInfo(params)
 	fmt.Println(res, verr, err)
 }

@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.DelRuleParams{RuleId:"all", ApplicationId:"all"}
+
+	params := methods.DelRuleParams{RuleId: "all", ApplicationId: "all"}
 	res, verr, err := client.Rules.DelRule(params)
 	fmt.Println(res, verr, err)
 }

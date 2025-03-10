@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetPhoneNumberCountryStatesParams{CountryCode:"US", PhoneCategoryName:"GEOGRAPHIC", CountryState:"AL"}
+
+	params := methods.GetPhoneNumberCountryStatesParams{CountryCode: "US", PhoneCategoryName: "GEOGRAPHIC", CountryState: "AL"}
 	res, verr, err := client.PhoneNumbers.GetPhoneNumberCountryStates(params)
 	fmt.Println(res, verr, err)
 }

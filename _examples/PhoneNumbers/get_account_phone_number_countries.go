@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetAccountPhoneNumberCountriesParams{ApplicationId:"1"}
+
+	params := methods.GetAccountPhoneNumberCountriesParams{ApplicationId: "1"}
 	res, verr, err := client.PhoneNumbers.GetAccountPhoneNumberCountries(params)
 	fmt.Println(res, verr, err)
 }

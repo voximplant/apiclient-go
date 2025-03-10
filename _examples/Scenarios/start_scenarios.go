@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.StartScenariosParams{UserId:1, RuleId:1, ScriptCustomData:"mystr"}
+
+	params := methods.StartScenariosParams{UserId: 1, RuleId: 1, ScriptCustomData: "mystr"}
 	res, verr, err := client.Scenarios.StartScenarios(params)
 	fmt.Println(res, verr, err)
 }

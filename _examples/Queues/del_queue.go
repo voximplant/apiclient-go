@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.DelQueueParams{AcdQueueId:"1"}
+
+	params := methods.DelQueueParams{AcdQueueId: "1"}
 	res, verr, err := client.Queues.DelQueue(params)
 	fmt.Println(res, verr, err)
 }

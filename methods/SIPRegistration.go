@@ -9,42 +9,42 @@ type SIPRegistrationService struct {
 }
 
 type CreateSipRegistrationParams struct {
-	// The user name 
+	// The user name
 	SipUsername string `json:"sip_username"`
-	// The SIP proxy 
+	// The SIP proxy
 	Proxy string `json:"proxy"`
-	// The SIP authentications user 
+	// The SIP authentications user
 	AuthUser string `json:"auth_user,omitempty"`
-	// The outgoing SIP proxy 
+	// The outgoing SIP proxy
 	OutboundProxy string `json:"outbound_proxy,omitempty"`
-	// The SIP password 
+	// The SIP password
 	Password string `json:"password,omitempty"`
-	// Whether SIP registration is persistent. Set false to activate it only on the user login 
+	// Whether SIP registration is persistent. Set false to activate it only on the user login
 	IsPersistent *bool `json:"is_persistent,string,omitempty"`
-	// The application ID which a new SIP registration is to be bound to. Can be used instead of the <b>application_name</b> parameter 
+	// The application ID which a new SIP registration is to be bound to. Can be used instead of the <b>application_name</b> parameter
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// The application name which a new SIP registration is to be bound to. Can be used instead of the <b>application_id</b> parameter 
+	// The application name which a new SIP registration is to be bound to. Can be used instead of the <b>application_id</b> parameter
 	ApplicationName string `json:"application_name,omitempty"`
-	// The rule ID which a new SIP registration is to be bound to. Can be used instead of the <b>rule_name</b> parameter 
+	// The rule ID which a new SIP registration is to be bound to. Can be used instead of the <b>rule_name</b> parameter
 	RuleId int `json:"rule_id,string,omitempty"`
-	// The rule name which a new SIP registration is to be bound to. Can be used instead of the <b>rule_id</b> parameter 
+	// The rule name which a new SIP registration is to be bound to. Can be used instead of the <b>rule_id</b> parameter
 	RuleName string `json:"rule_name,omitempty"`
-	// The user ID which a new SIP registration is to be bound to. Can be used instead of the <b>user_name</b> parameter 
+	// The user ID which a new SIP registration is to be bound to. Can be used instead of the <b>user_name</b> parameter
 	UserId int `json:"user_id,string,omitempty"`
-	// The user name which a new SIP registration is to be bound to. Can be used instead of the <b>user_id</b> parameter 
+	// The user name which a new SIP registration is to be bound to. Can be used instead of the <b>user_id</b> parameter
 	UserName string `json:"user_name,omitempty"`
 }
 
 type CreateSipRegistrationReturn struct {
-	// 1 
+	// 1
 	Result int `json:"result"`
-	// The sip registration id 
+	// The sip registration id
 	SipRegistrationId int `json:"sip_registration_id"`
-	// The current account state 
+	// The current account state
 	AccountInfo *structure.ShortAccountInfoType `json:"account_info"`
 }
 
-// Create a new SIP registration. You should specify the application_id or application_name if you specify the rule_name or user_id, or user_name. You should set is_persistent=true if you specify the user_id or user_name. You can bind only one SIP registration to the user (the previous SIP registration are automatically unbound).<br><br>Please note that when you create a SIP registration, we reserve the subscription fee and taxes for the upcoming month. Read more in the <a href='/docs/gettingstarted/billing'>Billing</a> page. 
+// Create a new SIP registration. You should specify the application_id or application_name if you specify the rule_name or user_id, or user_name. You should set is_persistent=true if you specify the user_id or user_name. You can bind only one SIP registration to the user (the previous SIP registration are automatically unbound).<br><br>Please note that when you create a SIP registration, we reserve the subscription fee and taxes for the upcoming month. Read more in the <a href='/docs/gettingstarted/billing'>Billing</a> page.
 func (s *SIPRegistrationService) CreateSipRegistration(params CreateSipRegistrationParams) (*CreateSipRegistrationReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "CreateSipRegistration", params)
 	if err != nil {
@@ -59,38 +59,38 @@ func (s *SIPRegistrationService) CreateSipRegistration(params CreateSipRegistrat
 }
 
 type UpdateSipRegistrationParams struct {
-	// The registration ID 
+	// The registration ID
 	SipRegistrationId int `json:"sip_registration_id,string"`
-	// The user name 
+	// The user name
 	SipUsername string `json:"sip_username,omitempty"`
-	// The SIP proxy 
+	// The SIP proxy
 	Proxy string `json:"proxy,omitempty"`
-	// The SIP authentications user 
+	// The SIP authentications user
 	AuthUser string `json:"auth_user,omitempty"`
-	// The outgoing SIP proxy 
+	// The outgoing SIP proxy
 	OutboundProxy string `json:"outbound_proxy,omitempty"`
-	// The SIP password 
+	// The SIP password
 	Password string `json:"password,omitempty"`
-	// The application ID which the SIP registration is to be bound to. Can be used instead of the <b>application_name</b> parameter 
+	// The application ID which the SIP registration is to be bound to. Can be used instead of the <b>application_name</b> parameter
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// The application name which the SIP registration is to be bound to. Can be used instead of the <b>application_id</b> parameter 
+	// The application name which the SIP registration is to be bound to. Can be used instead of the <b>application_id</b> parameter
 	ApplicationName string `json:"application_name,omitempty"`
-	// The rule ID which the SIP registration is to be bound to. Can be used instead of the <b>rule_name</b> parameter 
+	// The rule ID which the SIP registration is to be bound to. Can be used instead of the <b>rule_name</b> parameter
 	RuleId int `json:"rule_id,string,omitempty"`
-	// The rule name which the SIP registration is to be bound to. Can be used instead of the <b>rule_id</b> parameter 
+	// The rule name which the SIP registration is to be bound to. Can be used instead of the <b>rule_id</b> parameter
 	RuleName string `json:"rule_name,omitempty"`
-	// The user ID which the SIP registration is to be bound to. Can be used instead of the <b>user_name</b> parameter 
+	// The user ID which the SIP registration is to be bound to. Can be used instead of the <b>user_name</b> parameter
 	UserId int `json:"user_id,string,omitempty"`
-	// The user name which the SIP registration is to be bound to. Can be used instead of the <b>user_id</b> parameter 
+	// The user name which the SIP registration is to be bound to. Can be used instead of the <b>user_id</b> parameter
 	UserName string `json:"user_name,omitempty"`
 }
 
 type UpdateSipRegistrationReturn struct {
-	// 1 
+	// 1
 	Result int `json:"result"`
 }
 
-// Update SIP registration. You should specify the application_id or application_name if you specify the rule_name or user_id, or user_name. You can bind only one SIP registration to the user (the previous SIP registration is automatically unbound). 
+// Update SIP registration. You should specify the application_id or application_name if you specify the rule_name or user_id, or user_name. You can bind only one SIP registration to the user (the previous SIP registration is automatically unbound).
 func (s *SIPRegistrationService) UpdateSipRegistration(params UpdateSipRegistrationParams) (*UpdateSipRegistrationReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "UpdateSipRegistration", params)
 	if err != nil {
@@ -105,30 +105,30 @@ func (s *SIPRegistrationService) UpdateSipRegistration(params UpdateSipRegistrat
 }
 
 type BindSipRegistrationParams struct {
-	// The registration ID 
+	// The registration ID
 	SipRegistrationId int `json:"sip_registration_id,string,omitempty"`
-	// The application ID which the SIP registration is to be bound to. Can be used instead of the <b>application_name</b> parameter 
+	// The application ID which the SIP registration is to be bound to. Can be used instead of the <b>application_name</b> parameter
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// The application name which the SIP registration is to be bound to. Can be used instead of the <b>application_id</b> parameter 
+	// The application name which the SIP registration is to be bound to. Can be used instead of the <b>application_id</b> parameter
 	ApplicationName string `json:"application_name,omitempty"`
-	// The rule ID which the SIP registration is to be bound to. Can be used instead of the <b>rule_name</b> parameter 
+	// The rule ID which the SIP registration is to be bound to. Can be used instead of the <b>rule_name</b> parameter
 	RuleId int `json:"rule_id,string,omitempty"`
-	// The rule name which the SIP registration is to be bound to. Can be used instead of the <b>rule_id</b> parameter 
+	// The rule name which the SIP registration is to be bound to. Can be used instead of the <b>rule_id</b> parameter
 	RuleName string `json:"rule_name,omitempty"`
-	// The user ID which the SIP registration is to be bound to. Can be used instead of the <b>user_name</b> parameter 
+	// The user ID which the SIP registration is to be bound to. Can be used instead of the <b>user_name</b> parameter
 	UserId int `json:"user_id,string,omitempty"`
-	// The user name which the SIP registration is to be bound to. Can be used instead of the <b>user_id</b> parameter 
+	// The user name which the SIP registration is to be bound to. Can be used instead of the <b>user_id</b> parameter
 	UserName string `json:"user_name,omitempty"`
-	// Whether to bind or unbind (set true or false respectively) 
+	// Whether to bind or unbind (set true or false respectively)
 	Bind *bool `json:"bind,string,omitempty"`
 }
 
 type BindSipRegistrationReturn struct {
-	// 1 
+	// 1
 	Result int `json:"result"`
 }
 
-// Bind the SIP registration to the application/user or unbind the SIP registration from the application/user. You should specify the application_id or application_name if you specify the rule_name or user_id, or user_name. You should specify the sip_registration_id if you set bind=true. You can bind only one SIP registration to the user (the previous SIP registration is automatically unbound). 
+// Bind the SIP registration to the application/user or unbind the SIP registration from the application/user. You should specify the application_id or application_name if you specify the rule_name or user_id, or user_name. You should specify the sip_registration_id if you set bind=true. You can bind only one SIP registration to the user (the previous SIP registration is automatically unbound).
 func (s *SIPRegistrationService) BindSipRegistration(params BindSipRegistrationParams) (*BindSipRegistrationReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "BindSipRegistration", params)
 	if err != nil {
@@ -143,16 +143,16 @@ func (s *SIPRegistrationService) BindSipRegistration(params BindSipRegistrationP
 }
 
 type DeleteSipRegistrationParams struct {
-	// The registration ID 
+	// The registration ID
 	SipRegistrationId int `json:"sip_registration_id,string"`
 }
 
 type DeleteSipRegistrationReturn struct {
-	// 1 
+	// 1
 	Result int `json:"result"`
 }
 
-// Delete SIP registration. 
+// Delete SIP registration.
 func (s *SIPRegistrationService) DeleteSipRegistration(params DeleteSipRegistrationParams) (*DeleteSipRegistrationReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "DeleteSipRegistration", params)
 	if err != nil {
@@ -167,50 +167,50 @@ func (s *SIPRegistrationService) DeleteSipRegistration(params DeleteSipRegistrat
 }
 
 type GetSipRegistrationsParams struct {
-	// The SIP registration ID 
+	// The SIP registration ID
 	SipRegistrationId int `json:"sip_registration_id,string,omitempty"`
-	// The SIP user name to filter 
+	// The SIP user name to filter
 	SipUsername string `json:"sip_username,omitempty"`
-	// Whether to show the frozen SIP registrations only 
+	// Whether to show the frozen SIP registrations only
 	Deactivated *bool `json:"deactivated,string,omitempty"`
-	// Whether to show the successful SIP registrations only 
+	// Whether to show the successful SIP registrations only
 	Successful *bool `json:"successful,string,omitempty"`
-	// Whether the SIP registration is persistent to filter 
+	// Whether the SIP registration is persistent to filter
 	IsPersistent *bool `json:"is_persistent,string,omitempty"`
-	// The application ID list separated by semicolons (;) to filter. Can be used instead of <b>application_name</b> 
+	// The application ID list separated by semicolons (;) to filter. Can be used instead of <b>application_name</b>
 	ApplicationId string `json:"application_id,omitempty"`
-	// The application name list separated by semicolons (;) to filter. Can be used instead of <b>application_id</b> 
+	// The application name list separated by semicolons (;) to filter. Can be used instead of <b>application_id</b>
 	ApplicationName string `json:"application_name,omitempty"`
-	// Whether SIP registration bound to an application 
+	// Whether SIP registration bound to an application
 	IsBoundToApplication *bool `json:"is_bound_to_application,string,omitempty"`
-	// The rule ID list separated by semicolons (;) to filter. Can be used instead of <b>rule_name</b> 
+	// The rule ID list separated by semicolons (;) to filter. Can be used instead of <b>rule_name</b>
 	RuleId string `json:"rule_id"`
-	// The rule name list separated by semicolons (;) to filter. Can be used instead of <b>rule_id</b> 
+	// The rule name list separated by semicolons (;) to filter. Can be used instead of <b>rule_id</b>
 	RuleName string `json:"rule_name"`
-	// The user ID list separated by semicolons (;) to filter. Can be used instead of <b>user_name</b> 
+	// The user ID list separated by semicolons (;) to filter. Can be used instead of <b>user_name</b>
 	UserId string `json:"user_id"`
-	// The user name list separated by semicolons (;) to filter. Can be used instead of <b>user_id</b> 
+	// The user name list separated by semicolons (;) to filter. Can be used instead of <b>user_id</b>
 	UserName string `json:"user_name"`
-	// The list of proxy servers to use, divided by semicolon (;) 
+	// The list of proxy servers to use, divided by semicolon (;)
 	Proxy string `json:"proxy,omitempty"`
-	// Whether SIP registration is still in progress 
+	// Whether SIP registration is still in progress
 	InProgress *bool `json:"in_progress,string,omitempty"`
-	// The list of SIP response codes. The __code1:code2__ means a range from __code1__ to __code2__ including; the __code1;code2__ meanse either __code1__ or __code2__. You can combine ranges, e.g., __code1;code2:code3__ 
+	// The list of SIP response codes. The __code1:code2__ means a range from __code1__ to __code2__ including; the __code1;code2__ meanse either __code1__ or __code2__. You can combine ranges, e.g., __code1;code2:code3__
 	StatusCode string `json:"status_code,omitempty"`
-	// The max returning record count 
+	// The max returning record count
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records are skipped in the output 
+	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`
 }
 
 type GetSipRegistrationsReturn struct {
-	// Active SIP registrations 
+	// Active SIP registrations
 	Result []*structure.SIPRegistrationType `json:"result"`
-	// Count rows 
+	// Count rows
 	Count int `json:"count"`
 }
 
-// Get active SIP registrations. 
+// Get active SIP registrations.
 func (s *SIPRegistrationService) GetSipRegistrations(params GetSipRegistrationsParams) (*GetSipRegistrationsReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "GetSipRegistrations", params)
 	if err != nil {
@@ -223,4 +223,3 @@ func (s *SIPRegistrationService) GetSipRegistrations(params GetSipRegistrationsP
 	}
 	return response, nil, nil
 }
-

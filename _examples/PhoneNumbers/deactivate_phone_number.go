@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.DeactivatePhoneNumberParams{PhoneId:"1"}
+
+	params := methods.DeactivatePhoneNumberParams{PhoneId: "1"}
 	res, verr, err := client.PhoneNumbers.DeactivatePhoneNumber(params)
 	fmt.Println(res, verr, err)
 }

@@ -12,7 +12,10 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.SetChildAccountInfoParams{ChildAccountId:"1321", Active:false}
+
+	ActiveRaw := false
+	Active := &ActiveRaw
+	params := methods.SetChildAccountInfoParams{ChildAccountId: "1321", Active: Active}
 	res, verr, err := client.Accounts.SetChildAccountInfo(params)
 	fmt.Println(res, verr, err)
 }

@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.DelDialogflowKeyParams{DialogflowKeyId:1}
+
+	params := methods.DelDialogflowKeyParams{DialogflowKeyId: 1}
 	res, verr, err := client.DialogflowCredentials.DelDialogflowKey(params)
 	fmt.Println(res, verr, err)
 }

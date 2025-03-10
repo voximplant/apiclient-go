@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.ControlSmsParams{PhoneNumber:"447443332211", Command:"disable"}
+
+	params := methods.ControlSmsParams{PhoneNumber: "447443332211", Command: "disable"}
 	res, verr, err := client.SMS.ControlSms(params)
 	fmt.Println(res, verr, err)
 }

@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.BindDialogflowKeysParams{DialogflowKeyId:1, ApplicationId:"1"}
+
+	params := methods.BindDialogflowKeysParams{DialogflowKeyId: 1, ApplicationId: "1"}
 	res, verr, err := client.DialogflowCredentials.BindDialogflowKeys(params)
 	fmt.Println(res, verr, err)
 }

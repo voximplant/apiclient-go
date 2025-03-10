@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.AttachAdminRoleParams{RequiredAdminUserId:"all", AdminRoleId:"1;2;3"}
+
+	params := methods.AttachAdminRoleParams{RequiredAdminUserId: "all", AdminRoleId: "1;2;3"}
 	res, verr, err := client.AdminUsers.AttachAdminRole(params)
 	fmt.Println(res, verr, err)
 }

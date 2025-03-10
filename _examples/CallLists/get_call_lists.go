@@ -12,6 +12,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	params := methods.GetCallListsParams{}
 	res, verr, err := client.CallLists.GetCallLists(params)
 	fmt.Println(res, verr, err)

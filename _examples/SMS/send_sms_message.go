@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.SendSmsMessageParams{Source:"447443332211", Destination:"447443332212", SmsBody:"Test message"}
+
+	params := methods.SendSmsMessageParams{Source: "447443332211", Destination: "447443332212", SmsBody: "Test message"}
 	res, verr, err := client.SMS.SendSmsMessage(params)
 	fmt.Println(res, verr, err)
 }

@@ -12,6 +12,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	params := methods.GetRoleGroupsParams{}
 	res, verr, err := client.RoleSystem.GetRoleGroups(params)
 	fmt.Println(res, verr, err)

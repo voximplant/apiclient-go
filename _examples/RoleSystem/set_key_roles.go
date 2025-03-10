@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.SetKeyRolesParams{KeyId:"ab81c76e-573e-4046-9af9-105269dfafca", RoleId:"1"}
+
+	params := methods.SetKeyRolesParams{KeyId: "ab81c76e-573e-4046-9af9-105269dfafca"}
 	res, verr, err := client.RoleSystem.SetKeyRoles(params)
 	fmt.Println(res, verr, err)
 }

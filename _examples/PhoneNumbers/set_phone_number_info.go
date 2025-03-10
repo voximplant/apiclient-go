@@ -12,7 +12,10 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.SetPhoneNumberInfoParams{PhoneId:"1", AutoCharge:true}
+
+	AutoChargeRaw := true
+	AutoCharge := &AutoChargeRaw
+	params := methods.SetPhoneNumberInfoParams{PhoneId: "1", AutoCharge: AutoCharge}
 	res, verr, err := client.PhoneNumbers.SetPhoneNumberInfo(params)
 	fmt.Println(res, verr, err)
 }

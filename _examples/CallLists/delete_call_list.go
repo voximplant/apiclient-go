@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.DelKeyValueItemParams{Key:"key1", ApplicationId:1}
-	res, verr, err := client.Keyvaluestorage.DelKeyValueItem(params)
+
+	params := methods.DeleteCallListParams{AccountId: 1, ListId: 1}
+	res, verr, err := client.CallLists.DeleteCallList(params)
 	fmt.Println(res, verr, err)
 }

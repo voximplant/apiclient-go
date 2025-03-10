@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.CheckAuthorizedAccountIPParams{AuthorizedIp:"92.255.220.0/24"}
+
+	params := methods.CheckAuthorizedAccountIPParams{AuthorizedIp: "92.255.220.0/24"}
 	res, verr, err := client.AuthorizedIPs.CheckAuthorizedAccountIP(params)
 	fmt.Println(res, verr, err)
 }

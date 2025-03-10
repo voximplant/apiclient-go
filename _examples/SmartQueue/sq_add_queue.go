@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.SQAddQueueParams{ApplicationId:1, SqQueueName:"smartQueue1", CallAgentSelection:"MOST_QUALIFIED", CallTaskSelection:"MAX_WAITING_TIME"}
+
+	params := methods.SQAddQueueParams{ApplicationId: 1, SqQueueName: "smartQueue1", CallAgentSelection: "MOST_QUALIFIED", CallTaskSelection: "MAX_WAITING_TIME"}
 	res, verr, err := client.SmartQueue.SQAddQueue(params)
 	fmt.Println(res, verr, err)
 }

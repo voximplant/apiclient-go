@@ -12,7 +12,10 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetAdminUsersParams{WithAccessEntries:true, Count:2}
+	WithAccessEntriesRaw := true
+	WithAccessEntries := &WithAccessEntriesRaw
+
+	params := methods.GetAdminUsersParams{WithAccessEntries: WithAccessEntries, Count: 2}
 	res, verr, err := client.AdminUsers.GetAdminUsers(params)
 	fmt.Println(res, verr, err)
 }

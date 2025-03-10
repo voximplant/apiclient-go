@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.AddApplicationParams{ApplicationName:"myapp1"}
+
+	params := methods.AddApplicationParams{ApplicationName: "myapp1"}
 	res, verr, err := client.Applications.AddApplication(params)
 	fmt.Println(res, verr, err)
 }

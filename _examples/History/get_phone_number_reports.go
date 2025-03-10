@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.SetKeyValueItemParams{Key:"key1", Value:"value1", ApplicationId:1, Ttl:864000}
-	res, verr, err := client.Keyvaluestorage.SetKeyValueItem(params)
+
+	params := methods.GetPhoneNumberReportsParams{}
+	res, verr, err := client.History.GetPhoneNumberReports(params)
 	fmt.Println(res, verr, err)
 }

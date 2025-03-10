@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetSubUserRolesParams{SubuserId:12}
+
+	params := methods.GetSubUserRolesParams{SubuserId: 12}
 	res, verr, err := client.RoleSystem.GetSubUserRoles(params)
 	fmt.Println(res, verr, err)
 }

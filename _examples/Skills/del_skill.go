@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.DelSkillParams{SkillId:1}
+
+	params := methods.DelSkillParams{SkillId: 1}
 	res, verr, err := client.Skills.DelSkill(params)
 	fmt.Println(res, verr, err)
 }

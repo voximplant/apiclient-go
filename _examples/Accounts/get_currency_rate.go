@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetCurrencyRateParams{Currency:"RUR;EUR"}
+
+	params := methods.GetCurrencyRateParams{Currency: "RUR;EUR"}
 	res, verr, err := client.Accounts.GetCurrencyRate(params)
 	fmt.Println(res, verr, err)
 }

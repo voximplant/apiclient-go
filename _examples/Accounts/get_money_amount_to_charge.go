@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.GetMoneyAmountToChargeParams{Currency:"USD"}
+
+	params := methods.GetMoneyAmountToChargeParams{Currency: "USD"}
 	res, verr, err := client.Accounts.GetMoneyAmountToCharge(params)
 	fmt.Println(res, verr, err)
 }

@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.AddRuleParams{ApplicationId:1, RuleName:"allowall", RulePattern:".*"}
+
+	params := methods.AddRuleParams{ApplicationId: 1, RuleName: "allowall", RulePattern: ".*"}
 	res, verr, err := client.Rules.AddRule(params)
 	fmt.Println(res, verr, err)
 }

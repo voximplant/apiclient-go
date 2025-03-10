@@ -12,7 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	params := methods.SQDelSkillParams{ApplicationId:1, SqSkillId:"5"}
+
+	params := methods.SQDelSkillParams{ApplicationId: 1, SqSkillId: "5"}
 	res, verr, err := client.SmartQueue.SQDelSkill(params)
 	fmt.Println(res, verr, err)
 }

@@ -5,9 +5,9 @@ import (
 )
 
 type Config struct {
-	KeyPath     string
-	Endpoint    string
-	HTTPClient  *http.Client
+	KeyPath    string
+	Endpoint   string
+	HTTPClient *http.Client
 }
 
 func NewConfig() *Config {
