@@ -284,9 +284,9 @@ type SQAddQueueParams struct {
 	FallbackAgentSelection string `json:"fallback_agent_selection,omitempty"`
 	// Comment, up to 200 characters
 	Description string `json:"description,omitempty"`
-	// Maximum time in minutes that a CALL-type request can remain in the queue without being assigned to an agent
+	// Maximum time in minutes that a CALL-type request can remain in the queue without being assigned to an agent. Specify either this parameter or `call_max_waiting_time_in_seconds`. Specifying both parameters simultaniously leads to an error
 	CallMaxWaitingTime int `json:"call_max_waiting_time,string,omitempty"`
-	// Maximum time in minutes that an IM-type request can remain in the queue without being assigned to an agent
+	// Maximum time in minutes that an IM-type request can remain in the queue without being assigned to an agent. Specify either this parameter or `im_max_waiting_time_in_seconds`. Specifying both parameters simultaniously leads to an error
 	ImMaxWaitingTime int `json:"im_max_waiting_time,string,omitempty"`
 	// Maximum size of the queue with CALL-type requests
 	CallMaxQueueSize int `json:"call_max_queue_size,string,omitempty"`
@@ -294,6 +294,10 @@ type SQAddQueueParams struct {
 	ImMaxQueueSize int `json:"im_max_queue_size,string,omitempty"`
 	// The queue's priority from 1 to 100
 	Priority int `json:"priority,string,omitempty"`
+	// Maximum call waiting time in seconds. Specify either this parameter or `call_max_waiting_time`. Specifying both parameters simultaniously leads to an error
+	CallMaxWaitingTimeInSeconds int `json:"call_max_waiting_time_in_seconds,string,omitempty"`
+	// Maximum chat message waiting time in seconds. Specify either this parameter or `im_max_waiting_time`. Specifying both parameters simultaniously leads to an error
+	ImMaxWaitingTimeInSeconds int `json:"im_max_waiting_time_in_seconds,string,omitempty"`
 }
 
 type SQAddQueueReturn struct {
@@ -338,9 +342,9 @@ type SQSetQueueInfoParams struct {
 	FallbackAgentSelection string `json:"fallback_agent_selection,omitempty"`
 	// Comment, up to 200 characters
 	Description string `json:"description,omitempty"`
-	// Maximum time in minutes that a CALL-type request can remain in the queue without being assigned to an agent
+	// Maximum time in minutes that a CALL-type request can remain in the queue without being assigned to an agent. Specify either this parameter or `call_max_waiting_time_in_seconds`. Specifying both parameters simultaniously leads to an error
 	CallMaxWaitingTime int `json:"call_max_waiting_time,string,omitempty"`
-	// Maximum time in minutes that an IM-type request can remain in the queue without being assigned to an agent
+	// Maximum time in minutes that an IM-type request can remain in the queue without being assigned to an agent. Specify either this parameter or `im_max_waiting_time_in_seconds`. Specifying both parameters simultaniously leads to an error
 	ImMaxWaitingTime int `json:"im_max_waiting_time,string,omitempty"`
 	// Maximum size of the queue with CALL-type requests
 	CallMaxQueueSize int `json:"call_max_queue_size,string,omitempty"`
@@ -348,6 +352,10 @@ type SQSetQueueInfoParams struct {
 	ImMaxQueueSize int `json:"im_max_queue_size,string,omitempty"`
 	// The queue's priority from 1 to 100
 	Priority int `json:"priority,string,omitempty"`
+	// Maximum call waiting time in seconds. Specify either this parameter or `call_max_waiting_time`. Specifying both parameters simultaniously leads to an error
+	CallMaxWaitingTimeInSeconds int `json:"call_max_waiting_time_in_seconds,string,omitempty"`
+	// Maximum chat message waiting time in seconds. Specify either this parameter or `im_max_waiting_time`. Specifying both parameters simultaniously leads to an error
+	ImMaxWaitingTimeInSeconds int `json:"im_max_waiting_time_in_seconds,string,omitempty"`
 }
 
 type SQSetQueueInfoReturn struct {

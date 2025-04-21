@@ -228,6 +228,30 @@ func (s *PhoneNumbersService) GetPhoneNumbers(params GetPhoneNumbersParams) (*Ge
 	return response, nil, nil
 }
 
+type IsAccountPhoneNumberParams struct {
+	// Phone number to check in the international format without `+`
+	PhoneNumber string `json:"phone_number"`
+}
+
+type IsAccountPhoneNumberReturn struct {
+	// Whether the number belongs to the account
+	Result *bool `json:"result"`
+}
+
+// Checks if the phone number belongs to the authorized account.
+func (s *PhoneNumbersService) IsAccountPhoneNumber(params IsAccountPhoneNumberParams) (*IsAccountPhoneNumberReturn, *structure.VError, error) {
+	req, err := s.client.NewRequest("POST", "IsAccountPhoneNumber", params)
+	if err != nil {
+		return nil, nil, err
+	}
+	response := &IsAccountPhoneNumberReturn{}
+	verr, err := s.client.MakeResponse(req, response)
+	if verr != nil || err != nil {
+		return nil, verr, err
+	}
+	return response, nil, nil
+}
+
 type GetPhoneNumbersAsyncParams struct {
 	// Whether to get a CSV file with the column names
 	WithHeader *bool `json:"with_header,string,omitempty"`

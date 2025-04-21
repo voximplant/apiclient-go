@@ -2302,10 +2302,14 @@ type GetSQQueuesResult struct {
 	Created Timestamp `json:"created,omitempty"`
 	// UTC date of the queue modification in 24-h format: YYYY-MM-DD HH:mm:ss
 	Modified Timestamp `json:"modified,omitempty"`
-	// Maximum time in minutes that a CALL-type request can remain in the queue without being assigned to an agent
+	// Maximum time in minutes that a CALL-type request can remain in the queue without being assigned to an agent in minutes. If the value has been passed in seconds, this field is also present in the answer, rounded to the bigger number
 	CallMaxWaitingTime int `json:"call_max_waiting_time,omitempty"`
-	// Maximum time in minutes that an IM-type request can remain in the queue without being assigned to an agent
+	// Maximum time in minutes that a CALL-type request can remain in the queue without being assigned to an agent in seconds. If the value has been passed in minutes, this field is also present in the answer
+	CallMaxWaitingTimeInSeconds int `json:"call_max_waiting_time_in_seconds,omitempty"`
+	// Maximum time in minutes that an IM-type request can remain in the queue without being assigned to an agent in minutes. If the value has been passed in seconds, this field is also present in the answer, rounded to the bigger number
 	ImMaxWaitingTime int `json:"im_max_waiting_time,omitempty"`
+	// Maximum time in minutes that an IM-type request can remain in the queue without being assigned to an agent in seconds. If the value has been passed in minutes, this field is also present in the answer
+	ImMaxWaitingTimeInSeconds int `json:"im_max_waiting_time_in_seconds,omitempty"`
 	// Maximum size of the queue with CALL-type requests
 	CallMaxQueueSize int `json:"call_max_queue_size,omitempty"`
 	// Maximum size of the queue with IM-type requests
