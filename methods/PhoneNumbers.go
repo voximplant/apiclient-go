@@ -262,7 +262,7 @@ type GetPhoneNumbersAsyncReturn struct {
 	Result int `json:"result"`
 }
 
-// Gets the asyncronous report regarding purchaced phone numbers.
+// Gets the asynchronous report regarding purchased phone numbers.
 func (s *PhoneNumbersService) GetPhoneNumbersAsync(params GetPhoneNumbersAsyncParams) (*GetPhoneNumbersAsyncReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "GetPhoneNumbersAsync", params)
 	if err != nil {

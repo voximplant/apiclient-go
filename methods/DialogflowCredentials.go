@@ -87,11 +87,11 @@ func (s *DialogflowCredentialsService) DelDialogflowKey(params DelDialogflowKeyP
 }
 
 type GetDialogflowKeysParams struct {
-	// The Dialogflow key's ID
+	// Dialogflow key's ID
 	DialogflowKeyId int `json:"dialogflow_key_id,string,omitempty"`
-	// The name of the bound application
+	// Name of the bound application
 	ApplicationName string `json:"application_name,omitempty"`
-	// The id of the bound application
+	// ID of the bound application
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// Whether to get the json web key
 	WithSecretInfo *bool `json:"with_secret_info,string,omitempty"`

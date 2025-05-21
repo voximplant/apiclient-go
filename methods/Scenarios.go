@@ -32,7 +32,7 @@ type AddScenarioReturn struct {
 	ScenarioId int `json:"scenario_id"`
 }
 
-// Adds a new scenario to the <a href="https://voximplant.com/docs/gettingstarted/basicconcepts/scenarios#shared-scenarios">Shared</a> folder, so the scenario is available in all the existing applications. Please use the POST method.
+// Adds a new scenario to the <a href="https://voximplant.com/docs/gettingstarted/basicconcepts/scenarios#shared-scenarios">Shared</a> folder, so the scenario is available in all the existing applications. Please use the POST method.<br><br>When adding a scenario to the Shared folder, the `application_id` and `application_name` parameters should not be provided.
 func (s *ScenariosService) AddScenario(params AddScenarioParams) (*AddScenarioReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "AddScenario", params)
 	if err != nil {
@@ -154,13 +154,13 @@ func (s *ScenariosService) GetScenarios(params GetScenariosParams) (*GetScenario
 }
 
 type SetScenarioInfoParams struct {
-	// The scenario ID
+	// Scenario ID
 	ScenarioId int `json:"scenario_id,string"`
-	// The name of the scenario to edit, can be used instead of <b>scenario_id</b>
+	// Name of the scenario to edit, can be used instead of <b>scenario_id</b>
 	RequiredScenarioName string `json:"required_scenario_name"`
-	// The new scenario name. The length must be less than 30
+	// New scenario name. The length must be less than 30
 	ScenarioName string `json:"scenario_name,omitempty"`
-	// The new scenario text. Use the application/x-www-form-urlencoded content type with UTF-8 encoding. The length must be less than 128 KB
+	// New scenario text. Use the application/x-www-form-urlencoded content type with UTF-8 encoding. The length must be less than 128 KB
 	ScenarioScript string `json:"scenario_script,omitempty"`
 }
 

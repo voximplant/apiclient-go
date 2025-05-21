@@ -234,7 +234,7 @@ type UserInfoType struct {
 	UserActive *bool `json:"user_active"`
 	// Whether the user uses the parent account's money, 'false' if the user has a separate balance
 	ParentAccounting *bool `json:"parent_accounting"`
-	// The current user's money in the currency specified for the account. The value is the number rounded to 4 decimal places and it changes during the calls, transcribing, purchases etc
+	// The current user's money in the currency specified for the account. The value is the number rounded to 4 decimal places, and it changes during the calls, transcribing, purchases etc
 	LiveBalance float64 `json:"live_balance"`
 	// The current user's money in the currency specified for the account. The value is the number rounded to 4 decimal places. The parameter is the alias to live_balance by default. But there is a possibility to make the alias to fixed_balance: just to pass return_live_balance=false into the [GetAccountInfo] method
 	Balance float64 `json:"balance"`
@@ -321,27 +321,29 @@ type SipWhiteListInfoType struct {
 }
 
 type CallSessionInfoType struct {
-	// The routing rule name
+	// Call's audio quality. The possible values are: Standard | HD | Ultra HD.
+	AudioQuality string `json:"audio_quality"`
+	// Routing rule name
 	RuleName string `json:"rule_name"`
-	// The application name
+	// Application name
 	ApplicationName string `json:"application_name"`
-	// The unique JS session identifier
+	// Unique JS session identifier
 	CallSessionHistoryId int `json:"call_session_history_id"`
-	// The account ID that initiates the JS session
+	// Account ID that initiates the JS session
 	AccountId int `json:"account_id"`
-	// The application ID that initiates the JS session
+	// Application ID that initiates the JS session
 	ApplicationId int `json:"application_id"`
-	// The user ID that initiates the JS session
+	// User ID that initiates the JS session
 	UserId int `json:"user_id"`
-	// The start date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss
+	// Start date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss
 	StartDate Timestamp `json:"start_date"`
-	// The entire JS session duration in seconds. The session can contain multiple calls
+	// Entire JS session duration in seconds. The session can contain multiple calls
 	Duration int `json:"duration,omitempty"`
-	// The initiator IP address
+	// Initiator's IP address
 	InitiatorAddress string `json:"initiator_address"`
-	// The media server IP address
+	// Media server IP address
 	MediaServerAddress string `json:"media_server_address"`
-	// The link to the session log. The log retention policy is 1 month, after that time this field clears. If you have issues accessing the log file, check if the application has "Secure storage of applications and logs" feature enabled. In this case, you need to <a href='/docs/guides/managementapi/secureobjects'>authorize</a>.
+	// Link to the session log. The log retention policy is 1 month, after that time this field clears. If you have issues accessing the log file, check if the application has "Secure storage of applications and logs" feature enabled. In this case, you need to <a href='/docs/guides/managementapi/secureobjects'>authorize</a>.
 	LogFileUrl string `json:"log_file_url"`
 	// Finish reason. Possible values are __Normal termination__, __Insufficient funds__, __Internal error (billing timeout)__, __Terminated administratively__, __JS session error__, __Timeout__
 	FinishReason string `json:"finish_reason,omitempty"`
@@ -804,7 +806,7 @@ type ACDQueueStateType struct {
 	ReadyOperators []ACDReadyOperatorStateType `json:"ready_operators"`
 	// Number of ready operators
 	ReadyOperatorsCount int `json:"ready_operators_count"`
-	// List of operators with the 'READY' state that cannot accept a call from this queue. Operator cannot accept a call if they are temporarily banned or they are servicing a call right now
+	// List of operators with the 'READY' state that cannot accept a call from this queue. Operator cannot accept a call if they are temporarily banned, or they are servicing a call right now
 	LockedOperators []ACDLockedOperatorStateType `json:"locked_operators"`
 	// Number of locked operators
 	LockedOperatorsCount int `json:"locked_operators_count"`
@@ -963,13 +965,13 @@ type AttachedPhoneInfoType struct {
 	Canceled *bool `json:"canceled"`
 	// Whether to charge automatically
 	AutoCharge *bool `json:"auto_charge"`
-	// The id of the bound application
+	// ID of the bound application
 	ApplicationId int `json:"application_id,omitempty"`
-	// The name of the bound application
+	// Name of the bound application
 	ApplicationName string `json:"application_name,omitempty"`
-	// The id of the bound rule
+	// ID of the bound rule
 	RuleId int `json:"rule_id,omitempty"`
-	// The name of the bound rule
+	// Name of the bound rule
 	RuleName string `json:"rule_name,omitempty"`
 	// The phone category name (MOBILE, GEOGRAPHIC, TOLLFREE, MOSCOW495)
 	CategoryName string `json:"category_name"`
@@ -1006,9 +1008,9 @@ type NewAttachedPhoneInfoType struct {
 	PhoneId int `json:"phone_id"`
 	// The phone number
 	PhoneNumber string `json:"phone_number"`
-	// Whether verification is required for the account
+	// Country code, where the verification is required for the account. Currently, the only possible value for this field is `RU` (Russia)
 	RequiredVerification string `json:"required_verification,omitempty"`
-	// The account verification status. The following values are possible: REQUIRED, IN_PROGRESS, VERIFIED
+	// The account verification status. Available only for RU accounts. The following values are possible: REQUIRED, IN_PROGRESS
 	VerificationStatus string `json:"verification_status,omitempty"`
 	// Unverified phone hold until the date in format: YYYY-MM-DD (if the account verification is required). The number is detached on that day automatically!
 	UnverifiedHoldUntil Date `json:"unverified_hold_until,omitempty"`
@@ -1313,17 +1315,17 @@ type SIPRegistrationType struct {
 	SubscriptionPrice string `json:"subscription_price"`
 	// Whether the SIP registration is persistent. Set false to activate it only on the user login
 	IsPersistent *bool `json:"is_persistent"`
-	// The id of the bound user
+	// ID of the bound user
 	UserId int `json:"user_id,omitempty"`
-	// The name of the bound user
+	// Name of the bound user
 	UserName string `json:"user_name,omitempty"`
-	// The id of the bound application
+	// ID of the bound application
 	ApplicationId int `json:"application_id,omitempty"`
-	// The name of the bound application
+	// Name of the bound application
 	ApplicationName string `json:"application_name,omitempty"`
-	// The id of the bound rule
+	// ID of the bound rule
 	RuleId int `json:"rule_id,omitempty"`
-	// The name of the bound rule
+	// Name of the bound rule
 	RuleName string `json:"rule_name,omitempty"`
 }
 

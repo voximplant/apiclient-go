@@ -22,11 +22,11 @@ type CreateCallListParams struct {
 	Name string `json:"name"`
 	// Send as "body" part of the HTTP request or as multiform. The sending "file_content" via URL is at its own risk because the network devices tend to drop HTTP requests with large headers
 	FileContent io.Reader `json:"file_content,string"`
-	// Interval between call attempts in seconds. The default is 0
+	// Interval between call attempts in seconds. The default value is 0
 	IntervalSeconds int `json:"interval_seconds,string,omitempty"`
-	// Encoding file. The default is UTF-8
+	// Encoding file. The default value is UTF-8
 	Encoding string `json:"encoding,omitempty"`
-	// Separator values. The default is ';'
+	// Separator values. The default value is ';'
 	Delimiter string `json:"delimiter,omitempty"`
 	// Escape character for parsing csv
 	Escape string `json:"escape,omitempty"`
@@ -66,11 +66,11 @@ type AppendToCallListParams struct {
 	ListName string `json:"list_name"`
 	// Send as request body or multiform
 	FileContent io.Reader `json:"file_content,string"`
-	// Encoding file. The default is UTF-8
+	// Encoding file. The default value is UTF-8
 	Encoding string `json:"encoding,omitempty"`
 	// Escape character for parsing csv
 	Escape string `json:"escape,omitempty"`
-	// Separator values. The default is ';'
+	// Separator values. The default value is ';'
 	Delimiter string `json:"delimiter,omitempty"`
 }
 
@@ -90,6 +90,46 @@ func (s *CallListsService) AppendToCallList(params AppendToCallListParams) (*App
 		return nil, nil, err
 	}
 	response := &AppendToCallListReturn{}
+	verr, err := s.client.MakeResponse(req, response)
+	if verr != nil || err != nil {
+		return nil, verr, err
+	}
+	return response, nil, nil
+}
+
+type EditCallListParams struct {
+	// Call list ID. If the ID is non existing, the 251 error returns
+	ListId int `json:"list_id,string"`
+	// Minimum interval between call attempts. Cannot be a negative value
+	IntervalSeconds int `json:"interval_seconds,string,omitempty"`
+	// Maximum call attempt number. Cannot be less than 1
+	NumAttempts int `json:"num_attempts,string,omitempty"`
+	// Maximum simultaneous call attempts for this call list. Cannot be less than 1
+	MaxSimultaneous int `json:"max_simultaneous,string,omitempty"`
+	// IP address in the `Inet4Address` format
+	IpAddress string `json:"ip_address,omitempty"`
+	// Call list name. Cannot be bigger than 255 characters, cannot contain slash symbol
+	Name string `json:"name,omitempty"`
+	// Call list's priority among other call list. The lower the value, the higher is the call list's priority
+	Priority int `json:"priority,string,omitempty"`
+	// Time when the call list should start in the `yyyy-MM-dd HH:mm:ss` format
+	StartAt string `json:"start_at,omitempty"`
+	// Location of the server processing the call list. If the ID is non existing, the 496 error returns: The 'server_location' parameter is invalid.
+	ServerLocation string `json:"server_location,omitempty"`
+}
+
+type EditCallListReturn struct {
+	// true
+	Result *bool `json:"result"`
+}
+
+// Edits the specified call list by its ID.
+func (s *CallListsService) EditCallList(params EditCallListParams) (*EditCallListReturn, *structure.VError, error) {
+	req, err := s.client.NewRequest("POST", "EditCallList", params)
+	if err != nil {
+		return nil, nil, err
+	}
+	response := &EditCallListReturn{}
 	verr, err := s.client.MakeResponse(req, response)
 	if verr != nil || err != nil {
 		return nil, verr, err
@@ -180,7 +220,7 @@ type GetCallListDetailsParams struct {
 	Output string `json:"output,omitempty"`
 	// Encoding of the output file. Default UTF-8
 	Encoding string `json:"encoding,omitempty"`
-	// Separator values. The default is ';'
+	// Separator values. The default value is ';'
 	Delimiter string `json:"delimiter,omitempty"`
 }
 

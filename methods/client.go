@@ -29,33 +29,33 @@ type Client struct {
 	// Lock
 	mux sync.Mutex
 
-	Queues                *QueuesService
-	KeyValueStorage       *KeyValueStorageService
-	SIPRegistration       *SIPRegistrationService
-	SmartQueue            *SmartQueueService
-	RoleSystem            *RoleSystemService
-	Invoices              *InvoicesService
-	Rules                 *RulesService
-	PSTNBlacklist         *PSTNBlacklistService
-	SIPWhiteList          *SIPWhiteListService
-	AuthorizedIPs         *AuthorizedIPsService
-	CallLists             *CallListsService
-	PhoneNumbers          *PhoneNumbersService
-	PushCredentials       *PushCredentialsService
-	History               *HistoryService
-	AdminRoles            *AdminRolesService
-	AdminUsers            *AdminUsersService
-	Applications          *ApplicationsService
-	Users                 *UsersService
 	Scenarios             *ScenariosService
-	CallerIDs             *CallerIDsService
-	OutboundTestNumbers   *OutboundTestNumbersService
+	AuthorizedIPs         *AuthorizedIPsService
 	RecordStorages        *RecordStoragesService
+	PhoneNumbers          *PhoneNumbersService
+	SmartQueue            *SmartQueueService
+	AdminUsers            *AdminUsersService
 	Accounts              *AccountsService
-	RegulationAddress     *RegulationAddressService
-	DialogflowCredentials *DialogflowCredentialsService
-	Skills                *SkillsService
+	SIPWhiteList          *SIPWhiteListService
 	SMS                   *SMSService
+	Rules                 *RulesService
+	DialogflowCredentials *DialogflowCredentialsService
+	KeyValueStorage       *KeyValueStorageService
+	PSTNBlacklist         *PSTNBlacklistService
+	CallerIDs             *CallerIDsService
+	Queues                *QueuesService
+	RoleSystem            *RoleSystemService
+	Users                 *UsersService
+	CallLists             *CallListsService
+	Skills                *SkillsService
+	OutboundTestNumbers   *OutboundTestNumbersService
+	AdminRoles            *AdminRolesService
+	RegulationAddress     *RegulationAddressService
+	PushCredentials       *PushCredentialsService
+	Invoices              *InvoicesService
+	Applications          *ApplicationsService
+	History               *HistoryService
+	SIPRegistration       *SIPRegistrationService
 
 	// AuthorizedIps deprecated: use AuthorizedIPs instead
 	AuthorizedIps *AuthorizedIPsService
@@ -94,33 +94,33 @@ func NewClient(config *config.Config) (*Client, error) {
 		keyPair: keyPair,
 	}
 
-	c.Queues = &QueuesService{c}
-	c.KeyValueStorage = &KeyValueStorageService{c}
-	c.SIPRegistration = &SIPRegistrationService{c}
-	c.SmartQueue = &SmartQueueService{c}
-	c.RoleSystem = &RoleSystemService{c}
-	c.Invoices = &InvoicesService{c}
-	c.Rules = &RulesService{c}
-	c.PSTNBlacklist = &PSTNBlacklistService{c}
-	c.SIPWhiteList = &SIPWhiteListService{c}
-	c.AuthorizedIPs = &AuthorizedIPsService{c}
-	c.CallLists = &CallListsService{c}
-	c.PhoneNumbers = &PhoneNumbersService{c}
-	c.PushCredentials = &PushCredentialsService{c}
-	c.History = &HistoryService{c}
-	c.AdminRoles = &AdminRolesService{c}
-	c.AdminUsers = &AdminUsersService{c}
-	c.Applications = &ApplicationsService{c}
-	c.Users = &UsersService{c}
 	c.Scenarios = &ScenariosService{c}
-	c.CallerIDs = &CallerIDsService{c}
-	c.OutboundTestNumbers = &OutboundTestNumbersService{c}
+	c.AuthorizedIPs = &AuthorizedIPsService{c}
 	c.RecordStorages = &RecordStoragesService{c}
+	c.PhoneNumbers = &PhoneNumbersService{c}
+	c.SmartQueue = &SmartQueueService{c}
+	c.AdminUsers = &AdminUsersService{c}
 	c.Accounts = &AccountsService{c}
-	c.RegulationAddress = &RegulationAddressService{c}
-	c.DialogflowCredentials = &DialogflowCredentialsService{c}
-	c.Skills = &SkillsService{c}
+	c.SIPWhiteList = &SIPWhiteListService{c}
 	c.SMS = &SMSService{c}
+	c.Rules = &RulesService{c}
+	c.DialogflowCredentials = &DialogflowCredentialsService{c}
+	c.KeyValueStorage = &KeyValueStorageService{c}
+	c.PSTNBlacklist = &PSTNBlacklistService{c}
+	c.CallerIDs = &CallerIDsService{c}
+	c.Queues = &QueuesService{c}
+	c.RoleSystem = &RoleSystemService{c}
+	c.Users = &UsersService{c}
+	c.CallLists = &CallListsService{c}
+	c.Skills = &SkillsService{c}
+	c.OutboundTestNumbers = &OutboundTestNumbersService{c}
+	c.AdminRoles = &AdminRolesService{c}
+	c.RegulationAddress = &RegulationAddressService{c}
+	c.PushCredentials = &PushCredentialsService{c}
+	c.Invoices = &InvoicesService{c}
+	c.Applications = &ApplicationsService{c}
+	c.History = &HistoryService{c}
+	c.SIPRegistration = &SIPRegistrationService{c}
 
 	// AuthorizedIps deprecated: use AuthorizedIPs instead
 	c.AuthorizedIps = &AuthorizedIPsService{c}

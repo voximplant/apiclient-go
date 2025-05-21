@@ -16,7 +16,7 @@ type AddCallerIDParams struct {
 type AddCallerIDReturn struct {
 	// 1
 	Result int `json:"result"`
-	// The id of the callerID object
+	// ID of the callerID object
 	CalleridId int `json:"callerid_id"`
 }
 
@@ -35,7 +35,7 @@ func (s *CallerIDsService) AddCallerID(params AddCallerIDParams) (*AddCallerIDRe
 }
 
 type ActivateCallerIDParams struct {
-	// The id of the callerID object
+	// ID of the callerID object
 	CalleridId int `json:"callerid_id,string"`
 	// The callerID number that can be used instead of <b>callerid_id</b>
 	CalleridNumber string `json:"callerid_number"`
@@ -63,7 +63,7 @@ func (s *CallerIDsService) ActivateCallerID(params ActivateCallerIDParams) (*Act
 }
 
 type DelCallerIDParams struct {
-	// The id of the callerID object
+	// ID of the callerID object
 	CalleridId int `json:"callerid_id,string"`
 	// The callerID number that can be used instead of <b>callerid_id</b>
 	CalleridNumber string `json:"callerid_number"`
@@ -89,7 +89,7 @@ func (s *CallerIDsService) DelCallerID(params DelCallerIDParams) (*DelCallerIDRe
 }
 
 type GetCallerIDsParams struct {
-	// The id of the callerID object to filter
+	// ID of the callerID object to filter
 	CalleridId int `json:"callerid_id,string,omitempty"`
 	// The phone number to filter
 	CalleridNumber string `json:"callerid_number,omitempty"`
@@ -126,7 +126,7 @@ func (s *CallerIDsService) GetCallerIDs(params GetCallerIDsParams) (*GetCallerID
 }
 
 type VerifyCallerIDParams struct {
-	// The id of the callerID object
+	// ID of the callerID object
 	CalleridId int `json:"callerid_id,string"`
 	// The callerID number that can be used instead of <b>callerid_id</b>
 	CalleridNumber string `json:"callerid_number"`

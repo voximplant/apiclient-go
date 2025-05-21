@@ -132,9 +132,9 @@ type GetPushCredentialParams struct {
 	PushProviderName string `json:"push_provider_name,omitempty"`
 	// The push provider id. Can be used instead of <b>push_provider_name</b>. The possible values are: 1 — APPLE, 2 — GOOGLE, 3 — APPLE_VOIP, 5 — HUAWEI.
 	PushProviderId int `json:"push_provider_id,string,omitempty"`
-	// The name of the bound application
+	// Name of the bound application
 	ApplicationName string `json:"application_name,omitempty"`
-	// The id of the bound application
+	// ID of the bound application
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// Whether to get the user's certificate
 	WithCert *bool `json:"with_cert,string,omitempty"`

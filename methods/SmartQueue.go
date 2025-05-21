@@ -225,7 +225,7 @@ type SQGetAgentCustomStatusMappingReturn struct {
 	CustomStatusName string `json:"custom_status_name"`
 }
 
-// Returns the mapping list of SQ statuses and custom statuses. SQ statuses are returned whether or not they have mappings to custom statuses.
+// Returns the mapping list of SQ statuses and custom statuses. SQ statuses are returned whether they have mappings to custom statuses.
 func (s *SmartQueueService) SQGetAgentCustomStatusMapping(params SQGetAgentCustomStatusMappingParams) (*SQGetAgentCustomStatusMappingReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "SQ_GetAgentCustomStatusMapping", params)
 	if err != nil {

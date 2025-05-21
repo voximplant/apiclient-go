@@ -27,7 +27,7 @@ type GetAccountInvoicesReturn struct {
 	Count int `json:"count"`
 }
 
-// Gets all invoices of the specified USD or EUR account.
+// Gets all invoices for the specified USD or EUR account.
 func (s *InvoicesService) GetAccountInvoices(params GetAccountInvoicesParams) (*GetAccountInvoicesReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "GetAccountInvoices", params)
 	if err != nil {
