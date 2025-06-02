@@ -1,7 +1,7 @@
 package methods
 
 import (
-	"github.com/voximplant/apiclient-go/structure"
+	"github.com/voximplant/apiclient-go/v2/structure"
 )
 
 type AdminRolesService struct {

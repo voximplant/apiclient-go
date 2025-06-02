@@ -1060,9 +1060,9 @@ type PhoneNumberCountryRegionInfoType struct {
 	PhoneRegionCode string `json:"phone_region_code"`
 	// The phone number count in stock for the region
 	PhoneCount int `json:"phone_count"`
-	// The account verification status. The following values are possible: REQUIRED, IN_PROGRESS, VERIFIED
+	// The account verification status. Available only for RU accounts. The following values are possible: REQUIRED, IN_PROGRESS
 	VerificationStatus string `json:"verification_status,omitempty"`
-	// Whether verification is required for the account
+	// Country code, where the verification is required for the account. Currently, the only possible value for this field is `RU` (Russia)
 	RequiredVerification string `json:"required_verification,omitempty"`
 	// The charge period in 24-h format: Y-M-D H:m:s. Example: 0-1-0 0:0:0 is 1 month
 	PhonePeriod string `json:"phone_period"`

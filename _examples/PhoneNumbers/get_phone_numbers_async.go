@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/voximplant/apiclient-go/config"
-	"github.com/voximplant/apiclient-go/methods"
+	"github.com/voximplant/apiclient-go/v2/config"
+	"github.com/voximplant/apiclient-go/v2/methods"
 )
 
 func main() {

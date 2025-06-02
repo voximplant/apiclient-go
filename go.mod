@@ -1,4 +1,4 @@
-module github.com/voximplant/apiclient-go
+module github.com/voximplant/apiclient-go/v2
 
 go 1.12
 

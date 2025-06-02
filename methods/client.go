@@ -4,10 +4,10 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/voximplant/apiclient-go/config"
-	"github.com/voximplant/apiclient-go/jwt"
-	"github.com/voximplant/apiclient-go/misc"
-	"github.com/voximplant/apiclient-go/structure"
+	"github.com/voximplant/apiclient-go/v2/config"
+	"github.com/voximplant/apiclient-go/v2/jwt"
+	"github.com/voximplant/apiclient-go/v2/misc"
+	"github.com/voximplant/apiclient-go/v2/structure"
 	"io"
 	"mime/multipart"
 	"net/http"
@@ -30,32 +30,32 @@ type Client struct {
 	mux sync.Mutex
 
 	Scenarios             *ScenariosService
-	AuthorizedIPs         *AuthorizedIPsService
-	RecordStorages        *RecordStoragesService
+	PushCredentials       *PushCredentialsService
+	CallLists             *CallListsService
 	PhoneNumbers          *PhoneNumbersService
-	SmartQueue            *SmartQueueService
-	AdminUsers            *AdminUsersService
-	Accounts              *AccountsService
-	SIPWhiteList          *SIPWhiteListService
 	SMS                   *SMSService
-	Rules                 *RulesService
-	DialogflowCredentials *DialogflowCredentialsService
-	KeyValueStorage       *KeyValueStorageService
-	PSTNBlacklist         *PSTNBlacklistService
-	CallerIDs             *CallerIDsService
 	Queues                *QueuesService
 	RoleSystem            *RoleSystemService
 	Users                 *UsersService
-	CallLists             *CallListsService
-	Skills                *SkillsService
-	OutboundTestNumbers   *OutboundTestNumbersService
+	SIPWhiteList          *SIPWhiteListService
+	AuthorizedIPs         *AuthorizedIPsService
+	Rules                 *RulesService
+	History               *HistoryService
+	PSTNBlacklist         *PSTNBlacklistService
+	AdminUsers            *AdminUsersService
+	Applications          *ApplicationsService
 	AdminRoles            *AdminRolesService
 	RegulationAddress     *RegulationAddressService
-	PushCredentials       *PushCredentialsService
-	Invoices              *InvoicesService
-	Applications          *ApplicationsService
-	History               *HistoryService
+	DialogflowCredentials *DialogflowCredentialsService
 	SIPRegistration       *SIPRegistrationService
+	OutboundTestNumbers   *OutboundTestNumbersService
+	Skills                *SkillsService
+	KeyValueStorage       *KeyValueStorageService
+	Invoices              *InvoicesService
+	Accounts              *AccountsService
+	CallerIDs             *CallerIDsService
+	SmartQueue            *SmartQueueService
+	RecordStorages        *RecordStoragesService
 
 	// AuthorizedIps deprecated: use AuthorizedIPs instead
 	AuthorizedIps *AuthorizedIPsService
@@ -95,32 +95,32 @@ func NewClient(config *config.Config) (*Client, error) {
 	}
 
 	c.Scenarios = &ScenariosService{c}
-	c.AuthorizedIPs = &AuthorizedIPsService{c}
-	c.RecordStorages = &RecordStoragesService{c}
+	c.PushCredentials = &PushCredentialsService{c}
+	c.CallLists = &CallListsService{c}
 	c.PhoneNumbers = &PhoneNumbersService{c}
-	c.SmartQueue = &SmartQueueService{c}
-	c.AdminUsers = &AdminUsersService{c}
-	c.Accounts = &AccountsService{c}
-	c.SIPWhiteList = &SIPWhiteListService{c}
 	c.SMS = &SMSService{c}
-	c.Rules = &RulesService{c}
-	c.DialogflowCredentials = &DialogflowCredentialsService{c}
-	c.KeyValueStorage = &KeyValueStorageService{c}
-	c.PSTNBlacklist = &PSTNBlacklistService{c}
-	c.CallerIDs = &CallerIDsService{c}
 	c.Queues = &QueuesService{c}
 	c.RoleSystem = &RoleSystemService{c}
 	c.Users = &UsersService{c}
-	c.CallLists = &CallListsService{c}
-	c.Skills = &SkillsService{c}
-	c.OutboundTestNumbers = &OutboundTestNumbersService{c}
+	c.SIPWhiteList = &SIPWhiteListService{c}
+	c.AuthorizedIPs = &AuthorizedIPsService{c}
+	c.Rules = &RulesService{c}
+	c.History = &HistoryService{c}
+	c.PSTNBlacklist = &PSTNBlacklistService{c}
+	c.AdminUsers = &AdminUsersService{c}
+	c.Applications = &ApplicationsService{c}
 	c.AdminRoles = &AdminRolesService{c}
 	c.RegulationAddress = &RegulationAddressService{c}
-	c.PushCredentials = &PushCredentialsService{c}
-	c.Invoices = &InvoicesService{c}
-	c.Applications = &ApplicationsService{c}
-	c.History = &HistoryService{c}
+	c.DialogflowCredentials = &DialogflowCredentialsService{c}
 	c.SIPRegistration = &SIPRegistrationService{c}
+	c.OutboundTestNumbers = &OutboundTestNumbersService{c}
+	c.Skills = &SkillsService{c}
+	c.KeyValueStorage = &KeyValueStorageService{c}
+	c.Invoices = &InvoicesService{c}
+	c.Accounts = &AccountsService{c}
+	c.CallerIDs = &CallerIDsService{c}
+	c.SmartQueue = &SmartQueueService{c}
+	c.RecordStorages = &RecordStoragesService{c}
 
 	// AuthorizedIps deprecated: use AuthorizedIPs instead
 	c.AuthorizedIps = &AuthorizedIPsService{c}
@@ -226,6 +226,7 @@ func (c *Client) Do(req *http.Request, v interface{}) (*http.Response, error) {
 
 func (c *Client) MakeResponse(request *http.Request, response interface{}) (*structure.VError, error) {
 	resp, err := c.Do(request, nil)
+	defer resp.Body.Close()
 	if err != nil {
 		return nil, err
 	}
@@ -244,7 +245,6 @@ func (c *Client) MakeResponse(request *http.Request, response interface{}) (*str
 		}
 	}
 
-	defer resp.Body.Close()
 	data, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, fmt.Errorf("could not read the returned data")
