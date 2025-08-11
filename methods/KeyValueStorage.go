@@ -9,13 +9,13 @@ type KeyValueStorageService struct {
 }
 
 type SetKeyValueItemParams struct {
-	// Key, up to 200 characters. A key can contain a namespace that is written before the ':' symbol, for example, test:1234. Thus, namespace 'test' can be used as a pattern in the [GetKeyValueItems](/docs/references/httpapi/keyvaluestorage#getkeyvalueitems) and [GetKeyValueKeys](/docs/references/httpapi/keyvaluestorage#getkeyvaluekeys) methods to find the keys with the same namespace
+	// Key, up to 200 characters. A key can contain a namespace that is written before the ':' symbol, for example, test:1234. Thus, namespace 'test' can be used as a pattern in the [GetKeyValueItems](/docs/references/httpapi/keyvaluestorage#getkeyvalueitems) and [GetKeyValueKeys](/docs/references/httpapi/keyvaluestorage#getkeyvaluekeys) methods to find the keys with the same namespace.<br><br>The key should match the following regular expression: `^[a-zA-Z0-9а-яА-ЯёЁ_\-:;.#+]*$`
 	Key string `json:"key"`
 	// Value for the specified key, up to 2000 characters
 	Value string `json:"value"`
-	// The application ID
+	// Application ID
 	ApplicationId int `json:"application_id,string"`
-	// The application name
+	// Application name
 	ApplicationName string `json:"application_name,omitempty"`
 	// Key expiry time in seconds. The value is in range of 0..7,776,000 (90 days), the default value is 30 days (2,592,000 seconds). The TTL is converted to an **expires_at** Unix timestamp field as part of the storage object. Note that one of the two parameters (ttl or expires_at) must be set
 	Ttl int `json:"ttl,string,omitempty"`

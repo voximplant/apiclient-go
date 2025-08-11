@@ -280,6 +280,8 @@ type SQAddQueueParams struct {
 	CallTaskSelection string `json:"call_task_selection"`
 	// IM type requests prioritizing strategy. Accepts one of the [SQTaskSelectionStrategies] enum values. The default value is **call_task_selection**
 	ImTaskSelection string `json:"im_task_selection,omitempty"`
+	// Whether to keep the call task in the queue if all agents are in the DND/BANNED/OFFLINE statuses.
+	HoldCallsIfInactiveAgents *bool `json:"hold_calls_if_inactive_agents,string,omitempty"`
 	// Agent selection strategy, applied when it is not possible to wait for a suitable free agent. Currently not used
 	FallbackAgentSelection string `json:"fallback_agent_selection,omitempty"`
 	// Comment, up to 200 characters
@@ -328,6 +330,8 @@ type SQSetQueueInfoParams struct {
 	SqQueueId int `json:"sq_queue_id,string"`
 	// Name of the SmartQueue to search for. Can be used instead of <b>sq_queue_id</b>
 	SqQueueName string `json:"sq_queue_name,omitempty"`
+	// Whether to keep the call task in the queue if all agents are in the DND/BANNED/OFFLINE statuses.
+	HoldCallsIfInactiveAgents *bool `json:"hold_calls_if_inactive_agents,string,omitempty"`
 	// New SmartQueue name within the application, up to 100 characters
 	NewSqQueueName string `json:"new_sq_queue_name,omitempty"`
 	// Agent selection strategy for calls. Accepts one of the following values: "MOST_QUALIFIED", "LEAST_QUALIFIED", "MAX_WAITING_TIME"

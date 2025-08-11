@@ -163,7 +163,7 @@ type GetCurrencyRateParams struct {
 
 type GetCurrencyRateReturn struct {
 	// The exchange rates
-	Result *structure.ExchangeRates `json:"result"`
+	Result *structure.ExchangeRatesType `json:"result"`
 }
 
 // Gets the exchange rate on selected date (per USD).
@@ -317,34 +317,6 @@ func (s *AccountsService) GetMoneyAmountToCharge(params GetMoneyAmountToChargePa
 	return response, nil, nil
 }
 
-type ChargeAccountParams struct {
-	// The phone ID list separated by semicolons (;). Use the 'all' value to select all phone ids. You should specify the phones having the auto_charge=false
-	PhoneId string `json:"phone_id"`
-	// The phone number list separated by semicolons (;). Use the 'all' value to select all phone numbers. Can be used instead of <b>phone_id</b>. You should specify the phones having the auto_charge=false
-	PhoneNumber string `json:"phone_number"`
-}
-
-type ChargeAccountReturn struct {
-	// Result
-	Result *structure.ChargeAccountResult `json:"result"`
-	// The current account state
-	AccountInfo *structure.ShortAccountInfoType `json:"account_info"`
-}
-
-// Charges the account in the manual mode. You should call the ChargeAccount function to charge the subscriptions having the auto_charge=false.
-func (s *AccountsService) ChargeAccount(params ChargeAccountParams) (*ChargeAccountReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "ChargeAccount", params)
-	if err != nil {
-		return nil, nil, err
-	}
-	response := &ChargeAccountReturn{}
-	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil || err != nil {
-		return nil, verr, err
-	}
-	return response, nil, nil
-}
-
 type ChangeAccountPlanParams struct {
 	// The plan type to config. The possible values are IM, MAU
 	PlanType string `json:"plan_type"`
@@ -441,17 +413,41 @@ type GetAccountDocumentsParams struct {
 }
 
 type GetAccountDocumentsReturn struct {
-	// The account verifications
-	Result []*structure.AccountVerifications `json:"result"`
+	// The account documents with verification states
+	Result []*structure.AccountDocumentsType `json:"result"`
 }
 
-// Gets the account documents and the verification states.
+// Gets the account documents and the verification states.<br><br>This method will be deprecated in the next versions. We recommend to use the [GetAccountVerifications](/docs/references/httpapi/accounts#getaccountverifications) method to get all the verifications and statuses for the account.
 func (s *AccountsService) GetAccountDocuments(params GetAccountDocumentsParams) (*GetAccountDocumentsReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "GetAccountDocuments", params)
 	if err != nil {
 		return nil, nil, err
 	}
 	response := &GetAccountDocumentsReturn{}
+	verr, err := s.client.MakeResponse(req, response)
+	if verr != nil || err != nil {
+		return nil, verr, err
+	}
+	return response, nil, nil
+}
+
+type GetAccountVerificationsParams struct {
+	// Account ID to check verifications for
+	AccountId int `json:"account_id,string"`
+}
+
+type GetAccountVerificationsReturn struct {
+	// Account verifications
+	Result []*structure.AccountVerificationsType `json:"result"`
+}
+
+// Gets all RU verifications for the specified account.
+func (s *AccountsService) GetAccountVerifications(params GetAccountVerificationsParams) (*GetAccountVerificationsReturn, *structure.VError, error) {
+	req, err := s.client.NewRequest("POST", "GetAccountVerifications", params)
+	if err != nil {
+		return nil, nil, err
+	}
+	response := &GetAccountVerificationsReturn{}
 	verr, err := s.client.MakeResponse(req, response)
 	if verr != nil || err != nil {
 		return nil, verr, err

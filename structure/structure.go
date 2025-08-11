@@ -1196,7 +1196,7 @@ type ClonedACDSkillType struct {
 	SkillName string `json:"skill_name"`
 }
 
-type ExchangeRates struct {
+type ExchangeRatesType struct {
 	// The RUR exchange rate
 	RUR float64 `json:"RUR,omitempty"`
 	// The KZT exchange rate
@@ -1396,13 +1396,6 @@ type GetMoneyAmountToChargeResult struct {
 	Subscriptions []SubscriptionsToChargeType `json:"subscriptions"`
 }
 
-type ChargeAccountResult struct {
-	// The charged money amount
-	ChargedAmount float64 `json:"charged_amount"`
-	// The charged phone list
-	Phones []ChargedPhoneType `json:"phones,omitempty"`
-}
-
 type ChargedPhoneType struct {
 	// The phone ID
 	PhoneId int `json:"phone_id"`
@@ -1460,11 +1453,67 @@ type AccountVerificationType struct {
 	Documents []AccountVerificationDocument `json:"documents,omitempty"`
 }
 
-type AccountVerifications struct {
+type AccountDocumentsType struct {
 	// The account ID
 	AccountId int `json:"account_id"`
 	// The account verifications
 	Verifications []AccountVerificationType `json:"verifications"`
+}
+
+type AccountVerificationsType struct {
+	// Verification ID
+	VerificationId int `json:"verification_id"`
+	// Verification status. Possible values are: AWAITING_DOCUMENTS_UPLOADING, AWAITING_AGREEMENT_UPLOADING, AWAITING_VERIFICATION, WAITING_FOR_CONFIRMATION_DOCUMENTS, VERIFIED, REJECTED, WAITING_PERIOD_EXPIRED
+	Status string `json:"status"`
+	// Status scheme name
+	StatusScheme string `json:"status_scheme"`
+	// Verification creation type. Possible values are: MANUAL, GOSUSLUGI, TRANSFER_RIGHTS
+	CreationType string `json:"creation_type"`
+	// Date created in the following format: 2022-07-12 07:06:05
+	Created string `json:"created"`
+	// Comments for the customer in case of verification rejection
+	Comments int `json:"comments"`
+	// Person or company who takes the verification
+	Credentials []AccountVerificationsTypeCredentials `json:"credentials"`
+	// Verification's default customer
+	DefaultEndUser []AccountVerificationsTypeDefaultEndUser `json:"default_end_user"`
+	// Agreements list
+	Agreements []AccountVerificationsTypeAgreements `json:"agreements"`
+}
+
+type AccountVerificationsTypeCredentials struct {
+	// Details of a person who takes the verification
+	Individual interface{} `json:"individual,omitempty"`
+	// Company details for a legal entity
+	LegalEntity interface{} `json:"legal_entity,omitempty"`
+	// Company details for a individual entrepreneur
+	Entrepreneur interface{} `json:"entrepreneur,omitempty"`
+	// Subscriber type. Possible values are: INDIVIDUAL, LEGAL_ENTITY, ENTREPRENEUR
+	LegalStatus string `json:"legal_status,omitempty"`
+}
+
+type AccountVerificationsTypeDefaultEndUser struct {
+	// Customer's UUID
+	EndUserUuid int `json:"end_user_uuid"`
+	// Customer's data
+	Credentials interface{} `json:"credentials"`
+}
+
+type AccountVerificationsTypeAgreements struct {
+	// Agreement ID
+	AgreementId int `json:"agreement_id"`
+	// Agreement type
+	Type string `json:"type"`
+	// Agreement status. Possible values are: NEW, IN_PROCESS, VERIFIED, REJECTED
+	Status string `json:"status"`
+	// Agreement number
+	AgreementNumber string `json:"agreement_number"`
+	// Agreement signing date
+	AgreementDate string `json:"agreement_date"`
+	// Agreement signing date. Possible values are: MANUAL, ESIGNATURE
+	SigningType string `json:"signing_type"`
+	// Comments for the customer in case of agreement rejection
+	Comments string `json:"comments"`
 }
 
 type SubscriptionTemplateType struct {
@@ -1576,8 +1625,10 @@ type AccountCallback struct {
 	ExpiringCallerid ExpiringCallerIDCallback `json:"expiring_callerid,omitempty"`
 	// Received when a transcription is saved
 	TranscriptionComplete TranscriptionCompleteCallback `json:"transcription_complete,omitempty"`
-	// Received when an incoming SMS is gotten
+	// Received when an incoming SMS is received
 	SmsInbound InboundSmsCallback `json:"sms_inbound,omitempty"`
+	// Received when a rented phone number changed its activation status
+	PhoneNumberActivationStatusChanged PhoneNumberActivationStatusChangedCallback `json:"phone_number_activation_status_changed,omitempty"`
 	// Received for the accounts for which the confirmation documents waiting period expires in 20/15/10/5/1 day(s)
 	ExpiringAgreement ExpiringAgreementCallback `json:"expiring_agreement,omitempty"`
 	// Received for the accounts for which the confirmation documents waiting period has already expired or expires today
@@ -2113,6 +2164,18 @@ type InboundSmsCallback struct {
 	SmsInbound InboundSmsCallbackItem `json:"sms_inbound"`
 }
 
+type PhoneNumberActivationStatusChangedCallback struct {
+	// Rented phone number verification status
+	PhoneNumberActivationStatusChanged PhoneNumberActivationStatusChangedCallbackItem `json:"phone_number_activation_status_changed"`
+}
+
+type PhoneNumberActivationStatusChangedCallbackItem struct {
+	// Phone number that changed the status
+	PhoneNumber string `json:"phone_number"`
+	// New verification status
+	ActivationStatus string `json:"activation_status"`
+}
+
 type InboundSmsCallbackItem struct {
 	// The source phone number
 	SourceNumber string `json:"source_number"`
@@ -2298,6 +2361,8 @@ type GetSQQueuesResult struct {
 	AgentSelection string `json:"agent_selection"`
 	// Strategy of prioritizing requests for service
 	TaskSelection string `json:"task_selection"`
+	// Whether the call task is kept in the queue if all agents are unavailable
+	HoldCallsIfInactiveAgents *bool `json:"hold_calls_if_inactive_agents,omitempty"`
 	// Comment
 	Description string `json:"description,omitempty"`
 	// UTC date of the queue creation in 24-h format: YYYY-MM-DD HH:mm:ss

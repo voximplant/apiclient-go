@@ -234,47 +234,6 @@ func (s *HistoryService) GetHistoryReports(params GetHistoryReportsParams) (*Get
 	return response, nil, nil
 }
 
-type GetPhoneNumberReportsParams struct {
-	// The phone number report ID to filter
-	ReportId int `json:"report_id,string,omitempty"`
-	// The phone number report type list separated by semicolons (;). Use the 'all' value to select all history report types. The following values are possible: calls, calls_brief, transactions, audit, call_list, transactions_on_hold
-	ReportType string `json:"report_type,omitempty"`
-	// The UTC creation from date filter in 24-h format: YYYY-MM-DD HH:mm:ss
-	CreatedFrom *structure.Timestamp `json:"created_from,string,omitempty"`
-	// The UTC creation to date filter in 24-h format: YYYY-MM-DD HH:mm:ss
-	CreatedTo *structure.Timestamp `json:"created_to,string,omitempty"`
-	// Whether the report is completed
-	IsCompleted *bool `json:"is_completed,string,omitempty"`
-	// Whether to get records in the descent order
-	DescOrder *bool `json:"desc_order,string,omitempty"`
-	// The max returning record count
-	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records are skipped in the output
-	Offset int `json:"offset,string,omitempty"`
-}
-
-type GetPhoneNumberReportsReturn struct {
-	Result []*structure.CommonReportType `json:"result"`
-	// The total found reports count
-	TotalCount int `json:"total_count"`
-	// The returned reports count
-	Count int `json:"count"`
-}
-
-// Receives information about the created phone numbers report or list of reports.
-func (s *HistoryService) GetPhoneNumberReports(params GetPhoneNumberReportsParams) (*GetPhoneNumberReportsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetPhoneNumberReports", params)
-	if err != nil {
-		return nil, nil, err
-	}
-	response := &GetPhoneNumberReportsReturn{}
-	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil || err != nil {
-		return nil, verr, err
-	}
-	return response, nil, nil
-}
-
 type DownloadHistoryReportParams struct {
 	// The history report ID
 	HistoryReportId int `json:"history_report_id,string"`

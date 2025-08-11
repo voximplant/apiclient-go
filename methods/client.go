@@ -29,33 +29,33 @@ type Client struct {
 	// Lock
 	mux sync.Mutex
 
+	Applications          *ApplicationsService
 	Scenarios             *ScenariosService
-	PushCredentials       *PushCredentialsService
-	CallLists             *CallListsService
-	PhoneNumbers          *PhoneNumbersService
-	SMS                   *SMSService
-	Queues                *QueuesService
+	History               *HistoryService
 	RoleSystem            *RoleSystemService
+	KeyValueStorage       *KeyValueStorageService
+	OutboundTestNumbers   *OutboundTestNumbersService
+	Queues                *QueuesService
+	Skills                *SkillsService
+	RegulationAddress     *RegulationAddressService
+	PushCredentials       *PushCredentialsService
+	DialogflowCredentials *DialogflowCredentialsService
+	CallerIDs             *CallerIDsService
+	RecordStorages        *RecordStoragesService
 	Users                 *UsersService
+	Rules                 *RulesService
+	PhoneNumbers          *PhoneNumbersService
+	SIPRegistration       *SIPRegistrationService
+	SmartQueue            *SmartQueueService
+	AdminUsers            *AdminUsersService
+	AdminRoles            *AdminRolesService
+	PSTNBlacklist         *PSTNBlacklistService
+	Accounts              *AccountsService
+	CallLists             *CallListsService
 	SIPWhiteList          *SIPWhiteListService
 	AuthorizedIPs         *AuthorizedIPsService
-	Rules                 *RulesService
-	History               *HistoryService
-	PSTNBlacklist         *PSTNBlacklistService
-	AdminUsers            *AdminUsersService
-	Applications          *ApplicationsService
-	AdminRoles            *AdminRolesService
-	RegulationAddress     *RegulationAddressService
-	DialogflowCredentials *DialogflowCredentialsService
-	SIPRegistration       *SIPRegistrationService
-	OutboundTestNumbers   *OutboundTestNumbersService
-	Skills                *SkillsService
-	KeyValueStorage       *KeyValueStorageService
+	SMS                   *SMSService
 	Invoices              *InvoicesService
-	Accounts              *AccountsService
-	CallerIDs             *CallerIDsService
-	SmartQueue            *SmartQueueService
-	RecordStorages        *RecordStoragesService
 
 	// AuthorizedIps deprecated: use AuthorizedIPs instead
 	AuthorizedIps *AuthorizedIPsService
@@ -85,7 +85,7 @@ func NewClient(config *config.Config) (*Client, error) {
 	if err := keyPair.Parse(); err != nil {
 		return nil, err
 	}
-	if err := keyPair.GenerateToken(); err != nil {
+	if err := keyPair.GenerateToken(config.AccountID); err != nil {
 		return nil, err
 	}
 	c := &Client{
@@ -94,33 +94,33 @@ func NewClient(config *config.Config) (*Client, error) {
 		keyPair: keyPair,
 	}
 
+	c.Applications = &ApplicationsService{c}
 	c.Scenarios = &ScenariosService{c}
-	c.PushCredentials = &PushCredentialsService{c}
-	c.CallLists = &CallListsService{c}
-	c.PhoneNumbers = &PhoneNumbersService{c}
-	c.SMS = &SMSService{c}
-	c.Queues = &QueuesService{c}
+	c.History = &HistoryService{c}
 	c.RoleSystem = &RoleSystemService{c}
+	c.KeyValueStorage = &KeyValueStorageService{c}
+	c.OutboundTestNumbers = &OutboundTestNumbersService{c}
+	c.Queues = &QueuesService{c}
+	c.Skills = &SkillsService{c}
+	c.RegulationAddress = &RegulationAddressService{c}
+	c.PushCredentials = &PushCredentialsService{c}
+	c.DialogflowCredentials = &DialogflowCredentialsService{c}
+	c.CallerIDs = &CallerIDsService{c}
+	c.RecordStorages = &RecordStoragesService{c}
 	c.Users = &UsersService{c}
+	c.Rules = &RulesService{c}
+	c.PhoneNumbers = &PhoneNumbersService{c}
+	c.SIPRegistration = &SIPRegistrationService{c}
+	c.SmartQueue = &SmartQueueService{c}
+	c.AdminUsers = &AdminUsersService{c}
+	c.AdminRoles = &AdminRolesService{c}
+	c.PSTNBlacklist = &PSTNBlacklistService{c}
+	c.Accounts = &AccountsService{c}
+	c.CallLists = &CallListsService{c}
 	c.SIPWhiteList = &SIPWhiteListService{c}
 	c.AuthorizedIPs = &AuthorizedIPsService{c}
-	c.Rules = &RulesService{c}
-	c.History = &HistoryService{c}
-	c.PSTNBlacklist = &PSTNBlacklistService{c}
-	c.AdminUsers = &AdminUsersService{c}
-	c.Applications = &ApplicationsService{c}
-	c.AdminRoles = &AdminRolesService{c}
-	c.RegulationAddress = &RegulationAddressService{c}
-	c.DialogflowCredentials = &DialogflowCredentialsService{c}
-	c.SIPRegistration = &SIPRegistrationService{c}
-	c.OutboundTestNumbers = &OutboundTestNumbersService{c}
-	c.Skills = &SkillsService{c}
-	c.KeyValueStorage = &KeyValueStorageService{c}
+	c.SMS = &SMSService{c}
 	c.Invoices = &InvoicesService{c}
-	c.Accounts = &AccountsService{c}
-	c.CallerIDs = &CallerIDsService{c}
-	c.SmartQueue = &SmartQueueService{c}
-	c.RecordStorages = &RecordStoragesService{c}
 
 	// AuthorizedIps deprecated: use AuthorizedIPs instead
 	c.AuthorizedIps = &AuthorizedIPsService{c}
@@ -194,7 +194,7 @@ func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Requ
 	err = c.keyPair.Valid()
 	if err != nil {
 		c.mux.Lock()
-		err := c.keyPair.GenerateToken()
+		err := c.keyPair.GenerateToken(c.config.AccountID)
 		if err != nil {
 			return nil, err
 		}

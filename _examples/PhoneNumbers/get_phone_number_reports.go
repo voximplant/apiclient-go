@@ -13,7 +13,7 @@ func main() {
 		panic(err)
 	}
 
-	params := methods.ChargeAccountParams{PhoneNumber: "all"}
-	res, verr, err := client.Accounts.ChargeAccount(params)
+	params := methods.GetPhoneNumberReportsParams{}
+	res, verr, err := client.PhoneNumbers.GetPhoneNumberReports(params)
 	fmt.Println(res, verr, err)
 }

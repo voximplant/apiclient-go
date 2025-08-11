@@ -13,7 +13,7 @@ func main() {
 		panic(err)
 	}
 
-	params := methods.GetPhoneNumberReportsParams{}
-	res, verr, err := client.History.GetPhoneNumberReports(params)
+	params := methods.GetAccountVerificationsParams{AccountId: 1}
+	res, verr, err := client.Accounts.GetAccountVerifications(params)
 	fmt.Println(res, verr, err)
 }

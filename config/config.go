@@ -7,6 +7,7 @@ import (
 type Config struct {
 	KeyPath    string
 	Endpoint   string
+	AccountID  int
 	HTTPClient *http.Client
 }
 
@@ -21,6 +22,11 @@ func (conf *Config) WithKeyPath(path string) *Config {
 
 func (conf *Config) WithHTTPClient(client *http.Client) *Config {
 	conf.HTTPClient = client
+	return conf
+}
+
+func (conf *Config) WithAccountID(accountID int) *Config {
+	conf.AccountID = accountID
 	return conf
 }
 

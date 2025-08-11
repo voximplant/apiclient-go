@@ -67,11 +67,14 @@ func (kp *KeyPair) Valid() error {
 	return parsedToken.Claims.Valid()
 }
 
-func (kp *KeyPair) GenerateToken() error {
-
+func (kp *KeyPair) GenerateToken(accountID int) error {
+	issAccountID := kp.Result.AccountId
+	if accountID != 0 {
+		issAccountID = accountID
+	}
 	jwtNewWithClaims := jwt.NewWithClaims(jwt.GetSigningMethod("RS256"), jwt.MapClaims{
 		"iat": time.Now().Unix(),
-		"iss": kp.Result.AccountId,
+		"iss": issAccountID,
 		"exp": time.Now().Add(time.Second * expireTime).Unix(),
 	})
 	jwtNewWithClaims.Header["kid"] = kp.Result.KeyId
