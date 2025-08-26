@@ -502,7 +502,7 @@ type HistoryReportType struct {
 type CommonReportType struct {
 	// The phone number report ID
 	ReportId int `json:"report_id"`
-	// The report type. The following values are possible: phone_numbers, none
+	// The report type. The following values are possible: phone_numbers, phone_numbers_awaiting_configuration, none
 	Type string `json:"type"`
 	// The creation time in the UTC timezone in 24-h format: YYYY-MM-DD HH:mm:ss
 	Created Timestamp `json:"created"`
@@ -944,6 +944,29 @@ type NewPhoneInfoType struct {
 	PhoneInstallationTaxReserve int `json:"phone_installation_tax_reserve"`
 	// The phone number tax reserve
 	PhoneTaxReserve int `json:"phone_tax_reserve"`
+}
+
+type WABPhoneInfoType struct {
+	// WhatsApp Business phone number
+	WabPhoneNumber string `json:"wab_phone_number"`
+	// The WhatsApp Business country code (2 symbols)
+	CountryCode string `json:"country_code"`
+	// ID of the bound application
+	ApplicationId int `json:"application_id,omitempty"`
+	// Name of the bound application
+	ApplicationName string `json:"application_name,omitempty"`
+	// ID of the bound rule
+	RuleId int `json:"rule_id,omitempty"`
+	// Name of the bound rule
+	RuleName string `json:"rule_name,omitempty"`
+	// Full application name, e.g. myapp.myaccount.n1.voximplant.com
+	ExtendedApplicationName string `json:"extended_application_name,omitempty"`
+	// WhatsApp Business phone number description
+	Description string `json:"description,omitempty"`
+	// UTC date in 24-h format: YYYY-MM-DD HH:mm:ss
+	Created Timestamp `json:"created"`
+	// UTC date of an event associated with the number in 24-h format: YYYY-MM-DD HH:mm:ss
+	Modified Timestamp `json:"modified"`
 }
 
 type AttachedPhoneInfoType struct {
@@ -1472,7 +1495,7 @@ type AccountVerificationsType struct {
 	// Date created in the following format: 2022-07-12 07:06:05
 	Created string `json:"created"`
 	// Comments for the customer in case of verification rejection
-	Comments int `json:"comments"`
+	Comments string `json:"comments"`
 	// Person or company who takes the verification
 	Credentials []AccountVerificationsTypeCredentials `json:"credentials"`
 	// Verification's default customer
