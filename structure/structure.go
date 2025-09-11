@@ -358,31 +358,33 @@ type CallSessionInfoType struct {
 }
 
 type CallInfoType struct {
-	// The call history ID
+	// Call's history ID
 	CallId int `json:"call_id"`
-	// The start time in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss
+	// Call start time in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss
 	StartTime Timestamp `json:"start_time"`
-	// The call duration in seconds
+	// Call forwarding number
+	DiversionNumber string `json:"diversion_number,omitempty"`
+	// Call duration in seconds
 	Duration int `json:"duration,omitempty"`
-	// The local number on the platform side
+	// Local number on the platform side
 	LocalNumber string `json:"local_number"`
-	// The remote number on the client side
+	// Remote number on the client side
 	RemoteNumber string `json:"remote_number"`
-	// The type of the remote number, such as PSTN, mobile, user or sip address
+	// Type of the remote number, e.g., a PSTN, mobile, user or sip address
 	RemoteNumberType string `json:"remote_number_type"`
 	// Whether the call is incoming
 	Incoming *bool `json:"incoming"`
 	// Whether the call is successful
 	Successful *bool `json:"successful"`
-	// The transaction ID
+	// Transaction ID
 	TransactionId int `json:"transaction_id"`
-	// The record URL
+	// Record URL
 	RecordUrl string `json:"record_url,omitempty"`
-	// The media server IP address
+	// Media server's IP address
 	MediaServerAddress string `json:"media_server_address"`
-	// The call cost
+	// Call's cost
 	Cost float64 `json:"cost,omitempty"`
-	// The custom data passed to the JS session
+	// Custom data passed to the JS session
 	CustomData string `json:"custom_data,omitempty"`
 	// End reason code and description
 	EndReason interface{} `json:"end_reason,omitempty"`
@@ -1497,7 +1499,7 @@ type AccountVerificationsType struct {
 	// Comments for the customer in case of verification rejection
 	Comments string `json:"comments"`
 	// Person or company who takes the verification
-	Credentials []AccountVerificationsTypeCredentials `json:"credentials"`
+	Credentials AccountVerificationsTypeCredentials `json:"credentials"`
 	// Verification's default customer
 	DefaultEndUser []AccountVerificationsTypeDefaultEndUser `json:"default_end_user"`
 	// Agreements list
@@ -1712,7 +1714,7 @@ type RegulationAddressUploadedCallback struct {
 type AccountDocumentVerifiedCallback struct {
 	// The uploaded document ID
 	AccountDocumentId int `json:"account_document_id"`
-	// The document verification status. The following values are possible: WAITING_CONFIRMATION_DOCS, VERIFIED, REJECTED
+	// The document verification status. The following values are possible: AWAITING_AGREEMENT_UPLOADING, AWAITING_VERIFICATION, WAITING_FOR_CONFIRMATION_DOCUMENTS, VERIFIED, REJECTED, WAITING_PERIOD_EXPIRED, AWAITING_DOCUMENTS_UPLOADING
 	AccountDocumentStatus string `json:"account_document_status"`
 	// The UTC date of the document upload in format: YYYY-MM-DD HH::mm:ss
 	Uploaded Timestamp `json:"uploaded"`
@@ -1991,7 +1993,7 @@ type A2PActivatedCallback struct {
 type AccountDocumentStatusUpdatedCallback struct {
 	// Uploaded document ID
 	AccountDocumentId int `json:"account_document_id"`
-	// Previous document verification status. The following values are possible: WAITING_CONFIRMATION_DOCS, VERIFIED, REJECTED
+	// Previous document verification status. The following values are possible: AWAITING_AGREEMENT_UPLOADING, AWAITING_VERIFICATION, WAITING_FOR_CONFIRMATION_DOCUMENTS, VERIFIED, REJECTED, WAITING_PERIOD_EXPIRED, AWAITING_DOCUMENTS_UPLOADING
 	PreviousAccountDocumentStatus string `json:"previous_account_document_status"`
 	// Document verification status. The following values are possible: WAITING_CONFIRMATION_DOCS, VERIFIED, REJECTED
 	AccountDocumentStatus string `json:"account_document_status"`
@@ -1999,7 +2001,7 @@ type AccountDocumentStatusUpdatedCallback struct {
 	UpdateTime Timestamp `json:"update_time"`
 	// Reviewer's comment
 	Comment string `json:"comment,omitempty"`
-	// Status of the user in the context of entrepreneurial activity. Possible values are 'individual', 'entrepreneur', 'legal entity'
+	// Status of the user in the context of entrepreneurial activity. Possible values are: 'INDIVIDUAL', 'ENTREPRENEUR', 'LEGAL_ENTITY'
 	LegalStatus string `json:"legal_status"`
 }
 
