@@ -93,6 +93,7 @@ func NewClient(config *config.Config) (*Client, error) {
 		client:  config.HTTPClient,
 		baseURL: parsedBaseURL,
 		keyPair: keyPair,
+		config:  config,
 	}
 
 	c.Queues = &QueuesService{c}
