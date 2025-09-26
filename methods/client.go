@@ -229,7 +229,6 @@ func (c *Client) Do(req *http.Request, v interface{}) (*http.Response, error) {
 
 func (c *Client) MakeResponse(request *http.Request, response interface{}) (*structure.VError, error) {
 	resp, err := c.Do(request, nil)
-	defer resp.Body.Close()
 	if err != nil {
 		return nil, err
 	}
@@ -244,9 +243,11 @@ func (c *Client) MakeResponse(request *http.Request, response interface{}) (*str
 			}()
 			return nil, nil
 		} else {
+			resp.Body.Close()
 			return nil, fmt.Errorf("could not cast the io.Reader param type")
 		}
 	}
+	defer resp.Body.Close()
 
 	data, err := io.ReadAll(resp.Body)
 	if err != nil {
