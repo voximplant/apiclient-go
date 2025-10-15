@@ -29,34 +29,34 @@ type Client struct {
 	// Lock
 	mux sync.Mutex
 
+	Users                 *UsersService
+	SIPRegistration       *SIPRegistrationService
+	OutboundTestNumbers   *OutboundTestNumbersService
 	Queues                *QueuesService
-	RegulationAddress     *RegulationAddressService
-	RoleSystem            *RoleSystemService
+	Invoices              *InvoicesService
 	CallLists             *CallListsService
-	PhoneNumbers          *PhoneNumbersService
-	SIPWhiteList          *SIPWhiteListService
+	Scenarios             *ScenariosService
+	CallerIDs             *CallerIDsService
+	SmartQueue            *SmartQueueService
 	PushCredentials       *PushCredentialsService
 	RecordStorages        *RecordStoragesService
-	Accounts              *AccountsService
 	Applications          *ApplicationsService
-	WABPhoneNumbers       *WABPhoneNumbersService
-	AdminUsers            *AdminUsersService
-	Invoices              *InvoicesService
-	Scenarios             *ScenariosService
-	SIPRegistration       *SIPRegistrationService
-	AuthorizedIPs         *AuthorizedIPsService
-	Users                 *UsersService
-	History               *HistoryService
+	PhoneNumbers          *PhoneNumbersService
 	PSTNBlacklist         *PSTNBlacklistService
-	SmartQueue            *SmartQueueService
-	AdminRoles            *AdminRolesService
-	OutboundTestNumbers   *OutboundTestNumbersService
+	AuthorizedIPs         *AuthorizedIPsService
+	Rules                 *RulesService
+	WABPhoneNumbers       *WABPhoneNumbersService
+	Accounts              *AccountsService
+	SIPWhiteList          *SIPWhiteListService
+	Skills                *SkillsService
+	AdminUsers            *AdminUsersService
 	DialogflowCredentials *DialogflowCredentialsService
 	SMS                   *SMSService
 	KeyValueStorage       *KeyValueStorageService
-	Rules                 *RulesService
-	CallerIDs             *CallerIDsService
-	Skills                *SkillsService
+	History               *HistoryService
+	AdminRoles            *AdminRolesService
+	RegulationAddress     *RegulationAddressService
+	RoleSystem            *RoleSystemService
 
 	// AuthorizedIps deprecated: use AuthorizedIPs instead
 	AuthorizedIps *AuthorizedIPsService
@@ -93,36 +93,37 @@ func NewClient(config *config.Config) (*Client, error) {
 		client:  config.HTTPClient,
 		baseURL: parsedBaseURL,
 		keyPair: keyPair,
+		config:  config,
 	}
 
+	c.Users = &UsersService{c}
+	c.SIPRegistration = &SIPRegistrationService{c}
+	c.OutboundTestNumbers = &OutboundTestNumbersService{c}
 	c.Queues = &QueuesService{c}
-	c.RegulationAddress = &RegulationAddressService{c}
-	c.RoleSystem = &RoleSystemService{c}
+	c.Invoices = &InvoicesService{c}
 	c.CallLists = &CallListsService{c}
-	c.PhoneNumbers = &PhoneNumbersService{c}
-	c.SIPWhiteList = &SIPWhiteListService{c}
+	c.Scenarios = &ScenariosService{c}
+	c.CallerIDs = &CallerIDsService{c}
+	c.SmartQueue = &SmartQueueService{c}
 	c.PushCredentials = &PushCredentialsService{c}
 	c.RecordStorages = &RecordStoragesService{c}
-	c.Accounts = &AccountsService{c}
 	c.Applications = &ApplicationsService{c}
-	c.WABPhoneNumbers = &WABPhoneNumbersService{c}
-	c.AdminUsers = &AdminUsersService{c}
-	c.Invoices = &InvoicesService{c}
-	c.Scenarios = &ScenariosService{c}
-	c.SIPRegistration = &SIPRegistrationService{c}
-	c.AuthorizedIPs = &AuthorizedIPsService{c}
-	c.Users = &UsersService{c}
-	c.History = &HistoryService{c}
+	c.PhoneNumbers = &PhoneNumbersService{c}
 	c.PSTNBlacklist = &PSTNBlacklistService{c}
-	c.SmartQueue = &SmartQueueService{c}
-	c.AdminRoles = &AdminRolesService{c}
-	c.OutboundTestNumbers = &OutboundTestNumbersService{c}
+	c.AuthorizedIPs = &AuthorizedIPsService{c}
+	c.Rules = &RulesService{c}
+	c.WABPhoneNumbers = &WABPhoneNumbersService{c}
+	c.Accounts = &AccountsService{c}
+	c.SIPWhiteList = &SIPWhiteListService{c}
+	c.Skills = &SkillsService{c}
+	c.AdminUsers = &AdminUsersService{c}
 	c.DialogflowCredentials = &DialogflowCredentialsService{c}
 	c.SMS = &SMSService{c}
 	c.KeyValueStorage = &KeyValueStorageService{c}
-	c.Rules = &RulesService{c}
-	c.CallerIDs = &CallerIDsService{c}
-	c.Skills = &SkillsService{c}
+	c.History = &HistoryService{c}
+	c.AdminRoles = &AdminRolesService{c}
+	c.RegulationAddress = &RegulationAddressService{c}
+	c.RoleSystem = &RoleSystemService{c}
 
 	// AuthorizedIps deprecated: use AuthorizedIPs instead
 	c.AuthorizedIps = &AuthorizedIPsService{c}
@@ -228,7 +229,6 @@ func (c *Client) Do(req *http.Request, v interface{}) (*http.Response, error) {
 
 func (c *Client) MakeResponse(request *http.Request, response interface{}) (*structure.VError, error) {
 	resp, err := c.Do(request, nil)
-	defer resp.Body.Close()
 	if err != nil {
 		return nil, err
 	}
@@ -243,9 +243,11 @@ func (c *Client) MakeResponse(request *http.Request, response interface{}) (*str
 			}()
 			return nil, nil
 		} else {
+			resp.Body.Close()
 			return nil, fmt.Errorf("could not cast the io.Reader param type")
 		}
 	}
+	defer resp.Body.Close()
 
 	data, err := io.ReadAll(resp.Body)
 	if err != nil {

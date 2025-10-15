@@ -1995,7 +1995,7 @@ type AccountDocumentStatusUpdatedCallback struct {
 	AccountDocumentId int `json:"account_document_id"`
 	// Previous document verification status. The following values are possible: AWAITING_AGREEMENT_UPLOADING, AWAITING_VERIFICATION, WAITING_FOR_CONFIRMATION_DOCUMENTS, VERIFIED, REJECTED, WAITING_PERIOD_EXPIRED, AWAITING_DOCUMENTS_UPLOADING
 	PreviousAccountDocumentStatus string `json:"previous_account_document_status"`
-	// Document verification status. The following values are possible: WAITING_CONFIRMATION_DOCS, VERIFIED, REJECTED
+	// Document verification status. The following values are possible: AWAITING_DOCUMENTS_UPLOADING, AWAITING_AGREEMENT_UPLOADING, AWAITING_VERIFICATION, WAITING_FOR_CONFIRMATION_DOCUMENTS, VERIFIED, REJECTED, WAITING_PERIOD_EXPIRED
 	AccountDocumentStatus string `json:"account_document_status"`
 	// UTC time when the status is updated
 	UpdateTime Timestamp `json:"update_time"`
@@ -2382,6 +2382,8 @@ type GetSQQueuesResult struct {
 	SqQueueId int `json:"sq_queue_id"`
 	// Name of the SmartQueue
 	SqQueueName string `json:"sq_queue_name"`
+	// Whether the tasks are queued when there are no active agents
+	HoldImIfInactiveAgents *bool `json:"hold_im_if_inactive_agents,omitempty"`
 	// Agent selection strategy
 	AgentSelection string `json:"agent_selection"`
 	// Strategy of prioritizing requests for service

@@ -272,6 +272,8 @@ type SQAddQueueParams struct {
 	ApplicationName string `json:"application_name,omitempty"`
 	// Unique SmartQueue name within the application, up to 100 characters
 	SqQueueName string `json:"sq_queue_name"`
+	// Whether to add the task to the queue if there are no available agents
+	HoldImIfInactiveAgents *bool `json:"hold_im_if_inactive_agents,string,omitempty"`
 	// Agent selection strategy for calls. Accepts one of the following values: "MOST_QUALIFIED", "LEAST_QUALIFIED", "MAX_WAITING_TIME"
 	CallAgentSelection string `json:"call_agent_selection"`
 	// Agent selection strategy for messages. Accepts one of the following values: "MOST_QUALIFIED", "LEAST_QUALIFIED", "MAX_WAITING_TIME". The default value is **call_agent_selection**
@@ -326,6 +328,8 @@ type SQSetQueueInfoParams struct {
 	ApplicationId int `json:"application_id,string"`
 	// Name of the application to search by. Can be used instead of <b>application_id</b>
 	ApplicationName string `json:"application_name,omitempty"`
+	// Whether to add the task to the queue if there are no available agents
+	HoldImIfInactiveAgents *bool `json:"hold_im_if_inactive_agents,string,omitempty"`
 	// ID of the SmartQueue to search for
 	SqQueueId int `json:"sq_queue_id,string"`
 	// Name of the SmartQueue to search for. Can be used instead of <b>sq_queue_id</b>
