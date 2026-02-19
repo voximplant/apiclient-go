@@ -14,7 +14,7 @@ type AddOutboundTestPhoneNumberParams struct {
 }
 
 type AddOutboundTestPhoneNumberReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -60,7 +60,7 @@ type ActivateOutboundTestPhoneNumberParams struct {
 }
 
 type ActivateOutboundTestPhoneNumberReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -82,7 +82,7 @@ type DelOutboundTestPhoneNumberParams struct {
 }
 
 type DelOutboundTestPhoneNumberReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 

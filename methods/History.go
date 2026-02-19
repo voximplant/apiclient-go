@@ -16,7 +16,7 @@ type GetCallHistoryParams struct {
 	ToDate *structure.Timestamp `json:"to_date,string"`
 	// The selected timezone or the 'auto' value (the account location)
 	Timezone string `json:"timezone,omitempty"`
-	// To get the call history for the specific sessions, pass the session IDs to this parameter separated by a semicolon (;). You can find the session ID in the <a href='/docs/references/voxengine/appevents#started'>AppEvents.Started</a> event's <b>sessionID</b> property in a scenario, or retrieve it from the <b>call_session_history_id</b> value returned from the <a href='https://voximplant.com/docs/references/httpapi/scenarios#reorderscenarios'>StartScenarios</a> or <a href='https://voximplant.com/docs/references/httpapi/scenarios#startconference'>StartConference</a> methods
+	// To get the call history for the specific sessions, pass the session IDs to this parameter separated by a semicolon (;). The maximum number of records is 1000. You can find the session ID in the <a href='/docs/references/voxengine/appevents#started'>AppEvents.Started</a> event's <b>sessionID</b> property in a scenario, or retrieve it from the <b>call_session_history_id</b> value returned from the <a href='https://voximplant.com/docs/references/httpapi/scenarios#reorderscenarios'>StartScenarios</a> or <a href='https://voximplant.com/docs/references/httpapi/scenarios#startconference'>StartConference</a> methods
 	CallSessionHistoryId string `json:"call_session_history_id,omitempty"`
 	// To receive the call history for a specific application, pass the application ID to this parameter
 	ApplicationId int `json:"application_id,string,omitempty"`
@@ -121,7 +121,7 @@ type GetCallHistoryAsyncParams struct {
 }
 
 type GetCallHistoryAsyncReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 	// The history report ID
 	HistoryReportId int `json:"history_report_id"`
@@ -171,7 +171,7 @@ type GetBriefCallHistoryParams struct {
 }
 
 type GetBriefCallHistoryReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 	// The history report ID
 	HistoryReportId int `json:"history_report_id"`
@@ -351,7 +351,7 @@ type GetTransactionHistoryAsyncParams struct {
 }
 
 type GetTransactionHistoryAsyncReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 	// The history report ID
 	HistoryReportId int `json:"history_report_id"`
@@ -530,7 +530,7 @@ type GetAuditLogAsyncParams struct {
 }
 
 type GetAuditLogAsyncReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 	// The history report ID
 	HistoryReportId int `json:"history_report_id"`

@@ -105,6 +105,8 @@ type GetSmsHistoryParams struct {
 	DestinationNumber string `json:"destination_number,omitempty"`
 	// Sent or received SMS. Possible values: 'IN', 'OUT', 'in, 'out'. Leave blank to get both incoming and outgoing messages
 	Direction string `json:"direction,omitempty"`
+	// The selected timezone or the 'auto' value (the account location)
+	Timezone string `json:"timezone,omitempty"`
 	// Maximum number of resulting rows fetched. Must be not bigger than 1000. If left blank, then the default value of 1000 is used
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output

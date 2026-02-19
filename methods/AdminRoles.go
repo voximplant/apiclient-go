@@ -24,7 +24,7 @@ type AddAdminRoleParams struct {
 }
 
 type AddAdminRoleReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 	// The new admin role ID
 	AdminRoleId int `json:"admin_role_id"`
@@ -52,7 +52,7 @@ type DelAdminRoleParams struct {
 }
 
 type DelAdminRoleReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -92,7 +92,7 @@ type SetAdminRoleInfoParams struct {
 }
 
 type SetAdminRoleInfoReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 

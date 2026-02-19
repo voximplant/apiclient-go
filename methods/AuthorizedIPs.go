@@ -18,7 +18,7 @@ type AddAuthorizedAccountIPParams struct {
 }
 
 type AddAuthorizedAccountIPReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 

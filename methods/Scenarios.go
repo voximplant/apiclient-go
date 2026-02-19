@@ -26,7 +26,7 @@ type AddScenarioParams struct {
 }
 
 type AddScenarioReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 	// The new scenario ID
 	ScenarioId int `json:"scenario_id"`
@@ -54,7 +54,7 @@ type DelScenarioParams struct {
 }
 
 type DelScenarioReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -90,7 +90,7 @@ type BindScenarioParams struct {
 }
 
 type BindScenarioReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -165,7 +165,7 @@ type SetScenarioInfoParams struct {
 }
 
 type SetScenarioInfoReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -193,7 +193,7 @@ type ReorderScenariosParams struct {
 }
 
 type ReorderScenariosReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -233,7 +233,7 @@ type StartScenariosParams struct {
 }
 
 type StartScenariosReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 	// The URL to control a created media session. You can use it for arbitrary tasks such as stopping scenario or passing additional data to it. Making HTTP request on this URL results in the [AppEvents.HttpRequest](/docs/references/voxengine/appevents#httprequest) VoxEngine event being triggered for scenario, with HTTP request data passed to it
 	MediaSessionAccessUrl string `json:"media_session_access_url"`
@@ -245,7 +245,7 @@ type StartScenariosReturn struct {
 	CallSessionHistoryId int `json:"call_session_history_id"`
 }
 
-// Runs JavaScript scenarios on a Voximplant server. The scenarios run in a new media session. To start a scenario, pass the routing rule ID associated with the necessary scenario. You can use both GET and POST requests, but we recommend using the POST mode if you pass some data in the custom_data field. The maximum number of simultaneous requests is 200. If you exceed this number, you get the 429 error code.
+// Runs JavaScript scenarios on a Voximplant server. The scenarios run in a new media session. To start a scenario, pass the routing rule ID associated with the necessary scenario. You can use both GET and POST requests at your choice. If you need to send custom data, we recommend to use the POST method and to include the data in the `custom_data` field of the request body. The maximum number of concurrent HTTP-requests is limited to 200. If this number is exceeded, this method returns the 429 code error (Too Many Requests) until the number of active requests is reduced. If you exceed this number, you get the 429 error code.
 func (s *ScenariosService) StartScenarios(params StartScenariosParams) (*StartScenariosReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "StartScenarios", params)
 	if err != nil {
@@ -281,7 +281,7 @@ type StartConferenceParams struct {
 }
 
 type StartConferenceReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 	// The URL to control a created media session. It can be used for arbitrary tasks such as stopping scenario or passing additional data to it. Making HTTP request on this URL results in the [AppEvents.HttpRequest](/docs/references/voxengine/appevents#httprequest) VoxEngine event being triggered for a scenario, with an HTTP request data passed to it
 	MediaSessionAccessUrl string `json:"media_session_access_url"`

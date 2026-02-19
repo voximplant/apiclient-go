@@ -16,7 +16,7 @@ type AddSipWhiteListItemParams struct {
 }
 
 type AddSipWhiteListItemReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 	// The SIP white list item ID
 	SipWhitelistId int `json:"sip_whitelist_id"`
@@ -42,7 +42,7 @@ type DelSipWhiteListItemParams struct {
 }
 
 type DelSipWhiteListItemReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -70,7 +70,7 @@ type SetSipWhiteListItemParams struct {
 }
 
 type SetSipWhiteListItemReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 

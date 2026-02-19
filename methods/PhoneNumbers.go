@@ -11,7 +11,7 @@ type PhoneNumbersService struct {
 type GetPhoneNumberReportsParams struct {
 	// The phone number report ID to filter
 	ReportId int `json:"report_id,string,omitempty"`
-	// The phone number report type list separated by semicolons (;). Use the 'all' value to select all history report types. The following values are possible: calls, calls_brief, transactions, audit, call_list, transactions_on_hold
+	// The phone number report type list separated by semicolons (;). The possible values are: phone_numbers, phone_numbers_awaiting_configuration
 	ReportType string `json:"report_type,omitempty"`
 	// The UTC creation from date filter in 24-h format: YYYY-MM-DD HH:mm:ss
 	CreatedFrom *structure.Timestamp `json:"created_from,string,omitempty"`
@@ -50,7 +50,7 @@ func (s *PhoneNumbersService) GetPhoneNumberReports(params GetPhoneNumberReports
 }
 
 type AttachPhoneNumberParams struct {
-	// The phone count to attach
+	// Quantity of phone numbers you want to attach
 	PhoneCount int `json:"phone_count,string"`
 	// The phone number that can be used instead of <b>phone_count</b>. See the [GetNewPhoneNumbers] method
 	PhoneNumber string `json:"phone_number"`
@@ -69,7 +69,7 @@ type AttachPhoneNumberParams struct {
 }
 
 type AttachPhoneNumberReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 	// The attached phone numbers
 	PhoneNumbers []*structure.NewAttachedPhoneInfoType `json:"phone_numbers"`
@@ -107,7 +107,7 @@ type BindPhoneNumberToApplicationParams struct {
 }
 
 type BindPhoneNumberToApplicationReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -133,7 +133,7 @@ type DeactivatePhoneNumberParams struct {
 }
 
 type DeactivatePhoneNumberReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -163,7 +163,7 @@ type SetPhoneNumberInfoParams struct {
 }
 
 type SetPhoneNumberInfoReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -182,21 +182,23 @@ func (s *PhoneNumbersService) SetPhoneNumberInfo(params SetPhoneNumberInfoParams
 }
 
 type GetPhoneNumbersParams struct {
-	// The particular phone ID to filter
+	// Particular phone ID to filter
 	PhoneId string `json:"phone_id,omitempty"`
-	// The phone number list separated by semicolons (;) that can be used instead of <b>phone_id</b>
+	// Phone number list separated by semicolons (;) that can be used instead of <b>phone_id</b>
 	PhoneNumber string `json:"phone_number,omitempty"`
-	// The application ID
+	// Phone number activation statuses to filter, separated by semicolons (;).<br><br>The possible values are: ACTIVE, ACTIVATING, DEACTIVATED, PROVISIONING, AWAITING_BUSINESS_PHONE_NUMBER_CONFIGURATION, LEGAL_OWNERSHIP_LIMIT_REACHED, GOSUSLUGI_DECLINED, SELF_BAN_ENABLED
+	ActivationStatus string `json:"activation_status,omitempty"`
+	// Application ID
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// The application name that can be used instead of <b>application_id</b>
+	// Application name that can be used instead of <b>application_id</b>
 	ApplicationName string `json:"application_name,omitempty"`
 	// Whether the phone number bound to an application
 	IsBoundToApplication *bool `json:"is_bound_to_application,string,omitempty"`
-	// The phone number start to filter
+	// Phone number start to filter
 	PhoneTemplate string `json:"phone_template,omitempty"`
-	// The country code list separated by semicolons (;)
+	// Country code list separated by semicolons (;)
 	CountryCode string `json:"country_code,omitempty"`
-	// The phone category name. See the [GetPhoneNumberCategories] method
+	// Phone category name. See the [GetPhoneNumberCategories] method
 	PhoneCategoryName string `json:"phone_category_name,omitempty"`
 	// Whether the subscription is cancelled to filter
 	Canceled *bool `json:"canceled,string,omitempty"`
@@ -204,43 +206,43 @@ type GetPhoneNumbersParams struct {
 	Deactivated *bool `json:"deactivated,string,omitempty"`
 	// Whether the auto_charge flag is enabled
 	AutoCharge *bool `json:"auto_charge,string,omitempty"`
-	// The UTC 'from' date filter in format: YYYY-MM-DD
+	// UTC 'from' date filter in the following format: YYYY-MM-DD
 	FromPhoneNextRenewal *structure.Date `json:"from_phone_next_renewal,string,omitempty"`
-	// The UTC 'to' date filter in format: YYYY-MM-DD
+	// UTC 'to' date filter in the following format: YYYY-MM-DD
 	ToPhoneNextRenewal *structure.Date `json:"to_phone_next_renewal,string,omitempty"`
-	// The UTC 'from' date filter in 24-h format: YYYY-MM-DD HH:mm:ss
+	// UTC 'from' date filter in 24-h format: YYYY-MM-DD HH:mm:ss
 	FromPhonePurchaseDate *structure.Timestamp `json:"from_phone_purchase_date,string,omitempty"`
-	// The UTC 'to' date filter in 24-h format: YYYY-MM-DD HH:mm:ss
+	// UTC 'to' date filter in 24-h format: YYYY-MM-DD HH:mm:ss
 	ToPhonePurchaseDate *structure.Timestamp `json:"to_phone_purchase_date,string,omitempty"`
-	// The child account ID list separated by semicolons (;). Use the 'all' value to select all child accounts
+	// Child account ID list separated by semicolons (;). Use the 'all' value to select all child accounts
 	ChildAccountId string `json:"child_account_id,omitempty"`
 	// Whether to get the children phones only
 	ChildrenPhonesOnly *bool `json:"children_phones_only,string,omitempty"`
-	// The required account verification name to filter
+	// Required account verification name to filter
 	VerificationName string `json:"verification_name,omitempty"`
-	// The account verification status list separated by semicolons (;). The following values are possible: REQUIRED, IN_PROGRESS, VERIFIED
+	// Account verification status list separated by semicolons (;). The following values are possible: REQUIRED, IN_PROGRESS, VERIFIED
 	VerificationStatus string `json:"verification_status,omitempty"`
-	// Unverified phone hold until the date (from ...) in format: YYYY-MM-DD
+	// Unverified phone hold until the date (from ...) in the following format: YYYY-MM-DD
 	FromUnverifiedHoldUntil *structure.Date `json:"from_unverified_hold_until,string,omitempty"`
-	// Unverified phone hold until the date (... to) in format: YYYY-MM-DD
+	// Unverified phone hold until the date (... to) in the following format: YYYY-MM-DD
 	ToUnverifiedHoldUntil *structure.Date `json:"to_unverified_hold_until,string,omitempty"`
 	// Whether a not verified account can use the phone
 	CanBeUsed *bool `json:"can_be_used,string,omitempty"`
-	// The following values are available: 'phone_number' (ascent order), 'phone_price' (ascent order), 'phone_country_code' (ascent order), 'deactivated' (deactivated first, active last), 'purchase_date' (descent order), 'phone_next_renewal' (ascent order), 'verification_status', 'unverified_hold_until' (ascent order), 'verification_name'
+	// Following values are available: 'phone_number' (ascent order), 'phone_price' (ascent order), 'phone_country_code' (ascent order), 'deactivated' (deactivated first, active last), 'purchase_date' (descent order), 'phone_next_renewal' (ascent order), 'verification_status', 'unverified_hold_until' (ascent order), 'verification_name'
 	OrderBy string `json:"order_by,omitempty"`
 	// Flag allows you to display only the numbers of the sandbox, real numbers, or all numbers. The following values are possible: 'all', 'true', 'false'
 	Sandbox string `json:"sandbox,omitempty"`
-	// The max returning record count
+	// Maximum returning record count
 	Count int `json:"count,string,omitempty"`
-	// The first <b>N</b> records are skipped in the output
+	// First <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`
 	// Whether the SMS support is enabled
 	SmsSupported *bool `json:"sms_supported,string,omitempty"`
-	// The region names list separated by semicolons (;)
+	// Region names list separated by semicolons (;)
 	PhoneRegionName string `json:"phone_region_name,omitempty"`
-	// The rule ID list separated by semicolons (;)
+	// Rule ID list separated by semicolons (;)
 	RuleId string `json:"rule_id,omitempty"`
-	// The rule names list separated by semicolons (;). Can be used only if __application_id__ or __application_name__ is specified
+	// Rule names list separated by semicolons (;). Can be used only if __application_id__ or __application_name__ is specified
 	RuleName string `json:"rule_name,omitempty"`
 	// Whether the phone number is bound to some rule
 	IsBoundToRule *bool `json:"is_bound_to_rule,string,omitempty"`
@@ -249,9 +251,9 @@ type GetPhoneNumbersParams struct {
 type GetPhoneNumbersReturn struct {
 	// Phone numbers info
 	Result []*structure.AttachedPhoneInfoType `json:"result"`
-	// The total found phone count
+	// Total found phone count
 	TotalCount int `json:"total_count"`
-	// The returned phone count
+	// Returned phone count
 	Count int `json:"count"`
 }
 

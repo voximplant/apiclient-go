@@ -493,7 +493,7 @@ type HistoryReportType struct {
 	DownloadCount int `json:"download_count,omitempty"`
 	// The last download UTC time in 24-h format: YYYY-MM-DD HH:mm:ss. The report is completed if the field exists
 	LastDownloaded Timestamp `json:"last_downloaded,omitempty"`
-	// Store the report until the date in format: YYYY-MM-DD. The report is completed if the field exists
+	// Store the report until the date in the following format: YYYY-MM-DD. The report is completed if the field exists
 	StoreUntil Date `json:"store_until,omitempty"`
 	// The report order filters (the saved [GetCallHistory], [GetTransactionHistory] parameters)
 	Filters interface{} `json:"filters,omitempty"`
@@ -522,7 +522,7 @@ type CommonReportType struct {
 	DownloadCount int `json:"download_count,omitempty"`
 	// The last download UTC time in 24-h format: YYYY-MM-DD HH:mm:ss. The report is completed if the field exists
 	LastDownloaded Timestamp `json:"last_downloaded,omitempty"`
-	// Store the report until the date in format: YYYY-MM-DD. The report is completed if the field exists
+	// Store the report until the date in the following format: YYYY-MM-DD. The report is completed if the field exists
 	StoreUntil Date `json:"store_until,omitempty"`
 	// The report order filters (the saved [GetCallHistory], [GetTransactionHistory] parameters)
 	Filters interface{} `json:"filters,omitempty"`
@@ -930,9 +930,9 @@ type NewPhoneInfoType struct {
 	PhoneId int `json:"phone_id"`
 	// The phone number
 	PhoneNumber string `json:"phone_number"`
-	// The phone monthly charge
+	// The phone monthly fee. It consists of `phone_price` and `phone_tax_reserve`
 	PhonePrice float64 `json:"phone_price"`
-	// The phone installation price (without the first monthly fee)
+	// The phone installation price (without the first monthly fee). It consists of `phone_installation_price` and `phone_installation_tax_reserve`
 	PhoneInstallationPrice float64 `json:"phone_installation_price"`
 	// The phone country code (2 symbols)
 	PhoneCountryCode string `json:"phone_country_code"`
@@ -942,9 +942,9 @@ type NewPhoneInfoType struct {
 	PhoneCategoryName string `json:"phone_category_name"`
 	// The phone region name
 	PhoneRegionName string `json:"phone_region_name"`
-	// The phone number installation tax reserve
+	// The phone number installation tax reserve. The phone installation price consists of `phone_installation_price` and `phone_installation_tax_reserve`
 	PhoneInstallationTaxReserve int `json:"phone_installation_tax_reserve"`
-	// The phone number tax reserve
+	// The phone number tax reserve. The phone monthly fee consists of `phone_price` and `phone_tax_reserve`
 	PhoneTaxReserve int `json:"phone_tax_reserve"`
 }
 
@@ -980,7 +980,9 @@ type AttachedPhoneInfoType struct {
 	PhonePrice float64 `json:"phone_price"`
 	// The phone country code (2 symbols)
 	PhoneCountryCode string `json:"phone_country_code"`
-	// The next renewal date in format: YYYY-MM-DD
+	// Phone number activation status
+	ActivationStatus string `json:"activation_status,omitempty"`
+	// The next renewal date in the following format: YYYY-MM-DD
 	PhoneNextRenewal Date `json:"phone_next_renewal"`
 	// The purchase date in 24-h format: YYYY-MM-DD HH:mm:ss
 	PhonePurchaseDate Timestamp `json:"phone_purchase_date"`
@@ -1004,7 +1006,7 @@ type AttachedPhoneInfoType struct {
 	RequiredVerification string `json:"required_verification,omitempty"`
 	// The account verification status. The following values are possible: REQUIRED, IN_PROGRESS, VERIFIED
 	VerificationStatus string `json:"verification_status,omitempty"`
-	// Unverified phone hold until the date in format: YYYY-MM-DD (if the account verification is required). The number is detached on that day automatically!
+	// Unverified phone hold until the date in the following format: YYYY-MM-DD (if the account verification is required). The number is detached on that day automatically!
 	UnverifiedHoldUntil Date `json:"unverified_hold_until,omitempty"`
 	// Whether a not verified account can use the phone
 	CanBeUsed *bool `json:"can_be_used"`
@@ -1037,7 +1039,7 @@ type NewAttachedPhoneInfoType struct {
 	RequiredVerification string `json:"required_verification,omitempty"`
 	// The account verification status. Available only for RU accounts. The following values are possible: REQUIRED, IN_PROGRESS
 	VerificationStatus string `json:"verification_status,omitempty"`
-	// Unverified phone hold until the date in format: YYYY-MM-DD (if the account verification is required). The number is detached on that day automatically!
+	// Unverified phone hold until the date in the following format: YYYY-MM-DD (if the account verification is required). The number is detached on that day automatically!
 	UnverifiedHoldUntil Date `json:"unverified_hold_until,omitempty"`
 }
 
@@ -1155,7 +1157,7 @@ type CallerIDInfoType struct {
 	CodeEnteringAttemptsLeft int `json:"code_entering_attempts_left,omitempty"`
 	// The verification call attempts left for the unverified callerID
 	VerificationCallAttemptsLeft int `json:"verification_call_attempts_left,omitempty"`
-	// The verification ending date in format: YYYY-MM-DD (for the verified callerID)
+	// The verification ending date in the following format: YYYY-MM-DD (for the verified callerID)
 	VerifiedUntil Date `json:"verified_until,omitempty"`
 }
 
@@ -1284,6 +1286,8 @@ type CallListType struct {
 	IntervalSeconds int `json:"interval_seconds"`
 	// The status name. The possible values are __In progress__, __Completed__, __Canceled__
 	Status string `json:"status"`
+	// Whether the first or repeated calls have priority.
+	TaskPriorityStrategy string `json:"task_priority_strategy"`
 }
 
 type CallListDetailType struct {
@@ -1332,7 +1336,7 @@ type SIPRegistrationType struct {
 	ErrorMessage string `json:"error_message,omitempty"`
 	// Whether the subscription is deactivation. The SIP registration is frozen if true
 	Deactivated *bool `json:"deactivated"`
-	// The next subscription renewal date in format: YYYY-MM-DD
+	// The next subscription renewal date in the following format: YYYY-MM-DD
 	NextSubscriptionRenewal Date `json:"next_subscription_renewal"`
 	// The purchase date in 24-h format: YYYY-MM-DD HH:mm:ss
 	PurchaseDate Timestamp `json:"purchase_date"`
@@ -1461,7 +1465,7 @@ type AccountVerificationDocument struct {
 	IsIndividual *bool `json:"is_individual"`
 	// The reviewer's comment
 	Comment string `json:"comment,omitempty"`
-	// The UTC date of the document upload in format: YYYY-MM-DD HH::mm:ss
+	// The UTC date of the document upload in the following format: YYYY-MM-DD HH::mm:ss
 	Uploaded Timestamp `json:"uploaded"`
 	// The account document status. The following values are possible: ACCEPTED, REJECTED, IN_PROGRESS, INCOMPLETE_SET
 	AccountDocumentStatus string `json:"account_document_status"`
@@ -1472,7 +1476,7 @@ type AccountVerificationType struct {
 	VerificationName string `json:"verification_name"`
 	// The account verification status. The following values are possible: REQUIRED, IN_PROGRESS, VERIFIED, NOT_REQUIRED
 	VerificationStatus string `json:"verification_status"`
-	// Unverified subscriptions hold until the date in format: YYYY-MM-DD (if the account verification is required). Some subscriptions are detached on that day automatically!
+	// Unverified subscriptions hold until the date in the following format: YYYY-MM-DD (if the account verification is required). Some subscriptions are detached on that day automatically!
 	UnverifiedHoldUntil Date `json:"unverified_hold_until,omitempty"`
 	// The uploaded documents
 	Documents []AccountVerificationDocument `json:"documents,omitempty"`
@@ -1545,7 +1549,7 @@ type SubscriptionTemplateType struct {
 	// The subscription template ID
 	SubscriptionTemplateId int `json:"subscription_template_id"`
 	// ID of the original currency
-	CurrencyId int `json:"currency_id"`
+	Currency int `json:"currency"`
 	// The subscription installation price (without the first monthly fee)
 	InstallationPrice float64 `json:"installation_price"`
 	// The subscription installation price in the original currency
@@ -1600,6 +1604,8 @@ type AccountCallback struct {
 	Currency string `json:"currency"`
 	// Deprecated. Please use the unified <b>account_document_status_updated</b> callback instead
 	AccountDocumentUploaded AccountDocumentUploadedCallback `json:"account_document_uploaded,omitempty"`
+	// Received when batch task cancelling has been completed
+	BatchTaskCancellingCompleted BatchTaskCancellingCallback `json:"batch_task_cancelling_completed,omitempty"`
 	// Received when proof of address is uploaded
 	RegulationAddressUploaded RegulationAddressUploadedCallback `json:"regulation_address_uploaded,omitempty"`
 	// Deprecated. Please use the unified <b>account_document_status_updated</b> callback instead
@@ -1692,7 +1698,7 @@ type A2PSmsDeliveryCallback struct {
 type AccountDocumentUploadedCallback struct {
 	// The uploaded document ID. See GetAccountDocuments
 	AccountDocumentId int `json:"account_document_id"`
-	// The UTC date of the document upload in format: YYYY-MM-DD HH::mm:ss
+	// The UTC date of the document upload in the following format: YYYY-MM-DD HH::mm:ss
 	Uploaded Timestamp `json:"uploaded"`
 	// The verification name (type)
 	VerificationName string `json:"verification_name"`
@@ -1700,10 +1706,17 @@ type AccountDocumentUploadedCallback struct {
 	LegalStatus string `json:"legal_status"`
 }
 
+type BatchTaskCancellingCallback struct {
+	// Batch UUID of the cancelled tasks
+	BatchId int `json:"batch_id"`
+	// Number of cancelled tasks
+	CancelledTasksNumber int `json:"cancelled_tasks_number"`
+}
+
 type RegulationAddressUploadedCallback struct {
 	// The uploaded document ID. See GetRegulationsAddress
 	RegulationAddressId int `json:"regulation_address_id"`
-	// The UTC date of the document upload in format: YYYY-MM-DD HH::mm:ss
+	// The UTC date of the document upload in the following format: YYYY-MM-DD HH::mm:ss
 	Uploaded Timestamp `json:"uploaded"`
 	// Whether the account belongs to an individual
 	IsIndividual *bool `json:"is_individual"`
@@ -1716,7 +1729,7 @@ type AccountDocumentVerifiedCallback struct {
 	AccountDocumentId int `json:"account_document_id"`
 	// The document verification status. The following values are possible: AWAITING_AGREEMENT_UPLOADING, AWAITING_VERIFICATION, WAITING_FOR_CONFIRMATION_DOCUMENTS, VERIFIED, REJECTED, WAITING_PERIOD_EXPIRED, AWAITING_DOCUMENTS_UPLOADING
 	AccountDocumentStatus string `json:"account_document_status"`
-	// The UTC date of the document upload in format: YYYY-MM-DD HH::mm:ss
+	// The UTC date of the document upload in the following format: YYYY-MM-DD HH::mm:ss
 	Uploaded Timestamp `json:"uploaded"`
 	// The reviewer's comment
 	Comment string `json:"comment,omitempty"`
@@ -1740,7 +1753,7 @@ type CallHistoryReportCallback struct {
 	HistoryReportId int `json:"history_report_id"`
 	// Whether the request is successful
 	Success *bool `json:"success"`
-	// The UTC order date in format: YYYY-MM-DD HH::mm:ss
+	// The UTC order date in the following format: YYYY-MM-DD HH::mm:ss
 	OrderDate Timestamp `json:"order_date"`
 }
 
@@ -1795,7 +1808,7 @@ type RegulationAddressVerifiedCallback struct {
 	RegulationAddressId int `json:"regulation_address_id"`
 	// The document verification status. The following values are possible: VERIFIED, DECLINED
 	RegulationAddressStatus string `json:"regulation_address_status"`
-	// The UTC date of the document upload in format: YYYY-MM-DD HH::mm:ss
+	// The UTC date of the document upload in the following format: YYYY-MM-DD HH::mm:ss
 	Uploaded Timestamp `json:"uploaded"`
 	// Whether the account belongs to an individual
 	IsIndividual *bool `json:"is_individual"`
@@ -1885,7 +1898,7 @@ type TransactionHistoryReportCallback struct {
 	HistoryReportId int `json:"history_report_id"`
 	// Whether the request is successful
 	Success *bool `json:"success"`
-	// The UTC order date in format: YYYY-MM-DD HH::mm:ss
+	// The UTC order date in the following format: YYYY-MM-DD HH::mm:ss
 	OrderDate Timestamp `json:"order_date"`
 }
 
@@ -1927,7 +1940,7 @@ type TranscriptionCompleteCallbackItem struct {
 }
 
 type ExpiringAgreementCallback struct {
-	// The date of agreement expiration in format: YYYY-MM-DD
+	// The date of agreement expiration in the following format: YYYY-MM-DD
 	ExpirationDate Date `json:"expiration_date"`
 	// The number of days left until an expiration date
 	UntilExpiration int `json:"until_expiration"`
@@ -2308,7 +2321,7 @@ type SmsHistoryType struct {
 	Fragments int `json:"fragments"`
 	// Cost of the message
 	Cost float64 `json:"cost"`
-	// Status of the message. 1 - Success, 2 - Error
+	// Status of the message. The possible values are: 1 — Success, 2 — Error, 3 — Waiting
 	StatusId string `json:"status_id"`
 	// Error message (if any)
 	ErrorMessage string `json:"error_message,omitempty"`
@@ -2331,7 +2344,7 @@ type A2PSmsHistoryType struct {
 	Fragments int `json:"fragments"`
 	// The message cost
 	Cost float64 `json:"cost"`
-	// The message status. 1 - Success, 2 - Error
+	// The message status. The possible values are: 1 — Success, 2 — Error, 3 — Waiting
 	StatusId string `json:"status_id"`
 	// Error message (if any)
 	ErrorMessage string `json:"error_message,omitempty"`
@@ -2353,7 +2366,7 @@ type ExpiredAgreementCallback struct {
 type RestoredAgreementStatusCallback struct {
 	// ID of the agreement document which status has been changed
 	DocumentId int `json:"document_id"`
-	// The new date of agreement expiration in format: YYYY-MM-DD
+	// The new date of agreement expiration in the following format: YYYY-MM-DD
 	ExpirationDate Date `json:"expiration_date"`
 }
 
@@ -2607,16 +2620,16 @@ type AccountInvoice struct {
 	Rows InvoiceSpendingDetails `json:"rows"`
 	// Unique invoice number
 	InvoiceNumber string `json:"invoice_number"`
-	// Date when the invoice is created in format: YYYY-MM-DD
+	// Date when the invoice is created in the following format: YYYY-MM-DD
 	InvoiceDate Date `json:"invoice_date"`
 	// Invoice status
 	Status string `json:"status"`
 }
 
 type InvoicePeriod struct {
-	// From date in format: YYYY-MM-DD
+	// From date in the following format: YYYY-MM-DD
 	From Date `json:"from"`
-	// To date in format: YYYY-MM-DD
+	// To date in the following format: YYYY-MM-DD
 	To Date `json:"to"`
 }
 

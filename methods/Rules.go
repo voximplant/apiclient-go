@@ -30,7 +30,7 @@ type AddRuleParams struct {
 }
 
 type AddRuleReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 	// The new rule ID
 	RuleId int `json:"rule_id"`
@@ -62,7 +62,7 @@ type DelRuleParams struct {
 }
 
 type DelRuleReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -96,7 +96,7 @@ type SetRuleInfoParams struct {
 }
 
 type SetRuleInfoReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -165,7 +165,7 @@ type ReorderRulesParams struct {
 }
 
 type ReorderRulesReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 

@@ -30,7 +30,7 @@ type AddUserParams struct {
 }
 
 type AddUserReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 	// The new user ID
 	UserId int `json:"user_id"`
@@ -62,7 +62,7 @@ type DelUserParams struct {
 }
 
 type DelUserReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -106,7 +106,7 @@ type SetUserInfoParams struct {
 }
 
 type SetUserInfoReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 

@@ -23,7 +23,7 @@ type CreateKeyReturn struct {
 	Result []*structure.KeyInfo `json:"result"`
 }
 
-// Creates a public/private key pair. You can optionally specify one or more roles for the key.
+// Creates a public/private key pair. You can optionally specify one or more roles for the key. You can find all available service account roles [here](/docs/getting-started/basic-concepts/management-api#service-account-roles).
 func (s *RoleSystemService) CreateKey(params CreateKeyParams) (*CreateKeyReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "CreateKey", params)
 	if err != nil {

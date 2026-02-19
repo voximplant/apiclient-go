@@ -16,7 +16,7 @@ type AddApplicationParams struct {
 }
 
 type AddApplicationReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 	// The application ID
 	ApplicationId int `json:"application_id"`
@@ -48,7 +48,7 @@ type DelApplicationParams struct {
 }
 
 type DelApplicationReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -78,7 +78,7 @@ type SetApplicationInfoParams struct {
 }
 
 type SetApplicationInfoReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 	// The new full application name
 	ApplicationName string `json:"application_name"`

@@ -14,7 +14,7 @@ type AddPstnBlackListItemParams struct {
 }
 
 type AddPstnBlackListItemReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 	// The PSTN black list item ID
 	PstnBlacklistId int `json:"pstn_blacklist_id"`
@@ -42,7 +42,7 @@ type SetPstnBlackListItemParams struct {
 }
 
 type SetPstnBlackListItemReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -66,7 +66,7 @@ type DelPstnBlackListItemParams struct {
 }
 
 type DelPstnBlackListItemReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 

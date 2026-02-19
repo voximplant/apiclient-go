@@ -14,7 +14,7 @@ type AddSkillParams struct {
 }
 
 type AddSkillReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 	// The skill ID
 	SkillId int `json:"skill_id"`
@@ -42,7 +42,7 @@ type DelSkillParams struct {
 }
 
 type DelSkillReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -70,7 +70,7 @@ type SetSkillInfoParams struct {
 }
 
 type SetSkillInfoReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -143,7 +143,7 @@ type BindSkillParams struct {
 }
 
 type BindSkillReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 

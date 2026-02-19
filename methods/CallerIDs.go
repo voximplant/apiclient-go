@@ -14,7 +14,7 @@ type AddCallerIDParams struct {
 }
 
 type AddCallerIDReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 	// ID of the callerID object
 	CalleridId int `json:"callerid_id"`
@@ -44,7 +44,7 @@ type ActivateCallerIDParams struct {
 }
 
 type ActivateCallerIDReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -70,7 +70,7 @@ type DelCallerIDParams struct {
 }
 
 type DelCallerIDReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -133,7 +133,7 @@ type VerifyCallerIDParams struct {
 }
 
 type VerifyCallerIDReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 

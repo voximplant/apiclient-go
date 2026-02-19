@@ -10,7 +10,7 @@ type CallListsService struct {
 }
 
 type CreateCallListParams struct {
-	// The rule ID. It is specified in the <a href='//manage.voximplant.com/applications'>Applications</a> section of the Control Panel
+	// Rule ID. It is specified in the <a href='//manage.voximplant.com/applications'>Applications</a> section of the Control Panel
 	RuleId int `json:"rule_id,string"`
 	// Call list priority. The value is in the range of [0 ... 2^31] where zero is the highest priority
 	Priority int `json:"priority,string"`
@@ -20,7 +20,7 @@ type CreateCallListParams struct {
 	NumAttempts int `json:"num_attempts,string"`
 	// File name, up to 255 characters and cannot contain the '/' and '\' symbols
 	Name string `json:"name"`
-	// Send as "body" part of the HTTP request or as multiform. The sending "file_content" via URL is at its own risk because the network devices tend to drop HTTP requests with large headers
+	// Send as the "body" part of the HTTP request or as multiform. The sending "file_content" via URL is at its own risk because the network devices tend to drop HTTP requests with large headers
 	FileContent io.Reader `json:"file_content,string"`
 	// Interval between call attempts in seconds. The default value is 0
 	IntervalSeconds int `json:"interval_seconds,string,omitempty"`
@@ -30,19 +30,23 @@ type CreateCallListParams struct {
 	Delimiter string `json:"delimiter,omitempty"`
 	// Escape character for parsing csv
 	Escape string `json:"escape,omitempty"`
-	// Specifies the IP from the geolocation of the call list subscribers. It allows selecting the nearest server for serving subscribers
+	// IP from the geolocation of the call list subscribers. It allows selecting the nearest server for serving subscribers
 	ReferenceIp string `json:"reference_ip,omitempty"`
-	// Specifies the location of the server where the scenario needs to be executed. Has higher priority than `reference_ip`. Request [getServerLocations](https://api.voximplant.com/getServerLocations) for possible values
+	// Location of the server where the scenario needs to be executed. Has higher priority than `reference_ip`. Request [getServerLocations](https://api.voximplant.com/getServerLocations) for possible values
 	ServerLocation string `json:"server_location,omitempty"`
+	// Optional. Whether to prioritize first calling attempts or repeated ones. The possible values are: first_attempts, repeated_attempts. The default values is first_attempts.
+	TaskPriorityStrategy string `json:"task_priority_strategy,omitempty"`
 }
 
 type CreateCallListReturn struct {
-	// true
+	// Whether the request completed successfully
 	Result *bool `json:"result"`
-	// The number of stored records
+	// Number of stored records
 	Count int `json:"count"`
-	// The list ID
+	// List ID
 	ListId int `json:"list_id"`
+	// Batch UUID
+	BatchId string `json:"batch_id"`
 }
 
 // Adds a new CSV file for call list processing and starts the specified rule immediately. To send a file, use the request body. To set the call time constraints, use the following options in a CSV file: <ul><li>**__start_execution_time** – when the call list processing starts every day, UTC+0 24-h format: HH:mm:ss</li><li>**__end_execution_time** – when the call list processing stops every day,  UTC+0 24-h format: HH:mm:ss</li><li>**__start_at** – when the call list processing starts, UNIX timestamp. If not specified, the processing starts immediately after a method call</li><li>**__task_uuid** – call list UUID. A string up to 40 characters, can contain latin letters, digits, hyphens (-) and colons (:). Unique within the call list</li></ul><br>This method accepts CSV files with custom delimiters, such a commas (,), semicolons (;) and other. To specify a delimiter, pass it to the <b>delimiter</b> parameter.<br/><b>IMPORTANT:</b> the account's balance should be equal or greater than 1 USD. If the balance is lower than 1 USD, the call list processing does not start, or it stops immediately if it is active.
@@ -60,11 +64,11 @@ func (s *CallListsService) CreateCallList(params CreateCallListParams) (*CreateC
 }
 
 type AppendToCallListParams struct {
-	// The call list ID
+	// Call list ID
 	ListId int `json:"list_id,string"`
 	// The unique name of the call list. Can be used instead of <b>list_id</b>
 	ListName string `json:"list_name"`
-	// Send as request body or multiform
+	// Send as the request body or multiform
 	FileContent io.Reader `json:"file_content,string"`
 	// Encoding file. The default value is UTF-8
 	Encoding string `json:"encoding,omitempty"`
@@ -75,12 +79,14 @@ type AppendToCallListParams struct {
 }
 
 type AppendToCallListReturn struct {
-	// true
+	// Whether the request completed successfully
 	Result *bool `json:"result"`
-	// The number of stored records
+	// Number of stored records
 	Count int `json:"count"`
-	// The list ID
+	// List ID
 	ListId int `json:"list_id"`
+	// Batch UUID
+	BatchId int `json:"batch_id"`
 }
 
 // Appends a new task to the existing call list.<br>This method accepts CSV files with custom delimiters, such a commas (,), semicolons (;) and other. To specify a delimiter, pass it to the <b>delimiter</b> parameter.
@@ -90,6 +96,34 @@ func (s *CallListsService) AppendToCallList(params AppendToCallListParams) (*App
 		return nil, nil, err
 	}
 	response := &AppendToCallListReturn{}
+	verr, err := s.client.MakeResponse(req, response)
+	if verr != nil || err != nil {
+		return nil, verr, err
+	}
+	return response, nil, nil
+}
+
+type CancelCallListBatchParams struct {
+	// Call list ID
+	ListId int `json:"list_id,string"`
+	// The unique name of the call list. Can be used instead of <b>list_id</b>
+	ListName string `json:"list_name"`
+	// Batch UUIDs of the tasks to cancel, separated by semicolon (;)
+	BatchIds string `json:"batch_ids"`
+}
+
+type CancelCallListBatchReturn struct {
+	// Whether the request completed successfully
+	Result *bool `json:"result"`
+}
+
+// Cancels all tasks in the call list with the specified batch UUID.
+func (s *CallListsService) CancelCallListBatch(params CancelCallListBatchParams) (*CancelCallListBatchReturn, *structure.VError, error) {
+	req, err := s.client.NewRequest("POST", "CancelCallListBatch", params)
+	if err != nil {
+		return nil, nil, err
+	}
+	response := &CancelCallListBatchReturn{}
 	verr, err := s.client.MakeResponse(req, response)
 	if verr != nil || err != nil {
 		return nil, verr, err
@@ -114,12 +148,14 @@ type EditCallListParams struct {
 	Priority int `json:"priority,string,omitempty"`
 	// Time when the call list should start in the `yyyy-MM-dd HH:mm:ss` format
 	StartAt string `json:"start_at,omitempty"`
+	// Optional. Whether to prioritize first calling attempts or repeated ones. The possible values are: first_attempts, repeated_attempts. The default values is first_attempts
+	TaskPriorityStrategy string `json:"task_priority_strategy,omitempty"`
 	// Location of the server processing the call list. If the ID is non existing, the 496 error returns: The 'server_location' parameter is invalid.
 	ServerLocation string `json:"server_location,omitempty"`
 }
 
 type EditCallListReturn struct {
-	// true
+	// Whether the request completed successfully
 	Result *bool `json:"result"`
 }
 
@@ -130,6 +166,32 @@ func (s *CallListsService) EditCallList(params EditCallListParams) (*EditCallLis
 		return nil, nil, err
 	}
 	response := &EditCallListReturn{}
+	verr, err := s.client.MakeResponse(req, response)
+	if verr != nil || err != nil {
+		return nil, verr, err
+	}
+	return response, nil, nil
+}
+
+type EditCallListTasksPriorityParams struct {
+	// Call list ID. If the ID does not exist, the 251 error returns.
+	ListId int `json:"list_id,string"`
+	// JSON-encoded array of task objects. Each object should contain either 'task_id' (number) or 'task_uuid' (string), and 'task_priority' (number).
+	Tasks string `json:"tasks"`
+}
+
+type EditCallListTasksPriorityReturn struct {
+	// JSON-encoded array of each task update.
+	Results string `json:"results"`
+}
+
+// Edits priorities of existing tasks in the specified call list.
+func (s *CallListsService) EditCallListTasksPriority(params EditCallListTasksPriorityParams) (*EditCallListTasksPriorityReturn, *structure.VError, error) {
+	req, err := s.client.NewRequest("POST", "EditCallListTasksPriority", params)
+	if err != nil {
+		return nil, nil, err
+	}
+	response := &EditCallListTasksPriorityReturn{}
 	verr, err := s.client.MakeResponse(req, response)
 	if verr != nil || err != nil {
 		return nil, verr, err
@@ -189,9 +251,9 @@ type GetCallListsParams struct {
 type GetCallListsReturn struct {
 	// Array of lists
 	Result []*structure.CallListType `json:"result"`
-	// The returned call list count
+	// Returned call list count
 	Count int `json:"count"`
-	// The total found call list count
+	// Total found call list count
 	TotalCount int `json:"total_count"`
 }
 
@@ -222,6 +284,8 @@ type GetCallListDetailsParams struct {
 	Encoding string `json:"encoding,omitempty"`
 	// Separator values. The default value is ';'
 	Delimiter string `json:"delimiter,omitempty"`
+	// Batch UUID to filter the tasks
+	BatchId string `json:"batch_id,omitempty"`
 }
 
 type GetCallListDetailsReturn struct {
@@ -263,7 +327,7 @@ type EditCallListTaskParams struct {
 }
 
 type EditCallListTaskReturn struct {
-	// true
+	// Whether the request completed successfully
 	Result *bool `json:"result"`
 }
 
@@ -303,7 +367,7 @@ type CancelCallListTaskReturn struct {
 	ErrorMsg string `json:"error_msg"`
 }
 
-// Cancels the specified tasks in the call list by their IDs or UUIDs.
+// Cancels the specified tasks in the call list by their IDs or UUIDs. The maximum number of tasks to cancel is 1000.
 func (s *CallListsService) CancelCallListTask(params CancelCallListTaskParams) (*CancelCallListTaskReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "CancelCallListTask", params)
 	if err != nil {
@@ -323,7 +387,7 @@ type StopCallListProcessingParams struct {
 }
 
 type StopCallListProcessingReturn struct {
-	// true
+	// Whether the request completed successfully
 	Result *bool `json:"result"`
 	// Result message
 	Msg string `json:"msg"`
@@ -349,7 +413,7 @@ type RecoverCallListParams struct {
 }
 
 type RecoverCallListReturn struct {
-	// true
+	// Whether the request completed successfully
 	Result *bool `json:"result"`
 	// Number restored tasks
 	CountRecovery int `json:"count_recovery"`

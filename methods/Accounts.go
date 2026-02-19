@@ -82,7 +82,7 @@ type SetAccountInfoParams struct {
 }
 
 type SetAccountInfoReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -136,7 +136,7 @@ type SetChildAccountInfoParams struct {
 }
 
 type SetChildAccountInfoReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -325,7 +325,7 @@ type ChangeAccountPlanParams struct {
 }
 
 type ChangeAccountPlanReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 	// The current account state
 	AccountInfo *structure.ShortAccountInfoType `json:"account_info"`
@@ -402,9 +402,9 @@ type GetAccountDocumentsParams struct {
 	VerificationName string `json:"verification_name,omitempty"`
 	// The account verification status list separated by semicolons (;). The following values are possible: REQUIRED, IN_PROGRESS, VERIFIED
 	VerificationStatus string `json:"verification_status,omitempty"`
-	// Unverified subscriptions hold until the date (from ...) in format: YYYY-MM-DD
+	// Unverified subscriptions hold until the date (from ...) in the following format: YYYY-MM-DD
 	FromUnverifiedHoldUntil *structure.Date `json:"from_unverified_hold_until,string,omitempty"`
-	// Unverified subscriptions hold until the date (... to) in format: YYYY-MM-DD
+	// Unverified subscriptions hold until the date (... to) in the following format: YYYY-MM-DD
 	ToUnverifiedHoldUntil *structure.Date `json:"to_unverified_hold_until,string,omitempty"`
 	// The child account ID list separated by semicolons (;). Use the 'all' value to select all child accounts
 	ChildAccountId string `json:"child_account_id,omitempty"`

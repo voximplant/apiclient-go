@@ -30,7 +30,7 @@ type AddQueueParams struct {
 }
 
 type AddQueueReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 	// The ACD queue ID
 	AcdQueueId int `json:"acd_queue_id"`
@@ -68,7 +68,7 @@ type BindUserToQueueParams struct {
 }
 
 type BindUserToQueueReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -94,7 +94,7 @@ type DelQueueParams struct {
 }
 
 type DelQueueReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -136,7 +136,7 @@ type SetQueueInfoParams struct {
 }
 
 type SetQueueInfoReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 

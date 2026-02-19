@@ -134,7 +134,7 @@ type RequestSmartQueueHistoryParams struct {
 }
 
 type RequestSmartQueueHistoryReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 	// History report ID
 	HistoryReportId int `json:"history_report_id"`
@@ -195,7 +195,7 @@ type SQSetAgentCustomStatusMappingParams struct {
 }
 
 type SQSetAgentCustomStatusMappingReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -247,7 +247,7 @@ type SQDeleteAgentCustomStatusMappingParams struct {
 }
 
 type SQDeleteAgentCustomStatusMappingReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -367,7 +367,7 @@ type SQSetQueueInfoParams struct {
 }
 
 type SQSetQueueInfoReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -397,7 +397,7 @@ type SQDelQueueParams struct {
 }
 
 type SQDelQueueReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -503,7 +503,7 @@ type SQDelSkillParams struct {
 }
 
 type SQDelSkillReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -537,7 +537,7 @@ type SQSetSkillInfoParams struct {
 }
 
 type SQSetSkillInfoReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -571,7 +571,7 @@ type SQBindSkillParams struct {
 }
 
 type SQBindSkillReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -605,7 +605,7 @@ type SQUnbindSkillParams struct {
 }
 
 type SQUnbindSkillReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -685,7 +685,7 @@ type SQBindAgentParams struct {
 }
 
 type SQBindAgentReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -719,7 +719,7 @@ type SQUnbindAgentParams struct {
 }
 
 type SQUnbindAgentReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -809,7 +809,7 @@ type SQSetAgentInfoParams struct {
 }
 
 type SQSetAgentInfoReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 

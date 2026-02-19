@@ -26,7 +26,7 @@ type AddWABPhoneNumberParams struct {
 }
 
 type AddWABPhoneNumberReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -50,7 +50,7 @@ type DeleteWABPhoneNumberParams struct {
 }
 
 type DeleteWABPhoneNumberReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -86,7 +86,7 @@ type SetWABPhoneNumberInfoParams struct {
 }
 
 type SetWABPhoneNumberInfoReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 

@@ -36,7 +36,7 @@ type CreateSipRegistrationParams struct {
 }
 
 type CreateSipRegistrationReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 	// The sip registration id
 	SipRegistrationId int `json:"sip_registration_id"`
@@ -44,7 +44,7 @@ type CreateSipRegistrationReturn struct {
 	AccountInfo *structure.ShortAccountInfoType `json:"account_info"`
 }
 
-// Create a new SIP registration. You should specify the application_id or application_name if you specify the rule_name or user_id, or user_name. You should set is_persistent=true if you specify the user_id or user_name. You can bind only one SIP registration to the user (the previous SIP registration are automatically unbound).<br><br>Please note that when you create a SIP registration, we reserve the subscription fee and taxes for the upcoming month. Read more in the <a href='/docs/gettingstarted/billing'>Billing</a> page.
+// Creates a new SIP registration (the platform registers as a user on a 3rd party SIP server).<br><br>There are two modes of SIP registration:<br><ol><li>Persistent registration, when the platform registers on a 3rd party SIP server as a user and the registration lasts until deleted (or there are network/technical issues with it — see the corresponding callback)</li><li>Non-persistent registration (set `is_persistent` to false) which is initiated only when the specificed user (with `user_id` or `user_name`) logs in via one of Voximplant SDKs. As soon the user logs off, the registration goes offline. This mode helps to implement SIP softphone-like apps using Voximplant’s SDKs.</li></ol><br>Please note that when you create a SIP registration, we reserve the subscription fee and taxes for the upcoming month. Read more in the <a href='/docs/gettingstarted/billing'>Billing</a> page.
 func (s *SIPRegistrationService) CreateSipRegistration(params CreateSipRegistrationParams) (*CreateSipRegistrationReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "CreateSipRegistration", params)
 	if err != nil {
@@ -86,7 +86,7 @@ type UpdateSipRegistrationParams struct {
 }
 
 type UpdateSipRegistrationReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -124,7 +124,7 @@ type BindSipRegistrationParams struct {
 }
 
 type BindSipRegistrationReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
@@ -148,7 +148,7 @@ type DeleteSipRegistrationParams struct {
 }
 
 type DeleteSipRegistrationReturn struct {
-	// 1
+	// Returns 1 if the request has been completed successfully
 	Result int `json:"result"`
 }
 
