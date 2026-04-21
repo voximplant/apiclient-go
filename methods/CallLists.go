@@ -314,7 +314,7 @@ type EditCallListTaskParams struct {
 	ListId int `json:"list_id,string"`
 	// Call list's task ID. Please specify either the task's ID or the task's UUID to edit the task
 	TaskId int `json:"task_id,string,omitempty"`
-	// Call list's task ID. Please specify either the task's ID or the task's UUID to edit the task
+	// Call list's task ID. Please specify either the task's ID or the task's UUID to edit the task. The UUID is unique within the call list
 	TaskUuid string `json:"task_uuid,omitempty"`
 	// Next calling attempts timestamp in the yyyy-MM-dd HH:mm:ss format
 	StartAt *structure.Timestamp `json:"start_at,string,omitempty"`
@@ -322,8 +322,10 @@ type EditCallListTaskParams struct {
 	AttemptsLeft int `json:"attempts_left,string,omitempty"`
 	// Custom data string
 	CustomData string `json:"custom_data,omitempty"`
-	// Start time for the daily calling attempts in the UTC+0 24-h format: HH:mm:ss format
+	// Optional. Start time for the daily calling attempts in the UTC+0 24-h format: HH:mm:ss format. If spefied, please specify `max_execution_time` as well
 	MinExecutionTime *structure.Timestamp `json:"min_execution_time,string,omitempty"`
+	// Optional. End time for the daily calling attempts in the UTC+0 24-h format: HH:mm:ss format. If spefied, please specify `min_execution_time` as well
+	MaxExecutionTime *structure.Timestamp `json:"max_execution_time,string,omitempty"`
 }
 
 type EditCallListTaskReturn struct {

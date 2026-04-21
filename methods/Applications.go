@@ -9,7 +9,7 @@ type ApplicationsService struct {
 }
 
 type AddApplicationParams struct {
-	// The short application name in format \[a-z\]\[a-z0-9-\]{1,64}
+	// Short application name in the \[a-z\]\[a-z0-9-\]{1,64} format
 	ApplicationName string `json:"application_name"`
 	// Whether to enable secure storage for all logs and records of the application
 	SecureRecordStorage *bool `json:"secure_record_storage,string,omitempty"`

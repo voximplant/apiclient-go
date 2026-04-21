@@ -8,60 +8,6 @@ type CallerIDsService struct {
 	client *Client
 }
 
-type AddCallerIDParams struct {
-	// The callerID number in E.164 format
-	CalleridNumber string `json:"callerid_number"`
-}
-
-type AddCallerIDReturn struct {
-	// Returns 1 if the request has been completed successfully
-	Result int `json:"result"`
-	// ID of the callerID object
-	CalleridId int `json:"callerid_id"`
-}
-
-// Adds a new caller ID. Caller ID is the phone that is displayed to the called user. This number can be used for call back.
-func (s *CallerIDsService) AddCallerID(params AddCallerIDParams) (*AddCallerIDReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "AddCallerID", params)
-	if err != nil {
-		return nil, nil, err
-	}
-	response := &AddCallerIDReturn{}
-	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil || err != nil {
-		return nil, verr, err
-	}
-	return response, nil, nil
-}
-
-type ActivateCallerIDParams struct {
-	// ID of the callerID object
-	CalleridId int `json:"callerid_id,string"`
-	// The callerID number that can be used instead of <b>callerid_id</b>
-	CalleridNumber string `json:"callerid_number"`
-	// The verification code, see the VerifyCallerID function
-	VerificationCode string `json:"verification_code"`
-}
-
-type ActivateCallerIDReturn struct {
-	// Returns 1 if the request has been completed successfully
-	Result int `json:"result"`
-}
-
-// Activates the CallerID by the verification code.
-func (s *CallerIDsService) ActivateCallerID(params ActivateCallerIDParams) (*ActivateCallerIDReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "ActivateCallerID", params)
-	if err != nil {
-		return nil, nil, err
-	}
-	response := &ActivateCallerIDReturn{}
-	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil || err != nil {
-		return nil, verr, err
-	}
-	return response, nil, nil
-}
-
 type DelCallerIDParams struct {
 	// ID of the callerID object
 	CalleridId int `json:"callerid_id,string"`
@@ -118,32 +64,6 @@ func (s *CallerIDsService) GetCallerIDs(params GetCallerIDsParams) (*GetCallerID
 		return nil, nil, err
 	}
 	response := &GetCallerIDsReturn{}
-	verr, err := s.client.MakeResponse(req, response)
-	if verr != nil || err != nil {
-		return nil, verr, err
-	}
-	return response, nil, nil
-}
-
-type VerifyCallerIDParams struct {
-	// ID of the callerID object
-	CalleridId int `json:"callerid_id,string"`
-	// The callerID number that can be used instead of <b>callerid_id</b>
-	CalleridNumber string `json:"callerid_number"`
-}
-
-type VerifyCallerIDReturn struct {
-	// Returns 1 if the request has been completed successfully
-	Result int `json:"result"`
-}
-
-// Gets a verification code via phone call to the **callerid_number**.
-func (s *CallerIDsService) VerifyCallerID(params VerifyCallerIDParams) (*VerifyCallerIDReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "VerifyCallerID", params)
-	if err != nil {
-		return nil, nil, err
-	}
-	response := &VerifyCallerIDReturn{}
 	verr, err := s.client.MakeResponse(req, response)
 	if verr != nil || err != nil {
 		return nil, verr, err

@@ -976,7 +976,7 @@ type AttachedPhoneInfoType struct {
 	PhoneId int `json:"phone_id"`
 	// The phone number
 	PhoneNumber string `json:"phone_number"`
-	// The phone monthly charge
+	// The phone monthly charge in the account's currency
 	PhonePrice float64 `json:"phone_price"`
 	// The phone country code (2 symbols)
 	PhoneCountryCode string `json:"phone_country_code"`
@@ -1546,31 +1546,31 @@ type AccountVerificationsTypeAgreements struct {
 }
 
 type SubscriptionTemplateType struct {
-	// The subscription template ID
+	// Subscription's template ID
 	SubscriptionTemplateId int `json:"subscription_template_id"`
-	// ID of the original currency
-	Currency int `json:"currency"`
-	// The subscription installation price (without the first monthly fee)
+	// Subscription's currency
+	Currency string `json:"currency"`
+	// Subscription's installation price (without the first monthly fee)
 	InstallationPrice float64 `json:"installation_price"`
-	// The subscription installation price in the original currency
+	// Subscription's installation price in the original currency
 	InstallationPriceInCurrency int `json:"installation_price_in_currency"`
-	// The subscription monthly fee, including taxes and discounts
+	// Subscription's monthly fee, including taxes and discounts
 	Price int `json:"price"`
-	// The subscription monthly fee in the original currency
+	// Subscription's monthly fee in the original currency
 	PriceInCurrency int `json:"price_in_currency"`
-	// The charge period in 24-h format: Y-M-D H:m:s. Example: 0-1-0 0:0:0 is 1 month
+	// Charge period in 24-h format: Y-M-D H:m:s. Example: 0-1-0 0:0:0 is 1 month
 	Period string `json:"period"`
-	// The subscription template type. The following values are possible: PHONE_NUM, SIP_REGISTRATION
+	// Subscription template type. The following values are possible: PHONE_NUM, SIP_REGISTRATION
 	SubscriptionTemplateType string `json:"subscription_template_type"`
-	// The subscription template name (example: SIP registration, Phone GB, Phone RU 495, ...)
+	// Subscription template name (example: SIP registration, Phone GB, Phone RU 495, ...)
 	SubscriptionTemplateName string `json:"subscription_template_name"`
 	// Whether verification is required for the account
 	RequiredVerification string `json:"required_verification"`
-	// The verification status. Possible values are REQUIRED, IN_PROGRESS, VERIFIED, NOT_REQUIRED
+	// Verification status. Possible values are REQUIRED, IN_PROGRESS, VERIFIED, NOT_REQUIRED
 	VerificationStatus string `json:"verification_status"`
-	// The phone number installation tax reserve
+	// Phone number's installation tax reserve
 	InstallationTaxReserve int `json:"installation_tax_reserve"`
-	// The phone number tax reserve
+	// Phone number's tax reserve
 	TaxReserve int `json:"tax_reserve"`
 }
 
@@ -2680,4 +2680,37 @@ type SQAddQueueResult struct {
 type SQAddSkillResult struct {
 	// ID of the added skill
 	SqSkillId int `json:"sq_skill_id"`
+}
+
+type AddSecretResult struct {
+	// Added secret ID
+	SecretId int `json:"secret_id"`
+}
+
+type GetSecretValueResult struct {
+	// Secret ID
+	SecretId int `json:"secret_id"`
+	// Secret name
+	SecretName string `json:"secret_name"`
+	// Secret value
+	SecretValue string `json:"secret_value"`
+	// Secret description
+	Description string `json:"description,omitempty"`
+	// Secret creation timestamp
+	Created Timestamp `json:"created"`
+	// Secret modification timestamp
+	Modified Timestamp `json:"modified"`
+}
+
+type SecretListItem struct {
+	// Secret ID
+	SecretId int `json:"secret_id"`
+	// Secret name
+	SecretName string `json:"secret_name"`
+	// Secret description
+	Description string `json:"description,omitempty"`
+	// Secret creation timestamp
+	Created Timestamp `json:"created"`
+	// Secret modification timestamp
+	Modified Timestamp `json:"modified"`
 }

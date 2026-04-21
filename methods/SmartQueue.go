@@ -266,9 +266,9 @@ func (s *SmartQueueService) SQDeleteAgentCustomStatusMapping(params SQDeleteAgen
 }
 
 type SQAddQueueParams struct {
-	// ID of the application to bind to
+	// Application ID to bind to
 	ApplicationId int `json:"application_id,string"`
-	// Name of the application to bind to. Can be used instead of <b>application_id</b>
+	// Application name to bind to. Can be used instead of <b>application_id</b>
 	ApplicationName string `json:"application_name,omitempty"`
 	// Unique SmartQueue name within the application, up to 100 characters
 	SqQueueName string `json:"sq_queue_name"`
@@ -324,9 +324,9 @@ func (s *SmartQueueService) SQAddQueue(params SQAddQueueParams) (*SQAddQueueRetu
 }
 
 type SQSetQueueInfoParams struct {
-	// ID of the application to search by
+	// Application ID to search by
 	ApplicationId int `json:"application_id,string"`
-	// Name of the application to search by. Can be used instead of <b>application_id</b>
+	// Application name to search by. Can be used instead of <b>application_id</b>
 	ApplicationName string `json:"application_name,omitempty"`
 	// Whether to add the task to the queue if there are no available agents
 	HoldImIfInactiveAgents *bool `json:"hold_im_if_inactive_agents,string,omitempty"`
@@ -386,9 +386,9 @@ func (s *SmartQueueService) SQSetQueueInfo(params SQSetQueueInfoParams) (*SQSetQ
 }
 
 type SQDelQueueParams struct {
-	// ID of the application to search by
+	// Application ID to search by
 	ApplicationId int `json:"application_id,string"`
-	// Name of the application to search by. Can be used instead of <b>application_id</b>
+	// Application name to search by. Can be used instead of <b>application_id</b>
 	ApplicationName string `json:"application_name,omitempty"`
 	// List of SmartQueue IDs separated by semicolons (;). Use 'all' to delete all the queues
 	SqQueueId string `json:"sq_queue_id"`
@@ -416,9 +416,9 @@ func (s *SmartQueueService) SQDelQueue(params SQDelQueueParams) (*SQDelQueueRetu
 }
 
 type SQGetQueuesParams struct {
-	// ID of the application to search by
+	// Application ID to search by
 	ApplicationId int `json:"application_id,string"`
-	// Name of the application to search by. Can be used instead of <b>application_id</b>
+	// Application name to search by. Can be used instead of <b>application_id</b>
 	ApplicationName string `json:"application_name,omitempty"`
 	// List of SmartQueue IDs separated by semicolons (;)
 	SqQueueId string `json:"sq_queue_id,omitempty"`
@@ -462,9 +462,9 @@ func (s *SmartQueueService) SQGetQueues(params SQGetQueuesParams) (*SQGetQueuesR
 }
 
 type SQAddSkillParams struct {
-	// ID of the application to bind to
+	// Application ID to bind to
 	ApplicationId int `json:"application_id,string"`
-	// Name of the application to bind to. Can be used instead of <b>application_id</b>
+	// Application name to bind to. Can be used instead of <b>application_id</b>
 	ApplicationName string `json:"application_name,omitempty"`
 	// Unique skill name within the application
 	SqSkillName string `json:"sq_skill_name"`
@@ -492,9 +492,9 @@ func (s *SmartQueueService) SQAddSkill(params SQAddSkillParams) (*SQAddSkillRetu
 }
 
 type SQDelSkillParams struct {
-	// ID of the application to search by
+	// Application ID to search by
 	ApplicationId int `json:"application_id,string"`
-	// Name of the application to search by. Can be used instead of <b>application_id</b>
+	// Application name to search by. Can be used instead of <b>application_id</b>
 	ApplicationName string `json:"application_name,omitempty"`
 	// List of skill IDs separated by semicolons (;). Use 'all' to delete all the skills
 	SqSkillId string `json:"sq_skill_id"`
@@ -522,9 +522,9 @@ func (s *SmartQueueService) SQDelSkill(params SQDelSkillParams) (*SQDelSkillRetu
 }
 
 type SQSetSkillInfoParams struct {
-	// ID of the application to search by
+	// Application ID to search by
 	ApplicationId int `json:"application_id,string"`
-	// Name of the application to search by. Can be used instead of <b>application_id</b>
+	// Application name to search by. Can be used instead of <b>application_id</b>
 	ApplicationName string `json:"application_name,omitempty"`
 	// ID of the skill
 	SqSkillId int `json:"sq_skill_id,string"`
@@ -556,9 +556,9 @@ func (s *SmartQueueService) SQSetSkillInfo(params SQSetSkillInfoParams) (*SQSetS
 }
 
 type SQBindSkillParams struct {
-	// ID of the application to search by
+	// Application ID to search by
 	ApplicationId int `json:"application_id,string"`
-	// Name of the application to search by. Can be used instead of <b>application_id</b>
+	// Application name to search by. Can be used instead of <b>application_id</b>
 	ApplicationName string `json:"application_name,omitempty"`
 	// List of user IDs separated by semicolons (;). Use 'all' to select all the users
 	UserId string `json:"user_id"`
@@ -590,9 +590,9 @@ func (s *SmartQueueService) SQBindSkill(params SQBindSkillParams) (*SQBindSkillR
 }
 
 type SQUnbindSkillParams struct {
-	// ID of the application to search by
+	// Application ID to search by
 	ApplicationId int `json:"application_id,string"`
-	// Name of the application to search by. Can be used instead of <b>application_id</b>
+	// Application name to search by. Can be used instead of <b>application_id</b>
 	ApplicationName string `json:"application_name,omitempty"`
 	// List of user IDs separated by semicolons (;). Use 'all' to select all the users
 	UserId string `json:"user_id"`
@@ -624,9 +624,9 @@ func (s *SmartQueueService) SQUnbindSkill(params SQUnbindSkillParams) (*SQUnbind
 }
 
 type SQGetSkillsParams struct {
-	// ID of the application to search by
+	// Application ID to search by
 	ApplicationId int `json:"application_id,string"`
-	// Name of the application to search by. Can be used instead of <b>application_id</b>
+	// Application name to search by. Can be used instead of <b>application_id</b>
 	ApplicationName string `json:"application_name,omitempty"`
 	// List of user IDs separated by semicolons (;)
 	UserId string `json:"user_id,omitempty"`
@@ -668,9 +668,9 @@ func (s *SmartQueueService) SQGetSkills(params SQGetSkillsParams) (*SQGetSkillsR
 }
 
 type SQBindAgentParams struct {
-	// ID of the application to search by
+	// Application ID to search by
 	ApplicationId int `json:"application_id,string"`
-	// Name of the application to search by. Can be used instead of <b>application_id</b>
+	// Application name to search by. Can be used instead of <b>application_id</b>
 	ApplicationName string `json:"application_name,omitempty"`
 	// ID of the SmartQueue. Pass a list of values divided by ; or the "all" keyword
 	SqQueueId string `json:"sq_queue_id"`
@@ -704,9 +704,9 @@ func (s *SmartQueueService) SQBindAgent(params SQBindAgentParams) (*SQBindAgentR
 }
 
 type SQUnbindAgentParams struct {
-	// ID of the application to search by
+	// Application ID to search by
 	ApplicationId int `json:"application_id,string"`
-	// Name of the application to search by. Can be used instead of <b>application_id</b>
+	// Application name to search by. Can be used instead of <b>application_id</b>
 	ApplicationName string `json:"application_name,omitempty"`
 	// List of SmartQueue IDs separated by semicolons (;). Use 'all' to select all the queues
 	SqQueueId string `json:"sq_queue_id"`
@@ -738,9 +738,9 @@ func (s *SmartQueueService) SQUnbindAgent(params SQUnbindAgentParams) (*SQUnbind
 }
 
 type SQGetAgentsParams struct {
-	// ID of the application to search by
+	// Application ID to search by
 	ApplicationId int `json:"application_id,string"`
-	// Name of the application to search by. Can be used instead of <b>application_id</b>
+	// Application name to search by. Can be used instead of <b>application_id</b>
 	ApplicationName string `json:"application_name,omitempty"`
 	// List of SmartQueue IDs separated by semicolons (;). Use 'all' to select all the queues
 	SqQueueId string `json:"sq_queue_id,omitempty"`
@@ -794,9 +794,9 @@ func (s *SmartQueueService) SQGetAgents(params SQGetAgentsParams) (*SQGetAgentsR
 }
 
 type SQSetAgentInfoParams struct {
-	// ID of the application to search by
+	// Application ID to search by
 	ApplicationId int `json:"application_id,string"`
-	// Name of the application to search by. Can be used instead of <b>application_id</b>
+	// Application name to search by. Can be used instead of <b>application_id</b>
 	ApplicationName string `json:"application_name,omitempty"`
 	// List of user IDs separated by semicolons (;). Use 'all' to select all the users
 	UserId string `json:"user_id"`

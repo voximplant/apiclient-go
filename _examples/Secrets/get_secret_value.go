@@ -13,7 +13,7 @@ func main() {
 		panic(err)
 	}
 
-	params := methods.VerifyCallerIDParams{CalleridId: 1}
-	res, verr, err := client.CallerIDs.VerifyCallerID(params)
+	params := methods.GetSecretValueParams{ApplicationId: 1, SecretId: 10}
+	res, verr, err := client.Secrets.GetSecretValue(params)
 	fmt.Println(res, verr, err)
 }

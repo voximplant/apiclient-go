@@ -19,9 +19,9 @@ type AddScenarioParams struct {
 	RuleName string `json:"rule_name,omitempty"`
 	// Whether to rewrite the existing scenario
 	Rewrite *bool `json:"rewrite,string,omitempty"`
-	// ID of the application to bind the scenario to
+	// Application ID to bind the scenario to
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// Name of the application to bind the scenario to
+	// Application name to bind the scenario to
 	ApplicationName string `json:"application_name,omitempty"`
 }
 
