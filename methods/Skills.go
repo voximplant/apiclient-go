@@ -35,10 +35,10 @@ func (s *SkillsService) AddSkill(params AddSkillParams) (*AddSkillReturn, *struc
 }
 
 type DelSkillParams struct {
-	// The skill ID
-	SkillId int `json:"skill_id,string"`
-	// The skill name that can be used instead of <b>skill_id</b>
-	SkillName string `json:"skill_name"`
+	// The skill ID. <b>Required</b> unless <b>skill_name</b> is provided.
+	SkillId int `json:"skill_id,string,omitempty"`
+	// The skill name. <b>Required</b> unless <b>skill_id</b> is provided.
+	SkillName string `json:"skill_name,omitempty"`
 }
 
 type DelSkillReturn struct {
@@ -61,10 +61,10 @@ func (s *SkillsService) DelSkill(params DelSkillParams) (*DelSkillReturn, *struc
 }
 
 type SetSkillInfoParams struct {
-	// The skill ID
-	SkillId int `json:"skill_id,string"`
-	// The skill name that can be used instead of <b>skill_id</b>
-	SkillName string `json:"skill_name"`
+	// The skill ID. <b>Required</b> unless <b>skill_name</b> is provided.
+	SkillId int `json:"skill_id,string,omitempty"`
+	// The skill name. <b>Required</b> unless <b>skill_id</b> is provided.
+	SkillName string `json:"skill_name,omitempty"`
 	// The new skill name. The length must be less than 512
 	NewSkillName string `json:"new_skill_name"`
 }
@@ -122,18 +122,18 @@ func (s *SkillsService) GetSkills(params GetSkillsParams) (*GetSkillsReturn, *st
 }
 
 type BindSkillParams struct {
-	// The skill ID list separated by semicolons (;). Use the 'all' value to select all skills
-	SkillId string `json:"skill_id"`
-	// The skill name list separated by semicolons (;). Can be used instead of <b>skill_id</b>
-	SkillName string `json:"skill_name"`
-	// The user ID list separated by semicolons (;). Use the 'all' value to select all users
-	UserId string `json:"user_id"`
-	// The user name list separated by semicolons (;). <b>user_name</b> can be used instead of <b>user_id</b>
-	UserName string `json:"user_name"`
-	// The ACD queue ID list separated by semicolons (;). Use the 'all' value to select all ACD queues
-	AcdQueueId string `json:"acd_queue_id"`
-	// The ACD queue name that can be used instead of <b>acd_queue_id</b>. The ACD queue name list separated by semicolons (;)
-	AcdQueueName string `json:"acd_queue_name"`
+	// The skill ID list separated by semicolons (;). Use the 'all' value to select all skills. <b>Required</b> unless <b>skill_name</b> is provided.
+	SkillId string `json:"skill_id,omitempty"`
+	// The skill name list separated by semicolons (;). <b>Required</b> unless <b>skill_id</b> is provided.
+	SkillName string `json:"skill_name,omitempty"`
+	// The user ID list separated by semicolons (;). Use the 'all' value to select all users. <b>Required</b> unless <b>user_name</b> is provided.
+	UserId string `json:"user_id,omitempty"`
+	// The user name list separated by semicolons (;). <b>Required</b> unless <b>user_id</b> is provided.
+	UserName string `json:"user_name,omitempty"`
+	// The ACD queue ID list separated by semicolons (;). Use the 'all' value to select all ACD queues. <b>Required</b> unless <b>acd_queue_name</b> is provided.
+	AcdQueueId string `json:"acd_queue_id,omitempty"`
+	// The ACD queue name. The ACD queue name list separated by semicolons (;). <b>Required</b> unless <b>acd_queue_id</b> is provided.
+	AcdQueueName string `json:"acd_queue_name,omitempty"`
 	// The application ID. It is required if the <b>user_name</b> is specified
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// The application name that can be used instead of <b>application_id</b>

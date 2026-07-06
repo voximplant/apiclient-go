@@ -13,7 +13,7 @@ func main() {
 		panic(err)
 	}
 
-	params := methods.SQBindSkillParams{ApplicationId: 1, UserId: "all", SqSkills: []interface{}{map[string]interface{}{"sq_skill_id": 1, "sq_skill_level": 1}, map[string]interface{}{"sq_skill_id": 2, "sq_skill_level": 5}}}
+	params := methods.SQBindSkillParams{ApplicationId: 1, UserId: "all", SqSkills: "[{\"sq_skill_id\":1,\"sq_skill_level\":1},{\"sq_skill_id\":2,\"sq_skill_level\":5}]"}
 	res, verr, err := client.SmartQueue.SQBindSkill(params)
 	fmt.Println(res, verr, err)
 }

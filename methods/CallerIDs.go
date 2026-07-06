@@ -9,10 +9,10 @@ type CallerIDsService struct {
 }
 
 type DelCallerIDParams struct {
-	// ID of the callerID object
-	CalleridId int `json:"callerid_id,string"`
-	// The callerID number that can be used instead of <b>callerid_id</b>
-	CalleridNumber string `json:"callerid_number"`
+	// ID of the callerID object. <b>Required</b> unless <b>callerid_number</b> is provided.
+	CalleridId int `json:"callerid_id,string,omitempty"`
+	// The callerID number. <b>Required</b> unless <b>callerid_id</b> is provided.
+	CalleridNumber string `json:"callerid_number,omitempty"`
 }
 
 type DelCallerIDReturn struct {

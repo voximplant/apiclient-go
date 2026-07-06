@@ -387,7 +387,7 @@ type CallInfoType struct {
 	// Custom data passed to the JS session
 	CustomData string `json:"custom_data,omitempty"`
 	// End reason code and description
-	EndReason interface{} `json:"end_reason,omitempty"`
+	EndReason string `json:"end_reason,omitempty"`
 }
 
 type TransactionInfoType struct {
@@ -467,9 +467,9 @@ type AuditLogInfoType struct {
 	// The called function
 	CmdName string `json:"cmd_name"`
 	// The arguments of the called function (they may be masked or resolved)
-	CmdArgs interface{} `json:"cmd_args"`
+	CmdArgs string `json:"cmd_args"`
 	// The modified values
-	CmdResult interface{} `json:"cmd_result,omitempty"`
+	CmdResult string `json:"cmd_result,omitempty"`
 }
 
 type HistoryReportType struct {
@@ -496,9 +496,9 @@ type HistoryReportType struct {
 	// Store the report until the date in the following format: YYYY-MM-DD. The report is completed if the field exists
 	StoreUntil Date `json:"store_until,omitempty"`
 	// The report order filters (the saved [GetCallHistory], [GetTransactionHistory] parameters)
-	Filters interface{} `json:"filters,omitempty"`
+	Filters string `json:"filters,omitempty"`
 	// The calculated report data (the specific report data, see [CalculatedCallHistoryDataType], [CalculatedTransactionHistoryDataType])
-	CalculatedData interface{} `json:"calculated_data,omitempty"`
+	CalculatedData string `json:"calculated_data,omitempty"`
 }
 
 type CommonReportType struct {
@@ -525,9 +525,9 @@ type CommonReportType struct {
 	// Store the report until the date in the following format: YYYY-MM-DD. The report is completed if the field exists
 	StoreUntil Date `json:"store_until,omitempty"`
 	// The report order filters (the saved [GetCallHistory], [GetTransactionHistory] parameters)
-	Filters interface{} `json:"filters,omitempty"`
+	Filters string `json:"filters,omitempty"`
 	// The calculated report data (the specific report data, see [CalculatedCallHistoryDataType], [CalculatedTransactionHistoryDataType])
-	CalculatedData interface{} `json:"calculated_data,omitempty"`
+	CalculatedData string `json:"calculated_data,omitempty"`
 }
 
 type CalculatedCallHistoryDataType struct {
@@ -1297,6 +1297,8 @@ type CallListDetailType struct {
 	CustomData string `json:"custom_data"`
 	// Time with which to start the job in 24-h format: HH:mm:ss
 	StartExecutionTime Timestamp `json:"start_execution_time"`
+	// Call list schedule in the JSON format. Refer to the <a href="/docs/guides/solutions/call-lists">Call lists guide</a> for more information.
+	CallSchedule string `json:"call_schedule,omitempty"`
 	// Time after which the task cannot be performed in 24-h format: HH:mm:ss
 	FinishExecutionTime Timestamp `json:"finish_execution_time"`
 	// Results of the task, if it is granted, or information about the runtime error
@@ -1358,45 +1360,11 @@ type SIPRegistrationType struct {
 	RuleName string `json:"rule_name,omitempty"`
 }
 
-type AdminRoleType struct {
-	// The admin role ID
-	AdminRoleId int `json:"admin_role_id"`
-	// The admin role name
-	AdminRoleName string `json:"admin_role_name"`
-	// Whether to ignore the allowed and denied entries
-	AdminRoleActive *bool `json:"admin_role_active"`
-	// Whether it is a system role
-	SystemRole *bool `json:"system_role"`
-	// The admin role editing UTC date in 24-h format: YYYY-MM-DD HH:mm:ss
-	Modified Timestamp `json:"modified"`
-	// The allowed access entries (the API function names)
-	AllowedEntries []string `json:"allowed_entries,omitempty"`
-	// The denied access entries (the API function names)
-	DeniedEntries []string `json:"denied_entries,omitempty"`
-}
-
 type ClonedAdminRoleType struct {
 	// The admin role ID
 	AdminRoleId int `json:"admin_role_id"`
 	// The admin role name
 	AdminRoleName string `json:"admin_role_name"`
-}
-
-type AdminUserType struct {
-	// The admin user ID
-	AdminUserId int `json:"admin_user_id"`
-	// The admin user name
-	AdminUserName string `json:"admin_user_name"`
-	// The admin user display name
-	AdminUserDisplayName string `json:"admin_user_display_name"`
-	// Whether login is allowed
-	AdminUserActive *bool `json:"admin_user_active"`
-	// The admin user editing UTC date in 24-h format: YYYY-MM-DD HH:mm:ss
-	Modified Timestamp `json:"modified"`
-	// The allowed access entries (the API function names)
-	AccessEntries []string `json:"access_entries,omitempty"`
-	// The attached admin roles
-	AdminRoles []AdminRoleType `json:"admin_roles,omitempty"`
 }
 
 type ClonedAdminUserType struct {
@@ -1512,11 +1480,11 @@ type AccountVerificationsType struct {
 
 type AccountVerificationsTypeCredentials struct {
 	// Details of a person who takes the verification
-	Individual interface{} `json:"individual,omitempty"`
+	Individual string `json:"individual,omitempty"`
 	// Company details for a legal entity
-	LegalEntity interface{} `json:"legal_entity,omitempty"`
+	LegalEntity string `json:"legal_entity,omitempty"`
 	// Company details for a individual entrepreneur
-	Entrepreneur interface{} `json:"entrepreneur,omitempty"`
+	Entrepreneur string `json:"entrepreneur,omitempty"`
 	// Subscriber type. Possible values are: INDIVIDUAL, LEGAL_ENTITY, ENTREPRENEUR
 	LegalStatus string `json:"legal_status,omitempty"`
 }
@@ -1525,7 +1493,7 @@ type AccountVerificationsTypeDefaultEndUser struct {
 	// Customer's UUID
 	EndUserUuid int `json:"end_user_uuid"`
 	// Customer's data
-	Credentials interface{} `json:"credentials"`
+	Credentials string `json:"credentials"`
 }
 
 type AccountVerificationsTypeAgreements struct {
@@ -2450,9 +2418,9 @@ type GetSQAgentsResult struct {
 	// Agent statuses info
 	SqStatuses []SmartQueueStateAgentStatus `json:"sq_statuses,omitempty"`
 	// JSON array of the agent's queues
-	SqQueues interface{} `json:"sq_queues,omitempty"`
+	SqQueues string `json:"sq_queues,omitempty"`
 	// JSON array of the agent's skills
-	SqSkills interface{} `json:"sq_skills,omitempty"`
+	SqSkills string `json:"sq_skills,omitempty"`
 }
 
 type SQTaskSelectionStrategies struct {
@@ -2538,7 +2506,7 @@ type SmartQueueStateTask struct {
 	// Processing time in ms
 	ProcessingTime int `json:"processing_time"`
 	// Custom data text string for the current task. You can set the custom data in the [enqueueTask](/docs/references/voxengine/voxengine/enqueuetask#enqueuetask) method
-	CustomData interface{} `json:"custom_data,omitempty"`
+	CustomData string `json:"custom_data,omitempty"`
 }
 
 type SmartQueueStateAgent struct {

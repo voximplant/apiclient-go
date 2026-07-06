@@ -101,12 +101,12 @@ func (s *AccountsService) SetAccountInfo(params SetAccountInfoParams) (*SetAccou
 }
 
 type SetChildAccountInfoParams struct {
-	// The child account ID list separated by semicolons (;). Use the 'all' value to select all child accounts
-	ChildAccountId string `json:"child_account_id"`
-	// The child account name list separated by semicolons (;). Can be used instead of <b>child_account_id</b>
-	ChildAccountName string `json:"child_account_name"`
-	// The child account email list separated by semicolons (;). Can be used instead of <b>child_account_id</b>
-	ChildAccountEmail string `json:"child_account_email"`
+	// The child account ID list separated by semicolons (;). Use the 'all' value to select all child accounts. <b>Required</b> unless <b>child_account_name</b> or <b>child_account_email</b> is provided.
+	ChildAccountId string `json:"child_account_id,omitempty"`
+	// The child account name list separated by semicolons (;). <b>Required</b> unless <b>child_account_id</b> or <b>child_account_email</b> is provided.
+	ChildAccountName string `json:"child_account_name,omitempty"`
+	// The child account email list separated by semicolons (;). <b>Required</b> unless <b>child_account_id</b> or <b>child_account_name</b> is provided.
+	ChildAccountEmail string `json:"child_account_email,omitempty"`
 	// The new child account email
 	NewChildAccountEmail string `json:"new_child_account_email,omitempty"`
 	// The new child account password. Must be at least 8 characters long and contain at least one uppercase and lowercase letter, one number, and one special character

@@ -9,9 +9,9 @@ type SecretsService struct {
 }
 
 type AddSecretParams struct {
-	// Application ID to add the secret to
+	// Application ID to add the secret to. <b>Required</b> unless <b>application_name</b> is provided.
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// Application name. Can be used instead of <b>application_id</b>
+	// Application name. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
 	// Secret name. The name must start with a Latin letter and can contain up to 64 characters, including Latin letters, digits and underscores
 	SecretName string `json:"secret_name"`
@@ -41,9 +41,9 @@ func (s *SecretsService) AddSecret(params AddSecretParams) (*AddSecretReturn, *s
 }
 
 type DelSecretParams struct {
-	// Application ID
+	// Application ID. <b>Required</b> unless <b>application_name</b> is provided.
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// Application name. Can be used instead of <b>application_id</b>
+	// Application name. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
 	// IDs to delete. A list separated by semicolons (;). Use the 'all' value to delete all secrets
 	SecretId string `json:"secret_id,omitempty"`
@@ -71,13 +71,13 @@ func (s *SecretsService) DelSecret(params DelSecretParams) (*DelSecretReturn, *s
 }
 
 type GetSecretValueParams struct {
-	// Application ID
+	// Application ID. <b>Required</b> unless <b>application_name</b> is provided.
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// Application name. Can be used instead of <b>application_id</b>
+	// Application name. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
-	// Secret ID
+	// Secret ID. <b>Required</b> unless <b>secret_name</b> is provided.
 	SecretId int `json:"secret_id,string,omitempty"`
-	// Secret name. Can be used instead of <b>secret_id</b>
+	// Secret name. <b>Required</b> unless <b>secret_id</b> is provided.
 	SecretName string `json:"secret_name,omitempty"`
 }
 
@@ -101,9 +101,9 @@ func (s *SecretsService) GetSecretValue(params GetSecretValueParams) (*GetSecret
 }
 
 type GetSecretsParams struct {
-	// Application ID
+	// Application ID. <b>Required</b> unless <b>application_name</b> is provided.
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// Application name. Can be used instead of <b>application_id</b>
+	// Application name. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
 	// Filter by the secret name part
 	SecretNamePart string `json:"secret_name_part,omitempty"`
@@ -137,13 +137,13 @@ func (s *SecretsService) GetSecrets(params GetSecretsParams) (*GetSecretsReturn,
 }
 
 type SetSecretInfoParams struct {
-	// Application ID
+	// Application ID. <b>Required</b> unless <b>application_name</b> is provided.
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// Application name. Can be used instead of <b>application_id</b>
+	// Application name. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
-	// Secret ID to edit
+	// Secret ID to edit. <b>Required</b> unless <b>secret_name</b> is provided.
 	SecretId int `json:"secret_id,string,omitempty"`
-	// Secret name. Can be used instead of <b>secret_id</b>
+	// Secret name. <b>Required</b> unless <b>secret_id</b> is provided.
 	SecretName string `json:"secret_name,omitempty"`
 	// New secret name. The name must start with a Latin letter and can contain up to 64 characters, including Latin letters, digits and underscores
 	NewSecretName string `json:"new_secret_name,omitempty"`

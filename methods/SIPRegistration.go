@@ -183,14 +183,14 @@ type GetSipRegistrationsParams struct {
 	ApplicationName string `json:"application_name,omitempty"`
 	// Whether SIP registration bound to an application
 	IsBoundToApplication *bool `json:"is_bound_to_application,string,omitempty"`
-	// The rule ID list separated by semicolons (;) to filter. Can be used instead of <b>rule_name</b>
-	RuleId string `json:"rule_id"`
-	// The rule name list separated by semicolons (;) to filter. Can be used instead of <b>rule_id</b>
-	RuleName string `json:"rule_name"`
-	// The user ID list separated by semicolons (;) to filter. Can be used instead of <b>user_name</b>
-	UserId string `json:"user_id"`
-	// The user name list separated by semicolons (;) to filter. Can be used instead of <b>user_id</b>
-	UserName string `json:"user_name"`
+	// The rule ID list separated by semicolons (;) to filter. <b>Required</b> unless <b>rule_name</b> is provided.
+	RuleId string `json:"rule_id,omitempty"`
+	// The rule name list separated by semicolons (;) to filter. <b>Required</b> unless <b>rule_id</b> is provided.
+	RuleName string `json:"rule_name,omitempty"`
+	// The user ID list separated by semicolons (;) to filter. <b>Required</b> unless <b>user_name</b> is provided.
+	UserId string `json:"user_id,omitempty"`
+	// The user name list separated by semicolons (;) to filter. <b>Required</b> unless <b>user_id</b> is provided.
+	UserName string `json:"user_name,omitempty"`
 	// The list of proxy servers to use, divided by semicolon (;)
 	Proxy string `json:"proxy,omitempty"`
 	// Whether SIP registration is still in progress

@@ -14,10 +14,9 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
 	FromDateRaw := time.Date(2019, 3, 1, 0, 0, 0, 0, time.UTC)
 	FromDate := (*structure.Timestamp)(&FromDateRaw)
-	params := methods.A2PGetSmsHistoryParams{DestinationNumber: "12345678222", FromDate: FromDate}
+	params := methods.A2PGetSmsHistoryParams{FromDate: FromDate}
 	res, verr, err := client.SMS.A2PGetSmsHistory(params)
 	fmt.Println(res, verr, err)
 }

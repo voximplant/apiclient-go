@@ -9,10 +9,10 @@ type RulesService struct {
 }
 
 type AddRuleParams struct {
-	// The application ID
-	ApplicationId int `json:"application_id,string"`
-	// The application name, can be used instead of <b>application_id</b>
-	ApplicationName string `json:"application_name"`
+	// The application ID. <b>Required</b> unless <b>application_name</b> is provided.
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// The application name. <b>Required</b> unless <b>application_id</b> is provided.
+	ApplicationName string `json:"application_name,omitempty"`
 	// The rule name. The length must be less than 100
 	RuleName string `json:"rule_name"`
 	// The rule pattern regex. The length must be less than 64 KB
@@ -23,10 +23,10 @@ type AddRuleParams struct {
 	VideoConference *bool `json:"video_conference,string,omitempty"`
 	// The service account ID to bind to the rule. Read more in the [guide](/docs/guides/voxengine/management-api)
 	BindKeyId string `json:"bind_key_id,omitempty"`
-	// The scenario ID list separated by semicolons (;)
-	ScenarioId string `json:"scenario_id"`
-	// The scenario name list separated by semicolons (;). Can be used instead of <b>scenario_id</b>
-	ScenarioName string `json:"scenario_name"`
+	// The scenario ID list separated by semicolons (;). <b>Required</b> unless <b>scenario_name</b> is provided.
+	ScenarioId string `json:"scenario_id,omitempty"`
+	// The scenario name list separated by semicolons (;). <b>Required</b> unless <b>scenario_id</b> is provided.
+	ScenarioName string `json:"scenario_name,omitempty"`
 }
 
 type AddRuleReturn struct {
@@ -51,14 +51,14 @@ func (s *RulesService) AddRule(params AddRuleParams) (*AddRuleReturn, *structure
 }
 
 type DelRuleParams struct {
-	// The rule ID list separated by semicolons (;). Use the 'all' value to select all rules
-	RuleId string `json:"rule_id"`
-	// The rule name list separated by semicolons (;). Can be used instead of <b>rule_id</b>
-	RuleName string `json:"rule_name"`
-	// The application ID list separated by semicolons (;). Use the 'all' value to select all applications
-	ApplicationId string `json:"application_id"`
-	// The application name list separated by semicolons (;). Can be used instead of <b>application_id</b>
-	ApplicationName string `json:"application_name"`
+	// The rule ID list separated by semicolons (;). Use the 'all' value to select all rules. <b>Required</b> unless <b>rule_name</b> is provided.
+	RuleId string `json:"rule_id,omitempty"`
+	// The rule name list separated by semicolons (;). <b>Required</b> unless <b>rule_id</b> is provided.
+	RuleName string `json:"rule_name,omitempty"`
+	// The application ID list separated by semicolons (;). Use the 'all' value to select all applications. <b>Required</b> unless <b>application_name</b> is provided.
+	ApplicationId string `json:"application_id,omitempty"`
+	// The application name list separated by semicolons (;). <b>Required</b> unless <b>application_id</b> is provided.
+	ApplicationName string `json:"application_name,omitempty"`
 }
 
 type DelRuleReturn struct {
@@ -115,10 +115,10 @@ func (s *RulesService) SetRuleInfo(params SetRuleInfoParams) (*SetRuleInfoReturn
 }
 
 type GetRulesParams struct {
-	// The application ID
-	ApplicationId int `json:"application_id,string"`
-	// The application name that can be used instead of <b>application_id</b>
-	ApplicationName string `json:"application_name"`
+	// The application ID. <b>Required</b> unless <b>application_name</b> is provided.
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// The application name. <b>Required</b> unless <b>application_id</b> is provided.
+	ApplicationName string `json:"application_name,omitempty"`
 	// The rule ID to filter
 	RuleId int `json:"rule_id,string,omitempty"`
 	// The rule name part to filter

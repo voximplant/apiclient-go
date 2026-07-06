@@ -9,10 +9,10 @@ type QueuesService struct {
 }
 
 type AddQueueParams struct {
-	// The application ID
-	ApplicationId int `json:"application_id,string"`
-	// The application name that can be used instead of <b>application_id</b>
-	ApplicationName string `json:"application_name"`
+	// The application ID. <b>Required</b> unless <b>application_name</b> is provided.
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// The application name. <b>Required</b> unless <b>application_id</b> is provided.
+	ApplicationName string `json:"application_name,omitempty"`
 	// The queue name. The length must be less than 100
 	AcdQueueName string `json:"acd_queue_name"`
 	// The integer queue priority. The highest priority is 0
@@ -53,18 +53,18 @@ func (s *QueuesService) AddQueue(params AddQueueParams) (*AddQueueReturn, *struc
 type BindUserToQueueParams struct {
 	// Whether to bind or unbind users
 	Bind *bool `json:"bind,string"`
-	// The application ID
-	ApplicationId int `json:"application_id,string"`
-	// The application name that can be used instead of <b>application_id</b>
-	ApplicationName string `json:"application_name"`
-	// The user ID list separated by semicolons (;). Use the 'all' value to specify all users bound to the application
-	UserId string `json:"user_id"`
-	// The user name list separated by semicolons (;). <b>user_name</b> can be used instead of <b>user_id</b>
-	UserName string `json:"user_name"`
-	// The ACD queue ID list separated by semicolons (;). Use the 'all' value to specify all queues bound to the application
-	AcdQueueId string `json:"acd_queue_id"`
-	// The queue name that can be used instead of <b>acd_queue_id</b>. The queue name list separated by semicolons (;)
-	AcdQueueName string `json:"acd_queue_name"`
+	// The application ID. <b>Required</b> unless <b>application_name</b> is provided.
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// The application name. <b>Required</b> unless <b>application_id</b> is provided.
+	ApplicationName string `json:"application_name,omitempty"`
+	// The user ID list separated by semicolons (;). Use the 'all' value to specify all users bound to the application. <b>Required</b> unless <b>user_name</b> is provided.
+	UserId string `json:"user_id,omitempty"`
+	// The user name list separated by semicolons (;). <b>Required</b> unless <b>user_id</b> is provided.
+	UserName string `json:"user_name,omitempty"`
+	// The ACD queue ID list separated by semicolons (;). Use the 'all' value to specify all queues bound to the application. <b>Required</b> unless <b>acd_queue_name</b> is provided.
+	AcdQueueId string `json:"acd_queue_id,omitempty"`
+	// The queue name. The queue name list separated by semicolons (;). <b>Required</b> unless <b>acd_queue_id</b> is provided.
+	AcdQueueName string `json:"acd_queue_name,omitempty"`
 }
 
 type BindUserToQueueReturn struct {
@@ -87,10 +87,10 @@ func (s *QueuesService) BindUserToQueue(params BindUserToQueueParams) (*BindUser
 }
 
 type DelQueueParams struct {
-	// The ACD queue ID list separated by semicolons (;)
-	AcdQueueId string `json:"acd_queue_id"`
-	// The ACD queue name that can be used instead of <b>acd_queue_id</b>. The ACD queue name list separated by semicolons (;)
-	AcdQueueName string `json:"acd_queue_name"`
+	// The ACD queue ID list separated by semicolons (;). <b>Required</b> unless <b>acd_queue_name</b> is provided.
+	AcdQueueId string `json:"acd_queue_id,omitempty"`
+	// The ACD queue name. The ACD queue name list separated by semicolons (;). <b>Required</b> unless <b>acd_queue_id</b> is provided.
+	AcdQueueName string `json:"acd_queue_name,omitempty"`
 }
 
 type DelQueueReturn struct {
@@ -113,10 +113,10 @@ func (s *QueuesService) DelQueue(params DelQueueParams) (*DelQueueReturn, *struc
 }
 
 type SetQueueInfoParams struct {
-	// The ACD queue ID
-	AcdQueueId int `json:"acd_queue_id,string"`
-	// The ACD queue name that can be used instead of <b>acd_queue_id</b>
-	AcdQueueName string `json:"acd_queue_name"`
+	// The ACD queue ID. <b>Required</b> unless <b>acd_queue_name</b> is provided.
+	AcdQueueId int `json:"acd_queue_id,string,omitempty"`
+	// The ACD queue name. <b>Required</b> unless <b>acd_queue_id</b> is provided.
+	AcdQueueName string `json:"acd_queue_name,omitempty"`
 	// The new queue name. The length must be less than 100
 	NewAcdQueueName string `json:"new_acd_queue_name,omitempty"`
 	// The integer queue priority. The highest priority is 0

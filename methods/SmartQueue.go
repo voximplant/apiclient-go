@@ -9,9 +9,9 @@ type SmartQueueService struct {
 }
 
 type GetSmartQueueRealtimeMetricsParams struct {
-	// The application ID to search by
+	// The application ID to search by. <b>Required</b> unless <b>application_name</b> is provided.
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// The application name to search by. Can be used instead of the <b>application_id</b> parameter
+	// The application name to search by. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
 	// The user ID list with a maximum of 5 values separated by semicolons (;). Use the 'all' value to select all users. Can operate as a filter for the **occupancy_rate**, **sum_agents_online_time**, **sum_agents_ready_time**, **sum_agents_dialing_time**, **sum_agents_in_service_time**, **sum_agents_afterservice_time**, **sum_agents_dnd_time**, **sum_agents_banned_time**, **min_handle_time**, **max_handle_time**, **average_handle_time**, **count_handled_calls**, **min_after_call_worktime**, **max_after_call_worktime**, **average_after_call_worktime** report types
 	UserId string `json:"user_id,omitempty"`
@@ -56,9 +56,9 @@ func (s *SmartQueueService) GetSmartQueueRealtimeMetrics(params GetSmartQueueRea
 }
 
 type GetSmartQueueDayHistoryParams struct {
-	// The application ID to search by
+	// The application ID to search by. <b>Required</b> unless <b>application_name</b> is provided.
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// The application name to search by. Can be used instead of the <b>application_id</b> parameter
+	// The application name to search by. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
 	// The user ID list with a maximum of 5 values separated by semicolons (;). Use the 'all' value to select all users. Can operate as a filter for the **occupancy_rate**, **sum_agents_online_time**, **sum_agents_ready_time**, **sum_agents_dialing_time**, **sum_agents_in_service_time**, **sum_agents_afterservice_time**, **sum_agents_dnd_time**, **sum_agents_banned_time**, **min_handle_time**, **max_handle_time**, **average_handle_time**, **count_handled_calls**, **min_after_call_worktime**, **max_after_call_worktime**, **average_after_call_worktime** report types
 	UserId string `json:"user_id,omitempty"`
@@ -105,9 +105,9 @@ func (s *SmartQueueService) GetSmartQueueDayHistory(params GetSmartQueueDayHisto
 }
 
 type RequestSmartQueueHistoryParams struct {
-	// The application ID to search by
+	// The application ID to search by. <b>Required</b> unless <b>application_name</b> is provided.
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// The application name to search by. Can be used instead of the <b>application_id</b> parameter
+	// The application name to search by. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
 	// The user ID list with a maximum of 5 values separated by semicolons (;). Use the 'all' value to select all users. Can operate as a filter for the **occupancy_rate**, **sum_agents_online_time**, **sum_agents_ready_time**, **sum_agents_dialing_time**, **sum_agents_in_service_time**, **sum_agents_afterservice_time**, **sum_agents_dnd_time**, **sum_agents_banned_time**, **min_handle_time**, **max_handle_time**, **average_handle_time**, **count_handled_calls**, **min_after_call_worktime**, **max_after_call_worktime**, **average_after_call_worktime** report types
 	UserId string `json:"user_id,omitempty"`
@@ -334,7 +334,7 @@ type SQSetQueueInfoParams struct {
 	SqQueueId int `json:"sq_queue_id,string"`
 	// Name of the SmartQueue to search for. Can be used instead of <b>sq_queue_id</b>
 	SqQueueName string `json:"sq_queue_name,omitempty"`
-	// Whether to keep the call task in the queue if all agents are in the DND/BANNED/OFFLINE statuses.
+	// Whether to keep the call task in the queue if all agents are in the DND/BANNED statuses.
 	HoldCallsIfInactiveAgents *bool `json:"hold_calls_if_inactive_agents,string,omitempty"`
 	// New SmartQueue name within the application, up to 100 characters
 	NewSqQueueName string `json:"new_sq_queue_name,omitempty"`
@@ -564,8 +564,8 @@ type SQBindSkillParams struct {
 	UserId string `json:"user_id"`
 	// List of user names separated by semicolons (;). Can be used instead of <b>user_id</b>
 	UserName string `json:"user_name,omitempty"`
-	// Skills to be bound to agents in the json array format. The array should contain objects with the <b>sq_skill_id</b>/<b>sq_skill_name</b> and <b>sq_skill_level</b> keys where skill levels range from 1 to 5
-	SqSkills interface{} `json:"sq_skills,string"`
+	// Skills to be bound to agents in the JSON array format. The array should contain objects with the <b>sq_skill_id</b>/<b>sq_skill_name</b> and <b>sq_skill_level</b> keys where skill levels range from 1 to 5
+	SqSkills string `json:"sq_skills"`
 	// Binding mode. Accepts one of the [SQSkillBindingModes] enum values
 	BindMode string `json:"bind_mode,omitempty"`
 }
@@ -750,16 +750,16 @@ type SQGetAgentsParams struct {
 	ExcludedSqQueueId int `json:"excluded_sq_queue_id,string,omitempty"`
 	// Name of the SmartQueue to exclude. Can be used instead of <b>excluded_sq_queue_id</b>
 	ExcludedSqQueueName string `json:"excluded_sq_queue_name,omitempty"`
-	// Skills to filter in the json array format. The array should contain objects with the <b>sq_skill_id</b>/<b>sq_skill_name</b>, <b>min_sq_skill_level</b>, and <b>max_sq_skill_level</b> keys where skill levels range from 1 to 5
-	SqSkills interface{} `json:"sq_skills,string,omitempty"`
+	// Skills to filter in the JSON array format. The array should contain objects with the <b>sq_skill_id</b>/<b>sq_skill_name</b>, <b>min_sq_skill_level</b>, and <b>max_sq_skill_level</b> keys where skill levels range from 1 to 5
+	SqSkills string `json:"sq_skills,omitempty"`
 	// List of user IDs separated by semicolons (;)
 	UserId string `json:"user_id,omitempty"`
 	// List of user names separated by semicolons (;). Can be used instead of <b>user_id</b>
 	UserName string `json:"user_name,omitempty"`
 	// Substring of the user name to filter
 	UserNameTemplate string `json:"user_name_template,omitempty"`
-	// Filter statuses in the json array format. The array should contain objects with the <b>sq_status_type</b> and <b>sq_status_name</b> keys. Possible values for <b>sq_status_type</b> are 'CALL' and 'IM'. Possible values for <b>sq_status_name</b> are 'OFFLINE', 'ONLINE', 'READY', 'IN_SERVICE', 'AFTER_SERVICE', 'DND'
-	SqStatuses interface{} `json:"sq_statuses,string,omitempty"`
+	// Filter statuses in the JSON array format. The array should contain objects with the <b>sq_status_type</b> and <b>sq_status_name</b> keys. Possible values for <b>sq_status_type</b> are 'CALL' and 'IM'. Possible values for <b>sq_status_name</b> are 'OFFLINE', 'ONLINE', 'READY', 'IN_SERVICE', 'AFTER_SERVICE', 'DND'
+	SqStatuses string `json:"sq_statuses,omitempty"`
 	// Whether to display agent skills
 	WithSqSkills *bool `json:"with_sq_skills,string,omitempty"`
 	// Whether to display agent queues

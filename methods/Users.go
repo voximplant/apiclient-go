@@ -15,9 +15,9 @@ type AddUserParams struct {
 	UserDisplayName string `json:"user_display_name"`
 	// The user password. Must be at least 8 characters long and contain at least one uppercase and lowercase letter, one number, and one special character
 	UserPassword string `json:"user_password"`
-	// The application ID which a new user is to be bound to. Can be used instead of the <b>application_name</b> parameter
+	// The application ID which a new user is to be bound to. <b>Required</b> unless <b>application_name</b> is provided.
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// The application name which a new user is to be bound to. Can be used instead of the <b>application_id</b> parameter
+	// The application name which a new user is to be bound to. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
 	// Whether the user uses the parent account's money, 'false' if the user has a separate balance
 	ParentAccounting *bool `json:"parent_accounting,string,omitempty"`
@@ -51,10 +51,10 @@ func (s *UsersService) AddUser(params AddUserParams) (*AddUserReturn, *structure
 }
 
 type DelUserParams struct {
-	// The user ID list separated by semicolons (;). Use the 'all' value to select all users
-	UserId string `json:"user_id"`
-	// The user name list separated by semicolons (;) that can be used instead of <b>user_id</b>
-	UserName string `json:"user_name"`
+	// The user ID list separated by semicolons (;). Use the 'all' value to select all users. <b>Required</b> unless <b>user_name</b> is provided.
+	UserId string `json:"user_id,omitempty"`
+	// The user name list separated by semicolons (;). <b>Required</b> unless <b>user_id</b> is provided.
+	UserName string `json:"user_name,omitempty"`
 	// Delete the specified users bound to the application ID. It is required if the <b>user_name</b> is specified
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// Delete the specified users bound to the application name. Can be used instead of the <b>application_id</b> parameter
@@ -81,10 +81,10 @@ func (s *UsersService) DelUser(params DelUserParams) (*DelUserReturn, *structure
 }
 
 type SetUserInfoParams struct {
-	// The user to edit
-	UserId int `json:"user_id,string"`
-	// The user name that can be used instead of <b>user_id</b>
-	UserName string `json:"user_name"`
+	// The user to edit. <b>Required</b> unless <b>user_name</b> is provided.
+	UserId int `json:"user_id,string,omitempty"`
+	// The user name. <b>Required</b> unless <b>user_id</b> is provided.
+	UserName string `json:"user_name,omitempty"`
 	// The application ID. It is required if the <b>user_name</b> is specified
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// The application name that can be used instead of <b>application_id</b>

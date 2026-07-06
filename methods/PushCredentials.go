@@ -10,10 +10,10 @@ type PushCredentialsService struct {
 }
 
 type AddPushCredentialParams struct {
-	// The push provider name. The possible values are APPLE, APPLE_VOIP, GOOGLE, HUAWEI
-	PushProviderName string `json:"push_provider_name"`
-	// The push provider id. Can be used instead of <b>push_provider_name</b>. The possible values are: 1 — APPLE, 2 — GOOGLE, 3 — APPLE_VOIP, 5 — HUAWEI.
-	PushProviderId int `json:"push_provider_id,string"`
+	// The push provider name. The possible values are APPLE, APPLE_VOIP, GOOGLE, HUAWEI. <b>Required</b> unless <b>push_provider_id</b> is provided.
+	PushProviderName string `json:"push_provider_name,omitempty"`
+	// The push provider id. The possible values are: 1 — APPLE, 2 — GOOGLE, 3 — APPLE_VOIP, 5 — HUAWEI. <b>Required</b> unless <b>push_provider_name</b> is provided.
+	PushProviderId int `json:"push_provider_id,string,omitempty"`
 	// The application id
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// The application name that can be used instead of <b>application_id</b>

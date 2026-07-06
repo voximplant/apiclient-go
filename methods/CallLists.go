@@ -12,6 +12,8 @@ type CallListsService struct {
 type CreateCallListParams struct {
 	// Rule ID. It is specified in the <a href='//manage.voximplant.com/applications'>Applications</a> section of the Control Panel
 	RuleId int `json:"rule_id,string"`
+	// Custom data string for the call list
+	ListCustomData string `json:"list_custom_data,omitempty"`
 	// Call list priority. The value is in the range of [0 ... 2^31] where zero is the highest priority
 	Priority int `json:"priority,string"`
 	// Number of simultaneously processed tasks
@@ -20,7 +22,7 @@ type CreateCallListParams struct {
 	NumAttempts int `json:"num_attempts,string"`
 	// File name, up to 255 characters and cannot contain the '/' and '\' symbols
 	Name string `json:"name"`
-	// Send as the "body" part of the HTTP request or as multiform. The sending "file_content" via URL is at its own risk because the network devices tend to drop HTTP requests with large headers
+	// Send as the "body" part of the HTTP request or as multiform. The sending "file_content" via URL is at its own risk because the network devices tend to drop HTTP requests with large headers. Refer to the <a href="https://voximplant.com/docs/guides/solutions/call-lists#csv-table-setup">Call lists guide</a> to learn about file syntax
 	FileContent io.Reader `json:"file_content,string"`
 	// Interval between call attempts in seconds. The default value is 0
 	IntervalSeconds int `json:"interval_seconds,string,omitempty"`
@@ -49,7 +51,7 @@ type CreateCallListReturn struct {
 	BatchId string `json:"batch_id"`
 }
 
-// Adds a new CSV file for call list processing and starts the specified rule immediately. To send a file, use the request body. To set the call time constraints, use the following options in a CSV file: <ul><li>**__start_execution_time** – when the call list processing starts every day, UTC+0 24-h format: HH:mm:ss</li><li>**__end_execution_time** – when the call list processing stops every day,  UTC+0 24-h format: HH:mm:ss</li><li>**__start_at** – when the call list processing starts, UNIX timestamp. If not specified, the processing starts immediately after a method call</li><li>**__task_uuid** – call list UUID. A string up to 40 characters, can contain latin letters, digits, hyphens (-) and colons (:). Unique within the call list</li></ul><br>This method accepts CSV files with custom delimiters, such a commas (,), semicolons (;) and other. To specify a delimiter, pass it to the <b>delimiter</b> parameter.<br/><b>IMPORTANT:</b> the account's balance should be equal or greater than 1 USD. If the balance is lower than 1 USD, the call list processing does not start, or it stops immediately if it is active.
+// Adds a new CSV file for call list processing and starts the specified rule immediately. To send a file, use the request body. To set the call time constraints, use the following options in a CSV file: <ul><li>**__start_execution_time** – when the call list processing starts every day, UTC+0 24-h format: HH:mm:ss</li><li>**__end_execution_time** – when the call list processing stops every day,  UTC+0 24-h format: HH:mm:ss</li><li>**__start_at** – when the call list processing starts, UNIX timestamp. If not specified, the processing starts immediately after a method call</li><li>**__task_uuid** – call list UUID. A string up to 40 characters, can contain latin letters, digits, hyphens (-) and colons (:). Unique within the call list</li></ul><br>This method accepts CSV files with custom delimiters, such a commas (,), semicolons (;) and other. To specify a delimiter, pass it to the <b>delimiter</b> parameter.<br/><b>IMPORTANT:</b> the account's balance should be equal or greater than 1 USD. If the balance is lower than 1 USD, the call list processing does not start, or it stops immediately if it is active.<br><br>You can specify a custom call schedule for every record. Refer to the <a href="/docs/guides/solutions/call-lists">Call lists guide</a> for more information.
 func (s *CallListsService) CreateCallList(params CreateCallListParams) (*CreateCallListReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "CreateCallList", params)
 	if err != nil {
@@ -64,11 +66,11 @@ func (s *CallListsService) CreateCallList(params CreateCallListParams) (*CreateC
 }
 
 type AppendToCallListParams struct {
-	// Call list ID
-	ListId int `json:"list_id,string"`
-	// The unique name of the call list. Can be used instead of <b>list_id</b>
-	ListName string `json:"list_name"`
-	// Send as the request body or multiform
+	// Call list ID. <b>Required</b> unless <b>list_name</b> is provided.
+	ListId int `json:"list_id,string,omitempty"`
+	// The unique name of the call list. <b>Required</b> unless <b>list_id</b> is provided.
+	ListName string `json:"list_name,omitempty"`
+	// Send as the request body or multiform. Refer to the <a href="https://voximplant.com/docs/guides/solutions/call-lists#csv-table-setup">Call lists guide</a> to learn about file syntax
 	FileContent io.Reader `json:"file_content,string"`
 	// Encoding file. The default value is UTF-8
 	Encoding string `json:"encoding,omitempty"`
@@ -89,7 +91,7 @@ type AppendToCallListReturn struct {
 	BatchId int `json:"batch_id"`
 }
 
-// Appends a new task to the existing call list.<br>This method accepts CSV files with custom delimiters, such a commas (,), semicolons (;) and other. To specify a delimiter, pass it to the <b>delimiter</b> parameter.
+// Appends a new task to the existing call list.<br>This method accepts CSV files with custom delimiters, such a commas (,), semicolons (;) and other. To specify a delimiter, pass it to the <b>delimiter</b> parameter.<br><br>You can specify a custom call schedule for every record. Refer to the <a href="/docs/guides/solutions/call-lists">Call lists guide</a> for more information.
 func (s *CallListsService) AppendToCallList(params AppendToCallListParams) (*AppendToCallListReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "AppendToCallList", params)
 	if err != nil {
@@ -104,10 +106,10 @@ func (s *CallListsService) AppendToCallList(params AppendToCallListParams) (*App
 }
 
 type CancelCallListBatchParams struct {
-	// Call list ID
-	ListId int `json:"list_id,string"`
-	// The unique name of the call list. Can be used instead of <b>list_id</b>
-	ListName string `json:"list_name"`
+	// Call list ID. <b>Required</b> unless <b>list_name</b> is provided.
+	ListId int `json:"list_id,string,omitempty"`
+	// The unique name of the call list. <b>Required</b> unless <b>list_id</b> is provided.
+	ListName string `json:"list_name,omitempty"`
 	// Batch UUIDs of the tasks to cancel, separated by semicolon (;)
 	BatchIds string `json:"batch_ids"`
 }
@@ -134,6 +136,8 @@ func (s *CallListsService) CancelCallListBatch(params CancelCallListBatchParams)
 type EditCallListParams struct {
 	// Call list ID. If the ID is non existing, the 251 error returns
 	ListId int `json:"list_id,string"`
+	// Custom data string for the call list
+	ListCustomData string `json:"list_custom_data,omitempty"`
 	// Minimum interval between call attempts. Cannot be a negative value
 	IntervalSeconds int `json:"interval_seconds,string,omitempty"`
 	// Maximum call attempt number. Cannot be less than 1
@@ -314,6 +318,8 @@ type EditCallListTaskParams struct {
 	ListId int `json:"list_id,string"`
 	// Call list's task ID. Please specify either the task's ID or the task's UUID to edit the task
 	TaskId int `json:"task_id,string,omitempty"`
+	// Call list schedule in the JSON format. Refer to the <a href="/docs/guides/solutions/call-lists">Call lists guide</a> for more information.
+	CallSchedule string `json:"call_schedule,omitempty"`
 	// Call list's task ID. Please specify either the task's ID or the task's UUID to edit the task. The UUID is unique within the call list
 	TaskUuid string `json:"task_uuid,omitempty"`
 	// Next calling attempts timestamp in the yyyy-MM-dd HH:mm:ss format

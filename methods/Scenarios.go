@@ -47,10 +47,10 @@ func (s *ScenariosService) AddScenario(params AddScenarioParams) (*AddScenarioRe
 }
 
 type DelScenarioParams struct {
-	// The scenario ID list separated by semicolons (;). Use the 'all' value to delete all scenarios in all applications
-	ScenarioId string `json:"scenario_id"`
-	// The scenario name list separated by semicolons (;). Can be used instead of <b>scenario_id</b>
-	ScenarioName string `json:"scenario_name"`
+	// The scenario ID list separated by semicolons (;). Use the 'all' value to delete all scenarios in all applications. <b>Required</b> unless <b>scenario_name</b> is provided.
+	ScenarioId string `json:"scenario_id,omitempty"`
+	// The scenario name list separated by semicolons (;). <b>Required</b> unless <b>scenario_id</b> is provided.
+	ScenarioName string `json:"scenario_name,omitempty"`
 }
 
 type DelScenarioReturn struct {
@@ -73,18 +73,18 @@ func (s *ScenariosService) DelScenario(params DelScenarioParams) (*DelScenarioRe
 }
 
 type BindScenarioParams struct {
-	// The scenario ID list separated by semicolons (;)
-	ScenarioId string `json:"scenario_id"`
-	// The scenario name list separated by semicolons (;). Can be used instead of <b>scenario_id</b>
-	ScenarioName string `json:"scenario_name"`
-	// The rule ID to bind the scenario. The rule and the scenario need to be in the same application
-	RuleId int `json:"rule_id,string"`
-	// The rule name that can be used instead of <b>rule_id</b>
-	RuleName string `json:"rule_name"`
-	// The application ID
-	ApplicationId int `json:"application_id,string"`
-	// The application name that can be used instead of <b>application_id</b>
-	ApplicationName string `json:"application_name"`
+	// The scenario ID list separated by semicolons (;). <b>Required</b> unless <b>scenario_name</b> is provided.
+	ScenarioId string `json:"scenario_id,omitempty"`
+	// The scenario name list separated by semicolons (;). <b>Required</b> unless <b>scenario_id</b> is provided.
+	ScenarioName string `json:"scenario_name,omitempty"`
+	// The rule ID to bind the scenario. The rule and the scenario need to be in the same application. <b>Required</b> unless <b>rule_name</b> is provided.
+	RuleId int `json:"rule_id,string,omitempty"`
+	// The rule name. <b>Required</b> unless <b>rule_id</b> is provided.
+	RuleName string `json:"rule_name,omitempty"`
+	// The application ID. <b>Required</b> unless <b>application_name</b> is provided.
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// The application name. <b>Required</b> unless <b>application_id</b> is provided.
+	ApplicationName string `json:"application_name,omitempty"`
 	// Whether to bind or unbind (set true or false respectively)
 	Bind *bool `json:"bind,string,omitempty"`
 }
@@ -154,10 +154,10 @@ func (s *ScenariosService) GetScenarios(params GetScenariosParams) (*GetScenario
 }
 
 type SetScenarioInfoParams struct {
-	// Scenario ID
-	ScenarioId int `json:"scenario_id,string"`
-	// Name of the scenario to edit, can be used instead of <b>scenario_id</b>
-	RequiredScenarioName string `json:"required_scenario_name"`
+	// Scenario ID. <b>Required</b> unless <b>required_scenario_name</b> is provided.
+	ScenarioId int `json:"scenario_id,string,omitempty"`
+	// Name of the scenario to edit. <b>Required</b> unless <b>scenario_id</b> is provided.
+	RequiredScenarioName string `json:"required_scenario_name,omitempty"`
 	// New scenario name. The length must be less than 30
 	ScenarioName string `json:"scenario_name,omitempty"`
 	// New scenario text. Use the application/x-www-form-urlencoded content type with UTF-8 encoding. The length must be less than 128 KB
@@ -184,10 +184,10 @@ func (s *ScenariosService) SetScenarioInfo(params SetScenarioInfoParams) (*SetSc
 }
 
 type ReorderScenariosParams struct {
-	// The rule ID
-	RuleId int `json:"rule_id,string"`
-	// The rule name that can be used instead of <b>rule_id</b>
-	RuleName string `json:"rule_name"`
+	// The rule ID. <b>Required</b> unless <b>rule_name</b> is provided.
+	RuleId int `json:"rule_id,string,omitempty"`
+	// The rule name. <b>Required</b> unless <b>rule_id</b> is provided.
+	RuleName string `json:"rule_name,omitempty"`
 	// The scenario ID list separated by semicolons (;)
 	ScenarioId string `json:"scenario_id,omitempty"`
 }

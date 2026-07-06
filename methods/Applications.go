@@ -41,10 +41,10 @@ func (s *ApplicationsService) AddApplication(params AddApplicationParams) (*AddA
 }
 
 type DelApplicationParams struct {
-	// The application ID list separated by semicolons (;). Use the 'all' value to select all applications
-	ApplicationId string `json:"application_id"`
-	// The application name list separated by semicolons (;). Can be used instead of <b>application_id</b>
-	ApplicationName string `json:"application_name"`
+	// The application ID list separated by semicolons (;). Use the 'all' value to select all applications. <b>Required</b> unless <b>application_name</b> is provided.
+	ApplicationId string `json:"application_id,omitempty"`
+	// The application name list separated by semicolons (;). <b>Required</b> unless <b>application_id</b> is provided.
+	ApplicationName string `json:"application_name,omitempty"`
 }
 
 type DelApplicationReturn struct {
@@ -67,10 +67,10 @@ func (s *ApplicationsService) DelApplication(params DelApplicationParams) (*DelA
 }
 
 type SetApplicationInfoParams struct {
-	// The application ID
-	ApplicationId int `json:"application_id,string"`
-	// The application name that can be used instead of <b>application_id</b>
-	RequiredApplicationName string `json:"required_application_name"`
+	// The application ID. <b>Required</b> unless <b>required_application_name</b> is provided.
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// The application name. <b>Required</b> unless <b>application_id</b> is provided.
+	RequiredApplicationName string `json:"required_application_name,omitempty"`
 	// The new short application name in format [a-z][a-z0-9-]{1,79}
 	ApplicationName string `json:"application_name,omitempty"`
 	// Whether to enable secure storage for all logs and records of the application

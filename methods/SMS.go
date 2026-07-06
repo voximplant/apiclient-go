@@ -99,6 +99,8 @@ func (s *SMSService) ControlSms(params ControlSmsParams) (*ControlSmsReturn, *st
 }
 
 type GetSmsHistoryParams struct {
+	// Message id list separated by semicolons (;)
+	MessageId string `json:"message_id,omitempty"`
 	// The source phone number
 	SourceNumber string `json:"source_number,omitempty"`
 	// The destination phone number
@@ -140,6 +142,8 @@ func (s *SMSService) GetSmsHistory(params GetSmsHistoryParams) (*GetSmsHistoryRe
 }
 
 type A2PGetSmsHistoryParams struct {
+	// Message id list separated by semicolons (;)
+	MessageId string `json:"message_id,omitempty"`
 	// The source phone number
 	SourceNumber string `json:"source_number,omitempty"`
 	// The destination phone number

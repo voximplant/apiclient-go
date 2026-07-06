@@ -50,10 +50,10 @@ func (s *PhoneNumbersService) GetPhoneNumberReports(params GetPhoneNumberReports
 }
 
 type AttachPhoneNumberParams struct {
-	// Quantity of phone numbers you want to attach
-	PhoneCount int `json:"phone_count,string"`
-	// The phone number that can be used instead of <b>phone_count</b>. See the [GetNewPhoneNumbers] method
-	PhoneNumber string `json:"phone_number"`
+	// Quantity of phone numbers you want to attach. <b>Required</b> unless <b>phone_number</b> is provided.
+	PhoneCount int `json:"phone_count,string,omitempty"`
+	// The phone number. See the [GetNewPhoneNumbers] method. <b>Required</b> unless <b>phone_count</b> is provided.
+	PhoneNumber string `json:"phone_number,omitempty"`
 	// The country code
 	CountryCode string `json:"country_code"`
 	// The phone category name. See the [GetPhoneNumberCategories] method
@@ -90,14 +90,14 @@ func (s *PhoneNumbersService) AttachPhoneNumber(params AttachPhoneNumberParams) 
 }
 
 type BindPhoneNumberToApplicationParams struct {
-	// The phone ID list separated by semicolons (;). Use the 'all' value to select all phone ids
-	PhoneId string `json:"phone_id"`
-	// The phone number list separated by semicolons (;) that can be used instead of <b>phone_id</b>
-	PhoneNumber string `json:"phone_number"`
-	// The application ID
-	ApplicationId int `json:"application_id,string"`
-	// The application name that can be used instead of <b>application_id</b>
-	ApplicationName string `json:"application_name"`
+	// The phone ID list separated by semicolons (;). Use the 'all' value to select all phone ids. <b>Required</b> unless <b>phone_number</b> is provided.
+	PhoneId string `json:"phone_id,omitempty"`
+	// The phone number list separated by semicolons (;). <b>Required</b> unless <b>phone_id</b> is provided.
+	PhoneNumber string `json:"phone_number,omitempty"`
+	// The application ID. <b>Required</b> unless <b>application_name</b> is provided.
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// The application name. <b>Required</b> unless <b>application_id</b> is provided.
+	ApplicationName string `json:"application_name,omitempty"`
 	// The rule ID
 	RuleId int `json:"rule_id,string,omitempty"`
 	// The rule name that can be used instead of <b>rule_id</b>
@@ -126,10 +126,10 @@ func (s *PhoneNumbersService) BindPhoneNumberToApplication(params BindPhoneNumbe
 }
 
 type DeactivatePhoneNumberParams struct {
-	// The phone ID list separated by semicolons (;). Use the 'all' value to select all phone ids
-	PhoneId string `json:"phone_id"`
-	// The phone number list separated by semicolons (;) that can be used instead of <b>phone_id</b>
-	PhoneNumber string `json:"phone_number"`
+	// The phone ID list separated by semicolons (;). Use the 'all' value to select all phone ids. <b>Required</b> unless <b>phone_number</b> is provided.
+	PhoneId string `json:"phone_id,omitempty"`
+	// The phone number list separated by semicolons (;). <b>Required</b> unless <b>phone_id</b> is provided.
+	PhoneNumber string `json:"phone_number,omitempty"`
 }
 
 type DeactivatePhoneNumberReturn struct {
@@ -152,10 +152,10 @@ func (s *PhoneNumbersService) DeactivatePhoneNumber(params DeactivatePhoneNumber
 }
 
 type SetPhoneNumberInfoParams struct {
-	// The phone ID list separated by semicolons (;). Use the 'all' value to select all phone ids
-	PhoneId string `json:"phone_id"`
-	// The phone number list separated by semicolons (;) that can be used instead of <b>phone_id</b>
-	PhoneNumber string `json:"phone_number"`
+	// The phone ID list separated by semicolons (;). Use the 'all' value to select all phone ids. <b>Required</b> unless <b>phone_number</b> is provided.
+	PhoneId string `json:"phone_id,omitempty"`
+	// The phone number list separated by semicolons (;). <b>Required</b> unless <b>phone_id</b> is provided.
+	PhoneNumber string `json:"phone_number,omitempty"`
 	// If set, the callback of an incoming SMS is sent to this url, otherwise, it is sent to the general account URL
 	IncomingSmsCallbackUrl string `json:"incoming_sms_callback_url,omitempty"`
 	// Whether to enable the auto charging
