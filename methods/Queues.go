@@ -13,7 +13,7 @@ type AddQueueParams struct {
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// The application name. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
-	// The queue name. The length must be less than 100
+	// The queue name. The length should be less than 100
 	AcdQueueName string `json:"acd_queue_name"`
 	// The integer queue priority. The highest priority is 0
 	AcdQueuePriority int `json:"acd_queue_priority,string,omitempty"`
@@ -21,9 +21,9 @@ type AddQueueParams struct {
 	AutoBinding *bool `json:"auto_binding,string,omitempty"`
 	// The value in the range of [0.5 ... 1.0]. The value 1.0 means the service probability 100% in challenge with a lower priority queue
 	ServiceProbability int `json:"service_probability,string,omitempty"`
-	// The max queue size
+	// The maximum queue size
 	MaxQueueSize int `json:"max_queue_size,string,omitempty"`
-	// The max predicted waiting time in minutes. The client is rejected if the predicted waiting time is greater than the max predicted waiting time
+	// The maximum predicted waiting time in minutes. The client is rejected if the predicted waiting time is greater than the maximum predicted waiting time
 	MaxWaitingTime int `json:"max_waiting_time,string,omitempty"`
 	// The average service time in seconds. Specify the parameter to correct or initialize the waiting time prediction
 	AverageServiceTime int `json:"average_service_time,string,omitempty"`
@@ -117,7 +117,7 @@ type SetQueueInfoParams struct {
 	AcdQueueId int `json:"acd_queue_id,string,omitempty"`
 	// The ACD queue name. <b>Required</b> unless <b>acd_queue_id</b> is provided.
 	AcdQueueName string `json:"acd_queue_name,omitempty"`
-	// The new queue name. The length must be less than 100
+	// The new queue name. The length should be less than 100
 	NewAcdQueueName string `json:"new_acd_queue_name,omitempty"`
 	// The integer queue priority. The highest priority is 0
 	AcdQueuePriority int `json:"acd_queue_priority,string,omitempty"`
@@ -125,9 +125,9 @@ type SetQueueInfoParams struct {
 	AutoBinding *bool `json:"auto_binding,string,omitempty"`
 	// The value in the range of [0.5 ... 1.0]. The value 1.0 means the service probability 100% in challenge with a lower priority queue
 	ServiceProbability int `json:"service_probability,string,omitempty"`
-	// The max queue size
+	// The maximum queue size
 	MaxQueueSize int `json:"max_queue_size,string,omitempty"`
-	// The max predicted waiting time in minutes. The client is rejected if the predicted waiting time is greater than the max predicted waiting time
+	// The maximum predicted waiting time in minutes. The client is rejected if the predicted waiting time is greater than the maximum predicted waiting time
 	MaxWaitingTime int `json:"max_waiting_time,string,omitempty"`
 	// The average service time in seconds. Specify the parameter to correct or initialize the waiting time prediction
 	AverageServiceTime int `json:"average_service_time,string,omitempty"`
@@ -169,7 +169,7 @@ type GetQueuesParams struct {
 	WithSkills *bool `json:"with_skills,string,omitempty"`
 	// The skill to show in the 'skills' field output
 	ShowingSkillId int `json:"showing_skill_id,string,omitempty"`
-	// The max returning record count
+	// The maximum returning record count
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`

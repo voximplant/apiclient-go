@@ -89,7 +89,7 @@ type GetPstnBlackListParams struct {
 	PstnBlacklistId int `json:"pstn_blacklist_id,string,omitempty"`
 	// The phone number in format e164 for filter
 	PstnBlacklistPhone string `json:"pstn_blacklist_phone,omitempty"`
-	// The max returning record count
+	// The maximum returning record count
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`

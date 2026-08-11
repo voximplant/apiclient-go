@@ -13,7 +13,7 @@ type AddSecretParams struct {
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// Application name. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
-	// Secret name. The name must start with a Latin letter and can contain up to 64 characters, including Latin letters, digits and underscores
+	// Secret name. The name should start with a Latin letter and can contain up to 64 characters, including Latin letters, digits and underscores
 	SecretName string `json:"secret_name"`
 	// Secret value. Maximum length is 8192 characters
 	SecretValue string `json:"secret_value"`
@@ -145,7 +145,7 @@ type SetSecretInfoParams struct {
 	SecretId int `json:"secret_id,string,omitempty"`
 	// Secret name. <b>Required</b> unless <b>secret_id</b> is provided.
 	SecretName string `json:"secret_name,omitempty"`
-	// New secret name. The name must start with a Latin letter and can contain up to 64 characters, including Latin letters, digits and underscores
+	// New secret name. The name should start with a Latin letter and can contain up to 64 characters, including Latin letters, digits and underscores
 	NewSecretName string `json:"new_secret_name,omitempty"`
 	// Secret value. Maximum length is 8192 characters
 	SecretValue string `json:"secret_value,omitempty"`

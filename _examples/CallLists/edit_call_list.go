@@ -13,7 +13,7 @@ func main() {
 		panic(err)
 	}
 
-	params := methods.EditCallListParams{ListId: 1000, IntervalSeconds: 1, NumAttempts: 2, MaxSimultaneous: 3, IpAddress: "127.0.0.1", Name: "awesome_list", Priority: 0, StartAt: "start_at", ServerLocation: "ru"}
+	params := methods.EditCallListParams{ListId: 1000, IntervalSeconds: 1, NumAttempts: 2, MaxSimultaneous: 3, IpAddress: "127.0.0.1", Name: "awesome_list", Priority: 0, StartAt: start_at, ServerLocation: "ru"}
 	res, verr, err := client.CallLists.EditCallList(params)
 	fmt.Println(res, verr, err)
 }

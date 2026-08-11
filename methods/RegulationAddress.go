@@ -8,7 +8,7 @@ type RegulationAddressService struct {
 	client *Client
 }
 
-type LinkRegulationAddressParams struct {
+type LinkregulationAddressParams struct {
 	// The regulation address ID
 	RegulationAddressId int `json:"regulation_address_id,string"`
 	// The phone ID for link
@@ -17,17 +17,17 @@ type LinkRegulationAddressParams struct {
 	PhoneNumber string `json:"phone_number,omitempty"`
 }
 
-type LinkRegulationAddressReturn struct {
+type LinkregulationAddressReturn struct {
 	Result *bool `json:"result"`
 }
 
 // Links the regulation address to a phone.
-func (s *RegulationAddressService) LinkRegulationAddress(params LinkRegulationAddressParams) (*LinkRegulationAddressReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "LinkRegulationAddress", params)
+func (s *RegulationAddressService) LinkregulationAddress(params LinkregulationAddressParams) (*LinkregulationAddressReturn, *structure.VError, error) {
+	req, err := s.client.NewRequest("POST", "LinkregulationAddress", params)
 	if err != nil {
 		return nil, nil, err
 	}
-	response := &LinkRegulationAddressReturn{}
+	response := &LinkregulationAddressReturn{}
 	verr, err := s.client.MakeResponse(req, response)
 	if verr != nil || err != nil {
 		return nil, verr, err
@@ -40,7 +40,7 @@ type GetZIPCodesParams struct {
 	CountryCode string `json:"country_code"`
 	// The phone region code
 	PhoneRegionCode string `json:"phone_region_code,omitempty"`
-	// The max returning record count
+	// The maximum returning record count
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`
@@ -121,7 +121,7 @@ type GetAvailableRegulationsReturn struct {
 	Result *bool `json:"result"`
 	// The available RegulationAddress records
 	AvailableAddress []*structure.RegulationAddress `json:"available_address"`
-	// The count of RegulationAddress in progress status
+	// The number of RegulationAddress in progress status
 	CountInProgress int `json:"count_in_progress"`
 }
 

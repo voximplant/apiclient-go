@@ -43,7 +43,7 @@ type GetCallerIDsParams struct {
 	Active *bool `json:"active,string,omitempty"`
 	// The following values are available: 'caller_number' (ascent order), 'verified_until' (ascent order)
 	OrderBy string `json:"order_by,omitempty"`
-	// The max returning record count
+	// The maximum returning record count
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`

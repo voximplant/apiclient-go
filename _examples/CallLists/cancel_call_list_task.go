@@ -13,7 +13,7 @@ func main() {
 		panic(err)
 	}
 
-	params := methods.CancelCallListTaskParams{AccountId: "1", ListId: "1"}
+	params := methods.CancelCallListTaskParams{AccountId: "1", ListId: 1}
 	res, verr, err := client.CallLists.CancelCallListTask(params)
 	fmt.Println(res, verr, err)
 }

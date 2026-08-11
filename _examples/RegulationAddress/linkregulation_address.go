@@ -13,7 +13,7 @@ func main() {
 		panic(err)
 	}
 
-	params := methods.LinkRegulationAddressParams{RegulationAddressId: 1, PhoneId: 1}
-	res, verr, err := client.RegulationAddress.LinkRegulationAddress(params)
+	params := methods.LinkregulationAddressParams{RegulationAddressId: 1, PhoneId: 1}
+	res, verr, err := client.RegulationAddress.LinkregulationAddress(params)
 	fmt.Println(res, verr, err)
 }

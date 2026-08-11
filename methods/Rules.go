@@ -13,11 +13,11 @@ type AddRuleParams struct {
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// The application name. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
-	// The rule name. The length must be less than 100
+	// The rule name. The length should be less than 100
 	RuleName string `json:"rule_name"`
-	// The rule pattern regex. The length must be less than 64 KB
+	// The rule pattern regex. The length should be less than 64 KB
 	RulePattern string `json:"rule_pattern"`
-	// The exclude pattern regex. The length must be less than 64 KB
+	// The exclude pattern regex. The length should be less than 64 KB
 	RulePatternExclude string `json:"rule_pattern_exclude,omitempty"`
 	// Whether video conference is required
 	VideoConference *bool `json:"video_conference,string,omitempty"`
@@ -83,11 +83,11 @@ func (s *RulesService) DelRule(params DelRuleParams) (*DelRuleReturn, *structure
 type SetRuleInfoParams struct {
 	// The rule ID
 	RuleId int `json:"rule_id,string"`
-	// The new rule name. The length must be less than 100
+	// The new rule name. The length should be less than 100
 	RuleName string `json:"rule_name,omitempty"`
-	// The new rule pattern regex. The length must be less than 64 KB
+	// The new rule pattern regex. The length should be less than 64 KB
 	RulePattern string `json:"rule_pattern,omitempty"`
-	// The new exclude pattern regex. The length must be less than 64 KB
+	// The new exclude pattern regex. The length should be less than 64 KB
 	RulePatternExclude string `json:"rule_pattern_exclude,omitempty"`
 	// Whether video conference is required
 	VideoConference *bool `json:"video_conference,string,omitempty"`
@@ -131,7 +131,7 @@ type GetRulesParams struct {
 	Template string `json:"template,omitempty"`
 	// Whether to get bound scenarios info
 	WithScenarios *bool `json:"with_scenarios,string,omitempty"`
-	// The max returning record count
+	// The maximum returning record count
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`
@@ -169,7 +169,7 @@ type ReorderRulesReturn struct {
 	Result int `json:"result"`
 }
 
-// Configures the rules' order in the <a href='//manage.voximplant.com/applications'>Applications</a> section of Control panel. Note: the rules must belong to the same application!
+// Configures the rules' order in the <a href='//manage.voximplant.com/applications'>Applications</a> section of Control panel. Note: the rules should belong to the same application!
 func (s *RulesService) ReorderRules(params ReorderRulesParams) (*ReorderRulesReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "ReorderRules", params)
 	if err != nil {

@@ -32,12 +32,50 @@ type CreateCallListParams struct {
 	Delimiter string `json:"delimiter,omitempty"`
 	// Escape character for parsing csv
 	Escape string `json:"escape,omitempty"`
-	// IP from the geolocation of the call list subscribers. It allows selecting the nearest server for serving subscribers
-	ReferenceIp string `json:"reference_ip,omitempty"`
-	// Location of the server where the scenario needs to be executed. Has higher priority than `reference_ip`. Request [getServerLocations](https://api.voximplant.com/getServerLocations) for possible values
+	// Location of the server where the scenario needs to be executed. Has higher priority than `ip_address`. Request [getServerLocations](https://api.voximplant.com/getServerLocations) for possible values
 	ServerLocation string `json:"server_location,omitempty"`
 	// Optional. Whether to prioritize first calling attempts or repeated ones. The possible values are: first_attempts, repeated_attempts. The default values is first_attempts.
 	TaskPriorityStrategy string `json:"task_priority_strategy,omitempty"`
+	// IP from the geolocation of the call list subscribers. It allows selecting the nearest server for serving subscribers. If not specified, the client IP of the request is used
+	IpAddress string `json:"ip_address,omitempty"`
+	// Call list type. The possible values are: automatic, predictive, progressive. The value is case-insensitive
+	CallListType string `json:"call_list_type,omitempty"`
+	// The ACD queue ID. <b>Required</b> if <b>call_list_type</b> is predictive or progressive, and should be omitted otherwise
+	QueueId int `json:"queue_id,string,omitempty"`
+	// Time when the call list should start, as a Unix timestamp in seconds (UTC). The default value is the current time. The value cannot be in the past
+	StartAt int `json:"start_at,string,omitempty"`
+	// Whether to create the call list in the cancelled state
+	IsCancelled *bool `json:"is_cancelled,string,omitempty"`
+	// Quote character for parsing csv
+	Quote string `json:"quote,omitempty"`
+	// The ACD version. The possible values are: V1, V2. Applies only if <b>call_list_type</b> is predictive or progressive
+	AcdVersion string `json:"acd_version,omitempty"`
+	// The predictive dialing algorithm. The possible values are: DEFAULT_PREDICTIVE_TYPE, AR_OPTIMIZED, BF_OPTIMIZED, AR_SMALL_GROUP, AR_AUTO_BALANCED. Applies only if <b>call_list_type</b> is predictive
+	PredictiveType string `json:"predictive_type,omitempty"`
+	// The maximum abandoned call rate for predictive dialing, from 0 to 1. Applies only if <b>call_list_type</b> is predictive or progressive
+	MaximumErrorRate int `json:"maximum_error_rate,string,omitempty"`
+	// The minimum agent busy factor for predictive dialing, from 0 to 1. Applies only if <b>call_list_type</b> is predictive or progressive
+	MinimumBusyFactor int `json:"minimum_busy_factor,string,omitempty"`
+	// The task multiplier for progressive dialing. The minimum value is 1. Applies only if <b>call_list_type</b> is progressive
+	TaskMultiplier int `json:"task_multiplier,string,omitempty"`
+	// Whether the call list is a personal campaign. Applies only if <b>call_list_type</b> is progressive
+	IsPersonalCampaign *bool `json:"is_personal_campaign,string,omitempty"`
+	// The personal campaign mode. The possible values are: smart, strict. Allowed only if <b>is_personal_campaign</b> is true; the default value in that case is smart
+	PersonalCampaignType string `json:"personal_campaign_type,omitempty"`
+	// The PDS buffer size target. The possible values are: VALUE, OPERATOR, AGENT. Applies only if <b>call_list_type</b> is predictive or progressive
+	BufferSizeTarget string `json:"buffer_size_target,omitempty"`
+	// The PDS buffer size, from 20 to 500. Applies only if <b>buffer_size_target</b> is VALUE
+	BufferSizeValue int `json:"buffer_size_value,string,omitempty"`
+	// The PDS buffer threshold factor. Cannot be negative. Applies only if <b>buffer_size_target</b> is specified
+	BufferThresholdFactor int `json:"buffer_threshold_factor,string,omitempty"`
+	// The initial average dial time in seconds for the dialing statistics. Applies only if <b>call_list_type</b> is predictive or progressive
+	AvgDialTimeSec int `json:"avg_dial_time_sec,string,omitempty"`
+	// The initial average talk time in seconds for the dialing statistics. Applies only if <b>call_list_type</b> is predictive or progressive
+	AvgTimeTalkSec int `json:"avg_time_talk_sec,string,omitempty"`
+	// The initial average total call time in seconds for the dialing statistics. Applies only if <b>call_list_type</b> is predictive or progressive
+	AvgTotalTimeSec int `json:"avg_total_time_sec,string,omitempty"`
+	// The initial successful call ratio for the dialing statistics. Applies only if <b>call_list_type</b> is predictive or progressive
+	PercentSuccessful int `json:"percent_successful,string,omitempty"`
 }
 
 type CreateCallListReturn struct {
@@ -78,6 +116,8 @@ type AppendToCallListParams struct {
 	Escape string `json:"escape,omitempty"`
 	// Separator values. The default value is ';'
 	Delimiter string `json:"delimiter,omitempty"`
+	// Quote character for parsing csv
+	Quote string `json:"quote,omitempty"`
 }
 
 type AppendToCallListReturn struct {
@@ -106,10 +146,8 @@ func (s *CallListsService) AppendToCallList(params AppendToCallListParams) (*App
 }
 
 type CancelCallListBatchParams struct {
-	// Call list ID. <b>Required</b> unless <b>list_name</b> is provided.
+	// Call list ID
 	ListId int `json:"list_id,string,omitempty"`
-	// The unique name of the call list. <b>Required</b> unless <b>list_id</b> is provided.
-	ListName string `json:"list_name,omitempty"`
 	// Batch UUIDs of the tasks to cancel, separated by semicolon (;)
 	BatchIds string `json:"batch_ids"`
 }
@@ -150,12 +188,36 @@ type EditCallListParams struct {
 	Name string `json:"name,omitempty"`
 	// Call list's priority among other call list. The lower the value, the higher is the call list's priority
 	Priority int `json:"priority,string,omitempty"`
-	// Time when the call list should start in the `yyyy-MM-dd HH:mm:ss` format
-	StartAt string `json:"start_at,omitempty"`
+	// Time when the call list should start, as a Unix timestamp in seconds (UTC)
+	StartAt int `json:"start_at,string,omitempty"`
 	// Optional. Whether to prioritize first calling attempts or repeated ones. The possible values are: first_attempts, repeated_attempts. The default values is first_attempts
 	TaskPriorityStrategy string `json:"task_priority_strategy,omitempty"`
 	// Location of the server processing the call list. If the ID is non existing, the 496 error returns: The 'server_location' parameter is invalid.
 	ServerLocation string `json:"server_location,omitempty"`
+	// Call list type. The possible values are: automatic, manual, predictive, progressive. The value is case-insensitive
+	CallListType string `json:"call_list_type,omitempty"`
+	// Alias for <b>call_list_type</b>. Applies only if <b>call_list_type</b> is not specified
+	CallType string `json:"call_type,omitempty"`
+	// The predictive dialing algorithm. The possible values are: AR_OPTIMIZED, BF_OPTIMIZED, AR_SMALL_GROUP, AR_AUTO_BALANCED. If omitted while <b>call_list_type</b> is set to predictive, the value becomes AR_OPTIMIZED; for progressive the value is reset
+	PredictiveType string `json:"predictive_type,omitempty"`
+	// The maximum abandoned call rate for predictive dialing, from 0 to 1. If omitted while <b>call_list_type</b> is set to predictive, the value becomes 0.02
+	MaximumErrorRate int `json:"maximum_error_rate,string,omitempty"`
+	// The minimum agent busy factor for predictive dialing. Cannot be negative. If omitted while <b>call_list_type</b> is set to predictive, the value becomes 0.8
+	MinimumBusyFactor int `json:"minimum_busy_factor,string,omitempty"`
+	// The task multiplier for progressive dialing. Cannot be negative. If omitted while <b>call_list_type</b> is set to progressive, the value becomes 1
+	TaskMultiplier int `json:"task_multiplier,string,omitempty"`
+	// Whether the call list is a personal campaign. <b>Required</b> if <b>personal_campaign_type</b> is specified
+	IsPersonalCampaign *bool `json:"is_personal_campaign,string,omitempty"`
+	// The personal campaign mode. The possible values are: smart, strict. Allowed only if <b>is_personal_campaign</b> is true; the default value in that case is smart
+	PersonalCampaignType string `json:"personal_campaign_type,omitempty"`
+	// The average dial time in seconds for the dialing statistics. Cannot be negative
+	AvgDialTimeSec int `json:"avg_dial_time_sec,string,omitempty"`
+	// The average talk time in seconds for the dialing statistics. Cannot be negative
+	AvgTimeTalkSec int `json:"avg_time_talk_sec,string,omitempty"`
+	// The average total call time in seconds for the dialing statistics. Cannot be negative
+	AvgTotalTimeSec int `json:"avg_total_time_sec,string,omitempty"`
+	// The successful call ratio for the dialing statistics. Cannot be negative
+	PercentSuccessful int `json:"percent_successful,string,omitempty"`
 }
 
 type EditCallListReturn struct {
@@ -207,7 +269,7 @@ type DeleteCallListParams struct {
 	// Account's ID
 	AccountId int `json:"account_id,string"`
 	// Call list's ID to delete
-	ListId int `json:"list_id,string"`
+	ListId int `json:"list_id,string,omitempty"`
 }
 
 type DeleteCallListReturn struct {
@@ -244,12 +306,20 @@ type GetCallListsParams struct {
 	ToDate *structure.Timestamp `json:"to_date,string,omitempty"`
 	// The type of the call list. The possible values are AUTOMATIC and MANUAL
 	TypeList string `json:"type_list,omitempty"`
-	// The max returning record count
+	// The maximum returning record count. The maximum value is 1000
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`
 	// The application ID to filter. Can be a list separated by semicolons (;). Use the 'all' value to select all applications
 	ApplicationId string `json:"application_id,omitempty"`
+	// The application name list separated by semicolons (;). Can be used instead of <b>application_id</b>
+	ApplicationName string `json:"application_name,omitempty"`
+	// The rule ID to filter. Can be a list separated by semicolons (;). Use the 'all' value to select all rules
+	RuleId string `json:"rule_id,omitempty"`
+	// The rule name list separated by semicolons (;). Can be used instead of <b>rule_id</b>
+	RuleName string `json:"rule_name,omitempty"`
+	// The call list status to filter. The possible values are: In progress, Canceled, Completed, Suspended
+	Status string `json:"status,omitempty"`
 }
 
 type GetCallListsReturn struct {
@@ -278,7 +348,7 @@ func (s *CallListsService) GetCallLists(params GetCallListsParams) (*GetCallList
 type GetCallListDetailsParams struct {
 	// The list ID
 	ListId int `json:"list_id,string"`
-	// Maximum number of entries in the result
+	// Maximum number of entries in the result. If <b>output</b> is json, the default and maximum value is 1000; for csv and xls no limit is applied unless the parameter is specified
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`
@@ -290,6 +360,10 @@ type GetCallListDetailsParams struct {
 	Delimiter string `json:"delimiter,omitempty"`
 	// Batch UUID to filter the tasks
 	BatchId string `json:"batch_id,omitempty"`
+	// Whether to create an asynchronous report instead of returning the data immediately. Requires <b>output</b> to be csv or xls
+	IsAsync *bool `json:"is_async,string,omitempty"`
+	// Whether to use the new csv layout. Applies to asynchronous reports; for xls the value is always true
+	NewCsvStyle *bool `json:"new_csv_style,string,omitempty"`
 }
 
 type GetCallListDetailsReturn struct {
@@ -332,6 +406,12 @@ type EditCallListTaskParams struct {
 	MinExecutionTime *structure.Timestamp `json:"min_execution_time,string,omitempty"`
 	// Optional. End time for the daily calling attempts in the UTC+0 24-h format: HH:mm:ss format. If spefied, please specify `min_execution_time` as well
 	MaxExecutionTime *structure.Timestamp `json:"max_execution_time,string,omitempty"`
+	// Time of the next calling attempt. One of the editable fields: at least one of them should be specified
+	NextAttemptTime string `json:"next_attempt_time,omitempty"`
+	// The user ID to bind to the task. One of the editable fields: at least one of them should be specified
+	UserId int `json:"user_id,string,omitempty"`
+	// The skill ID list separated by semicolons (;). Up to 5 IDs. One of the editable fields: at least one of them should be specified
+	SkillId string `json:"skill_id,omitempty"`
 }
 
 type EditCallListTaskReturn struct {
@@ -357,7 +437,7 @@ type CancelCallListTaskParams struct {
 	// Account's ID
 	AccountId string `json:"account_id"`
 	// Call list's ID
-	ListId string `json:"list_id"`
+	ListId int `json:"list_id,string"`
 	// Task IDs separated by a semicolon. Specify either `tasks_ids` or `tasks_uuids`. The method returns an error if none of the parameters is specified
 	TasksIds string `json:"tasks_ids,omitempty"`
 	// Task UUIDs separated by a semicolon. Specify either `tasks_ids` or `tasks_uuids`. The method returns an error if none of the parameters is specified

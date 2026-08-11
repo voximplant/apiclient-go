@@ -37,7 +37,7 @@ func (s *AccountsService) GetAccountInfo(params GetAccountInfoParams) (*GetAccou
 type SetAccountInfoParams struct {
 	// The new account email
 	NewAccountEmail string `json:"new_account_email,omitempty"`
-	// The new account password. Must be at least 8 characters long and contain at least one uppercase and lowercase letter, one number, and one special character
+	// The new account password. Should be at least 8 characters long and contain at least one uppercase and lowercase letter, one number, and one special character
 	NewAccountPassword string `json:"new_account_password,omitempty"`
 	// The notification language code (2 symbols, ISO639-1). The following values are available: aa (Afar), ab (Abkhazian), af (Afrikaans), am (Amharic), ar (Arabic), as (Assamese), ay (Aymara), az (Azerbaijani), ba (Bashkir), be (Belarusian), bg (Bulgarian), bh (Bihari), bi (Bislama), bn (Bengali), bo (Tibetan), br (Breton), ca (Catalan), co (Corsican), cs (Czech), cy (Welch), da (Danish), de (German), dz (Bhutani), el (Greek), en (English), eo (Esperanto), es (Spanish), et (Estonian), eu (Basque), fa (Persian), fi (Finnish), fj (Fiji), fo (Faeroese), fr (French), fy (Frisian), ga (Irish), gd (Scots Gaelic), gl (Galician), gn (Guarani), gu (Gujarati), ha (Hausa), hi (Hindi), he (Hebrew), hr (Croatian), hu (Hungarian), hy (Armenian), ia (Interlingua), id (Indonesian), ie (Interlingue), ik (Inupiak), in (Indonesian), is (Icelandic), it (Italian), iu (Inuktitut), iw (Hebrew), ja (Japanese), ji (Yiddish), jw (Javanese), ka (Georgian), kk (Kazakh), kl (Greenlandic), km (Cambodian), kn (Kannada), ko (Korean), ks (Kashmiri), ku (Kurdish), ky (Kirghiz), la (Latin), ln (Lingala), lo (Laothian), lt (Lithuanian), lv (Latvian), mg (Malagasy), mi (Maori), mk (Macedonian), ml (Malayalam), mn (Mongolian), mo (Moldavian), mr (Marathi), ms (Malay), mt (Maltese), my (Burmese), na (Nauru), ne (Nepali), nl (Dutch), no (Norwegian), oc (Occitan), om (Oromo), or (Oriya), pa (Punjabi), pl (Polish), ps (Pashto), pt (Portuguese), qu (Quechua), rm (Rhaeto-Romance), rn (Kirundi), ro (Romanian), ru (Russian), rw (Kinyarwanda), sa (Sanskrit), sd (Sindhi), sg (Sangro), sh (Serbo-Croatian), si (Singhalese), sk (Slovak), sl (Slovenian), sm (Samoan), sn (Shona), so (Somali), sq (Albanian), sr (Serbian), ss (Siswati), st (Sesotho), su (Sudanese), sv (Swedish), sw (Swahili), ta (Tamil), te (Tegulu), tg (Tajik), th (Thai), ti (Tigrinya), tk (Turkmen), tl (Tagalog), tn (Setswana), to (Tonga), tr (Turkish), ts (Tsonga), tt (Tatar), tw (Twi), ug (Uigur), uk (Ukrainian), ur (Urdu), uz (Uzbek), vi (Vietnamese), vo (Volapuk), wo (Wolof), xh (Xhosa), yi (Yiddish), yo (Yoruba), za (Zhuang), zh (Chinese), zu (Zulu)
 	LanguageCode string `json:"language_code,omitempty"`
@@ -49,7 +49,7 @@ type SetAccountInfoParams struct {
 	AccountLastName string `json:"account_last_name,omitempty"`
 	// The mobile phone linked to the account
 	MobilePhone string `json:"mobile_phone,omitempty"`
-	// The min balance value to notify by email or SMS
+	// The minimum balance value to notify by email or SMS
 	MinBalanceToNotify float64 `json:"min_balance_to_notify,string,omitempty"`
 	// Whether Voximplant notifications are required
 	AccountNotifications *bool `json:"account_notifications,string,omitempty"`
@@ -109,7 +109,7 @@ type SetChildAccountInfoParams struct {
 	ChildAccountEmail string `json:"child_account_email,omitempty"`
 	// The new child account email
 	NewChildAccountEmail string `json:"new_child_account_email,omitempty"`
-	// The new child account password. Must be at least 8 characters long and contain at least one uppercase and lowercase letter, one number, and one special character
+	// The new child account password. Should be at least 8 characters long and contain at least one uppercase and lowercase letter, one number, and one special character
 	NewChildAccountPassword string `json:"new_child_account_password,omitempty"`
 	// Whether Voximplant notifications are required
 	AccountNotifications *bool `json:"account_notifications,string,omitempty"`
@@ -123,7 +123,7 @@ type SetChildAccountInfoParams struct {
 	LanguageCode string `json:"language_code,omitempty"`
 	// The child account location (timezone). Examples: America/Los_Angeles, Etc/GMT-8, Etc/GMT+10
 	Location string `json:"location,omitempty"`
-	// The min balance value to notify by email or SMS
+	// The minimum balance value to notify by email or SMS
 	MinBalanceToNotify float64 `json:"min_balance_to_notify,string,omitempty"`
 	// Whether to allow the robokassa payments
 	SupportRobokassa *bool `json:"support_robokassa,string,omitempty"`
@@ -196,7 +196,7 @@ type GetResourcePriceReturn struct {
 	Result []*structure.ResourcePrice `json:"result"`
 }
 
-// Gets the resource price.
+// Gets the resource price. If the resource is not specified, returns all available resources with prices.
 func (s *AccountsService) GetResourcePrice(params GetResourcePriceParams) (*GetResourcePriceReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "GetResourcePrice", params)
 	if err != nil {
@@ -217,7 +217,7 @@ type GetSubscriptionPriceParams struct {
 	SubscriptionTemplateType string `json:"subscription_template_type,omitempty"`
 	// The subscription template name  (example: SIP registration, Phone GB, Phone RU 495, ...)
 	SubscriptionTemplateName string `json:"subscription_template_name,omitempty"`
-	// The max returning record count
+	// The maximum returning record count
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`
@@ -259,7 +259,7 @@ type GetChildrenAccountsParams struct {
 	BriefOutput *bool `json:"brief_output,string,omitempty"`
 	// Whether to output the account_id, account_name, account_email only
 	MediumOutput *bool `json:"medium_output,string,omitempty"`
-	// The max returning record count
+	// The maximum returning record count
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`

@@ -9,7 +9,7 @@ type SkillsService struct {
 }
 
 type AddSkillParams struct {
-	// The ACD operator skill name. The length must be less than 512
+	// The ACD operator skill name. The length should be less than 512
 	SkillName string `json:"skill_name"`
 }
 
@@ -65,7 +65,7 @@ type SetSkillInfoParams struct {
 	SkillId int `json:"skill_id,string,omitempty"`
 	// The skill name. <b>Required</b> unless <b>skill_id</b> is provided.
 	SkillName string `json:"skill_name,omitempty"`
-	// The new skill name. The length must be less than 512
+	// The new skill name. The length should be less than 512
 	NewSkillName string `json:"new_skill_name"`
 }
 
@@ -93,7 +93,7 @@ type GetSkillsParams struct {
 	SkillId int `json:"skill_id,string,omitempty"`
 	// The skill name part to filter
 	SkillName string `json:"skill_name,omitempty"`
-	// The max returning record count
+	// The maximum returning record count
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`

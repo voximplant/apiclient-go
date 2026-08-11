@@ -10,10 +10,18 @@ type HistoryService struct {
 }
 
 type GetCallHistoryParams struct {
-	// The from date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss
-	FromDate *structure.Timestamp `json:"from_date,string"`
-	// The to date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss
-	ToDate *structure.Timestamp `json:"to_date,string"`
+	// The from date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss. If both dates are omitted, a server-configured default interval is used (default is one month)
+	FromDate *structure.Timestamp `json:"from_date,string,omitempty"`
+	// The to date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss. If both dates are omitted, a server-configured default interval is used (default is one month)
+	ToDate *structure.Timestamp `json:"to_date,string,omitempty"`
+	// The minimum call duration in seconds to filter. You can restrict the allowed date range via duration filters
+	MinDuration int `json:"min_duration,string,omitempty"`
+	// The maximum call duration in seconds to filter. You can restrict the allowed date range via duration filters
+	MaxDuration int `json:"max_duration,string,omitempty"`
+	// Whether to create an asynchronous history report instead of returning the data immediately. Has the same effect as calling GetCallHistoryAsync and requires the output=csv
+	IsAsync *bool `json:"is_async,string,omitempty"`
+	// Whether to get a CSV file with the column names if the output=csv
+	WithHeader *bool `json:"with_header,string,omitempty"`
 	// The selected timezone or the 'auto' value (the account location)
 	Timezone string `json:"timezone,omitempty"`
 	// To get the call history for the specific sessions, pass the session IDs to this parameter separated by a semicolon (;). The maximum number of records is 1000. You can find the session ID in the <a href='/docs/references/voxengine/appevents#started'>AppEvents.Started</a> event's <b>sessionID</b> property in a scenario, or retrieve it from the <b>call_session_history_id</b> value returned from the <a href='https://voximplant.com/docs/references/httpapi/scenarios#reorderscenarios'>StartScenarios</a> or <a href='https://voximplant.com/docs/references/httpapi/scenarios#startconference'>StartConference</a> methods
@@ -80,10 +88,20 @@ func (s *HistoryService) GetCallHistory(params GetCallHistoryParams) (*GetCallHi
 }
 
 type GetCallHistoryAsyncParams struct {
-	// The from date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss
-	FromDate *structure.Timestamp `json:"from_date,string"`
-	// The to date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss
-	ToDate *structure.Timestamp `json:"to_date,string"`
+	// The from date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss. If both dates are omitted, a server-configured default interval is used (default is one month)
+	FromDate *structure.Timestamp `json:"from_date,string,omitempty"`
+	// The to date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss. If both dates are omitted, a server-configured default interval is used (default is one month)
+	ToDate *structure.Timestamp `json:"to_date,string,omitempty"`
+	// The minimum call duration in seconds to filter. You can restrict the allowed date range via duration filters
+	MinDuration int `json:"min_duration,string,omitempty"`
+	// The maximum call duration in seconds to filter. You can restrict the allowed date range via duration filters
+	MaxDuration int `json:"max_duration,string,omitempty"`
+	// A JSON-formatted list of strings containing phone numbers for history filtering. Has a higher priority than the <b>remote_number</b> parameter. If the array is empty, the <b>remote_number</b> parameter is used instead
+	RemoteNumberList string `json:"remote_number_list,omitempty"`
+	// The maximum record number to include in the report. If omitted, the report service applies its own limit. Unlike GetCallHistory, there is no default of 20 and no cap of 1000 on the Management API side
+	Count int `json:"count,string,omitempty"`
+	// The number of records to skip in the output
+	Offset int `json:"offset,string,omitempty"`
 	// The selected timezone or the 'auto' value (the account location)
 	Timezone string `json:"timezone,omitempty"`
 	// To get the call history for the specific sessions, pass the session IDs to this parameter separated by a semicolon (;). You can find the session ID in the <a href='/docs/references/voxengine/appevents#started'>AppEvents.Started</a> event's <b>sessionID</b> property in a scenario, or retrieve it from the <b>call_session_history_id</b> value returned from the <a href='https://voximplant.com/docs/references/httpapi/scenarios#reorderscenarios'>StartScenarios</a> or <a href='https://voximplant.com/docs/references/httpapi/scenarios#startconference'>StartConference</a> methods
@@ -143,9 +161,9 @@ func (s *HistoryService) GetCallHistoryAsync(params GetCallHistoryAsyncParams) (
 
 type GetBriefCallHistoryParams struct {
 	// The from date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss
-	FromDate *structure.Timestamp `json:"from_date,string"`
+	FromDate *structure.Timestamp `json:"from_date,string,omitempty"`
 	// The to date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss
-	ToDate *structure.Timestamp `json:"to_date,string"`
+	ToDate *structure.Timestamp `json:"to_date,string,omitempty"`
 	// The selected timezone or the 'auto' value (the account location)
 	Timezone string `json:"timezone,omitempty"`
 	// To get the call history for the specific sessions, pass the session IDs to this parameter separated by a semicolon (;). You can find the session ID in the <a href='/docs/references/voxengine/appevents#started'>AppEvents.Started</a> event's <b>sessionID</b> property in a scenario, or retrieve it from the <b>call_session_history_id</b> value returned from the <a href='https://voximplant.com/docs/references/httpapi/scenarios#reorderscenarios'>StartScenarios</a> or <a href='https://voximplant.com/docs/references/httpapi/scenarios#startconference'>StartConference</a> methods
@@ -204,12 +222,14 @@ type GetHistoryReportsParams struct {
 	IsCompleted *bool `json:"is_completed,string,omitempty"`
 	// Whether to get records in the descent order
 	DescOrder *bool `json:"desc_order,string,omitempty"`
-	// The max returning record count
+	// The maximum returning record count
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`
 	// The application ID to filter. Can be a list separated by semicolons (;). Use the 'all' value to select all applications
 	ApplicationId string `json:"application_id,omitempty"`
+	// The application name list separated by semicolons (;). Can be used instead of the <b>application_id</b> parameter
+	ApplicationName string `json:"application_name,omitempty"`
 }
 
 type GetHistoryReportsReturn struct {
@@ -263,10 +283,32 @@ func (s *HistoryService) DownloadHistoryReport(params DownloadHistoryReportParam
 }
 
 type GetTransactionHistoryParams struct {
-	// The from date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss
-	FromDate *structure.Timestamp `json:"from_date,string"`
-	// The to date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss
-	ToDate *structure.Timestamp `json:"to_date,string"`
+	// The from date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss. If both dates are omitted and is_uncommitted is false, a server-configured default interval is used (default is one month)
+	FromDate *structure.Timestamp `json:"from_date,string,omitempty"`
+	// The to date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss. If both dates are omitted and is_uncommitted is false, a server-configured default interval is used (default is one month)
+	ToDate *structure.Timestamp `json:"to_date,string,omitempty"`
+	// The application ID to filter. Can be used together with or instead of the <b>application_name</b> parameter
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// The application name to filter. Can be used instead of the <b>application_id</b> parameter
+	ApplicationName string `json:"application_name,omitempty"`
+	// The subscription ID list separated by semicolons (;) to filter
+	SubscriptionId string `json:"subscription_id,omitempty"`
+	// The subscription name list separated by semicolons (;) to filter
+	SubscriptionName string `json:"subscription_name,omitempty"`
+	// The resource type list separated by semicolons (;) to filter
+	ResourceType string `json:"resource_type,omitempty"`
+	// The price group name list separated by semicolons (;) to filter
+	PriceGroupName string `json:"price_group_name,omitempty"`
+	// Whether to filter by the accounting dates instead of the transaction's `performed_at` timestamps
+	UseAccountingDates *bool `json:"use_accounting_dates,string,omitempty"`
+	// Whether to include the extended transaction fields, such as the application, subscription, resource type and price group, in the response
+	WithExtendedInfo *bool `json:"with_extended_info,string,omitempty"`
+	// Whether to create an asynchronous history report instead of returning the data immediately. Has the same effect as calling `GetTransactionHistoryAsync` and requires the output=csv
+	IsAsync *bool `json:"is_async,string,omitempty"`
+	// Whether to get a CSV file with the column names if the output=csv
+	WithHeader *bool `json:"with_header,string,omitempty"`
+	// The decimal mark for the CSV numbers if the output=csv. If omitted, the account locale setting is used
+	DecimalSeparator string `json:"decimal_separator,omitempty"`
 	// The selected timezone or the 'auto' value (the account location)
 	Timezone string `json:"timezone,omitempty"`
 	// The transaction ID list separated by semicolons (;)
@@ -320,10 +362,28 @@ func (s *HistoryService) GetTransactionHistory(params GetTransactionHistoryParam
 }
 
 type GetTransactionHistoryAsyncParams struct {
-	// The from date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss
-	FromDate *structure.Timestamp `json:"from_date,string"`
-	// The to date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss
-	ToDate *structure.Timestamp `json:"to_date,string"`
+	// The from date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss. If both dates are omitted and is_uncommitted is false, a server-configured default interval is used (default is one month)
+	FromDate *structure.Timestamp `json:"from_date,string,omitempty"`
+	// The to date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss. If both dates are omitted and is_uncommitted is false, a server-configured default interval is used (default is one month)
+	ToDate *structure.Timestamp `json:"to_date,string,omitempty"`
+	// The application ID to filter. Can be used together with or instead of the <b>application_name</b> parameter
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// The application name to filter. Can be used instead of the <b>application_id</b> parameter
+	ApplicationName string `json:"application_name,omitempty"`
+	// The subscription ID list separated by semicolons (;) to filter
+	SubscriptionId string `json:"subscription_id,omitempty"`
+	// The subscription name list separated by semicolons (;) to filter
+	SubscriptionName string `json:"subscription_name,omitempty"`
+	// The resource type list separated by semicolons (;) to filter
+	ResourceType string `json:"resource_type,omitempty"`
+	// The price group name list separated by semicolons (;) to filter
+	PriceGroupName string `json:"price_group_name,omitempty"`
+	// Whether to filter by the accounting dates instead of the transaction's `performed_at` timestamps
+	UseAccountingDates *bool `json:"use_accounting_dates,string,omitempty"`
+	// The maximum record number to include in the report. If omitted, the report service applies its own limit. Unlike GetTransactionHistory, there is no default of 20 and no cap of 1000 on the Management API side
+	Count int `json:"count,string,omitempty"`
+	// The number of records to skip in the output
+	Offset int `json:"offset,string,omitempty"`
 	// The selected timezone or the 'auto' value (the account location)
 	Timezone string `json:"timezone,omitempty"`
 	// The transaction ID list separated by semicolons (;)
@@ -398,9 +458,15 @@ func (s *HistoryService) DeleteRecord(params DeleteRecordParams) (*DeleteRecordR
 
 type GetACDHistoryParams struct {
 	// The UTC 'from' date filter in 24-h format: YYYY-MM-DD HH:mm:ss
-	FromDate *structure.Timestamp `json:"from_date,string"`
+	FromDate *structure.Timestamp `json:"from_date,string,omitempty"`
 	// The UTC 'to' date filter in 24-h format: YYYY-MM-DD HH:mm:ss
-	ToDate *structure.Timestamp `json:"to_date,string"`
+	ToDate *structure.Timestamp `json:"to_date,string,omitempty"`
+	// The caller phone number to filter
+	Callerid string `json:"callerid,omitempty"`
+	// The ACD session custom data to filter. The match is exact
+	CustomData string `json:"custom_data,omitempty"`
+	// The decimal mark for the CSV numbers if the output=csv. If omitted, the account locale setting is used
+	DecimalSeparator string `json:"decimal_separator,omitempty"`
 	// The ACD session history ID list separated by semicolons (;)
 	AcdSessionHistoryId string `json:"acd_session_history_id,omitempty"`
 	// The ACD request ID list separated by semicolons (;)
@@ -413,7 +479,7 @@ type GetACDHistoryParams struct {
 	OperatorHangup *bool `json:"operator_hangup,string,omitempty"`
 	// Whether the call is unserviced by the operator
 	Unserviced *bool `json:"unserviced,string,omitempty"`
-	// The min waiting time filter
+	// The minimum waiting time filter
 	MinWaitingTime int `json:"min_waiting_time,string,omitempty"`
 	// Whether the call is rejected calls by the 'max_queue_size', 'max_waiting_time' threshold
 	Rejected *bool `json:"rejected,string,omitempty"`
@@ -423,7 +489,7 @@ type GetACDHistoryParams struct {
 	WithHeader *bool `json:"with_header,string,omitempty"`
 	// Whether to get records in the descent order
 	DescOrder *bool `json:"desc_order,string,omitempty"`
-	// The max returning record count
+	// The maximum returning record count
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`
@@ -455,15 +521,21 @@ func (s *HistoryService) GetACDHistory(params GetACDHistoryParams) (*GetACDHisto
 
 type GetAuditLogParams struct {
 	// The UTC 'from' date filter in 24-h format: YYYY-MM-DD HH:mm:ss
-	FromDate *structure.Timestamp `json:"from_date,string"`
+	FromDate *structure.Timestamp `json:"from_date,string,omitempty"`
 	// The UTC 'to' date filter in 24-h format: YYYY-MM-DD HH:mm:ss
-	ToDate *structure.Timestamp `json:"to_date,string"`
+	ToDate *structure.Timestamp `json:"to_date,string,omitempty"`
 	// The selected timezone or the 'auto' value (the account location)
 	Timezone string `json:"timezone,omitempty"`
 	// The audit history ID list separated by semicolons (;)
 	AuditLogId string `json:"audit_log_id,omitempty"`
-	// The admin user ID to filter
+	// The admin user ID list separated by semicolons (;) to filter
 	FilteredAdminUserId string `json:"filtered_admin_user_id,omitempty"`
+	// Whether to create an asynchronous history report instead of returning the data immediately. Has the same effect as calling GetAuditLogAsync and requires the output=csv
+	IsAsync *bool `json:"is_async,string,omitempty"`
+	// Whether to get a CSV file with the column names if the output=csv
+	WithHeader *bool `json:"with_header,string,omitempty"`
+	// The decimal mark for the CSV numbers if the output=csv. If omitted, the account locale setting is used
+	DecimalSeparator string `json:"decimal_separator,omitempty"`
 	// The IP list separated by semicolons (;) to filter
 	FilteredIp string `json:"filtered_ip,omitempty"`
 	// The function list separated by semicolons (;) to filter
@@ -474,7 +546,7 @@ type GetAuditLogParams struct {
 	DescOrder *bool `json:"desc_order,string,omitempty"`
 	// Whether to include the 'total_count' and increase performance
 	WithTotalCount *bool `json:"with_total_count,string,omitempty"`
-	// The max returning record count
+	// The maximum returning record number. If omitted, the report service applies its own limit
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`
@@ -506,15 +578,19 @@ func (s *HistoryService) GetAuditLog(params GetAuditLogParams) (*GetAuditLogRetu
 
 type GetAuditLogAsyncParams struct {
 	// The UTC 'from' date filter in 24-h format: YYYY-MM-DD HH:mm:ss
-	FromDate *structure.Timestamp `json:"from_date,string"`
+	FromDate *structure.Timestamp `json:"from_date,string,omitempty"`
 	// The UTC 'to' date filter in 24-h format: YYYY-MM-DD HH:mm:ss
-	ToDate *structure.Timestamp `json:"to_date,string"`
+	ToDate *structure.Timestamp `json:"to_date,string,omitempty"`
 	// The selected timezone or the 'auto' value (the account location)
 	Timezone string `json:"timezone,omitempty"`
 	// The audit history ID list separated by semicolons (;)
 	AuditLogId string `json:"audit_log_id,omitempty"`
-	// The admin user ID to filter
+	// The admin user ID list separated by semicolons (;) to filter
 	FilteredAdminUserId string `json:"filtered_admin_user_id,omitempty"`
+	// The maximum record number to include in the report. If omitted, the report service applies its own limit
+	Count int `json:"count,string,omitempty"`
+	// The first <b>N</b> records are skipped in the output
+	Offset int `json:"offset,string,omitempty"`
 	// The IP list separated by semicolons (;) to filter
 	FilteredIp string `json:"filtered_ip,omitempty"`
 	// The function list separated by semicolons (;) to filter

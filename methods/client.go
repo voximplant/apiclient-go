@@ -29,31 +29,31 @@ type Client struct {
 	// Lock
 	mux sync.Mutex
 
-	SMS                   *SMSService
-	SIPWhiteList          *SIPWhiteListService
-	SIPRegistration       *SIPRegistrationService
+	Rules                 *RulesService
+	PhoneNumbers          *PhoneNumbersService
 	OutboundTestNumbers   *OutboundTestNumbersService
+	Users                 *UsersService
+	PSTNBlacklist         *PSTNBlacklistService
+	CallerIDs             *CallerIDsService
 	PushCredentials       *PushCredentialsService
 	RecordStorages        *RecordStoragesService
-	Rules                 *RulesService
-	PSTNBlacklist         *PSTNBlacklistService
-	Invoices              *InvoicesService
-	WABPhoneNumbers       *WABPhoneNumbersService
-	Queues                *QueuesService
-	RegulationAddress     *RegulationAddressService
-	Secrets               *SecretsService
-	Accounts              *AccountsService
-	Scenarios             *ScenariosService
-	CallerIDs             *CallerIDsService
-	Skills                *SkillsService
-	AuthorizedIPs         *AuthorizedIPsService
-	CallLists             *CallListsService
-	PhoneNumbers          *PhoneNumbersService
-	Applications          *ApplicationsService
 	KeyValueStorage       *KeyValueStorageService
-	Users                 *UsersService
+	RegulationAddress     *RegulationAddressService
+	Applications          *ApplicationsService
+	Scenarios             *ScenariosService
 	History               *HistoryService
+	WABPhoneNumbers       *WABPhoneNumbersService
 	SmartQueue            *SmartQueueService
+	Secrets               *SecretsService
+	CallLists             *CallListsService
+	SIPRegistration       *SIPRegistrationService
+	SMS                   *SMSService
+	AuthorizedIPs         *AuthorizedIPsService
+	Invoices              *InvoicesService
+	Accounts              *AccountsService
+	SIPWhiteList          *SIPWhiteListService
+	Queues                *QueuesService
+	Skills                *SkillsService
 	DialogflowCredentials *DialogflowCredentialsService
 	RoleSystem            *RoleSystemService
 
@@ -95,31 +95,31 @@ func NewClient(config *config.Config) (*Client, error) {
 		config:  config,
 	}
 
-	c.SMS = &SMSService{c}
-	c.SIPWhiteList = &SIPWhiteListService{c}
-	c.SIPRegistration = &SIPRegistrationService{c}
+	c.Rules = &RulesService{c}
+	c.PhoneNumbers = &PhoneNumbersService{c}
 	c.OutboundTestNumbers = &OutboundTestNumbersService{c}
+	c.Users = &UsersService{c}
+	c.PSTNBlacklist = &PSTNBlacklistService{c}
+	c.CallerIDs = &CallerIDsService{c}
 	c.PushCredentials = &PushCredentialsService{c}
 	c.RecordStorages = &RecordStoragesService{c}
-	c.Rules = &RulesService{c}
-	c.PSTNBlacklist = &PSTNBlacklistService{c}
-	c.Invoices = &InvoicesService{c}
-	c.WABPhoneNumbers = &WABPhoneNumbersService{c}
-	c.Queues = &QueuesService{c}
-	c.RegulationAddress = &RegulationAddressService{c}
-	c.Secrets = &SecretsService{c}
-	c.Accounts = &AccountsService{c}
-	c.Scenarios = &ScenariosService{c}
-	c.CallerIDs = &CallerIDsService{c}
-	c.Skills = &SkillsService{c}
-	c.AuthorizedIPs = &AuthorizedIPsService{c}
-	c.CallLists = &CallListsService{c}
-	c.PhoneNumbers = &PhoneNumbersService{c}
-	c.Applications = &ApplicationsService{c}
 	c.KeyValueStorage = &KeyValueStorageService{c}
-	c.Users = &UsersService{c}
+	c.RegulationAddress = &RegulationAddressService{c}
+	c.Applications = &ApplicationsService{c}
+	c.Scenarios = &ScenariosService{c}
 	c.History = &HistoryService{c}
+	c.WABPhoneNumbers = &WABPhoneNumbersService{c}
 	c.SmartQueue = &SmartQueueService{c}
+	c.Secrets = &SecretsService{c}
+	c.CallLists = &CallListsService{c}
+	c.SIPRegistration = &SIPRegistrationService{c}
+	c.SMS = &SMSService{c}
+	c.AuthorizedIPs = &AuthorizedIPsService{c}
+	c.Invoices = &InvoicesService{c}
+	c.Accounts = &AccountsService{c}
+	c.SIPWhiteList = &SIPWhiteListService{c}
+	c.Queues = &QueuesService{c}
+	c.Skills = &SkillsService{c}
 	c.DialogflowCredentials = &DialogflowCredentialsService{c}
 	c.RoleSystem = &RoleSystemService{c}
 

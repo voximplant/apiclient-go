@@ -91,7 +91,7 @@ func (s *SIPWhiteListService) SetSipWhiteListItem(params SetSipWhiteListItemPara
 type GetSipWhiteListParams struct {
 	// The SIP white list item ID to filter
 	SipWhitelistId int `json:"sip_whitelist_id,string,omitempty"`
-	// The max returning record count
+	// The maximum returning record count
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`

@@ -11,9 +11,9 @@ type UsersService struct {
 type AddUserParams struct {
 	// The user name in format [a-z0-9][a-z0-9_-]{2,49}
 	UserName string `json:"user_name"`
-	// The user display name. The length must be less than 256
+	// The user display name. The length should be less than 256
 	UserDisplayName string `json:"user_display_name"`
-	// The user password. Must be at least 8 characters long and contain at least one uppercase and lowercase letter, one number, and one special character
+	// The user password. Should be at least 8 characters long and contain at least one uppercase and lowercase letter, one number, and one special character
 	UserPassword string `json:"user_password"`
 	// The application ID which a new user is to be bound to. <b>Required</b> unless <b>application_name</b> is provided.
 	ApplicationId int `json:"application_id,string,omitempty"`
@@ -21,7 +21,7 @@ type AddUserParams struct {
 	ApplicationName string `json:"application_name,omitempty"`
 	// Whether the user uses the parent account's money, 'false' if the user has a separate balance
 	ParentAccounting *bool `json:"parent_accounting,string,omitempty"`
-	// The user mobile phone. The length must be less than 50
+	// The user mobile phone. The length should be less than 50
 	MobilePhone string `json:"mobile_phone,omitempty"`
 	// Whether the user is active. Inactive users cannot log in to applications
 	UserActive *bool `json:"user_active,string,omitempty"`
@@ -91,9 +91,9 @@ type SetUserInfoParams struct {
 	ApplicationName string `json:"application_name,omitempty"`
 	// The new user name in format [a-z0-9][a-z0-9_-]{2,49}
 	NewUserName string `json:"new_user_name,omitempty"`
-	// The new user display name. The length must be less than 256
+	// The new user display name. The length should be less than 256
 	UserDisplayName string `json:"user_display_name,omitempty"`
-	// The new user password. Must be at least 8 characters long and contain at least one uppercase and lowercase letter, one number, and one special character
+	// The new user password. Should be at least 8 characters long and contain at least one uppercase and lowercase letter, one number, and one special character
 	UserPassword string `json:"user_password,omitempty"`
 	// Whether to use the parent account's money, 'false' to use a separate user balance
 	ParentAccounting *bool `json:"parent_accounting,string,omitempty"`
@@ -101,7 +101,7 @@ type SetUserInfoParams struct {
 	UserActive *bool `json:"user_active,string,omitempty"`
 	// Any string
 	UserCustomData string `json:"user_custom_data,omitempty"`
-	// The new user mobile phone. The length must be less than 50
+	// The new user mobile phone. The length should be less than 50
 	MobilePhone string `json:"mobile_phone,omitempty"`
 }
 
@@ -153,7 +153,7 @@ type GetUsersParams struct {
 	AcdStatus string `json:"acd_status,omitempty"`
 	// The skill to show in the 'skills' field output
 	ShowingSkillId int `json:"showing_skill_id,string,omitempty"`
-	// The max returning record count
+	// The maximum returning record count
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`

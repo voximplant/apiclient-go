@@ -26,7 +26,7 @@ type AccountInfoType struct {
 	LanguageCode string `json:"language_code,omitempty"`
 	// The account location (timezone). Examples: America/Los_Angeles, Etc/GMT-8, Etc/GMT+10
 	Location string `json:"location,omitempty"`
-	// The min balance value to notify by email or SMS
+	// The minimum balance value to notify by email or SMS
 	MinBalanceToNotify float64 `json:"min_balance_to_notify,omitempty"`
 	// Whether Voximplant notifications are required
 	AccountNotifications *bool `json:"account_notifications,omitempty"`
@@ -531,7 +531,7 @@ type CommonReportType struct {
 }
 
 type CalculatedCallHistoryDataType struct {
-	// The session count in the report
+	// The session number in the report
 	SessionCount int `json:"session_count"`
 	// The total found filtered session count
 	TotalSessionCount int `json:"total_session_count"`
@@ -540,7 +540,7 @@ type CalculatedCallHistoryDataType struct {
 }
 
 type CalculatedTransactionHistoryDataType struct {
-	// The transaction count in the report
+	// The transaction number in the report
 	TransactionCount int `json:"transaction_count"`
 	// The total found filtered transaction count
 	TotalTransactionCount int `json:"total_transaction_count"`
@@ -788,7 +788,7 @@ type ACDStatisticsItemType struct {
 	Avg int `json:"avg"`
 	// Maximum value over the aggregated interval, in seconds
 	Max int `json:"max"`
-	// Samples count over the aggregated interval
+	// Samples number over the aggregated interval
 	Count int `json:"count"`
 	// Sum of all samples over the aggregated interval, in seconds
 	Sum int `json:"sum"`
@@ -1085,7 +1085,7 @@ type PhoneNumberCountryRegionInfoType struct {
 	PhoneRegionName string `json:"phone_region_name"`
 	// The region phone prefix
 	PhoneRegionCode string `json:"phone_region_code"`
-	// The phone number count in stock for the region
+	// The phone number number in stock for the region
 	PhoneCount int `json:"phone_count"`
 	// The account verification status. Available only for RU accounts. The following values are possible: REQUIRED, IN_PROGRESS
 	VerificationStatus string `json:"verification_status,omitempty"`
@@ -1126,7 +1126,7 @@ type PhoneNumberCountryRegionInfoType struct {
 }
 
 type MultipleNumbersPrice struct {
-	// The number of subscriptions which must be purchased simultaneously to enable a multiple numbers subscription
+	// The number of subscriptions which should be purchased simultaneously to enable a multiple numbers subscription
 	Count int `json:"count"`
 	// The phone number installation tax reserve
 	InstallationTaxReserve int `json:"installation_tax_reserve"`
@@ -1248,7 +1248,7 @@ type PriceGroup struct {
 	PriceGroupId int `json:"price_group_id"`
 	// The price for the 'num_resources_per_price' resource count
 	Price float64 `json:"price"`
-	// The resource count per price
+	// The resource number per price
 	NumResourcesPerPrice int `json:"num_resources_per_price"`
 	// The resource rounding quantum
 	Quantum int `json:"quantum"`
@@ -2083,7 +2083,7 @@ type BankCardType struct {
 	BankCardProvider string `json:"bank_card_provider"`
 	// Whether the auto_charge is enabled
 	AutoCharge *bool `json:"auto_charge"`
-	// The min account balance to trigger the auto charging
+	// The minimum account balance to trigger the auto charging
 	MinBalance float64 `json:"min_balance "`
 	// The card overrun value in the account currency
 	CardOverrunValue float64 `json:"card_overrun_value"`

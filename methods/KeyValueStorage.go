@@ -17,9 +17,9 @@ type SetKeyValueItemParams struct {
 	ApplicationId int `json:"application_id,string"`
 	// Application name
 	ApplicationName string `json:"application_name,omitempty"`
-	// Key expiry time in seconds. The value is in range of 0..7,776,000 (90 days), the default value is 30 days (2,592,000 seconds). The TTL is converted to an **expires_at** Unix timestamp field as part of the storage object. Note that one of the two parameters (ttl or expires_at) must be set
+	// Key expiry time in seconds. The value is in range of 0..7,776,000 (90 days), the default value is 30 days (2,592,000 seconds). The TTL is converted to an **expires_at** Unix timestamp field as part of the storage object. Note that one of the two parameters (ttl or expires_at) should be set
 	Ttl int `json:"ttl,string,omitempty"`
-	// Expiration date based on **ttl** (timestamp without milliseconds). Note that one of the two parameters (ttl or expires_at) must be set
+	// Expiration date based on **ttl** (timestamp without milliseconds). Note that one of the two parameters (ttl or expires_at) should be set
 	ExpiresAt int `json:"expires_at,string,omitempty"`
 }
 

@@ -44,7 +44,7 @@ type GetKeysParams struct {
 	WithRoles *bool `json:"with_roles,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`
-	// The max returning record count
+	// The maximum returning record count
 	Count int `json:"count,string,omitempty"`
 }
 
@@ -198,7 +198,7 @@ func (s *RoleSystemService) RemoveKeyRoles(params RemoveKeyRolesParams) (*Remove
 type AddSubUserParams struct {
 	// The new subuser login for management api authentication, should be unique within the Voximplant account. The login specified is always converted to lowercase
 	NewSubuserName string `json:"new_subuser_name"`
-	// The new subuser password. Must be at least 8 characters long and contain at least one uppercase and lowercase letter, one number, and one special character
+	// The new subuser password. Should be at least 8 characters long and contain at least one uppercase and lowercase letter, one number, and one special character
 	NewSubuserPassword string `json:"new_subuser_password"`
 	// The role id list separated by semicolons (;)
 	RoleId string `json:"role_id,omitempty"`
@@ -233,7 +233,7 @@ type GetSubUsersParams struct {
 	WithRoles *bool `json:"with_roles,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`
-	// The max returning record count
+	// The maximum returning record count
 	Count int `json:"count,string,omitempty"`
 }
 
@@ -260,7 +260,7 @@ type SetSubUserInfoParams struct {
 	SubuserId int `json:"subuser_id,string"`
 	// The subuser old password. It is required if __new_subuser_password__ is specified
 	OldSubuserPassword string `json:"old_subuser_password,omitempty"`
-	// The new user password. Must be at least 8 characters long and contain at least one uppercase and lowercase letter, one number, and one special character
+	// The new user password. Should be at least 8 characters long and contain at least one uppercase and lowercase letter, one number, and one special character
 	NewSubuserPassword string `json:"new_subuser_password,omitempty"`
 	// The new subuser description
 	Description string `json:"description,omitempty"`

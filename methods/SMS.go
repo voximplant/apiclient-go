@@ -109,7 +109,7 @@ type GetSmsHistoryParams struct {
 	Direction string `json:"direction,omitempty"`
 	// The selected timezone or the 'auto' value (the account location)
 	Timezone string `json:"timezone,omitempty"`
-	// Maximum number of resulting rows fetched. Must be not bigger than 1000. If left blank, then the default value of 1000 is used
+	// Maximum number of resulting rows fetched. Should be not bigger than 1000. If left blank, then the default value of 1000 is used
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`
@@ -148,7 +148,7 @@ type A2PGetSmsHistoryParams struct {
 	SourceNumber string `json:"source_number,omitempty"`
 	// The destination phone number
 	DestinationNumber string `json:"destination_number,omitempty"`
-	// Maximum number of resulting rows fetched. Must be not bigger than 1000. If left blank, then the default value of 1000 is used
+	// Maximum number of resulting rows fetched. Should be not bigger than 1000. If left blank, then the default value of 1000 is used
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`

@@ -21,7 +21,7 @@ type GetPhoneNumberReportsParams struct {
 	IsCompleted *bool `json:"is_completed,string,omitempty"`
 	// Whether to get records in the descent order
 	DescOrder *bool `json:"desc_order,string,omitempty"`
-	// The max returning record count
+	// The maximum returning record count
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`
@@ -328,7 +328,7 @@ type GetNewPhoneNumbersParams struct {
 	CountryState string `json:"country_state,omitempty"`
 	// The phone region ID. See the [GetPhoneNumberRegions] method
 	PhoneRegionId int `json:"phone_region_id,string"`
-	// The max returning record count
+	// The maximum returning record count
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`

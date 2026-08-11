@@ -9,9 +9,9 @@ type ScenariosService struct {
 }
 
 type AddScenarioParams struct {
-	// The scenario name. The length must be less than 30
+	// The scenario name. The length should be less than 30
 	ScenarioName string `json:"scenario_name"`
-	// The scenario text. Use the application/x-www-form-urlencoded content type with UTF-8 encoding. The length must be less than 128 KB
+	// The scenario text. Use the application/x-www-form-urlencoded content type with UTF-8 encoding. The length should be less than 128 KB
 	ScenarioScript string `json:"scenario_script,omitempty"`
 	// The rule ID. The new scenario binds to the specified rule. Please note, if you do not bind the scenario to any rule, you cannot execute the scenario
 	RuleId int `json:"rule_id,string,omitempty"`
@@ -113,9 +113,9 @@ type GetScenariosParams struct {
 	ScenarioId int `json:"scenario_id,string,omitempty"`
 	// The scenario name to filter. Can be used instead of <b>scenario_id</b>. All scenarios containing this param in their names are returned. The parameter is case insensitive
 	ScenarioName string `json:"scenario_name,omitempty"`
-	// Whether to get the scenario text. You must specify the 'scenario_id' too!
+	// Whether to get the scenario text. You should specify the 'scenario_id' too!
 	WithScript *bool `json:"with_script,string,omitempty"`
-	// The max returning record count
+	// The maximum returning record count
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`
@@ -158,9 +158,9 @@ type SetScenarioInfoParams struct {
 	ScenarioId int `json:"scenario_id,string,omitempty"`
 	// Name of the scenario to edit. <b>Required</b> unless <b>scenario_id</b> is provided.
 	RequiredScenarioName string `json:"required_scenario_name,omitempty"`
-	// New scenario name. The length must be less than 30
+	// New scenario name. The length should be less than 30
 	ScenarioName string `json:"scenario_name,omitempty"`
-	// New scenario text. Use the application/x-www-form-urlencoded content type with UTF-8 encoding. The length must be less than 128 KB
+	// New scenario text. Use the application/x-www-form-urlencoded content type with UTF-8 encoding. The length should be less than 128 KB
 	ScenarioScript string `json:"scenario_script,omitempty"`
 }
 
@@ -260,7 +260,7 @@ func (s *ScenariosService) StartScenarios(params StartScenariosParams) (*StartSc
 }
 
 type StartConferenceParams struct {
-	// The conference name. The name length must be less than 50 symbols
+	// The conference name. The name length should be less than 50 symbols
 	ConferenceName string `json:"conference_name"`
 	// The rule ID that needs to be launched. Please note, the necessary scenario needs to be attached to the rule
 	RuleId int `json:"rule_id,string"`

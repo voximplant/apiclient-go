@@ -71,7 +71,7 @@ type GetAuthorizedAccountIPsParams struct {
 	Allowed *bool `json:"allowed,string,omitempty"`
 	// Specify the parameter to filter the networks that contains the particular IP4
 	ContainsIp string `json:"contains_ip,omitempty"`
-	// The max returning record count
+	// The maximum returning record count
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`

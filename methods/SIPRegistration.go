@@ -197,7 +197,7 @@ type GetSipRegistrationsParams struct {
 	InProgress *bool `json:"in_progress,string,omitempty"`
 	// The list of SIP response codes. The __code1:code2__ means a range from __code1__ to __code2__ including; the __code1;code2__ meanse either __code1__ or __code2__. You can combine ranges, e.g., __code1;code2:code3__
 	StatusCode string `json:"status_code,omitempty"`
-	// The max returning record count
+	// The maximum returning record count
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`
