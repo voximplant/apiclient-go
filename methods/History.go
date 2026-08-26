@@ -98,7 +98,7 @@ type GetCallHistoryAsyncParams struct {
 	MaxDuration int `json:"max_duration,string,omitempty"`
 	// A JSON-formatted list of strings containing phone numbers for history filtering. Has a higher priority than the <b>remote_number</b> parameter. If the array is empty, the <b>remote_number</b> parameter is used instead
 	RemoteNumberList string `json:"remote_number_list,omitempty"`
-	// The maximum record number to include in the report. If omitted, the report service applies its own limit. Unlike GetCallHistory, there is no default of 20 and no cap of 1000 on the Management API side
+	// The maximum number of records to include in the report. If omitted, the report service applies its own limit. Unlike GetCallHistory, there is no default of 20 and no cap of 1000 on the Management API side
 	Count int `json:"count,string,omitempty"`
 	// The number of records to skip in the output
 	Offset int `json:"offset,string,omitempty"`
@@ -380,7 +380,7 @@ type GetTransactionHistoryAsyncParams struct {
 	PriceGroupName string `json:"price_group_name,omitempty"`
 	// Whether to filter by the accounting dates instead of the transaction's `performed_at` timestamps
 	UseAccountingDates *bool `json:"use_accounting_dates,string,omitempty"`
-	// The maximum record number to include in the report. If omitted, the report service applies its own limit. Unlike GetTransactionHistory, there is no default of 20 and no cap of 1000 on the Management API side
+	// The maximum number of records to include in the report. If omitted, the report service applies its own limit. Unlike GetTransactionHistory, there is no default of 20 and no cap of 1000 on the Management API side
 	Count int `json:"count,string,omitempty"`
 	// The number of records to skip in the output
 	Offset int `json:"offset,string,omitempty"`
@@ -546,7 +546,7 @@ type GetAuditLogParams struct {
 	DescOrder *bool `json:"desc_order,string,omitempty"`
 	// Whether to include the 'total_count' and increase performance
 	WithTotalCount *bool `json:"with_total_count,string,omitempty"`
-	// The maximum returning record number. If omitted, the report service applies its own limit
+	// The maximum returning number of records. If omitted, the report service applies its own limit
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`
@@ -587,7 +587,7 @@ type GetAuditLogAsyncParams struct {
 	AuditLogId string `json:"audit_log_id,omitempty"`
 	// The admin user ID list separated by semicolons (;) to filter
 	FilteredAdminUserId string `json:"filtered_admin_user_id,omitempty"`
-	// The maximum record number to include in the report. If omitted, the report service applies its own limit
+	// The maximum number of records to include in the report. If omitted, the report service applies its own limit
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`

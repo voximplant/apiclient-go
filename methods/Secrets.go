@@ -107,7 +107,7 @@ type GetSecretsParams struct {
 	ApplicationName string `json:"application_name,omitempty"`
 	// Filter by the secret name part
 	SecretNamePart string `json:"secret_name_part,omitempty"`
-	// Maximum returning record number
+	// Maximum returning number of records
 	Count int `json:"count,string,omitempty"`
 	// First <b>N</b> records to be skipped in the output
 	Offset int `json:"offset,string,omitempty"`

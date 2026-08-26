@@ -52,7 +52,7 @@ func (s *QueuesService) AddQueue(params AddQueueParams) (*AddQueueReturn, *struc
 
 type BindUserToQueueParams struct {
 	// Whether to bind or unbind users
-	Bind *bool `json:"bind,string"`
+	Bind *bool `json:"bind,string,omitempty"`
 	// The application ID. <b>Required</b> unless <b>application_name</b> is provided.
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// The application name. <b>Required</b> unless <b>application_id</b> is provided.
@@ -131,8 +131,10 @@ type SetQueueInfoParams struct {
 	MaxWaitingTime int `json:"max_waiting_time,string,omitempty"`
 	// The average service time in seconds. Specify the parameter to correct or initialize the waiting time prediction
 	AverageServiceTime int `json:"average_service_time,string,omitempty"`
-	// The new application ID
+	// The new application ID. Can be used instead of the <b>application_name</b> parameter
 	ApplicationId int `json:"application_id,string,omitempty"`
+	// The new application name. Can be used instead of the <b>application_id</b> parameter
+	ApplicationName string `json:"application_name,omitempty"`
 }
 
 type SetQueueInfoReturn struct {
@@ -159,12 +161,18 @@ type GetQueuesParams struct {
 	AcdQueueId int `json:"acd_queue_id,string,omitempty"`
 	// The ACD queue name part to filter
 	AcdQueueName string `json:"acd_queue_name,omitempty"`
-	// The application ID to filter
+	// The application ID to filter. Can be used instead of the <b>application_name</b> parameter
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// The skill ID to filter
+	// The application name. Can be used instead of the <b>application_id</b> parameter
+	ApplicationName string `json:"application_name,omitempty"`
+	// The skill ID to filter. Can be used instead of the <b>skill_name</b> parameter
 	SkillId int `json:"skill_id,string,omitempty"`
-	// The excluded skill ID to filter
+	// The skill name. Can be used instead of the <b>skill_id</b> parameter
+	SkillName string `json:"skill_name,omitempty"`
+	// The excluded skill ID to filter. Can be used instead of the <b>excluded_skill_name</b> parameter
 	ExcludedSkillId int `json:"excluded_skill_id,string,omitempty"`
+	// The excluded skill name. Can be used instead of the <b>excluded_skill_id</b> parameter
+	ExcludedSkillName string `json:"excluded_skill_name,omitempty"`
 	// Whether to get the bound skills
 	WithSkills *bool `json:"with_skills,string,omitempty"`
 	// The skill to show in the 'skills' field output
@@ -175,6 +183,8 @@ type GetQueuesParams struct {
 	Offset int `json:"offset,string,omitempty"`
 	// Whether to include the number of agents bound to the queue
 	WithOperatorcount *bool `json:"with_operatorcount,string,omitempty"`
+	// Whether to include the deleted queues
+	ShowDeleted *bool `json:"show_deleted,string,omitempty"`
 }
 
 type GetQueuesReturn struct {
@@ -268,7 +278,7 @@ type GetACDQueueStatisticsParams struct {
 	// Whether key names in returned JSON are abbreviated to reduce response byte size. The abbreviations are: 'WT' for 'WaitingTime', 'SA' for 'SpeedOfAnswer', 'AT' is for 'AbandonmentTime', 'HT' is for 'HandlingTime', 'TT' is for 'TalkTime', 'ACW' is for 'AfterCallWork', 'QL' is for 'QueueLength', 'TC' is for 'TotalCalls', 'AC' is for 'AnsweredCalls', 'UAC' is for 'UnansweredCalls', 'RC' is for 'RejectedCalls', 'SL' is for 'ServiceLevel', 'TWT' is for 'TotalWaitingTime', 'TST' is for 'TotalSubmissionTime', 'TAT' is for 'TotalAbandonmentTime', 'THT' is for 'TotalHandlingTime', 'TTT' is for 'TotalTalkTime', 'TACW' is for 'TotalAfterCallWork'
 	Abbreviation *bool `json:"abbreviation,string,omitempty"`
 	// The ACD queue ID list separated by semicolons (;). Use the 'all' value to select all ACD queues
-	AcdQueueId string `json:"acd_queue_id,omitempty"`
+	AcdQueueId string `json:"acd_queue_id"`
 	// List of item names abbreviations separated by semicolons (;). Returned JSON includes keys only for the selected items. Special 'all' value defines all possible items, see [ACDQueueStatisticsType] for a complete list. See 'abbreviation' description for complete abbreviation list
 	Report string `json:"report,omitempty"`
 	// Specifies how records are grouped by date and time. If set to 'day', the criteria is a day number. If set to 'hour_of_day', the criteria is a 60-minute interval within a day. If set to 'hour', the criteria is both day number and 60-minute interval within that day. If set to 'none', records are not grouped by date and time
@@ -299,7 +309,7 @@ type GetACDOperatorStatusStatisticsParams struct {
 	FromDate *structure.Timestamp `json:"from_date,string"`
 	// Date and time of statistics interval begin. Time zone is UTC, format is 24-h 'YYYY-MM-DD HH:mm:ss'
 	ToDate *structure.Timestamp `json:"to_date,string,omitempty"`
-	// The ACD status list separated by semicolons (;). The following values are possible: OFFLINE, ONLINE, READY, BANNED, IN_SERVICE, AFTER_SERVICE, TIMEOUT, DND
+	// The ACD status list separated by semicolons (;). The following values are possible: OFFLINE, ONLINE, READY, BANNED, IN_SERVICE, AFTER_SERVICE, TIMEOUT, DND. If omitted, the statistics include all the statuses
 	AcdStatus string `json:"acd_status,omitempty"`
 	// The user ID list separated by semicolons (;). Use the 'all' value to select all users
 	UserId string `json:"user_id"`

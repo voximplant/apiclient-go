@@ -531,7 +531,7 @@ type CommonReportType struct {
 }
 
 type CalculatedCallHistoryDataType struct {
-	// The session number in the report
+	// The number of sessions in the report
 	SessionCount int `json:"session_count"`
 	// The total found filtered session count
 	TotalSessionCount int `json:"total_session_count"`
@@ -540,7 +540,7 @@ type CalculatedCallHistoryDataType struct {
 }
 
 type CalculatedTransactionHistoryDataType struct {
-	// The transaction number in the report
+	// The number of transactions in the report
 	TransactionCount int `json:"transaction_count"`
 	// The total found filtered transaction count
 	TotalTransactionCount int `json:"total_transaction_count"`
@@ -788,7 +788,7 @@ type ACDStatisticsItemType struct {
 	Avg int `json:"avg"`
 	// Maximum value over the aggregated interval, in seconds
 	Max int `json:"max"`
-	// Samples number over the aggregated interval
+	// Number of samples over the aggregated interval
 	Count int `json:"count"`
 	// Sum of all samples over the aggregated interval, in seconds
 	Sum int `json:"sum"`
@@ -1085,7 +1085,7 @@ type PhoneNumberCountryRegionInfoType struct {
 	PhoneRegionName string `json:"phone_region_name"`
 	// The region phone prefix
 	PhoneRegionCode string `json:"phone_region_code"`
-	// The phone number number in stock for the region
+	// The phone number quantity in stock for the region
 	PhoneCount int `json:"phone_count"`
 	// The account verification status. Available only for RU accounts. The following values are possible: REQUIRED, IN_PROGRESS
 	VerificationStatus string `json:"verification_status,omitempty"`
