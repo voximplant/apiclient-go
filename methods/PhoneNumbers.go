@@ -50,22 +50,20 @@ func (s *PhoneNumbersService) GetPhoneNumberReports(params GetPhoneNumberReports
 }
 
 type AttachPhoneNumberParams struct {
-	// Quantity of phone numbers you want to attach. <b>Required</b> unless <b>phone_number</b> is provided.
+	// Quantity of phone numbers you want to attach. If neither this parameter nor <b>phone_number</b> is specified, one phone number is attached from the catalog
 	PhoneCount int `json:"phone_count,string,omitempty"`
-	// The phone number. See the [GetNewPhoneNumbers] method. <b>Required</b> unless <b>phone_count</b> is provided.
+	// The phone numbers to attach, separated by semicolons (;). See the [GetNewPhoneNumbers] method. If neither this parameter nor <b>phone_count</b> is specified, one phone number is attached from the catalog
 	PhoneNumber string `json:"phone_number,omitempty"`
-	// The country code
-	CountryCode string `json:"country_code"`
-	// The phone category name. See the [GetPhoneNumberCategories] method
-	PhoneCategoryName string `json:"phone_category_name"`
+	// The country code. <b>Required</b> together with <b>phone_category_name</b> and <b>phone_region_id</b> to purchase from the catalog; not needed when attaching a specific phone number via <b>phone_number</b>
+	CountryCode string `json:"country_code,omitempty"`
+	// The phone category name. See the [GetPhoneNumberCategories] method. <b>Required</b> together with <b>country_code</b> and <b>phone_region_id</b> to purchase from the catalog; not needed when attaching a specific phone number via <b>phone_number</b>
+	PhoneCategoryName string `json:"phone_category_name,omitempty"`
 	// The country state. See the [GetPhoneNumberCategories] and [GetPhoneNumberCountryStates] methods
 	CountryState string `json:"country_state,omitempty"`
-	// The phone region ID. See the [GetPhoneNumberRegions] method
-	PhoneRegionId int `json:"phone_region_id,string"`
+	// The phone region ID. See the [GetPhoneNumberRegions] method. <b>Required</b> together with <b>country_code</b> and <b>phone_category_name</b> to purchase from the catalog; not needed when attaching a specific phone number via <b>phone_number</b>
+	PhoneRegionId int `json:"phone_region_id,string,omitempty"`
 	// The phone regulation address ID
 	RegulationAddressId int `json:"regulation_address_id,string,omitempty"`
-	// Whether the force verification is enabled
-	ForceVerification *bool `json:"force_verification,string,omitempty"`
 }
 
 type AttachPhoneNumberReturn struct {
@@ -75,7 +73,7 @@ type AttachPhoneNumberReturn struct {
 	PhoneNumbers []*structure.NewAttachedPhoneInfoType `json:"phone_numbers"`
 }
 
-// Attach the phone number to the account. Note that phone numbers of some countries may require additional verification steps.<br><br>Please note that when you purchase a phone number, we reserve the subscription fee and taxes for the upcoming month. Read more in the <a href='/docs/gettingstarted/billing'>Billing</a> page.
+// Attach the phone number to the account. There are two modes:<br><ol><li>Purchase from the catalog — specify <b>country_code</b>, <b>phone_category_name</b> and <b>phone_region_id</b> together; the platform picks the number. The [GetNewPhoneNumbers] method with the same three locators lists the numbers available for purchase.</li><li>Attach a specific phone number — pass <b>phone_number</b>; the three locators are not required. The [GetNewPhoneNumbers] method without the locators returns the numbers already available to the account, which are the ones this mode accepts.</li></ol>Note that phone numbers of some countries may require additional verification steps.<br><br>Please note that when you purchase a phone number, we reserve the subscription fee and taxes for the upcoming month. Read more in the <a href='/docs/gettingstarted/billing'>Billing</a> page.
 func (s *PhoneNumbersService) AttachPhoneNumber(params AttachPhoneNumberParams) (*AttachPhoneNumberReturn, *structure.VError, error) {
 	req, err := s.client.NewRequest("POST", "AttachPhoneNumber", params)
 	if err != nil {
@@ -98,9 +96,9 @@ type BindPhoneNumberToApplicationParams struct {
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// The application name. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
-	// The rule ID
+	// The rule ID. Can be used instead of the <b>rule_name</b> parameter
 	RuleId int `json:"rule_id,string,omitempty"`
-	// The rule name that can be used instead of <b>rule_id</b>
+	// The rule name. Can be used instead of the <b>rule_id</b> parameter
 	RuleName string `json:"rule_name,omitempty"`
 	// Whether to bind or unbind (set true or false respectively)
 	Bind *bool `json:"bind,string,omitempty"`
@@ -159,7 +157,7 @@ type SetPhoneNumberInfoParams struct {
 	// If set, the callback of an incoming SMS is sent to this url, otherwise, it is sent to the general account URL
 	IncomingSmsCallbackUrl string `json:"incoming_sms_callback_url,omitempty"`
 	// Whether to enable the auto charging
-	AutoCharge *bool `json:"auto_charge,string"`
+	AutoCharge *bool `json:"auto_charge,string,omitempty"`
 }
 
 type SetPhoneNumberInfoReturn struct {
@@ -188,9 +186,9 @@ type GetPhoneNumbersParams struct {
 	PhoneNumber string `json:"phone_number,omitempty"`
 	// Phone number activation statuses to filter, separated by semicolons (;).<br><br>The possible values are: ACTIVE, ACTIVATING, DEACTIVATED, PROVISIONING, AWAITING_BUSINESS_PHONE_NUMBER_CONFIGURATION, LEGAL_OWNERSHIP_LIMIT_REACHED, GOSUSLUGI_DECLINED, SELF_BAN_ENABLED
 	ActivationStatus string `json:"activation_status,omitempty"`
-	// Application ID
-	ApplicationId int `json:"application_id,string,omitempty"`
-	// Application name that can be used instead of <b>application_id</b>
+	// Application ID. Can be used instead of the <b>application_name</b> parameter
+	ApplicationId string `json:"application_id,omitempty"`
+	// Application name. Can be used instead of the <b>application_id</b> parameter
 	ApplicationName string `json:"application_name,omitempty"`
 	// Whether the phone number bound to an application
 	IsBoundToApplication *bool `json:"is_bound_to_application,string,omitempty"`
@@ -237,7 +235,7 @@ type GetPhoneNumbersParams struct {
 	// First <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`
 	// Whether the SMS support is enabled
-	SmsSupported *bool `json:"sms_supported,string,omitempty"`
+	IsSmsSupported *bool `json:"is_sms_supported,string,omitempty"`
 	// Region names list separated by semicolons (;)
 	PhoneRegionName string `json:"phone_region_name,omitempty"`
 	// Rule ID list separated by semicolons (;)
@@ -320,14 +318,14 @@ func (s *PhoneNumbersService) GetPhoneNumbersAsync(params GetPhoneNumbersAsyncPa
 }
 
 type GetNewPhoneNumbersParams struct {
-	// The country code
-	CountryCode string `json:"country_code"`
-	// The phone category name. See the [GetPhoneNumberCategories] function
-	PhoneCategoryName string `json:"phone_category_name"`
+	// The country code. <b>Required</b> together with <b>phone_category_name</b> and <b>phone_region_id</b> to search the catalog; omit all three to get the phone numbers available locally
+	CountryCode string `json:"country_code,omitempty"`
+	// The phone category name. See the [GetPhoneNumberCategories] function. <b>Required</b> together with <b>country_code</b> and <b>phone_region_id</b> to search the catalog; omit all three to get the phone numbers available locally
+	PhoneCategoryName string `json:"phone_category_name,omitempty"`
 	// The country state. See the GetPhoneNumberCategories and GetPhoneNumberCountryStates functions
 	CountryState string `json:"country_state,omitempty"`
-	// The phone region ID. See the [GetPhoneNumberRegions] method
-	PhoneRegionId int `json:"phone_region_id,string"`
+	// The phone region ID. See the [GetPhoneNumberRegions] method. <b>Required</b> together with <b>country_code</b> and <b>phone_category_name</b> to search the catalog; omit all three to get the phone numbers available locally
+	PhoneRegionId int `json:"phone_region_id,string,omitempty"`
 	// The maximum returning record count
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
@@ -389,7 +387,7 @@ type GetPhoneNumberCountryStatesParams struct {
 	// The country code
 	CountryCode string `json:"country_code"`
 	// The phone category name. See the GetPhoneNumberCategories function
-	PhoneCategoryName string `json:"phone_category_name"`
+	PhoneCategoryName string `json:"phone_category_name,omitempty"`
 	// The country state code (example: AL, CA, ... )
 	CountryState string `json:"country_state,omitempty"`
 }

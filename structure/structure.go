@@ -387,7 +387,7 @@ type CallInfoType struct {
 	// Custom data passed to the JS session
 	CustomData string `json:"custom_data,omitempty"`
 	// End reason code and description
-	EndReason string `json:"end_reason,omitempty"`
+	EndReason interface{} `json:"end_reason,omitempty"`
 }
 
 type TransactionInfoType struct {
@@ -467,9 +467,9 @@ type AuditLogInfoType struct {
 	// The called function
 	CmdName string `json:"cmd_name"`
 	// The arguments of the called function (they may be masked or resolved)
-	CmdArgs string `json:"cmd_args"`
+	CmdArgs interface{} `json:"cmd_args"`
 	// The modified values
-	CmdResult string `json:"cmd_result,omitempty"`
+	CmdResult interface{} `json:"cmd_result,omitempty"`
 }
 
 type HistoryReportType struct {
@@ -496,9 +496,9 @@ type HistoryReportType struct {
 	// Store the report until the date in the following format: YYYY-MM-DD. The report is completed if the field exists
 	StoreUntil Date `json:"store_until,omitempty"`
 	// The report order filters (the saved [GetCallHistory], [GetTransactionHistory] parameters)
-	Filters string `json:"filters,omitempty"`
+	Filters interface{} `json:"filters,omitempty"`
 	// The calculated report data (the specific report data, see [CalculatedCallHistoryDataType], [CalculatedTransactionHistoryDataType])
-	CalculatedData string `json:"calculated_data,omitempty"`
+	CalculatedData interface{} `json:"calculated_data,omitempty"`
 }
 
 type CommonReportType struct {
@@ -525,9 +525,9 @@ type CommonReportType struct {
 	// Store the report until the date in the following format: YYYY-MM-DD. The report is completed if the field exists
 	StoreUntil Date `json:"store_until,omitempty"`
 	// The report order filters (the saved [GetCallHistory], [GetTransactionHistory] parameters)
-	Filters string `json:"filters,omitempty"`
+	Filters interface{} `json:"filters,omitempty"`
 	// The calculated report data (the specific report data, see [CalculatedCallHistoryDataType], [CalculatedTransactionHistoryDataType])
-	CalculatedData string `json:"calculated_data,omitempty"`
+	CalculatedData interface{} `json:"calculated_data,omitempty"`
 }
 
 type CalculatedCallHistoryDataType struct {

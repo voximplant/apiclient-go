@@ -310,13 +310,13 @@ type GetCallListsParams struct {
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`
-	// The application ID to filter. Can be a list separated by semicolons (;). Use the 'all' value to select all applications
+	// The application ID to filter. Can be a list separated by semicolons (;). Use the 'all' value to select all applications. Can be used instead of the <b>application_name</b> parameter
 	ApplicationId string `json:"application_id,omitempty"`
-	// The application name list separated by semicolons (;). Can be used instead of <b>application_id</b>
+	// The application name list separated by semicolons (;). Can be used instead of the <b>application_id</b> parameter
 	ApplicationName string `json:"application_name,omitempty"`
-	// The rule ID to filter. Can be a list separated by semicolons (;). Use the 'all' value to select all rules
+	// The rule ID to filter. Can be a list separated by semicolons (;). Use the 'all' value to select all rules. Can be used instead of the <b>rule_name</b> parameter
 	RuleId string `json:"rule_id,omitempty"`
-	// The rule name list separated by semicolons (;). Can be used instead of <b>rule_id</b>
+	// The rule name list separated by semicolons (;). Can be used instead of the <b>rule_id</b> parameter
 	RuleName string `json:"rule_name,omitempty"`
 	// The call list status to filter. The possible values are: In progress, Canceled, Completed, Suspended
 	Status string `json:"status,omitempty"`

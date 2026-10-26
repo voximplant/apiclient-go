@@ -109,6 +109,10 @@ type SetChildAccountInfoParams struct {
 	ChildAccountEmail string `json:"child_account_email,omitempty"`
 	// The new child account email
 	NewChildAccountEmail string `json:"new_child_account_email,omitempty"`
+	// Custom URL to send callbacks from this child account
+	CallbackUrl string `json:"callback_url,omitempty"`
+	// If salt string is specified, each HTTP request made by the Voximplant cloud toward the <b>callback_url</b> has a <b>salt</b> field set to MD5 hash of account information and salt. That hash can be used be a developer to ensure that HTTP request is made by the Voximplant cloud
+	CallbackSalt string `json:"callback_salt,omitempty"`
 	// The new child account password. Should be at least 8 characters long and contain at least one uppercase and lowercase letter, one number, and one special character
 	NewChildAccountPassword string `json:"new_child_account_password,omitempty"`
 	// Whether Voximplant notifications are required
@@ -259,7 +263,7 @@ type GetChildrenAccountsParams struct {
 	BriefOutput *bool `json:"brief_output,string,omitempty"`
 	// Whether to output the account_id, account_name, account_email only
 	MediumOutput *bool `json:"medium_output,string,omitempty"`
-	// The maximum returning record count
+	// The maximum returning record count. The default value applies to the full output only and is capped at 1000; with <b>brief_output</b> or <b>medium_output</b> all the records are returned unless this parameter is set
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`
@@ -319,9 +323,9 @@ func (s *AccountsService) GetMoneyAmountToCharge(params GetMoneyAmountToChargePa
 
 type ChangeAccountPlanParams struct {
 	// The plan type to config. The possible values are IM, MAU
-	PlanType string `json:"plan_type"`
+	PlanType string `json:"plan_type,omitempty"`
 	// The new plan ID with a price larger than the current plan's (see [GetAvailablePlans])
-	PlanSubscriptionTemplateId int `json:"plan_subscription_template_id,string,omitempty"`
+	PlanSubscriptionTemplateId int `json:"plan_subscription_template_id,string"`
 }
 
 type ChangeAccountPlanReturn struct {
@@ -434,6 +438,8 @@ func (s *AccountsService) GetAccountDocuments(params GetAccountDocumentsParams) 
 type GetAccountVerificationsParams struct {
 	// Account ID to check verifications for
 	AccountId int `json:"account_id,string"`
+	// Whether to return the active verification only
+	ActiveVerificationOnly *bool `json:"active_verification_only,string,omitempty"`
 }
 
 type GetAccountVerificationsReturn struct {

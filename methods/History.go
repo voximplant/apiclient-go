@@ -26,9 +26,9 @@ type GetCallHistoryParams struct {
 	Timezone string `json:"timezone,omitempty"`
 	// To get the call history for the specific sessions, pass the session IDs to this parameter separated by a semicolon (;). The maximum number of records is 1000. You can find the session ID in the <a href='/docs/references/voxengine/appevents#started'>AppEvents.Started</a> event's <b>sessionID</b> property in a scenario, or retrieve it from the <b>call_session_history_id</b> value returned from the <a href='https://voximplant.com/docs/references/httpapi/scenarios#reorderscenarios'>StartScenarios</a> or <a href='https://voximplant.com/docs/references/httpapi/scenarios#startconference'>StartConference</a> methods
 	CallSessionHistoryId string `json:"call_session_history_id,omitempty"`
-	// To receive the call history for a specific application, pass the application ID to this parameter
+	// To receive the call history for a specific application, pass the application ID to this parameter. Can be used instead of the <b>application_name</b> parameter
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// The application name, can be used instead of <b>application_id</b>
+	// The application name. Can be used instead of the <b>application_id</b> parameter
 	ApplicationName string `json:"application_name,omitempty"`
 	// To receive the call history for a specific users, pass the user ID list separated by semicolons (;). If it is specified, the output contains the calls from the listed users only
 	UserId string `json:"user_id,omitempty"`
@@ -106,9 +106,9 @@ type GetCallHistoryAsyncParams struct {
 	Timezone string `json:"timezone,omitempty"`
 	// To get the call history for the specific sessions, pass the session IDs to this parameter separated by a semicolon (;). You can find the session ID in the <a href='/docs/references/voxengine/appevents#started'>AppEvents.Started</a> event's <b>sessionID</b> property in a scenario, or retrieve it from the <b>call_session_history_id</b> value returned from the <a href='https://voximplant.com/docs/references/httpapi/scenarios#reorderscenarios'>StartScenarios</a> or <a href='https://voximplant.com/docs/references/httpapi/scenarios#startconference'>StartConference</a> methods
 	CallSessionHistoryId string `json:"call_session_history_id,omitempty"`
-	// To receive the call history for a specific application, pass the application ID to this parameter
+	// To receive the call history for a specific application, pass the application ID to this parameter. Can be used instead of the <b>application_name</b> parameter
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// The application name, can be used instead of <b>application_id</b>
+	// The application name. Can be used instead of the <b>application_id</b> parameter
 	ApplicationName string `json:"application_name,omitempty"`
 	// To receive the call history for a specific users, pass the user ID list separated by semicolons (;). If it is specified, the output contains the calls from the listed users only
 	UserId string `json:"user_id,omitempty"`
@@ -168,9 +168,9 @@ type GetBriefCallHistoryParams struct {
 	Timezone string `json:"timezone,omitempty"`
 	// To get the call history for the specific sessions, pass the session IDs to this parameter separated by a semicolon (;). You can find the session ID in the <a href='/docs/references/voxengine/appevents#started'>AppEvents.Started</a> event's <b>sessionID</b> property in a scenario, or retrieve it from the <b>call_session_history_id</b> value returned from the <a href='https://voximplant.com/docs/references/httpapi/scenarios#reorderscenarios'>StartScenarios</a> or <a href='https://voximplant.com/docs/references/httpapi/scenarios#startconference'>StartConference</a> methods
 	CallSessionHistoryId string `json:"call_session_history_id,omitempty"`
-	// To receive the call history for a specific application, pass the application ID to this parameter
+	// To receive the call history for a specific application, pass the application ID to this parameter. Can be used instead of the <b>application_name</b> parameter
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// The application name, can be used instead of <b>application_id</b>
+	// The application name. Can be used instead of the <b>application_id</b> parameter
 	ApplicationName string `json:"application_name,omitempty"`
 	// To receive the call history for a specific routing rule, pass the rule name to this parameter. Applies only if you set application_id or application_name
 	RuleName string `json:"rule_name,omitempty"`
@@ -226,7 +226,7 @@ type GetHistoryReportsParams struct {
 	Count int `json:"count,string,omitempty"`
 	// The first <b>N</b> records are skipped in the output
 	Offset int `json:"offset,string,omitempty"`
-	// The application ID to filter. Can be a list separated by semicolons (;). Use the 'all' value to select all applications
+	// The application ID to filter. Can be a list separated by semicolons (;). Use the 'all' value to select all applications. Can be used instead of the <b>application_name</b> parameter
 	ApplicationId string `json:"application_id,omitempty"`
 	// The application name list separated by semicolons (;). Can be used instead of the <b>application_id</b> parameter
 	ApplicationName string `json:"application_name,omitempty"`
@@ -289,7 +289,7 @@ type GetTransactionHistoryParams struct {
 	ToDate *structure.Timestamp `json:"to_date,string,omitempty"`
 	// The application ID to filter. Can be used together with or instead of the <b>application_name</b> parameter
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// The application name to filter. Can be used instead of the <b>application_id</b> parameter
+	// The application name to filter. Can be used together with or instead of the <b>application_id</b> parameter
 	ApplicationName string `json:"application_name,omitempty"`
 	// The subscription ID list separated by semicolons (;) to filter
 	SubscriptionId string `json:"subscription_id,omitempty"`
@@ -368,7 +368,7 @@ type GetTransactionHistoryAsyncParams struct {
 	ToDate *structure.Timestamp `json:"to_date,string,omitempty"`
 	// The application ID to filter. Can be used together with or instead of the <b>application_name</b> parameter
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// The application name to filter. Can be used instead of the <b>application_id</b> parameter
+	// The application name to filter. Can be used together with or instead of the <b>application_id</b> parameter
 	ApplicationName string `json:"application_name,omitempty"`
 	// The subscription ID list separated by semicolons (;) to filter
 	SubscriptionId string `json:"subscription_id,omitempty"`

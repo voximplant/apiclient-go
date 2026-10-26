@@ -15,9 +15,7 @@ func main() {
 
 	WithSqStatusesRaw := true
 	WithSqStatuses := &WithSqStatusesRaw
-	HandleCallsRaw := false
-	HandleCalls := &HandleCallsRaw
-	params := methods.SQGetAgentsParams{ApplicationId: 1, WithSqStatuses: WithSqStatuses, HandleCalls: HandleCalls}
+	params := methods.SQGetAgentsParams{ApplicationId: 1, WithSqStatuses: WithSqStatuses}
 	res, verr, err := client.SmartQueue.SQGetAgents(params)
 	fmt.Println(res, verr, err)
 }

@@ -13,9 +13,9 @@ type AddScenarioParams struct {
 	ScenarioName string `json:"scenario_name"`
 	// The scenario text. Use the application/x-www-form-urlencoded content type with UTF-8 encoding. The length should be less than 128 KB
 	ScenarioScript string `json:"scenario_script,omitempty"`
-	// The rule ID. The new scenario binds to the specified rule. Please note, if you do not bind the scenario to any rule, you cannot execute the scenario
+	// The rule ID. The new scenario binds to the specified rule. Please note, if you do not bind the scenario to any rule, you cannot execute the scenario. Can be used instead of the <b>rule_name</b> parameter
 	RuleId int `json:"rule_id,string,omitempty"`
-	// The rule name that can be used instead of <b>rule_id</b>
+	// The rule name. Can be used instead of the <b>rule_id</b> parameter
 	RuleName string `json:"rule_name,omitempty"`
 	// Whether to rewrite the existing scenario
 	Rewrite *bool `json:"rewrite,string,omitempty"`
@@ -81,9 +81,9 @@ type BindScenarioParams struct {
 	RuleId int `json:"rule_id,string,omitempty"`
 	// The rule name. <b>Required</b> unless <b>rule_id</b> is provided.
 	RuleName string `json:"rule_name,omitempty"`
-	// The application ID. <b>Required</b> unless <b>application_name</b> is provided.
+	// The application ID. Can be used instead of the <b>application_name</b> parameter
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// The application name. <b>Required</b> unless <b>application_id</b> is provided.
+	// The application name. Can be used instead of the <b>application_id</b> parameter
 	ApplicationName string `json:"application_name,omitempty"`
 	// Whether to bind or unbind (set true or false respectively)
 	Bind *bool `json:"bind,string,omitempty"`
@@ -111,7 +111,7 @@ func (s *ScenariosService) BindScenario(params BindScenarioParams) (*BindScenari
 type GetScenariosParams struct {
 	// The scenario ID to filter
 	ScenarioId int `json:"scenario_id,string,omitempty"`
-	// The scenario name to filter. Can be used instead of <b>scenario_id</b>. All scenarios containing this param in their names are returned. The parameter is case insensitive
+	// The scenario name to filter. Exact match. Combines with <b>scenario_id</b> when both are passed. Use with <b>application_id</b> or <b>application_name</b> to limit the result to one application
 	ScenarioName string `json:"scenario_name,omitempty"`
 	// Whether to get the scenario text. You should specify the 'scenario_id' too!
 	WithScript *bool `json:"with_script,string,omitempty"`
@@ -189,7 +189,7 @@ type ReorderScenariosParams struct {
 	// The rule name. <b>Required</b> unless <b>rule_id</b> is provided.
 	RuleName string `json:"rule_name,omitempty"`
 	// The scenario ID list separated by semicolons (;)
-	ScenarioId string `json:"scenario_id,omitempty"`
+	ScenarioId string `json:"scenario_id"`
 }
 
 type ReorderScenariosReturn struct {
@@ -212,19 +212,21 @@ func (s *ScenariosService) ReorderScenarios(params ReorderScenariosParams) (*Reo
 }
 
 type StartScenariosParams struct {
-	// The user ID. Run the scripts from the user if set
+	// The user ID. Run the scripts from the user if set. Can be used instead of the <b>user_name</b> parameter
 	UserId int `json:"user_id,string,omitempty"`
-	// The user name that can be used instead of <b>user_id</b>. Run the scripts from the user if set
+	// The user name. Run the scripts from the user if set. Can be used instead of the <b>user_id</b> parameter
 	UserName string `json:"user_name,omitempty"`
-	// The application ID
+	// The application ID. Can be used instead of the <b>application_name</b> parameter
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// The application name that can be used instead of <b>application_id</b>
+	// The application name. Can be used instead of the <b>application_id</b> parameter
 	ApplicationName string `json:"application_name,omitempty"`
-	// The rule ID that needs to be launched. Please note, the necessary scenario needs to be attached to the rule
-	RuleId int `json:"rule_id,string"`
+	// The rule ID that needs to be launched. Please note, the necessary scenario needs to be attached to the rule. <b>Required</b> unless <b>rule_name</b> is provided.
+	RuleId int `json:"rule_id,string,omitempty"`
+	// The rule name. <b>Required</b> unless <b>rule_id</b> is provided.
+	RuleName string `json:"rule_name,omitempty"`
 	// The script custom data, that can be accessed in the scenario via the <a href='/docs/references/voxengine/voxengine/customdata'>VoxEngine.customData()</a> method. Use the application/x-www-form-urlencoded content type with UTF-8 encoding
 	ScriptCustomData string `json:"script_custom_data,omitempty"`
-	// Specifies the IP from the geolocation of predicted subscribers. It allows selecting the nearest server for serving subscribers
+	// Specifies the IP from the geolocation of predicted subscribers. It allows selecting the nearest server for serving subscribers. If not specified, the IP address of the HTTP request is used
 	ReferenceIp string `json:"reference_ip,omitempty"`
 	// Specifies the location of the server where the scenario needs to be executed. Has higher priority than `reference_ip`. Request [getServerLocations](https://api.voximplant.com/getServerLocations) for possible values
 	ServerLocation string `json:"server_location,omitempty"`
@@ -262,19 +264,21 @@ func (s *ScenariosService) StartScenarios(params StartScenariosParams) (*StartSc
 type StartConferenceParams struct {
 	// The conference name. The name length should be less than 50 symbols
 	ConferenceName string `json:"conference_name"`
-	// The rule ID that needs to be launched. Please note, the necessary scenario needs to be attached to the rule
-	RuleId int `json:"rule_id,string"`
-	// The user ID. Run the scripts from the user if set
+	// The rule ID that needs to be launched. Please note, the necessary scenario needs to be attached to the rule. <b>Required</b> unless <b>rule_name</b> is provided.
+	RuleId int `json:"rule_id,string,omitempty"`
+	// The rule name. <b>Required</b> unless <b>rule_id</b> is provided.
+	RuleName string `json:"rule_name,omitempty"`
+	// The user ID. Run the scripts from the user if set. Can be used instead of the <b>user_name</b> parameter
 	UserId int `json:"user_id,string,omitempty"`
-	// The user name that can be used instead of <b>user_id</b>. Run the scripts from the user if set
+	// The user name. Run the scripts from the user if set. Can be used instead of the <b>user_id</b> parameter
 	UserName string `json:"user_name,omitempty"`
-	// The application ID
+	// The application ID. Can be used instead of the <b>application_name</b> parameter
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// The application name that can be used instead of <b>application_id</b>
+	// The application name. Can be used instead of the <b>application_id</b> parameter
 	ApplicationName string `json:"application_name,omitempty"`
 	// The script custom data, that can be accessed in the scenario via the <a href='/docs/references/voxengine/voxengine/customdata'>VoxEngine.customData()</a> method. Use the application/x-www-form-urlencoded content type with UTF-8 encoding.
 	ScriptCustomData string `json:"script_custom_data,omitempty"`
-	// Specifies the IP from the geolocation of predicted subscribers. It allows selecting the nearest server for serving subscribers
+	// Specifies the IP from the geolocation of predicted subscribers. It allows selecting the nearest server for serving subscribers. If not specified, the IP address of the HTTP request is used
 	ReferenceIp string `json:"reference_ip,omitempty"`
 	// Specifies the location of the server where the scenario needs to be executed. Has higher priority than `reference_ip`. Request [getServerLocations](https://api.voximplant.com/getServerLocations) for possible values
 	ServerLocation string `json:"server_location,omitempty"`

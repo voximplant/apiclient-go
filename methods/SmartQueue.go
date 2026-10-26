@@ -13,11 +13,13 @@ type GetSmartQueueRealtimeMetricsParams struct {
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// The application name to search by. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
-	// The user ID list with a maximum of 5 values separated by semicolons (;). Use the 'all' value to select all users. Can operate as a filter for the **occupancy_rate**, **sum_agents_online_time**, **sum_agents_ready_time**, **sum_agents_dialing_time**, **sum_agents_in_service_time**, **sum_agents_afterservice_time**, **sum_agents_dnd_time**, **sum_agents_banned_time**, **min_handle_time**, **max_handle_time**, **average_handle_time**, **count_handled_calls**, **min_after_call_worktime**, **max_after_call_worktime**, **average_after_call_worktime** report types
+	// The user ID list with a maximum of 5 values separated by semicolons (;). Use the 'all' value to select all users. Can operate as a filter for the **occupancy_rate**, **sum_agents_online_time**, **sum_agents_ready_time**, **sum_agents_dialing_time**, **sum_agents_in_service_time**, **sum_agents_afterservice_time**, **sum_agents_dnd_time**, **sum_agents_banned_time**, **min_handle_time**, **max_handle_time**, **average_handle_time**, **count_handled_calls**, **min_after_call_worktime**, **max_after_call_worktime**, **average_after_call_worktime** report types. Can be used instead of the <b>user_name</b> parameter
 	UserId string `json:"user_id,omitempty"`
-	// The user name list separated by semicolons (;). <b>user_name</b> can be used instead of <b>user_id</b>
+	// The user name list separated by semicolons (;). Can be used instead of the <b>user_id</b> parameter
 	UserName string `json:"user_name,omitempty"`
-	// The SmartQueue name list separated by semicolons (;). Can be used instead of <b>sq_queue_id</b>
+	// The SmartQueue ID list with a maximum of 5 values separated by semicolons (;). Can operate as filter for the **calls_blocked_percentage**, **count_blocked_calls**, **average_abandonment_rate**, **count_abandonment_calls**, **service_level**, **occupancy_rate**, **min_time_in_queue**, **max_time_in_queue**, **average_time_in_queue**, **min_answer_speed**, **max_answer_speed**, **average_answer_speed**, **min_handle_time**, **max_handle_time**, **average_handle_time**, **count_handled_calls**, **min_after_call_worktime**, **max_after_call_worktime**, **average_after_call_worktime** report types. <b>Required</b> unless <b>sq_queue_name</b> is provided or all the requested report types are agent reports.
+	SqQueueId string `json:"sq_queue_id,omitempty"`
+	// The SmartQueue name list separated by semicolons (;). <b>Required</b> unless <b>sq_queue_id</b> is provided or all the requested report types are agent reports.
 	SqQueueName string `json:"sq_queue_name,omitempty"`
 	// The from date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss. Default is the current time minus 30 minutes
 	FromDate *structure.Timestamp `json:"from_date,string,omitempty"`
@@ -33,6 +35,14 @@ type GetSmartQueueRealtimeMetricsParams struct {
 	GroupBy string `json:"group_by,omitempty"`
 	// Maximum waiting time. Required for the **service_level** report type
 	MaxWaitingSec int `json:"max_waiting_sec,string,omitempty"`
+	// Whether to get records in the descent order
+	DescOrder *bool `json:"desc_order,string,omitempty"`
+	// Whether to get a CSV file with the column names if the output=csv
+	WithHeader *bool `json:"with_header,string,omitempty"`
+	// The decimal mark for CSV numbers: a dot or a comma. If omitted, the account setting is used
+	DecimalSeparator string `json:"decimal_separator,omitempty"`
+	// Whether to omit the empty metric values from the result
+	OmitEmpty *bool `json:"omit_empty,string,omitempty"`
 }
 
 type GetSmartQueueRealtimeMetricsReturn struct {
@@ -60,13 +70,13 @@ type GetSmartQueueDayHistoryParams struct {
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// The application name to search by. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
-	// The user ID list with a maximum of 5 values separated by semicolons (;). Use the 'all' value to select all users. Can operate as a filter for the **occupancy_rate**, **sum_agents_online_time**, **sum_agents_ready_time**, **sum_agents_dialing_time**, **sum_agents_in_service_time**, **sum_agents_afterservice_time**, **sum_agents_dnd_time**, **sum_agents_banned_time**, **min_handle_time**, **max_handle_time**, **average_handle_time**, **count_handled_calls**, **min_after_call_worktime**, **max_after_call_worktime**, **average_after_call_worktime** report types
+	// The user ID list with a maximum of 5 values separated by semicolons (;). Use the 'all' value to select all users. Can operate as a filter for the **occupancy_rate**, **sum_agents_online_time**, **sum_agents_ready_time**, **sum_agents_dialing_time**, **sum_agents_in_service_time**, **sum_agents_afterservice_time**, **sum_agents_dnd_time**, **sum_agents_banned_time**, **min_handle_time**, **max_handle_time**, **average_handle_time**, **count_handled_calls**, **min_after_call_worktime**, **max_after_call_worktime**, **average_after_call_worktime** report types. Can be used instead of the <b>user_name</b> parameter
 	UserId string `json:"user_id,omitempty"`
-	// The user name list separated by semicolons (;). <b>user_name</b> can be used instead of <b>user_id</b>
+	// The user name list separated by semicolons (;). Can be used instead of the <b>user_id</b> parameter
 	UserName string `json:"user_name,omitempty"`
-	// The SmartQueue ID list with a maximum of 5 values separated by semicolons (;). Can operate as filter for the **calls_blocked_percentage**, **count_blocked_calls**, **average_abandonment_rate**, **count_abandonment_calls**, **service_level**, **occupancy_rate**, **min_time_in_queue**, **max_time_in_queue**, **average_time_in_queue**, **min_answer_speed**, **max_answer_speed**, **average_answer_speed**, **min_handle_time**, **max_handle_time**, **average_handle_time**, **count_handled_calls**, **min_after_call_worktime**, **max_after_call_worktime**, **average_after_call_worktime** report types
+	// The SmartQueue ID list with a maximum of 5 values separated by semicolons (;). Can operate as filter for the **calls_blocked_percentage**, **count_blocked_calls**, **average_abandonment_rate**, **count_abandonment_calls**, **service_level**, **occupancy_rate**, **min_time_in_queue**, **max_time_in_queue**, **average_time_in_queue**, **min_answer_speed**, **max_answer_speed**, **average_answer_speed**, **min_handle_time**, **max_handle_time**, **average_handle_time**, **count_handled_calls**, **min_after_call_worktime**, **max_after_call_worktime**, **average_after_call_worktime** report types. <b>Required</b> unless <b>sq_queue_name</b> is provided or all the requested report types are agent reports.
 	SqQueueId string `json:"sq_queue_id,omitempty"`
-	// The SmartQueue name list separated by semicolons (;). Can be used instead of <b>sq_queue_id</b>
+	// The SmartQueue name list separated by semicolons (;). <b>Required</b> unless <b>sq_queue_id</b> is provided or all the requested report types are agent reports.
 	SqQueueName string `json:"sq_queue_name,omitempty"`
 	// The from date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss. Default is the current time minus 1 day
 	FromDate *structure.Timestamp `json:"from_date,string,omitempty"`
@@ -82,6 +92,14 @@ type GetSmartQueueDayHistoryParams struct {
 	GroupBy string `json:"group_by,omitempty"`
 	// Maximum waiting time. Required for the **service_level** report type
 	MaxWaitingSec int `json:"max_waiting_sec,string,omitempty"`
+	// Whether to get records in the descent order
+	DescOrder *bool `json:"desc_order,string,omitempty"`
+	// Whether to get a CSV file with the column names if the output=csv
+	WithHeader *bool `json:"with_header,string,omitempty"`
+	// The decimal mark for CSV numbers: a dot or a comma. If omitted, the account setting is used
+	DecimalSeparator string `json:"decimal_separator,omitempty"`
+	// Whether to omit the empty metric values from the result
+	OmitEmpty *bool `json:"omit_empty,string,omitempty"`
 }
 
 type GetSmartQueueDayHistoryReturn struct {
@@ -109,13 +127,13 @@ type RequestSmartQueueHistoryParams struct {
 	ApplicationId int `json:"application_id,string,omitempty"`
 	// The application name to search by. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
-	// The user ID list with a maximum of 5 values separated by semicolons (;). Use the 'all' value to select all users. Can operate as a filter for the **occupancy_rate**, **sum_agents_online_time**, **sum_agents_ready_time**, **sum_agents_dialing_time**, **sum_agents_in_service_time**, **sum_agents_afterservice_time**, **sum_agents_dnd_time**, **sum_agents_banned_time**, **min_handle_time**, **max_handle_time**, **average_handle_time**, **count_handled_calls**, **min_after_call_worktime**, **max_after_call_worktime**, **average_after_call_worktime** report types
+	// The user ID list with a maximum of 5 values separated by semicolons (;). Use the 'all' value to select all users. Can operate as a filter for the **occupancy_rate**, **sum_agents_online_time**, **sum_agents_ready_time**, **sum_agents_dialing_time**, **sum_agents_in_service_time**, **sum_agents_afterservice_time**, **sum_agents_dnd_time**, **sum_agents_banned_time**, **min_handle_time**, **max_handle_time**, **average_handle_time**, **count_handled_calls**, **min_after_call_worktime**, **max_after_call_worktime**, **average_after_call_worktime** report types. Can be used instead of the <b>user_name</b> parameter
 	UserId string `json:"user_id,omitempty"`
-	// The user name list separated by semicolons (;). Can be used instead of <b>user_id</b>
+	// The user name list separated by semicolons (;). Can be used instead of the <b>user_id</b> parameter
 	UserName string `json:"user_name,omitempty"`
-	// The SmartQueue ID list with a maximum of 5 values separated by semicolons (;). Can operate as filter for the **calls_blocked_percentage**, **count_blocked_calls**, **average_abandonment_rate**, **count_abandonment_calls**, **service_level**, **occupancy_rate**, **min_time_in_queue**, **max_time_in_queue**, **average_time_in_queue**, **min_answer_speed**, **max_answer_speed**, **average_answer_speed**, **min_handle_time**, **max_handle_time**, **average_handle_time**, **count_handled_calls**, **min_after_call_worktime**, **max_after_call_worktime**, **average_after_call_worktime** report types
+	// The SmartQueue ID list with a maximum of 5 values separated by semicolons (;). Can operate as filter for the **calls_blocked_percentage**, **count_blocked_calls**, **average_abandonment_rate**, **count_abandonment_calls**, **service_level**, **occupancy_rate**, **min_time_in_queue**, **max_time_in_queue**, **average_time_in_queue**, **min_answer_speed**, **max_answer_speed**, **average_answer_speed**, **min_handle_time**, **max_handle_time**, **average_handle_time**, **count_handled_calls**, **min_after_call_worktime**, **max_after_call_worktime**, **average_after_call_worktime** report types. <b>Required</b> unless <b>sq_queue_name</b> is provided or all the requested report types are agent reports.
 	SqQueueId string `json:"sq_queue_id,omitempty"`
-	// The SmartQueue name list separated by semicolons (;). Can be used instead of <b>sq_queue_id</b>
+	// The SmartQueue name list separated by semicolons (;). <b>Required</b> unless <b>sq_queue_id</b> is provided or all the requested report types are agent reports.
 	SqQueueName string `json:"sq_queue_name,omitempty"`
 	// The from date in the selected timezone in 24-h format: YYYY-MM-DD HH:mm:ss. Default is the current time minus 1 day
 	FromDate *structure.Timestamp `json:"from_date,string"`
@@ -131,6 +149,14 @@ type RequestSmartQueueHistoryParams struct {
 	GroupBy string `json:"group_by,omitempty"`
 	// Maximum waiting time. Required for the **service_level** report type
 	MaxWaitingSec int `json:"max_waiting_sec,string,omitempty"`
+	// Whether to get records in the descent order
+	DescOrder *bool `json:"desc_order,string,omitempty"`
+	// Whether to get a CSV file with the column names if the output=csv
+	WithHeader *bool `json:"with_header,string,omitempty"`
+	// The decimal mark for CSV numbers: a dot or a comma. If omitted, the account setting is used
+	DecimalSeparator string `json:"decimal_separator,omitempty"`
+	// Whether to omit the empty metric values from the result
+	OmitEmpty *bool `json:"omit_empty,string,omitempty"`
 }
 
 type RequestSmartQueueHistoryReturn struct {
@@ -155,13 +181,13 @@ func (s *SmartQueueService) RequestSmartQueueHistory(params RequestSmartQueueHis
 }
 
 type GetSQStateParams struct {
-	// The application ID to search by
+	// The application ID to search by. <b>Required</b> unless <b>application_name</b> is provided.
 	ApplicationId int `json:"application_id,string,omitempty"`
-	// The application name to search by. Can be used instead of the <b>application_id</b> parameter
+	// The application name to search by. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
-	// The SmartQueue ID list separated by semicolons (;). Use the 'all' value to select all SmartQueues
+	// The SmartQueue ID list separated by semicolons (;). Use the 'all' value to select all SmartQueues. <b>Required</b> unless <b>sq_queue_name</b> is provided.
 	SqQueueId string `json:"sq_queue_id,omitempty"`
-	// The SmartQueue name list separated by semicolons (;). Can be used instead of <b>sq_queue_id</b>
+	// The SmartQueue name list separated by semicolons (;). <b>Required</b> unless <b>sq_queue_id</b> is provided.
 	SqQueueName string `json:"sq_queue_name,omitempty"`
 	// The selected timezone or the 'auto' value (the account location)
 	Timezone string `json:"timezone,omitempty"`
@@ -190,8 +216,10 @@ type SQSetAgentCustomStatusMappingParams struct {
 	SqStatusName string `json:"sq_status_name"`
 	// Custom status name
 	CustomStatusName string `json:"custom_status_name"`
-	// Application ID
-	ApplicationId int `json:"application_id,string"`
+	// Application ID. <b>Required</b> unless <b>application_name</b> is provided.
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// Application name. <b>Required</b> unless <b>application_id</b> is provided.
+	ApplicationName string `json:"application_name,omitempty"`
 }
 
 type SQSetAgentCustomStatusMappingReturn struct {
@@ -214,8 +242,10 @@ func (s *SmartQueueService) SQSetAgentCustomStatusMapping(params SQSetAgentCusto
 }
 
 type SQGetAgentCustomStatusMappingParams struct {
-	// Application ID
+	// Application ID. Can be used instead of the <b>application_name</b> parameter
 	ApplicationId int `json:"application_id,string,omitempty"`
+	// Application name. Can be used instead of the <b>application_id</b> parameter
+	ApplicationName string `json:"application_name,omitempty"`
 }
 
 type SQGetAgentCustomStatusMappingReturn struct {
@@ -241,9 +271,11 @@ func (s *SmartQueueService) SQGetAgentCustomStatusMapping(params SQGetAgentCusto
 
 type SQDeleteAgentCustomStatusMappingParams struct {
 	// Status name
-	SqStatusName string `json:"sq_status_name,omitempty"`
-	// Application ID
-	ApplicationId int `json:"application_id,string"`
+	SqStatusName string `json:"sq_status_name"`
+	// Application ID. <b>Required</b> unless <b>application_name</b> is provided.
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// Application name. <b>Required</b> unless <b>application_id</b> is provided.
+	ApplicationName string `json:"application_name,omitempty"`
 }
 
 type SQDeleteAgentCustomStatusMappingReturn struct {
@@ -266,9 +298,9 @@ func (s *SmartQueueService) SQDeleteAgentCustomStatusMapping(params SQDeleteAgen
 }
 
 type SQAddQueueParams struct {
-	// Application ID to bind to
-	ApplicationId int `json:"application_id,string"`
-	// Application name to bind to. Can be used instead of <b>application_id</b>
+	// Application ID to bind to. <b>Required</b> unless <b>application_name</b> is provided.
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// Application name to bind to. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
 	// Unique SmartQueue name within the application, up to 100 characters
 	SqQueueName string `json:"sq_queue_name"`
@@ -284,8 +316,6 @@ type SQAddQueueParams struct {
 	ImTaskSelection string `json:"im_task_selection,omitempty"`
 	// Whether to keep the call task in the queue if all agents are in the DND/BANNED/OFFLINE statuses.
 	HoldCallsIfInactiveAgents *bool `json:"hold_calls_if_inactive_agents,string,omitempty"`
-	// Agent selection strategy, applied when it is not possible to wait for a suitable free agent. Currently not used
-	FallbackAgentSelection string `json:"fallback_agent_selection,omitempty"`
 	// Comment, up to 200 characters
 	Description string `json:"description,omitempty"`
 	// Maximum time in minutes that a CALL-type request can remain in the queue without being assigned to an agent. Specify either this parameter or `call_max_waiting_time_in_seconds`. Specifying both parameters simultaniously leads to an error
@@ -324,15 +354,15 @@ func (s *SmartQueueService) SQAddQueue(params SQAddQueueParams) (*SQAddQueueRetu
 }
 
 type SQSetQueueInfoParams struct {
-	// Application ID to search by
-	ApplicationId int `json:"application_id,string"`
-	// Application name to search by. Can be used instead of <b>application_id</b>
+	// Application ID to search by. <b>Required</b> unless <b>application_name</b> is provided.
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// Application name to search by. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
 	// Whether to add the task to the queue if there are no available agents
 	HoldImIfInactiveAgents *bool `json:"hold_im_if_inactive_agents,string,omitempty"`
-	// ID of the SmartQueue to search for
-	SqQueueId int `json:"sq_queue_id,string"`
-	// Name of the SmartQueue to search for. Can be used instead of <b>sq_queue_id</b>
+	// ID of the SmartQueue to search for. <b>Required</b> unless <b>sq_queue_name</b> is provided.
+	SqQueueId int `json:"sq_queue_id,string,omitempty"`
+	// Name of the SmartQueue to search for. <b>Required</b> unless <b>sq_queue_id</b> is provided.
 	SqQueueName string `json:"sq_queue_name,omitempty"`
 	// Whether to keep the call task in the queue if all agents are in the DND/BANNED statuses.
 	HoldCallsIfInactiveAgents *bool `json:"hold_calls_if_inactive_agents,string,omitempty"`
@@ -346,8 +376,6 @@ type SQSetQueueInfoParams struct {
 	CallTaskSelection string `json:"call_task_selection,omitempty"`
 	// Strategy of prioritizing IM-type requests for service. Accepts one of the following values: "MAX_PRIORITY", "MAX_WAITING_TIME". The default value is **call_task_selection**
 	ImTaskSelection string `json:"im_task_selection,omitempty"`
-	// Agent selection strategy, applied when it is not possible to wait for a suitable free agent. Currently not used
-	FallbackAgentSelection string `json:"fallback_agent_selection,omitempty"`
 	// Comment, up to 200 characters
 	Description string `json:"description,omitempty"`
 	// Maximum time in minutes that a CALL-type request can remain in the queue without being assigned to an agent. Specify either this parameter or `call_max_waiting_time_in_seconds`. Specifying both parameters simultaniously leads to an error
@@ -386,13 +414,13 @@ func (s *SmartQueueService) SQSetQueueInfo(params SQSetQueueInfoParams) (*SQSetQ
 }
 
 type SQDelQueueParams struct {
-	// Application ID to search by
-	ApplicationId int `json:"application_id,string"`
-	// Application name to search by. Can be used instead of <b>application_id</b>
+	// Application ID to search by. <b>Required</b> unless <b>application_name</b> is provided.
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// Application name to search by. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
-	// List of SmartQueue IDs separated by semicolons (;). Use 'all' to delete all the queues
-	SqQueueId string `json:"sq_queue_id"`
-	// List of SmartQueue names separated by semicolons (;). Can be used instead of <b>sq_queue_id</b>
+	// List of SmartQueue IDs separated by semicolons (;). Use 'all' to delete all the queues. <b>Required</b> unless <b>sq_queue_name</b> is provided.
+	SqQueueId string `json:"sq_queue_id,omitempty"`
+	// List of SmartQueue names separated by semicolons (;). <b>Required</b> unless <b>sq_queue_id</b> is provided.
 	SqQueueName string `json:"sq_queue_name,omitempty"`
 }
 
@@ -416,23 +444,23 @@ func (s *SmartQueueService) SQDelQueue(params SQDelQueueParams) (*SQDelQueueRetu
 }
 
 type SQGetQueuesParams struct {
-	// Application ID to search by
-	ApplicationId int `json:"application_id,string"`
-	// Application name to search by. Can be used instead of <b>application_id</b>
+	// Application ID to search by. <b>Required</b> unless <b>application_name</b> is provided.
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// Application name to search by. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
-	// List of SmartQueue IDs separated by semicolons (;)
+	// List of SmartQueue IDs separated by semicolons (;). Can be used instead of the <b>sq_queue_name</b> parameter
 	SqQueueId string `json:"sq_queue_id,omitempty"`
-	// List of SmartQueue names separated by semicolons (;). Can be used instead of <b>sq_queue_id</b>
+	// List of SmartQueue names separated by semicolons (;). Can be used instead of the <b>sq_queue_id</b> parameter
 	SqQueueName string `json:"sq_queue_name,omitempty"`
 	// Substring of the SmartQueue name to filter
 	SqQueueNameTemplate string `json:"sq_queue_name_template,omitempty"`
-	// ID of the user that is bound to the queue
-	UserId int `json:"user_id,string,omitempty"`
-	// Name of the user that is bound to the queue. Can be used instead of <b>user_id</b>
+	// List of user IDs separated by semicolons (;). Queues bound to these users are returned. Can be used instead of the <b>user_name</b> parameter
+	UserId string `json:"user_id,omitempty"`
+	// List of user names separated by semicolons (;). Can be used instead of the <b>user_id</b> parameter
 	UserName string `json:"user_name,omitempty"`
-	// ID of the user that is not bound to the queue
-	ExcludedUserId int `json:"excluded_user_id,string,omitempty"`
-	// Name of the user that is not bound to the queue. Can be used instead of <b>excluded_user_id</b>
+	// List of user IDs separated by semicolons (;). Queues bound to these users are excluded. Can be used instead of the <b>excluded_user_name</b> parameter
+	ExcludedUserId string `json:"excluded_user_id,omitempty"`
+	// List of user names separated by semicolons (;). Can be used instead of the <b>excluded_user_id</b> parameter
 	ExcludedUserName string `json:"excluded_user_name,omitempty"`
 	// Number of items to show in the output
 	Count int `json:"count,string,omitempty"`
@@ -462,9 +490,9 @@ func (s *SmartQueueService) SQGetQueues(params SQGetQueuesParams) (*SQGetQueuesR
 }
 
 type SQAddSkillParams struct {
-	// Application ID to bind to
-	ApplicationId int `json:"application_id,string"`
-	// Application name to bind to. Can be used instead of <b>application_id</b>
+	// Application ID to bind to. <b>Required</b> unless <b>application_name</b> is provided.
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// Application name to bind to. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
 	// Unique skill name within the application
 	SqSkillName string `json:"sq_skill_name"`
@@ -492,13 +520,13 @@ func (s *SmartQueueService) SQAddSkill(params SQAddSkillParams) (*SQAddSkillRetu
 }
 
 type SQDelSkillParams struct {
-	// Application ID to search by
-	ApplicationId int `json:"application_id,string"`
-	// Application name to search by. Can be used instead of <b>application_id</b>
+	// Application ID to search by. <b>Required</b> unless <b>application_name</b> is provided.
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// Application name to search by. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
-	// List of skill IDs separated by semicolons (;). Use 'all' to delete all the skills
-	SqSkillId string `json:"sq_skill_id"`
-	// List of skill names separated by semicolons (;). Can be used instead of <b>sq_skill_id</b>
+	// List of skill IDs separated by semicolons (;). Use 'all' to delete all the skills. <b>Required</b> unless <b>sq_skill_name</b> is provided.
+	SqSkillId string `json:"sq_skill_id,omitempty"`
+	// List of skill names separated by semicolons (;). <b>Required</b> unless <b>sq_skill_id</b> is provided.
 	SqSkillName string `json:"sq_skill_name,omitempty"`
 }
 
@@ -522,13 +550,13 @@ func (s *SmartQueueService) SQDelSkill(params SQDelSkillParams) (*SQDelSkillRetu
 }
 
 type SQSetSkillInfoParams struct {
-	// Application ID to search by
-	ApplicationId int `json:"application_id,string"`
-	// Application name to search by. Can be used instead of <b>application_id</b>
+	// Application ID to search by. <b>Required</b> unless <b>application_name</b> is provided.
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// Application name to search by. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
-	// ID of the skill
-	SqSkillId int `json:"sq_skill_id,string"`
-	// Name of the skill. Can be used instead of <b>sq_skill_id</b>
+	// ID of the skill. <b>Required</b> unless <b>sq_skill_name</b> is provided.
+	SqSkillId int `json:"sq_skill_id,string,omitempty"`
+	// Name of the skill. <b>Required</b> unless <b>sq_skill_id</b> is provided.
 	SqSkillName string `json:"sq_skill_name,omitempty"`
 	// New unique skill name within the application
 	NewSqSkillName string `json:"new_sq_skill_name,omitempty"`
@@ -556,13 +584,13 @@ func (s *SmartQueueService) SQSetSkillInfo(params SQSetSkillInfoParams) (*SQSetS
 }
 
 type SQBindSkillParams struct {
-	// Application ID to search by
-	ApplicationId int `json:"application_id,string"`
-	// Application name to search by. Can be used instead of <b>application_id</b>
+	// Application ID to search by. <b>Required</b> unless <b>application_name</b> is provided.
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// Application name to search by. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
-	// List of user IDs separated by semicolons (;). Use 'all' to select all the users
-	UserId string `json:"user_id"`
-	// List of user names separated by semicolons (;). Can be used instead of <b>user_id</b>
+	// List of user IDs separated by semicolons (;). Use 'all' to select all the users. <b>Required</b> unless <b>user_name</b> is provided.
+	UserId string `json:"user_id,omitempty"`
+	// List of user names separated by semicolons (;). <b>Required</b> unless <b>user_id</b> is provided.
 	UserName string `json:"user_name,omitempty"`
 	// Skills to be bound to agents in the JSON array format. The array should contain objects with the <b>sq_skill_id</b>/<b>sq_skill_name</b> and <b>sq_skill_level</b> keys where skill levels range from 1 to 5
 	SqSkills string `json:"sq_skills"`
@@ -590,17 +618,17 @@ func (s *SmartQueueService) SQBindSkill(params SQBindSkillParams) (*SQBindSkillR
 }
 
 type SQUnbindSkillParams struct {
-	// Application ID to search by
-	ApplicationId int `json:"application_id,string"`
-	// Application name to search by. Can be used instead of <b>application_id</b>
+	// Application ID to search by. <b>Required</b> unless <b>application_name</b> is provided.
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// Application name to search by. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
-	// List of user IDs separated by semicolons (;). Use 'all' to select all the users
-	UserId string `json:"user_id"`
-	// List of user names separated by semicolons (;). Can be used instead of <b>user_id</b>
+	// List of user IDs separated by semicolons (;). Use 'all' to select all the users. <b>Required</b> unless <b>user_name</b> is provided.
+	UserId string `json:"user_id,omitempty"`
+	// List of user names separated by semicolons (;). <b>Required</b> unless <b>user_id</b> is provided.
 	UserName string `json:"user_name,omitempty"`
-	// List of skill IDs separated by semicolons (;). Use 'all' to unbind all the skills
-	SqSkillId string `json:"sq_skill_id"`
-	// List of skill names separated by semicolons (;). Can be used instead of <b>sq_skill_id</b>
+	// List of skill IDs separated by semicolons (;). Use 'all' to unbind all the skills. <b>Required</b> unless <b>sq_skill_name</b> is provided.
+	SqSkillId string `json:"sq_skill_id,omitempty"`
+	// List of skill names separated by semicolons (;). <b>Required</b> unless <b>sq_skill_id</b> is provided.
 	SqSkillName string `json:"sq_skill_name,omitempty"`
 }
 
@@ -624,23 +652,23 @@ func (s *SmartQueueService) SQUnbindSkill(params SQUnbindSkillParams) (*SQUnbind
 }
 
 type SQGetSkillsParams struct {
-	// Application ID to search by
-	ApplicationId int `json:"application_id,string"`
-	// Application name to search by. Can be used instead of <b>application_id</b>
+	// Application ID to search by. <b>Required</b> unless <b>application_name</b> is provided.
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// Application name to search by. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
-	// List of user IDs separated by semicolons (;)
+	// List of user IDs separated by semicolons (;). Can be used instead of the <b>user_name</b> parameter
 	UserId string `json:"user_id,omitempty"`
-	// List of user names separated by semicolons (;). Can be used instead of <b>user_id</b>
+	// List of user names separated by semicolons (;). Can be used instead of the <b>user_id</b> parameter
 	UserName string `json:"user_name,omitempty"`
-	// List of skill IDs separated by semicolons (;)
+	// List of skill IDs separated by semicolons (;). Can be used instead of the <b>sq_skill_name</b> parameter
 	SqSkillId string `json:"sq_skill_id,omitempty"`
-	// List of skill names separated by semicolons (;). Can be used instead of <b>sq_skill_id</b>
+	// List of skill names separated by semicolons (;). Can be used instead of the <b>sq_skill_id</b> parameter
 	SqSkillName string `json:"sq_skill_name,omitempty"`
 	// Substring of the skill name to filter, case-insensitive
 	SqSkillNameTemplate string `json:"sq_skill_name_template,omitempty"`
-	// ID of the user that is not bound to the skill
-	ExcludedUserId int `json:"excluded_user_id,string,omitempty"`
-	// Name of the user that is not bound to the skill. Can be used instead of <b>excluded_user_id</b>
+	// List of user IDs separated by semicolons (;). Skills bound to these users are excluded. Can be used instead of the <b>excluded_user_name</b> parameter
+	ExcludedUserId string `json:"excluded_user_id,omitempty"`
+	// List of user names separated by semicolons (;). Can be used instead of the <b>excluded_user_id</b> parameter
 	ExcludedUserName string `json:"excluded_user_name,omitempty"`
 	// Number of items to show in the output
 	Count int `json:"count,string,omitempty"`
@@ -668,17 +696,17 @@ func (s *SmartQueueService) SQGetSkills(params SQGetSkillsParams) (*SQGetSkillsR
 }
 
 type SQBindAgentParams struct {
-	// Application ID to search by
-	ApplicationId int `json:"application_id,string"`
-	// Application name to search by. Can be used instead of <b>application_id</b>
+	// Application ID to search by. <b>Required</b> unless <b>application_name</b> is provided.
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// Application name to search by. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
-	// ID of the SmartQueue. Pass a list of values divided by ; or the "all" keyword
-	SqQueueId string `json:"sq_queue_id"`
-	// Name of the SmartQueue. Pass a list of names divided by ; or the "all" keyword
+	// List of SmartQueue IDs separated by semicolons (;). Use 'all' to select all the queues. <b>Required</b> unless <b>sq_queue_name</b> is provided.
+	SqQueueId string `json:"sq_queue_id,omitempty"`
+	// List of SmartQueue names separated by semicolons (;). <b>Required</b> unless <b>sq_queue_id</b> is provided.
 	SqQueueName string `json:"sq_queue_name,omitempty"`
-	// List of user IDs separated by semicolons (;). Use 'all' to select all the users
-	UserId string `json:"user_id"`
-	// List of user names separated by semicolons (;). Can be used instead of <b>user_id</b>
+	// List of user IDs separated by semicolons (;). Use 'all' to select all the users. <b>Required</b> unless <b>user_name</b> is provided.
+	UserId string `json:"user_id,omitempty"`
+	// List of user names separated by semicolons (;). <b>Required</b> unless <b>user_id</b> is provided.
 	UserName string `json:"user_name,omitempty"`
 	// Binding mode. Accepts one of the [SQAgentBindingModes] enum values
 	BindMode string `json:"bind_mode,omitempty"`
@@ -704,17 +732,17 @@ func (s *SmartQueueService) SQBindAgent(params SQBindAgentParams) (*SQBindAgentR
 }
 
 type SQUnbindAgentParams struct {
-	// Application ID to search by
-	ApplicationId int `json:"application_id,string"`
-	// Application name to search by. Can be used instead of <b>application_id</b>
+	// Application ID to search by. <b>Required</b> unless <b>application_name</b> is provided.
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// Application name to search by. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
-	// List of SmartQueue IDs separated by semicolons (;). Use 'all' to select all the queues
-	SqQueueId string `json:"sq_queue_id"`
-	// List of SmartQueue names separated by semicolons (;). Can be used instead of <b>sq_queue_id</b>
+	// List of SmartQueue IDs separated by semicolons (;). Use 'all' to select all the queues. <b>Required</b> unless <b>sq_queue_name</b> is provided.
+	SqQueueId string `json:"sq_queue_id,omitempty"`
+	// List of SmartQueue names separated by semicolons (;). <b>Required</b> unless <b>sq_queue_id</b> is provided.
 	SqQueueName string `json:"sq_queue_name,omitempty"`
-	// List of user IDs separated by semicolons (;). Use 'all' to select all the users
-	UserId string `json:"user_id"`
-	// List of user names separated by semicolons (;). Can be used instead of <b>user_id</b>
+	// List of user IDs separated by semicolons (;). Use 'all' to select all the users. <b>Required</b> unless <b>user_name</b> is provided.
+	UserId string `json:"user_id,omitempty"`
+	// List of user names separated by semicolons (;). <b>Required</b> unless <b>user_id</b> is provided.
 	UserName string `json:"user_name,omitempty"`
 }
 
@@ -738,23 +766,23 @@ func (s *SmartQueueService) SQUnbindAgent(params SQUnbindAgentParams) (*SQUnbind
 }
 
 type SQGetAgentsParams struct {
-	// Application ID to search by
-	ApplicationId int `json:"application_id,string"`
-	// Application name to search by. Can be used instead of <b>application_id</b>
+	// Application ID to search by. <b>Required</b> unless <b>application_name</b> is provided.
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// Application name to search by. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
-	// List of SmartQueue IDs separated by semicolons (;). Use 'all' to select all the queues
+	// List of SmartQueue IDs separated by semicolons (;). Use 'all' to select all the queues. Can be used instead of the <b>sq_queue_name</b> parameter
 	SqQueueId string `json:"sq_queue_id,omitempty"`
-	// List of SmartQueue names separated by semicolons (;). Can be used instead of <b>sq_queue_id</b>
+	// List of SmartQueue names separated by semicolons (;). Can be used instead of the <b>sq_queue_id</b> parameter
 	SqQueueName string `json:"sq_queue_name,omitempty"`
-	// ID of the SmartQueue to exclude
-	ExcludedSqQueueId int `json:"excluded_sq_queue_id,string,omitempty"`
-	// Name of the SmartQueue to exclude. Can be used instead of <b>excluded_sq_queue_id</b>
+	// List of SmartQueue IDs separated by semicolons (;). Agents bound to these queues are excluded. Use 'all' to select all the queues. Can be used instead of the <b>excluded_sq_queue_name</b> parameter
+	ExcludedSqQueueId string `json:"excluded_sq_queue_id,omitempty"`
+	// List of SmartQueue names separated by semicolons (;). Can be used instead of the <b>excluded_sq_queue_id</b> parameter
 	ExcludedSqQueueName string `json:"excluded_sq_queue_name,omitempty"`
 	// Skills to filter in the JSON array format. The array should contain objects with the <b>sq_skill_id</b>/<b>sq_skill_name</b>, <b>min_sq_skill_level</b>, and <b>max_sq_skill_level</b> keys where skill levels range from 1 to 5
 	SqSkills string `json:"sq_skills,omitempty"`
-	// List of user IDs separated by semicolons (;)
+	// List of user IDs separated by semicolons (;). Can be used instead of the <b>user_name</b> parameter
 	UserId string `json:"user_id,omitempty"`
-	// List of user names separated by semicolons (;). Can be used instead of <b>user_id</b>
+	// List of user names separated by semicolons (;). Can be used instead of the <b>user_id</b> parameter
 	UserName string `json:"user_name,omitempty"`
 	// Substring of the user name to filter
 	UserNameTemplate string `json:"user_name_template,omitempty"`
@@ -770,8 +798,6 @@ type SQGetAgentsParams struct {
 	Count int `json:"count,string,omitempty"`
 	// Number of items to skip in the output
 	Offset int `json:"offset,string,omitempty"`
-	// Whether the agent can handle calls. When set to false, the agent is excluded from the CALL-request distribution
-	HandleCalls *bool `json:"handle_calls,string"`
 }
 
 type SQGetAgentsReturn struct {
@@ -794,18 +820,18 @@ func (s *SmartQueueService) SQGetAgents(params SQGetAgentsParams) (*SQGetAgentsR
 }
 
 type SQSetAgentInfoParams struct {
-	// Application ID to search by
-	ApplicationId int `json:"application_id,string"`
-	// Application name to search by. Can be used instead of <b>application_id</b>
+	// Application ID to search by. <b>Required</b> unless <b>application_name</b> is provided.
+	ApplicationId int `json:"application_id,string,omitempty"`
+	// Application name to search by. <b>Required</b> unless <b>application_id</b> is provided.
 	ApplicationName string `json:"application_name,omitempty"`
-	// List of user IDs separated by semicolons (;). Use 'all' to select all the users
-	UserId string `json:"user_id"`
-	// List of user names separated by semicolons (;). Can be used instead of <b>user_id</b>
+	// List of user IDs separated by semicolons (;). Use 'all' to select all the users. <b>Required</b> unless <b>user_name</b> is provided.
+	UserId string `json:"user_id,omitempty"`
+	// List of user names separated by semicolons (;). <b>Required</b> unless <b>user_id</b> is provided.
 	UserName string `json:"user_name,omitempty"`
-	// Maximum number of chats that the user processes simultaneously
+	// Maximum number of chats that the user processes simultaneously. <b>Required</b> unless <b>handle_calls</b> is provided.
 	MaxSimultaneousConversations int `json:"max_simultaneous_conversations,string,omitempty"`
-	// Whether the agent can handle calls. When set to false, the agent is excluded from the CALL-request distribution
-	HandleCalls *bool `json:"handle_calls,string"`
+	// Whether the agent can handle calls. When set to false, the agent is excluded from the CALL-request distribution. <b>Required</b> unless <b>max_simultaneous_conversations</b> is provided.
+	HandleCalls *bool `json:"handle_calls,string,omitempty"`
 }
 
 type SQSetAgentInfoReturn struct {
