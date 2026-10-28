@@ -20,7 +20,7 @@ type AddOutboundTestPhoneNumberReturn struct {
 
 // Adds a personal phone number to test outgoing calls. Only one personal phone number can be used. To replace it with another, delete the existing one first.
 func (s *OutboundTestNumbersService) AddOutboundTestPhoneNumber(params AddOutboundTestPhoneNumberParams) (*AddOutboundTestPhoneNumberReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "AddOutboundTestPhoneNumber", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "AddOutboundTestPhoneNumber", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -42,7 +42,7 @@ type VerifyOutboundTestPhoneNumberReturn struct {
 
 // Starts a call to the added phone number and pronounces a verification code. You have only 5 verification attempts per day and 100 in total. 1 minute should pass between 2 attempts.
 func (s *OutboundTestNumbersService) VerifyOutboundTestPhoneNumber(params VerifyOutboundTestPhoneNumberParams) (*VerifyOutboundTestPhoneNumberReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "VerifyOutboundTestPhoneNumber", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "VerifyOutboundTestPhoneNumber", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -66,7 +66,7 @@ type ActivateOutboundTestPhoneNumberReturn struct {
 
 // Activates the phone number by the verification code.
 func (s *OutboundTestNumbersService) ActivateOutboundTestPhoneNumber(params ActivateOutboundTestPhoneNumberParams) (*ActivateOutboundTestPhoneNumberReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "ActivateOutboundTestPhoneNumber", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "ActivateOutboundTestPhoneNumber", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -88,7 +88,7 @@ type DelOutboundTestPhoneNumberReturn struct {
 
 // Deletes the existing phone number.
 func (s *OutboundTestNumbersService) DelOutboundTestPhoneNumber(params DelOutboundTestPhoneNumberParams) (*DelOutboundTestPhoneNumberReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "DelOutboundTestPhoneNumber", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "DelOutboundTestPhoneNumber", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -109,7 +109,7 @@ type GetOutboundTestPhoneNumbersReturn struct {
 
 // Shows the phone number info.
 func (s *OutboundTestNumbersService) GetOutboundTestPhoneNumbers(params GetOutboundTestPhoneNumbersParams) (*GetOutboundTestPhoneNumbersReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetOutboundTestPhoneNumbers", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetOutboundTestPhoneNumbers", params)
 	if err != nil {
 		return nil, nil, err
 	}

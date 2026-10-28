@@ -29,7 +29,7 @@ type GetAccountInvoicesReturn struct {
 
 // Gets all invoices for the specified USD or EUR account.
 func (s *InvoicesService) GetAccountInvoices(params GetAccountInvoicesParams) (*GetAccountInvoicesReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetAccountInvoices", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetAccountInvoices", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -57,7 +57,7 @@ type DownloadInvoiceReturn struct {
 
 // Downloads the specified invoice.
 func (s *InvoicesService) DownloadInvoice(params DownloadInvoiceParams) (*DownloadInvoiceReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "DownloadInvoice", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "DownloadInvoice", params)
 	if err != nil {
 		return nil, nil, err
 	}

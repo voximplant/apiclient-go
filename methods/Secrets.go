@@ -28,7 +28,7 @@ type AddSecretReturn struct {
 
 // Adds a new secret.
 func (s *SecretsService) AddSecret(params AddSecretParams) (*AddSecretReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "AddSecret", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "AddSecret", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -58,7 +58,7 @@ type DelSecretReturn struct {
 
 // Deletes an existing secret.
 func (s *SecretsService) DelSecret(params DelSecretParams) (*DelSecretReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "DelSecret", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "DelSecret", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -88,7 +88,7 @@ type GetSecretValueReturn struct {
 
 // Gets the value of a specific secret.
 func (s *SecretsService) GetSecretValue(params GetSecretValueParams) (*GetSecretValueReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetSecretValue", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetSecretValue", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -124,7 +124,7 @@ type GetSecretsReturn struct {
 
 // Gets the list of an application's secrets.
 func (s *SecretsService) GetSecrets(params GetSecretsParams) (*GetSecretsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetSecrets", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetSecrets", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -160,7 +160,7 @@ type SetSecretInfoReturn struct {
 
 // Edits a secret's parameters.
 func (s *SecretsService) SetSecretInfo(params SetSecretInfoParams) (*SetSecretInfoReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SetSecretInfo", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SetSecretInfo", params)
 	if err != nil {
 		return nil, nil, err
 	}

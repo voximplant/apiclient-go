@@ -24,7 +24,7 @@ type AddAuthorizedAccountIPReturn struct {
 
 // Adds a new authorized IP4 or network to the white/black list.
 func (s *AuthorizedIPsService) AddAuthorizedAccountIP(params AddAuthorizedAccountIPParams) (*AddAuthorizedAccountIPReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "AddAuthorizedAccountIP", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "AddAuthorizedAccountIP", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -52,7 +52,7 @@ type DelAuthorizedAccountIPReturn struct {
 
 // Removes the authorized IP4 or network from the white/black list.
 func (s *AuthorizedIPsService) DelAuthorizedAccountIP(params DelAuthorizedAccountIPParams) (*DelAuthorizedAccountIPReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "DelAuthorizedAccountIP", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "DelAuthorizedAccountIP", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -89,7 +89,7 @@ type GetAuthorizedAccountIPsReturn struct {
 
 // Gets the authorized IP4 or network.
 func (s *AuthorizedIPsService) GetAuthorizedAccountIPs(params GetAuthorizedAccountIPsParams) (*GetAuthorizedAccountIPsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetAuthorizedAccountIPs", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetAuthorizedAccountIPs", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -115,7 +115,7 @@ type CheckAuthorizedAccountIPReturn struct {
 
 // Tests whether the IP4 is banned or allowed.
 func (s *AuthorizedIPsService) CheckAuthorizedAccountIP(params CheckAuthorizedAccountIPParams) (*CheckAuthorizedAccountIPReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "CheckAuthorizedAccountIP", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "CheckAuthorizedAccountIP", params)
 	if err != nil {
 		return nil, nil, err
 	}

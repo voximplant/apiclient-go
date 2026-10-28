@@ -22,7 +22,7 @@ type GetAccountInfoReturn struct {
 
 // Gets the account's info such as account_id, account_name, account_email etc.
 func (s *AccountsService) GetAccountInfo(params GetAccountInfoParams) (*GetAccountInfoReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetAccountInfo", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetAccountInfo", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -88,7 +88,7 @@ type SetAccountInfoReturn struct {
 
 // Edits the account's profile.
 func (s *AccountsService) SetAccountInfo(params SetAccountInfoParams) (*SetAccountInfoReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SetAccountInfo", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SetAccountInfo", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -146,7 +146,7 @@ type SetChildAccountInfoReturn struct {
 
 // Edits the account's profile.
 func (s *AccountsService) SetChildAccountInfo(params SetChildAccountInfoParams) (*SetChildAccountInfoReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SetChildAccountInfo", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SetChildAccountInfo", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -172,7 +172,7 @@ type GetCurrencyRateReturn struct {
 
 // Gets the exchange rate on selected date (per USD).
 func (s *AccountsService) GetCurrencyRate(params GetCurrencyRateParams) (*GetCurrencyRateReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetCurrencyRate", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetCurrencyRate", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -202,7 +202,7 @@ type GetResourcePriceReturn struct {
 
 // Gets the resource price. If the resource is not specified, returns all available resources with prices.
 func (s *AccountsService) GetResourcePrice(params GetResourcePriceParams) (*GetResourcePriceReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetResourcePrice", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetResourcePrice", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -234,7 +234,7 @@ type GetSubscriptionPriceReturn struct {
 
 // Gets the subscription template price.
 func (s *AccountsService) GetSubscriptionPrice(params GetSubscriptionPriceParams) (*GetSubscriptionPriceReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetSubscriptionPrice", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetSubscriptionPrice", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -283,7 +283,7 @@ type GetChildrenAccountsReturn struct {
 
 // Gets the info about all children accounts.
 func (s *AccountsService) GetChildrenAccounts(params GetChildrenAccountsParams) (*GetChildrenAccountsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetChildrenAccounts", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetChildrenAccounts", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -309,7 +309,7 @@ type GetMoneyAmountToChargeReturn struct {
 
 // Get the recommended money amount to charge.
 func (s *AccountsService) GetMoneyAmountToCharge(params GetMoneyAmountToChargeParams) (*GetMoneyAmountToChargeReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetMoneyAmountToCharge", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetMoneyAmountToCharge", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -337,7 +337,7 @@ type ChangeAccountPlanReturn struct {
 
 // Configures the account's plan.<br><br>Please note that when you change the billing plan, we reserve the subscription fee and taxes for the upcoming month. Read more in the <a href='/docs/gettingstarted/billing'>Billing</a> page.
 func (s *AccountsService) ChangeAccountPlan(params ChangeAccountPlanParams) (*ChangeAccountPlanReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "ChangeAccountPlan", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "ChangeAccountPlan", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -362,7 +362,7 @@ type GetAccountPlansReturn struct {
 
 // Gets the account plans with packages.
 func (s *AccountsService) GetAccountPlans(params GetAccountPlansParams) (*GetAccountPlansReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetAccountPlans", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetAccountPlans", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -387,7 +387,7 @@ type GetAvailablePlansReturn struct {
 
 // Gets the allowed plans to change.
 func (s *AccountsService) GetAvailablePlans(params GetAvailablePlansParams) (*GetAvailablePlansReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetAvailablePlans", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetAvailablePlans", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -423,7 +423,7 @@ type GetAccountDocumentsReturn struct {
 
 // Gets the account documents and the verification states.<br><br>This method will be deprecated in the next versions. We recommend to use the [GetAccountVerifications](/docs/references/httpapi/accounts#getaccountverifications) method to get all the verifications and statuses for the account.
 func (s *AccountsService) GetAccountDocuments(params GetAccountDocumentsParams) (*GetAccountDocumentsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetAccountDocuments", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetAccountDocuments", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -449,7 +449,7 @@ type GetAccountVerificationsReturn struct {
 
 // Gets all RU verifications for the specified account.
 func (s *AccountsService) GetAccountVerifications(params GetAccountVerificationsParams) (*GetAccountVerificationsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetAccountVerifications", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetAccountVerifications", params)
 	if err != nil {
 		return nil, nil, err
 	}

@@ -26,7 +26,7 @@ type AddDialogflowKeyReturn struct {
 
 // Adds a Dialogflow key.
 func (s *DialogflowCredentialsService) AddDialogflowKey(params AddDialogflowKeyParams) (*AddDialogflowKeyReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "AddDialogflowKey", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "AddDialogflowKey", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -51,7 +51,7 @@ type SetDialogflowKeyReturn struct {
 
 // Edits a Dialogflow key.
 func (s *DialogflowCredentialsService) SetDialogflowKey(params SetDialogflowKeyParams) (*SetDialogflowKeyReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SetDialogflowKey", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SetDialogflowKey", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -74,7 +74,7 @@ type DelDialogflowKeyReturn struct {
 
 // Removes a Dialogflow key.
 func (s *DialogflowCredentialsService) DelDialogflowKey(params DelDialogflowKeyParams) (*DelDialogflowKeyReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "DelDialogflowKey", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "DelDialogflowKey", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -103,7 +103,7 @@ type GetDialogflowKeysReturn struct {
 
 // Gets Dialogflow keys.
 func (s *DialogflowCredentialsService) GetDialogflowKeys(params GetDialogflowKeysParams) (*GetDialogflowKeysReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetDialogflowKeys", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetDialogflowKeys", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -130,7 +130,7 @@ type BindDialogflowKeysReturn struct {
 
 // Binds a Dialogflow key to the specified applications.
 func (s *DialogflowCredentialsService) BindDialogflowKeys(params BindDialogflowKeysParams) (*BindDialogflowKeysReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "BindDialogflowKeys", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "BindDialogflowKeys", params)
 	if err != nil {
 		return nil, nil, err
 	}

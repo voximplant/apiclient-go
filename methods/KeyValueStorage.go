@@ -30,7 +30,7 @@ type SetKeyValueItemReturn struct {
 
 // Creates or updates a key-value pair. If an existing key is passed, the method returns the existing item and changes the value if needed. The keys should be unique within a Voximplant application.
 func (s *KeyValueStorageService) SetKeyValueItem(params SetKeyValueItemParams) (*SetKeyValueItemReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SetKeyValueItem", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SetKeyValueItem", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -57,7 +57,7 @@ type DelKeyValueItemReturn struct {
 
 // Deletes the specified key-value pair from the storage.
 func (s *KeyValueStorageService) DelKeyValueItem(params DelKeyValueItemParams) (*DelKeyValueItemReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "DelKeyValueItem", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "DelKeyValueItem", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -85,7 +85,7 @@ type GetKeyValueItemReturn struct {
 
 // Gets the specified key-value pair from the storage.
 func (s *KeyValueStorageService) GetKeyValueItem(params GetKeyValueItemParams) (*GetKeyValueItemReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetKeyValueItem", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetKeyValueItem", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -117,7 +117,7 @@ type GetKeyValueItemsReturn struct {
 
 // Gets all the key-value pairs in which the keys begin with a pattern.
 func (s *KeyValueStorageService) GetKeyValueItems(params GetKeyValueItemsParams) (*GetKeyValueItemsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetKeyValueItems", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetKeyValueItems", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -149,7 +149,7 @@ type GetKeyValueKeysReturn struct {
 
 // Gets all the keys of key-value pairs.
 func (s *KeyValueStorageService) GetKeyValueKeys(params GetKeyValueKeysParams) (*GetKeyValueKeysReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetKeyValueKeys", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetKeyValueKeys", params)
 	if err != nil {
 		return nil, nil, err
 	}

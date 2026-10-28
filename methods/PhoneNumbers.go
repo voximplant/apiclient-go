@@ -37,7 +37,7 @@ type GetPhoneNumberReportsReturn struct {
 
 // Receives information about the created phone numbers report or list of reports.
 func (s *PhoneNumbersService) GetPhoneNumberReports(params GetPhoneNumberReportsParams) (*GetPhoneNumberReportsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetPhoneNumberReports", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetPhoneNumberReports", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -75,7 +75,7 @@ type AttachPhoneNumberReturn struct {
 
 // Attach the phone number to the account. There are two modes:<br><ol><li>Purchase from the catalog — specify <b>country_code</b>, <b>phone_category_name</b> and <b>phone_region_id</b> together; the platform picks the number. The [GetNewPhoneNumbers] method with the same three locators lists the numbers available for purchase.</li><li>Attach a specific phone number — pass <b>phone_number</b>; the three locators are not required. The [GetNewPhoneNumbers] method without the locators returns the numbers already available to the account, which are the ones this mode accepts.</li></ol>Note that phone numbers of some countries may require additional verification steps.<br><br>Please note that when you purchase a phone number, we reserve the subscription fee and taxes for the upcoming month. Read more in the <a href='/docs/gettingstarted/billing'>Billing</a> page.
 func (s *PhoneNumbersService) AttachPhoneNumber(params AttachPhoneNumberParams) (*AttachPhoneNumberReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "AttachPhoneNumber", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "AttachPhoneNumber", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -111,7 +111,7 @@ type BindPhoneNumberToApplicationReturn struct {
 
 // Bind the phone number to the application or unbind the phone number from the application. You should specify the application_id or application_name if you specify the rule_name.
 func (s *PhoneNumbersService) BindPhoneNumberToApplication(params BindPhoneNumberToApplicationParams) (*BindPhoneNumberToApplicationReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "BindPhoneNumberToApplication", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "BindPhoneNumberToApplication", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -137,7 +137,7 @@ type DeactivatePhoneNumberReturn struct {
 
 // Deactivates the phone number.
 func (s *PhoneNumbersService) DeactivatePhoneNumber(params DeactivatePhoneNumberParams) (*DeactivatePhoneNumberReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "DeactivatePhoneNumber", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "DeactivatePhoneNumber", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -167,7 +167,7 @@ type SetPhoneNumberInfoReturn struct {
 
 // Set the phone number information.
 func (s *PhoneNumbersService) SetPhoneNumberInfo(params SetPhoneNumberInfoParams) (*SetPhoneNumberInfoReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SetPhoneNumberInfo", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SetPhoneNumberInfo", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -257,7 +257,7 @@ type GetPhoneNumbersReturn struct {
 
 // Gets the account phone numbers.
 func (s *PhoneNumbersService) GetPhoneNumbers(params GetPhoneNumbersParams) (*GetPhoneNumbersReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetPhoneNumbers", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetPhoneNumbers", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -281,7 +281,7 @@ type IsAccountPhoneNumberReturn struct {
 
 // Checks if the phone number belongs to the authorized account.
 func (s *PhoneNumbersService) IsAccountPhoneNumber(params IsAccountPhoneNumberParams) (*IsAccountPhoneNumberReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "IsAccountPhoneNumber", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "IsAccountPhoneNumber", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -305,7 +305,7 @@ type GetPhoneNumbersAsyncReturn struct {
 
 // Gets the asynchronous report regarding purchased phone numbers.
 func (s *PhoneNumbersService) GetPhoneNumbersAsync(params GetPhoneNumbersAsyncParams) (*GetPhoneNumbersAsyncReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetPhoneNumbersAsync", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetPhoneNumbersAsync", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -344,7 +344,7 @@ type GetNewPhoneNumbersReturn struct {
 
 // Gets the new phone numbers.
 func (s *PhoneNumbersService) GetNewPhoneNumbers(params GetNewPhoneNumbersParams) (*GetNewPhoneNumbersReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetNewPhoneNumbers", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetNewPhoneNumbers", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -371,7 +371,7 @@ type GetPhoneNumberCategoriesReturn struct {
 
 // Gets the phone number categories.
 func (s *PhoneNumbersService) GetPhoneNumberCategories(params GetPhoneNumberCategoriesParams) (*GetPhoneNumberCategoriesReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetPhoneNumberCategories", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetPhoneNumberCategories", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -398,7 +398,7 @@ type GetPhoneNumberCountryStatesReturn struct {
 
 // Gets the phone number country states.
 func (s *PhoneNumbersService) GetPhoneNumberCountryStates(params GetPhoneNumberCountryStatesParams) (*GetPhoneNumberCountryStatesReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetPhoneNumberCountryStates", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetPhoneNumberCountryStates", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -435,7 +435,7 @@ type GetPhoneNumberRegionsReturn struct {
 
 // Get the country regions of the phone numbers. The response also contains the info about multiple numbers subscription for the child accounts.
 func (s *PhoneNumbersService) GetPhoneNumberRegions(params GetPhoneNumberRegionsParams) (*GetPhoneNumberRegionsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetPhoneNumberRegions", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetPhoneNumberRegions", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -466,7 +466,7 @@ type GetActualPhoneNumberRegionReturn struct {
 
 // Get actual info on the country region of the phone numbers. The response also contains the info about multiple numbers subscription for the child accounts.
 func (s *PhoneNumbersService) GetActualPhoneNumberRegion(params GetActualPhoneNumberRegionParams) (*GetActualPhoneNumberRegionReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetActualPhoneNumberRegion", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetActualPhoneNumberRegion", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -490,7 +490,7 @@ type GetAccountPhoneNumberCountriesReturn struct {
 
 // Gets all countries where the specific account has phone numbers.
 func (s *PhoneNumbersService) GetAccountPhoneNumberCountries(params GetAccountPhoneNumberCountriesParams) (*GetAccountPhoneNumberCountriesReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetAccountPhoneNumberCountries", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetAccountPhoneNumberCountries", params)
 	if err != nil {
 		return nil, nil, err
 	}

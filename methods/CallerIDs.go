@@ -22,7 +22,7 @@ type DelCallerIDReturn struct {
 
 // Deletes the CallerID. Note: you cannot delete a CID permanently (the antispam defence).
 func (s *CallerIDsService) DelCallerID(params DelCallerIDParams) (*DelCallerIDReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "DelCallerID", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "DelCallerID", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -59,7 +59,7 @@ type GetCallerIDsReturn struct {
 
 // Gets the account callerIDs.
 func (s *CallerIDsService) GetCallerIDs(params GetCallerIDsParams) (*GetCallerIDsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetCallerIDs", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetCallerIDs", params)
 	if err != nil {
 		return nil, nil, err
 	}

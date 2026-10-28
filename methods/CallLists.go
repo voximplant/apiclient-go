@@ -91,7 +91,7 @@ type CreateCallListReturn struct {
 
 // Adds a new CSV file for call list processing and starts the specified rule immediately. To send a file, use the request body. To set the call time constraints, use the following options in a CSV file: <ul><li>**__start_execution_time** – when the call list processing starts every day, UTC+0 24-h format: HH:mm:ss</li><li>**__end_execution_time** – when the call list processing stops every day,  UTC+0 24-h format: HH:mm:ss</li><li>**__start_at** – when the call list processing starts, UNIX timestamp. If not specified, the processing starts immediately after a method call</li><li>**__task_uuid** – call list UUID. A string up to 40 characters, can contain latin letters, digits, hyphens (-) and colons (:). Unique within the call list</li></ul><br>This method accepts CSV files with custom delimiters, such a commas (,), semicolons (;) and other. To specify a delimiter, pass it to the <b>delimiter</b> parameter.<br/><b>IMPORTANT:</b> the account's balance should be equal or greater than 1 USD. If the balance is lower than 1 USD, the call list processing does not start, or it stops immediately if it is active.<br><br>You can specify a custom call schedule for every record. Refer to the <a href="/docs/guides/solutions/call-lists">Call lists guide</a> for more information.
 func (s *CallListsService) CreateCallList(params CreateCallListParams) (*CreateCallListReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "CreateCallList", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "CreateCallList", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -133,7 +133,7 @@ type AppendToCallListReturn struct {
 
 // Appends a new task to the existing call list.<br>This method accepts CSV files with custom delimiters, such a commas (,), semicolons (;) and other. To specify a delimiter, pass it to the <b>delimiter</b> parameter.<br><br>You can specify a custom call schedule for every record. Refer to the <a href="/docs/guides/solutions/call-lists">Call lists guide</a> for more information.
 func (s *CallListsService) AppendToCallList(params AppendToCallListParams) (*AppendToCallListReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "AppendToCallList", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "AppendToCallList", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -159,7 +159,7 @@ type CancelCallListBatchReturn struct {
 
 // Cancels all tasks in the call list with the specified batch UUID.
 func (s *CallListsService) CancelCallListBatch(params CancelCallListBatchParams) (*CancelCallListBatchReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "CancelCallListBatch", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "CancelCallListBatch", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -227,7 +227,7 @@ type EditCallListReturn struct {
 
 // Edits the specified call list by its ID.
 func (s *CallListsService) EditCallList(params EditCallListParams) (*EditCallListReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "EditCallList", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "EditCallList", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -253,7 +253,7 @@ type EditCallListTasksPriorityReturn struct {
 
 // Edits priorities of existing tasks in the specified call list.
 func (s *CallListsService) EditCallListTasksPriority(params EditCallListTasksPriorityParams) (*EditCallListTasksPriorityReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "EditCallListTasksPriority", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "EditCallListTasksPriority", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -281,7 +281,7 @@ type DeleteCallListReturn struct {
 
 // Deletes an existing call list by its ID.
 func (s *CallListsService) DeleteCallList(params DeleteCallListParams) (*DeleteCallListReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "DeleteCallList", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "DeleteCallList", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -333,7 +333,7 @@ type GetCallListsReturn struct {
 
 // Get all call lists for the specified user.
 func (s *CallListsService) GetCallLists(params GetCallListsParams) (*GetCallListsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetCallLists", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetCallLists", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -375,7 +375,7 @@ type GetCallListDetailsReturn struct {
 
 // Gets details of the specified call list. Returns a CSV file by default.
 func (s *CallListsService) GetCallListDetails(params GetCallListDetailsParams) (*GetCallListDetailsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetCallListDetails", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetCallListDetails", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -421,7 +421,7 @@ type EditCallListTaskReturn struct {
 
 // Edits the specified call list's task.
 func (s *CallListsService) EditCallListTask(params EditCallListTaskParams) (*EditCallListTaskReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "EditCallListTask", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "EditCallListTask", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -457,7 +457,7 @@ type CancelCallListTaskReturn struct {
 
 // Cancels the specified tasks in the call list by their IDs or UUIDs. The maximum number of tasks to cancel is 1000.
 func (s *CallListsService) CancelCallListTask(params CancelCallListTaskParams) (*CancelCallListTaskReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "CancelCallListTask", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "CancelCallListTask", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -483,7 +483,7 @@ type StopCallListProcessingReturn struct {
 
 // Stops processing the specified call list.
 func (s *CallListsService) StopCallListProcessing(params StopCallListProcessingParams) (*StopCallListProcessingReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "StopCallListProcessing", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "StopCallListProcessing", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -509,7 +509,7 @@ type RecoverCallListReturn struct {
 
 // Resume processing the specified call list.
 func (s *CallListsService) RecoverCallList(params RecoverCallListParams) (*RecoverCallListReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "RecoverCallList", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "RecoverCallList", params)
 	if err != nil {
 		return nil, nil, err
 	}

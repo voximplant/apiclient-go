@@ -60,6 +60,16 @@ func (kp *KeyPair) parseFile() error {
 	return nil
 }
 
+// ParseCredentials decodes key JSON from memory the same way parseFile decodes
+// a key file: into Result, with no result wrapper. Unknown fields are ignored.
+// It does not read Path or VOXIMPLANT_CREDENTIALS.
+func (kp *KeyPair) ParseCredentials(raw []byte) error {
+	if err := json.Unmarshal(raw, &kp.Result); err != nil {
+		return fmt.Errorf("error parse credentials: %s", err)
+	}
+	return nil
+}
+
 func (kp *KeyPair) Valid() error {
 	parsedToken, _ := jwt.Parse(kp.Token, func(token *jwt.Token) (interface{}, error) {
 		return kp.ByteDataValue, nil

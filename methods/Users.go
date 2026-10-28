@@ -38,7 +38,7 @@ type AddUserReturn struct {
 
 // Adds a new user.
 func (s *UsersService) AddUser(params AddUserParams) (*AddUserReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "AddUser", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "AddUser", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -68,7 +68,7 @@ type DelUserReturn struct {
 
 // Deletes the specified user(s).
 func (s *UsersService) DelUser(params DelUserParams) (*DelUserReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "DelUser", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "DelUser", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -112,7 +112,7 @@ type SetUserInfoReturn struct {
 
 // Edits the user.
 func (s *UsersService) SetUserInfo(params SetUserInfoParams) (*SetUserInfoReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SetUserInfo", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SetUserInfo", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -174,7 +174,7 @@ type GetUsersReturn struct {
 
 // Shows the users of the specified account.
 func (s *UsersService) GetUsers(params GetUsersParams) (*GetUsersReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetUsers", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetUsers", params)
 	if err != nil {
 		return nil, nil, err
 	}

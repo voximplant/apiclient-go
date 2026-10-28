@@ -38,7 +38,7 @@ type AddRuleReturn struct {
 
 // Adds a new rule for the application.
 func (s *RulesService) AddRule(params AddRuleParams) (*AddRuleReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "AddRule", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "AddRule", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -68,7 +68,7 @@ type DelRuleReturn struct {
 
 // Deletes the rule.
 func (s *RulesService) DelRule(params DelRuleParams) (*DelRuleReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "DelRule", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "DelRule", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -102,7 +102,7 @@ type SetRuleInfoReturn struct {
 
 // Edits the rule.
 func (s *RulesService) SetRuleInfo(params SetRuleInfoParams) (*SetRuleInfoReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SetRuleInfo", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SetRuleInfo", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -147,7 +147,7 @@ type GetRulesReturn struct {
 
 // Gets the rules.
 func (s *RulesService) GetRules(params GetRulesParams) (*GetRulesReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetRules", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetRules", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -171,7 +171,7 @@ type ReorderRulesReturn struct {
 
 // Configures the rules' order in the <a href='//manage.voximplant.com/applications'>Applications</a> section of Control panel. Note: the rules should belong to the same application!
 func (s *RulesService) ReorderRules(params ReorderRulesParams) (*ReorderRulesReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "ReorderRules", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "ReorderRules", params)
 	if err != nil {
 		return nil, nil, err
 	}

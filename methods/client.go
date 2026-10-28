@@ -2,6 +2,7 @@ package methods
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"fmt"
 	"github.com/voximplant/apiclient-go/v2/config"
@@ -26,36 +27,38 @@ type Client struct {
 	config *config.Config
 	// Path to file with result CreateKey method
 	keyPair *jwt.KeyPair
-	// Lock
-	mux sync.Mutex
+	// Shared by WithContext copies. A mutex value would race on token refresh.
+	mux *sync.Mutex
+	// Empty means context.Background(). WithContext replaces this on the copy only.
+	ctx context.Context
 
-	OutboundTestNumbers   *OutboundTestNumbersService
-	Secrets               *SecretsService
-	Accounts              *AccountsService
-	CallLists             *CallListsService
-	CallerIDs             *CallerIDsService
-	Queues                *QueuesService
-	RegulationAddress     *RegulationAddressService
-	KeyValueStorage       *KeyValueStorageService
 	RoleSystem            *RoleSystemService
-	SmartQueue            *SmartQueueService
-	SMS                   *SMSService
-	RecordStorages        *RecordStoragesService
-	SIPRegistration       *SIPRegistrationService
-	WABPhoneNumbers       *WABPhoneNumbersService
-	Rules                 *RulesService
-	PhoneNumbers          *PhoneNumbersService
-	PSTNBlacklist         *PSTNBlacklistService
-	Invoices              *InvoicesService
-	Applications          *ApplicationsService
-	Skills                *SkillsService
-	DialogflowCredentials *DialogflowCredentialsService
-	Users                 *UsersService
-	AuthorizedIPs         *AuthorizedIPsService
-	PushCredentials       *PushCredentialsService
-	Scenarios             *ScenariosService
 	History               *HistoryService
+	SIPRegistration       *SIPRegistrationService
+	PushCredentials       *PushCredentialsService
+	CallLists             *CallListsService
+	PhoneNumbers          *PhoneNumbersService
+	CallerIDs             *CallerIDsService
+	Secrets               *SecretsService
+	Users                 *UsersService
+	OutboundTestNumbers   *OutboundTestNumbersService
+	SMS                   *SMSService
+	RegulationAddress     *RegulationAddressService
+	Rules                 *RulesService
+	PSTNBlacklist         *PSTNBlacklistService
 	SIPWhiteList          *SIPWhiteListService
+	DialogflowCredentials *DialogflowCredentialsService
+	KeyValueStorage       *KeyValueStorageService
+	RecordStorages        *RecordStoragesService
+	Invoices              *InvoicesService
+	Scenarios             *ScenariosService
+	WABPhoneNumbers       *WABPhoneNumbersService
+	AuthorizedIPs         *AuthorizedIPsService
+	SmartQueue            *SmartQueueService
+	Skills                *SkillsService
+	Accounts              *AccountsService
+	Applications          *ApplicationsService
+	Queues                *QueuesService
 
 	// AuthorizedIps deprecated: use AuthorizedIPs instead
 	AuthorizedIps *AuthorizedIPsService
@@ -81,11 +84,19 @@ func NewClient(config *config.Config) (*Client, error) {
 	if err != nil {
 		return nil, err
 	}
-	keyPair := jwt.NewKeyPair(config.KeyPath)
-	if err := keyPair.Parse(); err != nil {
-		return nil, err
+	var keyPair *jwt.KeyPair
+	if creds := config.Credentials(); len(creds) > 0 {
+		keyPair = &jwt.KeyPair{}
+		if err = keyPair.ParseCredentials(creds); err != nil {
+			return nil, err
+		}
+	} else {
+		keyPair = jwt.NewKeyPair(config.KeyPath)
+		if err = keyPair.Parse(); err != nil {
+			return nil, err
+		}
 	}
-	if err := keyPair.GenerateToken(config.AccountID); err != nil {
+	if err = keyPair.GenerateToken(config.AccountID); err != nil {
 		return nil, err
 	}
 	c := &Client{
@@ -93,36 +104,40 @@ func NewClient(config *config.Config) (*Client, error) {
 		baseURL: parsedBaseURL,
 		keyPair: keyPair,
 		config:  config,
+		mux:     new(sync.Mutex),
 	}
+	bindServices(c)
+	return c, nil
+}
 
-	c.OutboundTestNumbers = &OutboundTestNumbersService{c}
-	c.Secrets = &SecretsService{c}
-	c.Accounts = &AccountsService{c}
-	c.CallLists = &CallListsService{c}
-	c.CallerIDs = &CallerIDsService{c}
-	c.Queues = &QueuesService{c}
-	c.RegulationAddress = &RegulationAddressService{c}
-	c.KeyValueStorage = &KeyValueStorageService{c}
+func bindServices(c *Client) {
 	c.RoleSystem = &RoleSystemService{c}
-	c.SmartQueue = &SmartQueueService{c}
-	c.SMS = &SMSService{c}
-	c.RecordStorages = &RecordStoragesService{c}
-	c.SIPRegistration = &SIPRegistrationService{c}
-	c.WABPhoneNumbers = &WABPhoneNumbersService{c}
-	c.Rules = &RulesService{c}
-	c.PhoneNumbers = &PhoneNumbersService{c}
-	c.PSTNBlacklist = &PSTNBlacklistService{c}
-	c.Invoices = &InvoicesService{c}
-	c.Applications = &ApplicationsService{c}
-	c.Skills = &SkillsService{c}
-	c.DialogflowCredentials = &DialogflowCredentialsService{c}
-	c.Users = &UsersService{c}
-	c.AuthorizedIPs = &AuthorizedIPsService{c}
-	c.PushCredentials = &PushCredentialsService{c}
-	c.Scenarios = &ScenariosService{c}
 	c.History = &HistoryService{c}
+	c.SIPRegistration = &SIPRegistrationService{c}
+	c.PushCredentials = &PushCredentialsService{c}
+	c.CallLists = &CallListsService{c}
+	c.PhoneNumbers = &PhoneNumbersService{c}
+	c.CallerIDs = &CallerIDsService{c}
+	c.Secrets = &SecretsService{c}
+	c.Users = &UsersService{c}
+	c.OutboundTestNumbers = &OutboundTestNumbersService{c}
+	c.SMS = &SMSService{c}
+	c.RegulationAddress = &RegulationAddressService{c}
+	c.Rules = &RulesService{c}
+	c.PSTNBlacklist = &PSTNBlacklistService{c}
 	c.SIPWhiteList = &SIPWhiteListService{c}
-
+	c.DialogflowCredentials = &DialogflowCredentialsService{c}
+	c.KeyValueStorage = &KeyValueStorageService{c}
+	c.RecordStorages = &RecordStoragesService{c}
+	c.Invoices = &InvoicesService{c}
+	c.Scenarios = &ScenariosService{c}
+	c.WABPhoneNumbers = &WABPhoneNumbersService{c}
+	c.AuthorizedIPs = &AuthorizedIPsService{c}
+	c.SmartQueue = &SmartQueueService{c}
+	c.Skills = &SkillsService{c}
+	c.Accounts = &AccountsService{c}
+	c.Applications = &ApplicationsService{c}
+	c.Queues = &QueuesService{c}
 	// AuthorizedIps deprecated: use AuthorizedIPs instead
 	c.AuthorizedIps = &AuthorizedIPsService{c}
 	// CallerIds deprecated: use CallerIDs instead
@@ -137,11 +152,30 @@ func NewClient(config *config.Config) (*Client, error) {
 	c.SipWhiteList = &SIPWhiteListService{c}
 	// Sms deprecated: use SMS instead
 	c.Sms = &SMSService{c}
+}
 
-	return c, nil
+func (c *Client) WithContext(ctx context.Context) *Client {
+	if ctx == nil {
+		panic("net/http: nil Context")
+	}
+	next := *c
+	next.ctx = ctx
+	bindServices(&next)
+	return &next
+}
+
+func (c *Client) requestContext() context.Context {
+	if c.ctx == nil {
+		return context.Background()
+	}
+	return c.ctx
 }
 
 func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Request, error) {
+	return c.NewRequestWithContext(context.Background(), method, urlStr, body)
+}
+
+func (c *Client) NewRequestWithContext(ctx context.Context, method, urlStr string, body interface{}) (*http.Request, error) {
 	rel, err := url.Parse(urlStr)
 	if err != nil {
 		return nil, err
@@ -188,18 +222,16 @@ func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Requ
 	if err = writer.Close(); err != nil {
 		return nil, err
 	}
-	req, err := http.NewRequest(method, u.String(), &b)
+	req, err := http.NewRequestWithContext(ctx, method, u.String(), &b)
 	if err != nil {
 		return nil, err
 	}
-	err = c.keyPair.Valid()
-	if err != nil {
-		c.mux.Lock()
-		err := c.keyPair.GenerateToken(c.config.AccountID)
-		if err != nil {
+	c.mux.Lock()
+	defer c.mux.Unlock()
+	if err = c.keyPair.Valid(); err != nil {
+		if err = c.keyPair.GenerateToken(c.config.AccountID); err != nil {
 			return nil, err
 		}
-		c.mux.Unlock()
 	}
 	req.Header.Set("Authorization", "Bearer "+c.keyPair.Token)
 	req.Header.Set("Content-Type", writer.FormDataContentType())
@@ -228,6 +260,9 @@ func (c *Client) Do(req *http.Request, v interface{}) (*http.Response, error) {
 func (c *Client) MakeResponse(request *http.Request, response interface{}) (*structure.VError, error) {
 	resp, err := c.Do(request, nil)
 	if err != nil {
+		if resp != nil && resp.Body != nil {
+			resp.Body.Close()
+		}
 		return nil, err
 	}
 	if resp.Header.Get("Content-Type") == "application/octet-stream" {

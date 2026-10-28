@@ -53,7 +53,7 @@ type GetSmartQueueRealtimeMetricsReturn struct {
 
 // Gets the metrics for the specified SmartQueue for the last 30 minutes. Refer to the <a href="/docs/guides/contact-center/reporting">SmartQueue reporting guide</a> to learn more.
 func (s *SmartQueueService) GetSmartQueueRealtimeMetrics(params GetSmartQueueRealtimeMetricsParams) (*GetSmartQueueRealtimeMetricsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetSmartQueueRealtimeMetrics", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetSmartQueueRealtimeMetrics", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -110,7 +110,7 @@ type GetSmartQueueDayHistoryReturn struct {
 
 // Gets the metrics for the specified SmartQueue for the last 2 days. Refer to the <a href="/docs/guides/contact-center/reporting">SmartQueue reporting guide</a> to learn more.
 func (s *SmartQueueService) GetSmartQueueDayHistory(params GetSmartQueueDayHistoryParams) (*GetSmartQueueDayHistoryReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetSmartQueueDayHistory", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetSmartQueueDayHistory", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -168,7 +168,7 @@ type RequestSmartQueueHistoryReturn struct {
 
 // Gets history for the specified SmartQueue. Refer to the <a href="/docs/guides/contact-center/reporting">SmartQueue reporting guide</a> to learn more.
 func (s *SmartQueueService) RequestSmartQueueHistory(params RequestSmartQueueHistoryParams) (*RequestSmartQueueHistoryReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "RequestSmartQueueHistory", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "RequestSmartQueueHistory", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -199,7 +199,7 @@ type GetSQStateReturn struct {
 
 // Gets the current state of the specified SmartQueue.
 func (s *SmartQueueService) GetSQState(params GetSQStateParams) (*GetSQStateReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetSQState", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetSQState", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -229,7 +229,7 @@ type SQSetAgentCustomStatusMappingReturn struct {
 
 // Adds a status if there is no match for the given internal status and renames it if there is a match. It means that if the passed **sq_status_name** parameter is not in the mapping table, a new entry is created in there; if it is, the **name** field in its mapping is replaced with **custom_status_name**.
 func (s *SmartQueueService) SQSetAgentCustomStatusMapping(params SQSetAgentCustomStatusMappingParams) (*SQSetAgentCustomStatusMappingReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SQ_SetAgentCustomStatusMapping", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SQ_SetAgentCustomStatusMapping", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -257,7 +257,7 @@ type SQGetAgentCustomStatusMappingReturn struct {
 
 // Returns the mapping list of SQ statuses and custom statuses. SQ statuses are returned whether they have mappings to custom statuses.
 func (s *SmartQueueService) SQGetAgentCustomStatusMapping(params SQGetAgentCustomStatusMappingParams) (*SQGetAgentCustomStatusMappingReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SQ_GetAgentCustomStatusMapping", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SQ_GetAgentCustomStatusMapping", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -285,7 +285,7 @@ type SQDeleteAgentCustomStatusMappingReturn struct {
 
 // Removes a mapping from the mapping table. If there is no such mapping, does nothing.
 func (s *SmartQueueService) SQDeleteAgentCustomStatusMapping(params SQDeleteAgentCustomStatusMappingParams) (*SQDeleteAgentCustomStatusMappingReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SQ_DeleteAgentCustomStatusMapping", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SQ_DeleteAgentCustomStatusMapping", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -341,7 +341,7 @@ type SQAddQueueReturn struct {
 
 // Adds a new queue.
 func (s *SmartQueueService) SQAddQueue(params SQAddQueueParams) (*SQAddQueueReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SQ_AddQueue", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SQ_AddQueue", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -401,7 +401,7 @@ type SQSetQueueInfoReturn struct {
 
 // Edits an existing queue.
 func (s *SmartQueueService) SQSetQueueInfo(params SQSetQueueInfoParams) (*SQSetQueueInfoReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SQ_SetQueueInfo", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SQ_SetQueueInfo", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -431,7 +431,7 @@ type SQDelQueueReturn struct {
 
 // Deletes a queue.
 func (s *SmartQueueService) SQDelQueue(params SQDelQueueParams) (*SQDelQueueReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SQ_DelQueue", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SQ_DelQueue", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -477,7 +477,7 @@ type SQGetQueuesReturn struct {
 
 // Gets the queue(s).
 func (s *SmartQueueService) SQGetQueues(params SQGetQueuesParams) (*SQGetQueuesReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SQ_GetQueues", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SQ_GetQueues", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -507,7 +507,7 @@ type SQAddSkillReturn struct {
 
 // Adds a new skill to the app.
 func (s *SmartQueueService) SQAddSkill(params SQAddSkillParams) (*SQAddSkillReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SQ_AddSkill", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SQ_AddSkill", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -537,7 +537,7 @@ type SQDelSkillReturn struct {
 
 // Deletes a skill and detaches it from agents.
 func (s *SmartQueueService) SQDelSkill(params SQDelSkillParams) (*SQDelSkillReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SQ_DelSkill", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SQ_DelSkill", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -571,7 +571,7 @@ type SQSetSkillInfoReturn struct {
 
 // Edits an existing skill.
 func (s *SmartQueueService) SQSetSkillInfo(params SQSetSkillInfoParams) (*SQSetSkillInfoReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SQ_SetSkillInfo", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SQ_SetSkillInfo", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -605,7 +605,7 @@ type SQBindSkillReturn struct {
 
 // Binds skills to agents.
 func (s *SmartQueueService) SQBindSkill(params SQBindSkillParams) (*SQBindSkillReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SQ_BindSkill", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SQ_BindSkill", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -639,7 +639,7 @@ type SQUnbindSkillReturn struct {
 
 // Unbinds skills from agents.
 func (s *SmartQueueService) SQUnbindSkill(params SQUnbindSkillParams) (*SQUnbindSkillReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SQ_UnbindSkill", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SQ_UnbindSkill", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -683,7 +683,7 @@ type SQGetSkillsReturn struct {
 
 // Gets the skill(s).
 func (s *SmartQueueService) SQGetSkills(params SQGetSkillsParams) (*SQGetSkillsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SQ_GetSkills", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SQ_GetSkills", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -719,7 +719,7 @@ type SQBindAgentReturn struct {
 
 // Binds agents to a queue.
 func (s *SmartQueueService) SQBindAgent(params SQBindAgentParams) (*SQBindAgentReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SQ_BindAgent", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SQ_BindAgent", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -753,7 +753,7 @@ type SQUnbindAgentReturn struct {
 
 // Unbinds agents from queues.
 func (s *SmartQueueService) SQUnbindAgent(params SQUnbindAgentParams) (*SQUnbindAgentReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SQ_UnbindAgent", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SQ_UnbindAgent", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -807,7 +807,7 @@ type SQGetAgentsReturn struct {
 
 // Gets agents.
 func (s *SmartQueueService) SQGetAgents(params SQGetAgentsParams) (*SQGetAgentsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SQ_GetAgents", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SQ_GetAgents", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -841,7 +841,7 @@ type SQSetAgentInfoReturn struct {
 
 // Edits the agent settings.
 func (s *SmartQueueService) SQSetAgentInfo(params SQSetAgentInfoParams) (*SQSetAgentInfoReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SQ_SetAgentInfo", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SQ_SetAgentInfo", params)
 	if err != nil {
 		return nil, nil, err
 	}

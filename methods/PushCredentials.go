@@ -49,7 +49,7 @@ type AddPushCredentialReturn struct {
 
 // Adds push credentials.
 func (s *PushCredentialsService) AddPushCredential(params AddPushCredentialParams) (*AddPushCredentialReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "AddPushCredential", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "AddPushCredential", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -90,7 +90,7 @@ type SetPushCredentialReturn struct {
 
 // Modifies push credentials.
 func (s *PushCredentialsService) SetPushCredential(params SetPushCredentialParams) (*SetPushCredentialReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SetPushCredential", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SetPushCredential", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -113,7 +113,7 @@ type DelPushCredentialReturn struct {
 
 // Removes push credentials.
 func (s *PushCredentialsService) DelPushCredential(params DelPushCredentialParams) (*DelPushCredentialReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "DelPushCredential", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "DelPushCredential", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -148,7 +148,7 @@ type GetPushCredentialReturn struct {
 
 // Gets push credentials.
 func (s *PushCredentialsService) GetPushCredential(params GetPushCredentialParams) (*GetPushCredentialReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetPushCredential", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetPushCredential", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -175,7 +175,7 @@ type BindPushCredentialReturn struct {
 
 // Binds push credentials to applications.
 func (s *PushCredentialsService) BindPushCredential(params BindPushCredentialParams) (*BindPushCredentialReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "BindPushCredential", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "BindPushCredential", params)
 	if err != nil {
 		return nil, nil, err
 	}

@@ -32,7 +32,7 @@ type AddWABPhoneNumberReturn struct {
 
 // Adds a new WhatsApp Business phone number.
 func (s *WABPhoneNumbersService) AddWABPhoneNumber(params AddWABPhoneNumberParams) (*AddWABPhoneNumberReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "AddWABPhoneNumber", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "AddWABPhoneNumber", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -56,7 +56,7 @@ type DeleteWABPhoneNumberReturn struct {
 
 // Deletes a WhatsApp Business phone number.
 func (s *WABPhoneNumbersService) DeleteWABPhoneNumber(params DeleteWABPhoneNumberParams) (*DeleteWABPhoneNumberReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "DeleteWABPhoneNumber", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "DeleteWABPhoneNumber", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -92,7 +92,7 @@ type SetWABPhoneNumberInfoReturn struct {
 
 // Sets details for the specified WhatsApp Business phone number.
 func (s *WABPhoneNumbersService) SetWABPhoneNumberInfo(params SetWABPhoneNumberInfoParams) (*SetWABPhoneNumberInfoReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SetWABPhoneNumberInfo", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SetWABPhoneNumberInfo", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -130,7 +130,7 @@ type GetWABPhoneNumbersReturn struct {
 
 // Gets the account's WhatsApp Business phone numbers.
 func (s *WABPhoneNumbersService) GetWABPhoneNumbers(params GetWABPhoneNumbersParams) (*GetWABPhoneNumbersReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetWABPhoneNumbers", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetWABPhoneNumbers", params)
 	if err != nil {
 		return nil, nil, err
 	}

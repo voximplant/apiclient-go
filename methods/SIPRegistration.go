@@ -46,7 +46,7 @@ type CreateSipRegistrationReturn struct {
 
 // Creates a new SIP registration (the platform registers as a user on a 3rd party SIP server).<br><br>There are two modes of SIP registration:<br><ol><li>Persistent registration, when the platform registers on a 3rd party SIP server as a user and the registration lasts until deleted (or there are network/technical issues with it — see the corresponding callback)</li><li>Non-persistent registration (set `is_persistent` to false) which is initiated only when the specificed user (with `user_id` or `user_name`) logs in via one of Voximplant SDKs. As soon the user logs off, the registration goes offline. This mode helps to implement SIP softphone-like apps using Voximplant’s SDKs.</li></ol><br>Please note that when you create a SIP registration, we reserve the subscription fee and taxes for the upcoming month. Read more in the <a href='/docs/gettingstarted/billing'>Billing</a> page.
 func (s *SIPRegistrationService) CreateSipRegistration(params CreateSipRegistrationParams) (*CreateSipRegistrationReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "CreateSipRegistration", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "CreateSipRegistration", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -92,7 +92,7 @@ type UpdateSipRegistrationReturn struct {
 
 // Update SIP registration. You should specify the application_id or application_name if you specify the rule_name or user_id, or user_name. You can bind only one SIP registration to the user (the previous SIP registration is automatically unbound).
 func (s *SIPRegistrationService) UpdateSipRegistration(params UpdateSipRegistrationParams) (*UpdateSipRegistrationReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "UpdateSipRegistration", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "UpdateSipRegistration", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -130,7 +130,7 @@ type BindSipRegistrationReturn struct {
 
 // Bind the SIP registration to the application/user or unbind the SIP registration from the application/user. You should specify the application_id or application_name if you specify the rule_name or user_id, or user_name. You should specify the sip_registration_id if you set bind=true. You can bind only one SIP registration to the user (the previous SIP registration is automatically unbound).
 func (s *SIPRegistrationService) BindSipRegistration(params BindSipRegistrationParams) (*BindSipRegistrationReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "BindSipRegistration", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "BindSipRegistration", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -154,7 +154,7 @@ type DeleteSipRegistrationReturn struct {
 
 // Delete SIP registration.
 func (s *SIPRegistrationService) DeleteSipRegistration(params DeleteSipRegistrationParams) (*DeleteSipRegistrationReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "DeleteSipRegistration", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "DeleteSipRegistration", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -212,7 +212,7 @@ type GetSipRegistrationsReturn struct {
 
 // Get active SIP registrations.
 func (s *SIPRegistrationService) GetSipRegistrations(params GetSipRegistrationsParams) (*GetSipRegistrationsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetSipRegistrations", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetSipRegistrations", params)
 	if err != nil {
 		return nil, nil, err
 	}

@@ -75,7 +75,7 @@ type GetCallHistoryReturn struct {
 
 // Gets the account's call history (including call duration, cost, logs and other call information). You can filter the call history by a certain date.
 func (s *HistoryService) GetCallHistory(params GetCallHistoryParams) (*GetCallHistoryReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetCallHistory", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetCallHistory", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -147,7 +147,7 @@ type GetCallHistoryAsyncReturn struct {
 
 // The [GetCallHistory] asynchronous implementation. Use this function to download a large amounts of data. Take a look at the [GetHistoryReports] and [DownloadHistoryReport] functions for downloading details.
 func (s *HistoryService) GetCallHistoryAsync(params GetCallHistoryAsyncParams) (*GetCallHistoryAsyncReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetCallHistoryAsync", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetCallHistoryAsync", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -197,7 +197,7 @@ type GetBriefCallHistoryReturn struct {
 
 // Gets the account's brief call history in the asynchronous mode. Take a look at the [GetHistoryReports] and [DownloadHistoryReport] functions for downloading details.
 func (s *HistoryService) GetBriefCallHistory(params GetBriefCallHistoryParams) (*GetBriefCallHistoryReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetBriefCallHistory", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetBriefCallHistory", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -242,7 +242,7 @@ type GetHistoryReportsReturn struct {
 
 // Gets the list of history reports and their statuses. The method returns info about the reports made via [GetCallHistoryAsync], [GetTransactionHistoryAsync], [GetAuditLogAsync] and [GetBriefCallHistory] asynchronous methods. Note that the **file_size** field in response is valid only for the video calls.
 func (s *HistoryService) GetHistoryReports(params GetHistoryReportsParams) (*GetHistoryReportsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetHistoryReports", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetHistoryReports", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -270,7 +270,7 @@ type DownloadHistoryReportReturn struct {
 
 // Downloads the required history report.<br><br>Please note, that the history report can return in a compressed state (*.gzip). In order for CURL to process a compressed file correctly, add the **--compressed** key.
 func (s *HistoryService) DownloadHistoryReport(params DownloadHistoryReportParams) (*DownloadHistoryReportReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "DownloadHistoryReport", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "DownloadHistoryReport", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -349,7 +349,7 @@ type GetTransactionHistoryReturn struct {
 
 // Gets the transaction history.
 func (s *HistoryService) GetTransactionHistory(params GetTransactionHistoryParams) (*GetTransactionHistoryReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetTransactionHistory", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetTransactionHistory", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -419,7 +419,7 @@ type GetTransactionHistoryAsyncReturn struct {
 
 // The [GetTransactionHistory] asynchronous implementation. Use this function to download a large amounts of data. Take a look at the [GetHistoryReports] and [DownloadHistoryReport] functions for downloading details.
 func (s *HistoryService) GetTransactionHistoryAsync(params GetTransactionHistoryAsyncParams) (*GetTransactionHistoryAsyncReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetTransactionHistoryAsync", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetTransactionHistoryAsync", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -444,7 +444,7 @@ type DeleteRecordReturn struct {
 
 // Try to remove a record and transcription files.
 func (s *HistoryService) DeleteRecord(params DeleteRecordParams) (*DeleteRecordReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "DeleteRecord", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "DeleteRecord", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -507,7 +507,7 @@ type GetACDHistoryReturn struct {
 
 // Gets the ACD history.
 func (s *HistoryService) GetACDHistory(params GetACDHistoryParams) (*GetACDHistoryReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetACDHistory", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetACDHistory", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -564,7 +564,7 @@ type GetAuditLogReturn struct {
 
 // Gets the history of account changes.
 func (s *HistoryService) GetAuditLog(params GetAuditLogParams) (*GetAuditLogReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetAuditLog", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetAuditLog", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -614,7 +614,7 @@ type GetAuditLogAsyncReturn struct {
 
 // The [GetAuditLog] asynchronous implementation. Use this function to download a large amounts of data. Take a look at the [GetHistoryReports] and [DownloadHistoryReport] functions for downloading details.
 func (s *HistoryService) GetAuditLogAsync(params GetAuditLogAsyncParams) (*GetAuditLogAsyncReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetAuditLogAsync", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetAuditLogAsync", params)
 	if err != nil {
 		return nil, nil, err
 	}

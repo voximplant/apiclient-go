@@ -24,7 +24,7 @@ type AddSipWhiteListItemReturn struct {
 
 // Adds a new network address to the SIP white list.
 func (s *SIPWhiteListService) AddSipWhiteListItem(params AddSipWhiteListItemParams) (*AddSipWhiteListItemReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "AddSipWhiteListItem", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "AddSipWhiteListItem", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -48,7 +48,7 @@ type DelSipWhiteListItemReturn struct {
 
 // Deletes the network address from the SIP white list.
 func (s *SIPWhiteListService) DelSipWhiteListItem(params DelSipWhiteListItemParams) (*DelSipWhiteListItemReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "DelSipWhiteListItem", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "DelSipWhiteListItem", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -76,7 +76,7 @@ type SetSipWhiteListItemReturn struct {
 
 // Edits the SIP white list.
 func (s *SIPWhiteListService) SetSipWhiteListItem(params SetSipWhiteListItemParams) (*SetSipWhiteListItemReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SetSipWhiteListItem", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SetSipWhiteListItem", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -107,7 +107,7 @@ type GetSipWhiteListReturn struct {
 
 // Gets the SIP white list.
 func (s *SIPWhiteListService) GetSipWhiteList(params GetSipWhiteListParams) (*GetSipWhiteListReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetSipWhiteList", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetSipWhiteList", params)
 	if err != nil {
 		return nil, nil, err
 	}

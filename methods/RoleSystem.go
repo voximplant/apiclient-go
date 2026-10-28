@@ -25,7 +25,7 @@ type CreateKeyReturn struct {
 
 // Creates a public/private key pair. You can optionally specify one or more roles for the key. You can find all available service account roles [here](/docs/getting-started/basic-concepts/management-api#service-account-roles).
 func (s *RoleSystemService) CreateKey(params CreateKeyParams) (*CreateKeyReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "CreateKey", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "CreateKey", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -54,7 +54,7 @@ type GetKeysReturn struct {
 
 // Gets key info of the specified account.
 func (s *RoleSystemService) GetKeys(params GetKeysParams) (*GetKeysReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetKeys", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetKeys", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -81,7 +81,7 @@ type UpdateKeyReturn struct {
 
 // Updates info of the specified key.
 func (s *RoleSystemService) UpdateKey(params UpdateKeyParams) (*UpdateKeyReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "UpdateKey", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "UpdateKey", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -104,7 +104,7 @@ type DeleteKeyReturn struct {
 
 // Deletes the specified key.
 func (s *RoleSystemService) DeleteKey(params DeleteKeyParams) (*DeleteKeyReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "DeleteKey", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "DeleteKey", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -131,7 +131,7 @@ type SetKeyRolesReturn struct {
 
 // Set roles for the specified key.
 func (s *RoleSystemService) SetKeyRoles(params SetKeyRolesParams) (*SetKeyRolesReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SetKeyRoles", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SetKeyRoles", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -156,7 +156,7 @@ type GetKeyRolesReturn struct {
 
 // Gets roles of the specified key.
 func (s *RoleSystemService) GetKeyRoles(params GetKeyRolesParams) (*GetKeyRolesReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetKeyRoles", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetKeyRoles", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -183,7 +183,7 @@ type RemoveKeyRolesReturn struct {
 
 // Removes the specified roles of a key.
 func (s *RoleSystemService) RemoveKeyRoles(params RemoveKeyRolesParams) (*RemoveKeyRolesReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "RemoveKeyRoles", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "RemoveKeyRoles", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -214,7 +214,7 @@ type AddSubUserReturn struct {
 
 // Creates a subuser.
 func (s *RoleSystemService) AddSubUser(params AddSubUserParams) (*AddSubUserReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "AddSubUser", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "AddSubUser", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -243,7 +243,7 @@ type GetSubUsersReturn struct {
 
 // Gets subusers.
 func (s *RoleSystemService) GetSubUsers(params GetSubUsersParams) (*GetSubUsersReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetSubUsers", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetSubUsers", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -272,7 +272,7 @@ type SetSubUserInfoReturn struct {
 
 // Edits a subuser.
 func (s *RoleSystemService) SetSubUserInfo(params SetSubUserInfoParams) (*SetSubUserInfoReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SetSubUserInfo", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SetSubUserInfo", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -295,7 +295,7 @@ type DelSubUserReturn struct {
 
 // Deletes a subuser.
 func (s *RoleSystemService) DelSubUser(params DelSubUserParams) (*DelSubUserReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "DelSubUser", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "DelSubUser", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -322,7 +322,7 @@ type SetSubUserRolesReturn struct {
 
 // Adds the specified roles for a subuser.
 func (s *RoleSystemService) SetSubUserRoles(params SetSubUserRolesParams) (*SetSubUserRolesReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SetSubUserRoles", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SetSubUserRoles", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -347,7 +347,7 @@ type GetSubUserRolesReturn struct {
 
 // Gets the subuser's roles.
 func (s *RoleSystemService) GetSubUserRoles(params GetSubUserRolesParams) (*GetSubUserRolesReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetSubUserRoles", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetSubUserRoles", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -376,7 +376,7 @@ type RemoveSubUserRolesReturn struct {
 
 // Removes the specified roles of a subuser.
 func (s *RoleSystemService) RemoveSubUserRoles(params RemoveSubUserRolesParams) (*RemoveSubUserRolesReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "RemoveSubUserRoles", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "RemoveSubUserRoles", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -399,7 +399,7 @@ type GetRolesReturn struct {
 
 // Gets all roles.
 func (s *RoleSystemService) GetRoles(params GetRolesParams) (*GetRolesReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetRoles", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetRoles", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -420,7 +420,7 @@ type GetRoleGroupsReturn struct {
 
 // Gets role groups.
 func (s *RoleSystemService) GetRoleGroups(params GetRoleGroupsParams) (*GetRoleGroupsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetRoleGroups", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetRoleGroups", params)
 	if err != nil {
 		return nil, nil, err
 	}

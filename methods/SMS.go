@@ -29,7 +29,7 @@ type SendSmsMessageReturn struct {
 
 // Sends an SMS message between two phone numbers. The source phone number should be purchased from Voximplant and support SMS (which is indicated by the <b>is_sms_supported</b> property in the objects returned by the [GetPhoneNumbers] Management API) and SMS should be enabled for it via the [ControlSms] Management API. SMS messages can be received via HTTP callbacks, see <a href='/docs/guides/managementapi/callbacks'>this article</a> for details.
 func (s *SMSService) SendSmsMessage(params SendSmsMessageParams) (*SendSmsMessageReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SendSmsMessage", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SendSmsMessage", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -61,7 +61,7 @@ type A2PSendSmsReturn struct {
 
 // Sends an A2P SMS message from the application to customers. A SenderID is required for A2P messages. Please contact support for installing a SenderID.
 func (s *SMSService) A2PSendSms(params A2PSendSmsParams) (*A2PSendSmsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "A2PSendSms", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "A2PSendSms", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -86,7 +86,7 @@ type ControlSmsReturn struct {
 
 // Enables or disables sending and receiving SMS for the phone number. Can be used only for phone numbers with SMS support, which is indicated by the <b>is_sms_supported</b> property in the objects returned by the [GetPhoneNumbers] Management API. Each incoming SMS message is charged according to the <a href='//voximplant.com/pricing'>pricing</a>. If enabled, SMS can be sent from this phone number via the [SendSmsMessage] Management API and received via the [InboundSmsCallback] property of the HTTP callback. See <a href='/docs/guides/managementapi/callbacks'>this article</a> for HTTP callback details.
 func (s *SMSService) ControlSms(params ControlSmsParams) (*ControlSmsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "ControlSms", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "ControlSms", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -129,7 +129,7 @@ type GetSmsHistoryReturn struct {
 
 // Gets the history of sent and/or received SMS.
 func (s *SMSService) GetSmsHistory(params GetSmsHistoryParams) (*GetSmsHistoryReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetSmsHistory", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetSmsHistory", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -170,7 +170,7 @@ type A2PGetSmsHistoryReturn struct {
 
 // Gets the history of sent/or received A2P SMS.
 func (s *SMSService) A2PGetSmsHistory(params A2PGetSmsHistoryParams) (*A2PGetSmsHistoryReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "A2PGetSmsHistory", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "A2PGetSmsHistory", params)
 	if err != nil {
 		return nil, nil, err
 	}

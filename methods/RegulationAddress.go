@@ -23,7 +23,7 @@ type LinkregulationAddressReturn struct {
 
 // Links the regulation address to a phone.
 func (s *RegulationAddressService) LinkregulationAddress(params LinkregulationAddressParams) (*LinkregulationAddressReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "LinkregulationAddress", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "LinkregulationAddress", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -55,7 +55,7 @@ type GetZIPCodesReturn struct {
 
 // Searches for available zip codes.
 func (s *RegulationAddressService) GetZIPCodes(params GetZIPCodesParams) (*GetZIPCodesReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetZIPCodes", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetZIPCodes", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -95,7 +95,7 @@ type GetRegulationsAddressReturn struct {
 
 // Searches for the user's regulation address.
 func (s *RegulationAddressService) GetRegulationsAddress(params GetRegulationsAddressParams) (*GetRegulationsAddressReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetRegulationsAddress", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetRegulationsAddress", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -127,7 +127,7 @@ type GetAvailableRegulationsReturn struct {
 
 // Searches for the available regulation for a link.
 func (s *RegulationAddressService) GetAvailableRegulations(params GetAvailableRegulationsParams) (*GetAvailableRegulationsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetAvailableRegulations", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetAvailableRegulations", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -151,7 +151,7 @@ type GetCountriesReturn struct {
 
 // Gets all countries.
 func (s *RegulationAddressService) GetCountries(params GetCountriesParams) (*GetCountriesReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetCountries", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetCountries", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -183,7 +183,7 @@ type GetRegionsReturn struct {
 
 // Gets available regions in a country.
 func (s *RegulationAddressService) GetRegions(params GetRegionsParams) (*GetRegionsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetRegions", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetRegions", params)
 	if err != nil {
 		return nil, nil, err
 	}

@@ -22,7 +22,7 @@ type AddSkillReturn struct {
 
 // Adds a new operator's skill. Works only for ACDv1. For SmartQueue/ACDv2, use <a href="#how-auth-works">this reference</a>.
 func (s *SkillsService) AddSkill(params AddSkillParams) (*AddSkillReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "AddSkill", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "AddSkill", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -48,7 +48,7 @@ type DelSkillReturn struct {
 
 // Deletes an operator's skill. Works only for ACDv1. For SmartQueue/ACDv2, use <a href="#how-auth-works">this reference</a>.
 func (s *SkillsService) DelSkill(params DelSkillParams) (*DelSkillReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "DelSkill", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "DelSkill", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -76,7 +76,7 @@ type SetSkillInfoReturn struct {
 
 // Edits an operator's skill. Works only for ACDv1. For SmartQueue/ACDv2, use <a href="#how-auth-works">this reference</a>.
 func (s *SkillsService) SetSkillInfo(params SetSkillInfoParams) (*SetSkillInfoReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SetSkillInfo", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SetSkillInfo", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -109,7 +109,7 @@ type GetSkillsReturn struct {
 
 // Gets the skills of an operator. Works only for ACDv1. For SmartQueue/ACDv2, use <a href="#how-auth-works">this reference</a>.
 func (s *SkillsService) GetSkills(params GetSkillsParams) (*GetSkillsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetSkills", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetSkills", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -149,7 +149,7 @@ type BindSkillReturn struct {
 
 // Binds the specified skills to the users (ACD operators) and/or the ACD queues. Works only for ACDv1. For SmartQueue/ACDv2, use <a href="#how-auth-works">this reference</a>.
 func (s *SkillsService) BindSkill(params BindSkillParams) (*BindSkillReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "BindSkill", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "BindSkill", params)
 	if err != nil {
 		return nil, nil, err
 	}

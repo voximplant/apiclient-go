@@ -38,7 +38,7 @@ type AddQueueReturn struct {
 
 // Adds a new ACD queue.
 func (s *QueuesService) AddQueue(params AddQueueParams) (*AddQueueReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "AddQueue", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "AddQueue", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -74,7 +74,7 @@ type BindUserToQueueReturn struct {
 
 // Bind/unbind users to/from the specified ACD queues. Note that users and queues should be already bound to the same application.
 func (s *QueuesService) BindUserToQueue(params BindUserToQueueParams) (*BindUserToQueueReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "BindUserToQueue", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "BindUserToQueue", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -100,7 +100,7 @@ type DelQueueReturn struct {
 
 // Deletes the ACD queue.
 func (s *QueuesService) DelQueue(params DelQueueParams) (*DelQueueReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "DelQueue", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "DelQueue", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -144,7 +144,7 @@ type SetQueueInfoReturn struct {
 
 // Edits the ACD queue.
 func (s *QueuesService) SetQueueInfo(params SetQueueInfoParams) (*SetQueueInfoReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SetQueueInfo", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SetQueueInfo", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -197,7 +197,7 @@ type GetQueuesReturn struct {
 
 // Gets the ACD queues.
 func (s *QueuesService) GetQueues(params GetQueuesParams) (*GetQueuesReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetQueues", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetQueues", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -220,7 +220,7 @@ type GetACDStateReturn struct {
 
 // Gets the current ACD queue state.
 func (s *QueuesService) GetACDState(params GetACDStateParams) (*GetACDStateReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetACDState", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetACDState", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -258,7 +258,7 @@ type GetACDOperatorStatisticsReturn struct {
 
 // Get statistics for calls distributed to users (referred as 'operators') via the 'ACD' module. This method can filter statistic based on operator ids, queue ids and date-time interval. It can also group results by day or hour.
 func (s *QueuesService) GetACDOperatorStatistics(params GetACDOperatorStatisticsParams) (*GetACDOperatorStatisticsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetACDOperatorStatistics", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetACDOperatorStatistics", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -292,7 +292,7 @@ type GetACDQueueStatisticsReturn struct {
 
 // Get statistics for calls distributed to users (referred as 'operators') via the 'queue' distribution system. This method can filter statistic based on operator ids, queue ids and date-time interval. It can also group results by day or hour.
 func (s *QueuesService) GetACDQueueStatistics(params GetACDQueueStatisticsParams) (*GetACDQueueStatisticsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetACDQueueStatistics", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetACDQueueStatistics", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -326,7 +326,7 @@ type GetACDOperatorStatusStatisticsReturn struct {
 
 // Get statistics for the specified operators and ACD statuses. This method can filter statistics by operator ids and statuses. It can also group results by day/hour or users.
 func (s *QueuesService) GetACDOperatorStatusStatistics(params GetACDOperatorStatusStatisticsParams) (*GetACDOperatorStatusStatisticsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetACDOperatorStatusStatistics", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetACDOperatorStatusStatistics", params)
 	if err != nil {
 		return nil, nil, err
 	}

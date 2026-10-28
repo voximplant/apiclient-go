@@ -22,7 +22,7 @@ type AddPstnBlackListItemReturn struct {
 
 // Add a new phone number to the PSTN blacklist. Use blacklist to block incoming calls from specified phone numbers to numbers purchased from Voximplant. Since we have no control over exact phone number format for calls from SIP integrations, blacklisting such numbers should be done via JavaScript scenarios.
 func (s *PSTNBlacklistService) AddPstnBlackListItem(params AddPstnBlackListItemParams) (*AddPstnBlackListItemReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "AddPstnBlackListItem", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "AddPstnBlackListItem", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -48,7 +48,7 @@ type SetPstnBlackListItemReturn struct {
 
 // Update the PSTN blacklist item. BlackList works for numbers that are purchased from Voximplant only. Since we have no control over exact phone number format for calls from SIP integrations, blacklisting such numbers should be done via JavaScript scenarios.
 func (s *PSTNBlacklistService) SetPstnBlackListItem(params SetPstnBlackListItemParams) (*SetPstnBlackListItemReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SetPstnBlackListItem", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SetPstnBlackListItem", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -72,7 +72,7 @@ type DelPstnBlackListItemReturn struct {
 
 // Remove phone number from the PSTN blacklist.
 func (s *PSTNBlacklistService) DelPstnBlackListItem(params DelPstnBlackListItemParams) (*DelPstnBlackListItemReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "DelPstnBlackListItem", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "DelPstnBlackListItem", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -105,7 +105,7 @@ type GetPstnBlackListReturn struct {
 
 // Get the whole PSTN blacklist.
 func (s *PSTNBlacklistService) GetPstnBlackList(params GetPstnBlackListParams) (*GetPstnBlackListReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetPstnBlackList", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetPstnBlackList", params)
 	if err != nil {
 		return nil, nil, err
 	}

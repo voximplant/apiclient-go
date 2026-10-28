@@ -34,7 +34,7 @@ type AddScenarioReturn struct {
 
 // Adds a new scenario to the <a href="https://voximplant.com/docs/gettingstarted/basicconcepts/scenarios#shared-scenarios">Shared</a> folder, so the scenario is available in all the existing applications. Please use the POST method.<br><br>When adding a scenario to the Shared folder, the `application_id` and `application_name` parameters should not be provided.
 func (s *ScenariosService) AddScenario(params AddScenarioParams) (*AddScenarioReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "AddScenario", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "AddScenario", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -60,7 +60,7 @@ type DelScenarioReturn struct {
 
 // Deletes the scenario.
 func (s *ScenariosService) DelScenario(params DelScenarioParams) (*DelScenarioReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "DelScenario", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "DelScenario", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -96,7 +96,7 @@ type BindScenarioReturn struct {
 
 // Bind the scenario list to the rule. You should specify the application_id or application_name if you specify the rule_name. Please note, the scenario and the routing rule need to be within the same application.
 func (s *ScenariosService) BindScenario(params BindScenarioParams) (*BindScenarioReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "BindScenario", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "BindScenario", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -141,7 +141,7 @@ type GetScenariosReturn struct {
 
 // Gets the account's scenarios.
 func (s *ScenariosService) GetScenarios(params GetScenariosParams) (*GetScenariosReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetScenarios", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetScenarios", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -171,7 +171,7 @@ type SetScenarioInfoReturn struct {
 
 // Edits the scenario. You can edit the scenario's name and body. Please use the POST method.
 func (s *ScenariosService) SetScenarioInfo(params SetScenarioInfoParams) (*SetScenarioInfoReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SetScenarioInfo", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SetScenarioInfo", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -199,7 +199,7 @@ type ReorderScenariosReturn struct {
 
 // Configures the order of scenarios that are assigned to the specified rule.
 func (s *ScenariosService) ReorderScenarios(params ReorderScenariosParams) (*ReorderScenariosReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "ReorderScenarios", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "ReorderScenarios", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -249,7 +249,7 @@ type StartScenariosReturn struct {
 
 // Runs JavaScript scenarios on a Voximplant server. The scenarios run in a new media session. To start a scenario, pass the routing rule ID associated with the necessary scenario. You can use both GET and POST requests at your choice. If you need to send custom data, we recommend to use the POST method and to include the data in the `custom_data` field of the request body. The maximum number of concurrent HTTP-requests is limited to 200. If this number is exceeded, this method returns the 429 code error (Too Many Requests) until the number of active requests is reduced. If you exceed this number, you get the 429 error code.
 func (s *ScenariosService) StartScenarios(params StartScenariosParams) (*StartScenariosReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "StartScenarios", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "StartScenarios", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -297,7 +297,7 @@ type StartConferenceReturn struct {
 
 // Runs a session for video conferencing or joins the existing video conference session.<br/><br/>When you create a session by calling this method, a scenario runs on one of the servers dedicated to video conferencing. All further method calls with the same **conference_name** do not create a new video conference session but join the existing one.<br/><br/>Use the [StartScenarios] method for creating audio conferences.
 func (s *ScenariosService) StartConference(params StartConferenceParams) (*StartConferenceReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "StartConference", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "StartConference", params)
 	if err != nil {
 		return nil, nil, err
 	}

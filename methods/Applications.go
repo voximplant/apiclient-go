@@ -28,7 +28,7 @@ type AddApplicationReturn struct {
 
 // Adds a new account's application.
 func (s *ApplicationsService) AddApplication(params AddApplicationParams) (*AddApplicationReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "AddApplication", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "AddApplication", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -54,7 +54,7 @@ type DelApplicationReturn struct {
 
 // Deletes the account's application.
 func (s *ApplicationsService) DelApplication(params DelApplicationParams) (*DelApplicationReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "DelApplication", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "DelApplication", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -88,7 +88,7 @@ type SetApplicationInfoReturn struct {
 
 // Edits the account's application.
 func (s *ApplicationsService) SetApplicationInfo(params SetApplicationInfoParams) (*SetApplicationInfoReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "SetApplicationInfo", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "SetApplicationInfo", params)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -125,7 +125,7 @@ type GetApplicationsReturn struct {
 
 // Gets the account's applications.
 func (s *ApplicationsService) GetApplications(params GetApplicationsParams) (*GetApplicationsReturn, *structure.VError, error) {
-	req, err := s.client.NewRequest("POST", "GetApplications", params)
+	req, err := s.client.NewRequestWithContext(s.client.requestContext(), "POST", "GetApplications", params)
 	if err != nil {
 		return nil, nil, err
 	}
