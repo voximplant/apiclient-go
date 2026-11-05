@@ -32,33 +32,33 @@ type Client struct {
 	// Empty means context.Background(). WithContext replaces this on the copy only.
 	ctx context.Context
 
+	PSTNBlacklist         *PSTNBlacklistService
+	AuthorizedIPs         *AuthorizedIPsService
 	RoleSystem            *RoleSystemService
+	Invoices              *InvoicesService
+	Applications          *ApplicationsService
+	Users                 *UsersService
+	Secrets               *SecretsService
+	SmartQueue            *SmartQueueService
+	PushCredentials       *PushCredentialsService
+	Queues                *QueuesService
 	History               *HistoryService
 	SIPRegistration       *SIPRegistrationService
-	PushCredentials       *PushCredentialsService
-	CallLists             *CallListsService
-	PhoneNumbers          *PhoneNumbersService
-	CallerIDs             *CallerIDsService
-	Secrets               *SecretsService
-	Users                 *UsersService
-	OutboundTestNumbers   *OutboundTestNumbersService
 	SMS                   *SMSService
-	RegulationAddress     *RegulationAddressService
-	Rules                 *RulesService
-	PSTNBlacklist         *PSTNBlacklistService
-	SIPWhiteList          *SIPWhiteListService
-	DialogflowCredentials *DialogflowCredentialsService
-	KeyValueStorage       *KeyValueStorageService
-	RecordStorages        *RecordStoragesService
-	Invoices              *InvoicesService
-	Scenarios             *ScenariosService
-	WABPhoneNumbers       *WABPhoneNumbersService
-	AuthorizedIPs         *AuthorizedIPsService
-	SmartQueue            *SmartQueueService
-	Skills                *SkillsService
 	Accounts              *AccountsService
-	Applications          *ApplicationsService
-	Queues                *QueuesService
+	Scenarios             *ScenariosService
+	CallerIDs             *CallerIDsService
+	OutboundTestNumbers   *OutboundTestNumbersService
+	RecordStorages        *RecordStoragesService
+	KeyValueStorage       *KeyValueStorageService
+	SIPWhiteList          *SIPWhiteListService
+	WABPhoneNumbers       *WABPhoneNumbersService
+	PhoneNumbers          *PhoneNumbersService
+	Skills                *SkillsService
+	RegulationAddress     *RegulationAddressService
+	DialogflowCredentials *DialogflowCredentialsService
+	CallLists             *CallListsService
+	Rules                 *RulesService
 
 	// AuthorizedIps deprecated: use AuthorizedIPs instead
 	AuthorizedIps *AuthorizedIPsService
@@ -111,33 +111,33 @@ func NewClient(config *config.Config) (*Client, error) {
 }
 
 func bindServices(c *Client) {
+	c.PSTNBlacklist = &PSTNBlacklistService{c}
+	c.AuthorizedIPs = &AuthorizedIPsService{c}
 	c.RoleSystem = &RoleSystemService{c}
+	c.Invoices = &InvoicesService{c}
+	c.Applications = &ApplicationsService{c}
+	c.Users = &UsersService{c}
+	c.Secrets = &SecretsService{c}
+	c.SmartQueue = &SmartQueueService{c}
+	c.PushCredentials = &PushCredentialsService{c}
+	c.Queues = &QueuesService{c}
 	c.History = &HistoryService{c}
 	c.SIPRegistration = &SIPRegistrationService{c}
-	c.PushCredentials = &PushCredentialsService{c}
-	c.CallLists = &CallListsService{c}
-	c.PhoneNumbers = &PhoneNumbersService{c}
-	c.CallerIDs = &CallerIDsService{c}
-	c.Secrets = &SecretsService{c}
-	c.Users = &UsersService{c}
-	c.OutboundTestNumbers = &OutboundTestNumbersService{c}
 	c.SMS = &SMSService{c}
-	c.RegulationAddress = &RegulationAddressService{c}
-	c.Rules = &RulesService{c}
-	c.PSTNBlacklist = &PSTNBlacklistService{c}
-	c.SIPWhiteList = &SIPWhiteListService{c}
-	c.DialogflowCredentials = &DialogflowCredentialsService{c}
-	c.KeyValueStorage = &KeyValueStorageService{c}
-	c.RecordStorages = &RecordStoragesService{c}
-	c.Invoices = &InvoicesService{c}
-	c.Scenarios = &ScenariosService{c}
-	c.WABPhoneNumbers = &WABPhoneNumbersService{c}
-	c.AuthorizedIPs = &AuthorizedIPsService{c}
-	c.SmartQueue = &SmartQueueService{c}
-	c.Skills = &SkillsService{c}
 	c.Accounts = &AccountsService{c}
-	c.Applications = &ApplicationsService{c}
-	c.Queues = &QueuesService{c}
+	c.Scenarios = &ScenariosService{c}
+	c.CallerIDs = &CallerIDsService{c}
+	c.OutboundTestNumbers = &OutboundTestNumbersService{c}
+	c.RecordStorages = &RecordStoragesService{c}
+	c.KeyValueStorage = &KeyValueStorageService{c}
+	c.SIPWhiteList = &SIPWhiteListService{c}
+	c.WABPhoneNumbers = &WABPhoneNumbersService{c}
+	c.PhoneNumbers = &PhoneNumbersService{c}
+	c.Skills = &SkillsService{c}
+	c.RegulationAddress = &RegulationAddressService{c}
+	c.DialogflowCredentials = &DialogflowCredentialsService{c}
+	c.CallLists = &CallListsService{c}
+	c.Rules = &RulesService{c}
 	// AuthorizedIps deprecated: use AuthorizedIPs instead
 	c.AuthorizedIps = &AuthorizedIPsService{c}
 	// CallerIds deprecated: use CallerIDs instead

@@ -2198,6 +2198,40 @@ type RecordStorageInfoType struct {
 	RecordStorageName string `json:"record_storage_name,omitempty"`
 }
 
+type CustomRecordStorageInfoType struct {
+	// Unique identifier of the custom record storage configuration.
+	CustomRecordStorageId int `json:"custom_record_storage_id,omitempty"`
+	// Host endpoint for the custom storage service.
+	Host string `json:"host,omitempty"`
+	// Access key ID used to authenticate requests.
+	AccessKeyId string `json:"access_key_id,omitempty"`
+	// Name of the storage bucket.
+	Bucket string `json:"bucket,omitempty"`
+	// Geographic region where the bucket is located.
+	Region string `json:"region,omitempty"`
+	// Signature version used for signing requests.
+	SignatureVersion string `json:"signature_version,omitempty"`
+	// Whether the bucket name is treated as a domain.
+	BucketIsDomain *bool `json:"bucket_is_domain,omitempty"`
+	// Storage class assigned to uploaded objects.
+	StorageClass string `json:"storage_class,omitempty"`
+	// Access Control List rule applied to objects.
+	Acl string `json:"acl,omitempty"`
+	// Cross-Origin Resource Sharing configuration.
+	Cors string `json:"cors,omitempty"`
+	// Whether large file multipart uploading is enabled.
+	MultipartUpload *bool `json:"multipart_upload,omitempty"`
+	// Status result of the most recent connection or storage test.
+	LastTestStatus string `json:"last_test_status,omitempty"`
+	// Summary details of the last executed operation on this storage.
+	LastOperationShortInfo interface{} `json:"last_operation_short_info,omitempty"`
+}
+
+type AddCustomRecordStorageInfoType struct {
+	// Unique identifier of the custom record storage configuration.
+	CustomRecordStorageId int `json:"custom_record_storage_id,omitempty"`
+}
+
 type SmsTransaction struct {
 	// Message ID
 	MessageId int `json:"message_id"`
